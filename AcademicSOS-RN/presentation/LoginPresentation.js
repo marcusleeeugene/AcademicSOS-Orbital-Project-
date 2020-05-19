@@ -15,7 +15,7 @@ export default function LoginPresentation() {
     return (
       <View style = {styles.container}>
         <Text style = {styles.font}>AcademicSOS</Text>
-        <Image style = {styles.nusLogo} source={require('../images/NUS_logo_full-horizontal.jpg')} />
+        <Image style = {styles.nusLogo} source={require('../assets/images/NUS_logo_full-horizontal.jpg')} />
       </View>
     );
   }
