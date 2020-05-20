@@ -10,6 +10,10 @@ export default function BreadCrumb() {
     "Righteous-Regular": require("../assets/fonts/Righteous-Regular.ttf"),
   });
 
+  const navigation = [
+      { name: 'Home'}
+    ];
+
   if (!fontsLoaded) {
     return <AppLoading />;
   } else {

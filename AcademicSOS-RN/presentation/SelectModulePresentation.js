@@ -44,9 +44,6 @@ export default function SelectModulePresentation() {
 }
 
 const styles = StyleSheet.create({
-  header: {
-    backgroundColor: '#EF7C00'
-  },
   body: {
     height: hp('100%'),
     width: wp('100%'),
