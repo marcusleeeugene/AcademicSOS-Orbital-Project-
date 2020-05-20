@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontFamily: "Righteous-Regular",
     color: "#FFFFFF",
-    marginBottom: "5%",
+    marginBottom: "3%",
   },
   SectionStyle: {
     marginHorizontal: "15%",

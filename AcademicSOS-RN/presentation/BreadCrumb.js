@@ -2,7 +2,10 @@ import React from "react";
 import { useFonts } from "@use-expo/font";
 import { StyleSheet, Text, View, Image } from "react-native";
 import { AppLoading } from "expo";
-import { widthPercentageToDP as wp, heightPercentageToDP as hp} from "react-native-responsive-screen";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
 
 export default function BreadCrumb() {
   let [fontsLoaded] = useFonts({
@@ -14,9 +17,15 @@ export default function BreadCrumb() {
     return <AppLoading />;
   } else {
     return (
-      <View style = {styles.header}>
-        <Text style = {styles.breadCrumbText} onPress = {() => null}> Home </Text>
-        <Image style = {styles.chevron} source={require("../assets/images/chevron.png")}/>
+      <View style={styles.header}>
+        <Text style={styles.breadCrumbText} onPress={() => null}>
+          {" "}
+          Home{" "}
+        </Text>
+        <Image
+          style={styles.chevron}
+          source={require("../assets/images/chevron.png")}
+        />
       </View>
     );
   }
@@ -24,17 +33,17 @@ export default function BreadCrumb() {
 
 const styles = StyleSheet.create({
   header: {
-    backgroundColor: '#EF7C00',
-    height: hp('17%'),
-    flexDirection: 'row',
-    justifyContent: 'center'
+    backgroundColor: "#EF7C00",
+    height: hp("16%"),
+    flexDirection: "row",
+    justifyContent: "center",
   },
   breadCrumbText: {
-    marginTop: '20%',
-    fontSize: hp('2%'),
+    marginTop: "20%",
+    fontSize: hp("2%"),
     fontFamily: "Righteous-Regular",
   },
   chevron: {
-    marginTop: '19.5%',
-  }
+    marginTop: "19.5%",
+  },
 });
