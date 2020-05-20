@@ -1,22 +1,8 @@
 import React from "react";
 import { useFonts } from "@use-expo/font";
-import {
-  Dimensions,
-  Platform,
-  StyleSheet,
-  Text,
-  View,
-  StatusBar,
-  SafeAreaView,
-  Image,
-  TextInput,
-  TouchableOpacity,
-} from "react-native";
+import { Dimensions, Platform, StyleSheet, Text, View, StatusBar, SafeAreaView, Image, TextInput, TouchableOpacity } from "react-native";
 import { AppLoading } from "expo";
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from "react-native-responsive-screen";
+import { widthPercentageToDP as wp, heightPercentageToDP as hp} from "react-native-responsive-screen";
 
 const X_WIDTH = 375;
 const X_HEIGHT = 812;
@@ -48,10 +34,7 @@ export default function LoginPresentation() {
     return (
       <SafeAreaView style={styles.container}>
         <Text style={styles.AcademicSOS}> AcademicSOS </Text>
-        <Image
-          style={styles.nusLogo}
-          source={require("../assets/images/NUS_logo_Transparent.png")}
-        />
+        <Image style={styles.nusLogo} source={require("../assets/images/NUS_logo_Transparent.png")}/>
         <View style={styles.loginBackground}>
           <Text style={styles.textInputTitle}> Student ID: </Text>
           <TextInput style={styles.textInput} placeholder="    Student ID" />

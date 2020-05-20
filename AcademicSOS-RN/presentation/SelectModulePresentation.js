@@ -4,6 +4,7 @@ import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity } from 'reac
 import { AppLoading } from 'expo';
 import { FlatGrid } from 'react-native-super-grid';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import BreadCrumb from './BreadCrumb.js';
 
 export default function SelectModulePresentation() {
 
@@ -22,7 +23,8 @@ export default function SelectModulePresentation() {
     return <AppLoading />;
   } else {
     return (
-      <View style = {styles.header}>
+      <View>
+        <BreadCrumb/>
         <View style = {styles.body}>
           <Text style = {styles.title}> Select a module </Text>
           <FlatGrid
@@ -46,7 +48,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#EF7C00'
   },
   body: {
-    marginTop: '30%',
     height: hp('100%'),
     width: wp('100%'),
     backgroundColor: '#003D7C'
