@@ -51,16 +51,17 @@ export default function LoginPresentation() {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: StatusBarHeight,
     flex: 1,
     flexDirection: "column",
     alignItems: "center",
+    backgroundColor: "#EF7C00",
   },
   AcademicSOS: {
+    marginTop: hp("5%"),
     fontSize: hp("4%"),
     textAlign: "center",
     fontFamily: "SonsieOne-Regular",
-    color: "#FF5722",
+    color: "#FFFFFF",
   },
   nusLogo: {
     height: hp("15%"),
@@ -89,6 +90,7 @@ const styles = StyleSheet.create({
     width: wp("50%"),
     backgroundColor: "#FFFFFF",
     borderRadius: hp("1.1%"),
+    paddingHorizontal: wp('2%'),
   },
   loginBtn: {
     marginTop: "5%",

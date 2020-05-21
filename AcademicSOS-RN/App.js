@@ -12,6 +12,6 @@ export default function App() {
     //<HomeScreen></HomeScreen>
     //<SelectModulePresentation></SelectModulePresentation>
     //<BreadCrumb></BreadCrumb>
-    <BookConsultScreen></BookConsultScreen>
+    //<BookConsultScreen></BookConsultScreen>
   );
 }
