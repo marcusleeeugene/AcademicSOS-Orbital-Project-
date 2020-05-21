@@ -15,7 +15,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
-import BreadCrumb from "./BreadCrumb";
+import BreadCrumb from "../components/BreadCrumb";
 
 const options = [
   {
@@ -55,7 +55,7 @@ export default function BookConsultScreen() {
               <Text style={styles.itemName}>{item.name}</Text>
               <View style={styles.textInput}>
                 <TextInput
-                  style={{ flex: 1,     paddingHorizontal: wp('2%')}}
+                  style={{ flex: 1, paddingHorizontal: wp("2%") }}
                   underlineColorAndroid="transparent"
                 />
                 <TouchableOpacity style={styles.button}>
@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
     borderColor: "black",
     borderWidth: 1.1,
     alignItems: "center",
-    paddingHorizontal: wp('0%'),
+    paddingHorizontal: wp("0%"),
   },
   imageStyle: {
     height: hp("3%"),
@@ -147,7 +147,7 @@ const styles = StyleSheet.create({
     width: wp("68%"),
     backgroundColor: "#FFFFFF",
     borderRadius: hp("1.1%"),
-    paddingHorizontal: wp('2%')
+    paddingHorizontal: wp("2%"),
   },
   bookBtn: {
     backgroundColor: "#FFFFFF",
@@ -164,6 +164,6 @@ const styles = StyleSheet.create({
     fontSize: hp("2%"),
     fontFamily: "Righteous-Regular",
     alignItems: "center",
-    marginTop: "4%"
+    marginTop: "4%",
   },
 });

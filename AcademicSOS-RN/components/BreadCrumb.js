@@ -15,40 +15,52 @@ export default function BreadCrumb() {
 
   //Navigation elements to show (To be changed )
   const navigation = [
-      { name: 'Home', code: 'bye' }, { name: 'NextOne', code: 'bye' }, { name: 'NextTwo', code: 'bye' }
-    ];
+    { name: "Home", code: "bye" },
+    { name: "NextOne", code: "bye" },
+    { name: "NextTwo", code: "bye" },
+  ];
 
   //Handle navigation system
-  let navJSX = []
-  let lastElem = navigation.length - 1
+  let navJSX = [];
+  let lastElem = navigation.length - 1;
   for (var i = 0; i < navigation.length; i++) {
-    if (i == lastElem) { //Current directory
+    if (i == lastElem) {
+      //Current directory
       navJSX.push(
         <View style={[styles.textContainer, styles.underline]}>
-          <Text style={styles.breadCrumbText} onPress={() => null}> {navigation[i].name} </Text>
+          <Text style={styles.breadCrumbText} onPress={() => null}>
+            {" "}
+            {navigation[i].name}{" "}
+          </Text>
         </View>
-      )
-    } else { //Previous directories
+      );
+    } else {
+      //Previous directories
       navJSX.push(
         <View style={styles.textContainer}>
-          <Text style={styles.breadCrumbText} onPress={() => null}> {navigation[i].name} </Text>
+          <Text style={styles.breadCrumbText} onPress={() => null}>
+            {" "}
+            {navigation[i].name}{" "}
+          </Text>
         </View>
-      )
+      );
     }
 
-    if (i != lastElem && navigation.length > 1) { //Only render chevron if it is not last element
-      navJSX.push(<Image style={styles.chevron} source={require("../assets/images/chevron.png")} />)
+    if (i != lastElem && navigation.length > 1) {
+      //Only render chevron if it is not last element
+      navJSX.push(
+        <Image
+          style={styles.chevron}
+          source={require("../assets/images/chevron.png")}
+        />
+      );
     }
   }
 
   if (!fontsLoaded) {
     return <AppLoading />;
   } else {
-    return (
-      <View style={styles.header}>
-        {navJSX}
-      </View>
-    );
+    return <View style={styles.header}>{navJSX}</View>;
   }
 }
 
@@ -64,11 +76,11 @@ const styles = StyleSheet.create({
   },
   breadCrumbText: {
     fontSize: hp("2%"),
-    fontFamily: "Righteous-Regular"
+    fontFamily: "Righteous-Regular",
   },
   underline: {
-    height: hp('3%') ,
-    borderBottomWidth: 3
+    height: hp("3%"),
+    borderBottomWidth: 3,
   },
   chevron: {
     marginTop: "19.5%",

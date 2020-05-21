@@ -7,7 +7,7 @@ import {
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 import { FlatGrid } from "react-native-super-grid";
-import BreadCrumb from "./BreadCrumb";
+import BreadCrumb from "../components/BreadCrumb";
 
 export default function HomeScreen() {
   let [fontsLoaded] = useFonts({
@@ -116,6 +116,6 @@ const styles = StyleSheet.create({
   logoutBtnText: {
     fontSize: hp("2%"),
     fontFamily: "Righteous-Regular",
-    marginTop: "4%"
+    marginTop: "4%",
   },
 });
