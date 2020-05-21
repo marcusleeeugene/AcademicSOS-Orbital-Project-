@@ -39,7 +39,7 @@ export default function LoginPresentation() {
           <Text style={styles.textInputTitle}> Student ID: </Text>
           <TextInput style={styles.textInput} placeholder="    Student ID" />
           <Text style={styles.textInputTitle}> Password: </Text>
-          <TextInput style={styles.textInput} placeholder="    Password" />
+          <TextInput secureTextEntry={true} style={styles.textInput} placeholder="    Password" />
           <TouchableOpacity style={styles.loginBtn}>
             <Text style={styles.loginBtnText}> LOGIN </Text>
           </TouchableOpacity>

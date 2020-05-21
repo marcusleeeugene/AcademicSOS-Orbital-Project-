@@ -50,10 +50,10 @@ export default function BookConsultScreen() {
         <BreadCrumb />
         <ScrollView style={styles.body}>
           <Text style={styles.title}> Fill in consultation details: </Text>
-          {options.map((item, index) => (
+          {options.map((item) => (
             <View key={item.id}>
               <Text style={styles.itemName}>{item.name}</Text>
-              <View style={styles.SectionStyle}>
+              <View style={styles.textInput}>
                 <TextInput
                   style={{ flex: 1 }}
                   underlineColorAndroid="transparent"
@@ -98,14 +98,14 @@ const styles = StyleSheet.create({
     color: "#FFFFFF",
     marginBottom: "3%",
   },
-  SectionStyle: {
+  textInput: {
     marginHorizontal: "15%",
     flexDirection: "row",
     alignItems: "center",
     backgroundColor: "#fff",
     borderWidth: 0.5,
     borderColor: "#000",
-    height: hp("5%"),
+    height: hp("3.5%"),
     width: wp("70%"),
     borderRadius: 5,
     margin: 8,
@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
   itemName: {
     marginTop: "2%",
     textAlign: "center",
-    fontSize: hp("2.5%"),
+    fontSize: hp("2%"),
     color: "white",
     alignItems: "center",
     height: hp("5%"),
@@ -122,7 +122,7 @@ const styles = StyleSheet.create({
     marginBottom: "-5%",
   },
   button: {
-    height: hp("5%"),
+    height: hp("3.5%"),
     width: wp("10%"),
     borderRadius: hp("0.8%"),
     borderColor: "black",
@@ -130,8 +130,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   imageStyle: {
-    margin: 5,
-    height: hp("4%"),
+    height: hp("3%"),
     width: wp("7.5%"),
     resizeMode: "contain",
     alignItems: "center",
@@ -160,8 +159,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   bookBtnText: {
-    marginRight: "4%",
-    fontSize: hp("2.2%"),
+    fontSize: hp("2%"),
     fontFamily: "Righteous-Regular",
+    alignItems: "center",
+    marginTop: "4%"
   },
 });

@@ -44,7 +44,7 @@ export default function HomeScreen() {
       <View>
         <BreadCrumb />
         <View style={styles.body}>
-          <Text style={styles.WelcomeMessage}> Welcome E0407217! </Text>
+          <Text style={styles.title}> Welcome E0407217! </Text>
           <FlatGrid
             itemDimension={130}
             items={options}
@@ -71,8 +71,8 @@ const styles = StyleSheet.create({
     width: wp("100%"),
     backgroundColor: "#003D7C",
   },
-  WelcomeMessage: {
-    fontSize: hp("4%"),
+  title: {
+    fontSize: hp("3.5%"),
     textAlign: "center",
     fontFamily: "Righteous-Regular",
     color: "#FFFFFF",
@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
   optionImage: {
     marginTop: "-15%",
     height: hp("10%"),
-    width: wp("50%"),
+    width: wp("40%"),
     resizeMode: "contain",
   },
   gridView: {
@@ -116,5 +116,6 @@ const styles = StyleSheet.create({
   logoutBtnText: {
     fontSize: hp("2%"),
     fontFamily: "Righteous-Regular",
+    marginTop: "4%"
   },
 });

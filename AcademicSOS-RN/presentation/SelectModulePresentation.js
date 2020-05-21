@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#003D7C'
   },
   title: {
-    fontSize: hp('4%'),
+    fontSize: hp('3.5%'),
     textAlign: "center",
     fontFamily: "Righteous-Regular",
     color: "#FFFFFF"
