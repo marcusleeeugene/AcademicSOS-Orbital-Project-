@@ -31,7 +31,7 @@ export default function SelectModulePresentation() {
             itemDimension = {130}
             items = {modules}
             style = {styles.gridView}
-            renderItem = {({ item, index }) => (
+            renderItem = {({item}) => (
               <View style = {[styles.itemContainer, { backgroundColor: item.code }]}>
                 <Text style = {styles.itemName}> {item.name} </Text>
               </View>

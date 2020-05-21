@@ -14,22 +14,23 @@ export default function BreadCrumb() {
   });
 
   const navigation = [
-      { name: 'Home'}
+      { name: 'Home', code: 'bye' }, { name: 'NextOne', code: 'bye' }, { name: 'NetxTwo', code: 'bye' }
     ];
+
+  let navJSX = []
+  for (var i = 0; i < navigation.length; i++) {
+    navJSX.push(<Text style={styles.breadCrumbText} onPress={() => null}> {navigation[i].name} </Text>)
+    if (i != navigation.length - 1 && navigation.length > 1) {
+      navJSX.push(<Image style={styles.chevron} source={require("../assets/images/chevron.png")} />)
+    }
+  }
 
   if (!fontsLoaded) {
     return <AppLoading />;
   } else {
     return (
       <View style={styles.header}>
-        <Text style={styles.breadCrumbText} onPress={() => null}>
-          {" "}
-          Home{" "}
-        </Text>
-        <Image
-          style={styles.chevron}
-          source={require("../assets/images/chevron.png")}
-        />
+        {navJSX}
       </View>
     );
   }
