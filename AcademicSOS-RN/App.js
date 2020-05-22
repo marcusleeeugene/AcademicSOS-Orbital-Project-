@@ -5,8 +5,7 @@ import BreadCrumb from "./components/BreadCrumb.js";
 import BookConsultScreen from "./presentation/BookConsultScreen.js";
 import HomeScreen from "./presentation/HomeScreen.js";
 import CreateConsultScreen from "./presentation/CreateConsultScreen.js";
-import RadioButton from "./components/RadioButton.js";
-import { Text, View, TouchableOpacity, StyleSheet } from "react-native";
+
 const options = [
   {
     key: "public",
@@ -26,5 +25,6 @@ export default function App() {
     //<SelectModulePresentation></SelectModulePresentation>
     //<BreadCrumb></BreadCrumb>
     <CreateConsultScreen></CreateConsultScreen>
+    // <BookConsultScreen></BookConsultScreen>
   );
 }
