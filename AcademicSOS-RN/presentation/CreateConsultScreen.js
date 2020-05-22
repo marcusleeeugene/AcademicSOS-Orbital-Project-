@@ -54,7 +54,7 @@ export default class CreateConsultScreen extends Component {
       consultType: prevState.consultType,
     }));
     this.setState({ consultType: childData });
-  };
+  }; // handle callBack of button (public, private consult type)
 
   async _loadFontsAsync() {
     await Font.loadAsync(customFonts);

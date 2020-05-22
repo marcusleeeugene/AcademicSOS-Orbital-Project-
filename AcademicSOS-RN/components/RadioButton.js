@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import { Text, View, TouchableOpacity, StyleSheet } from "react-native";
 
 export default class RadioButton extends Component {
+  //works for all cases of Radio Button
   state = {
-    value: "",
+    value: "", // set default value whether the black selection dot will appear on screen
   };
 
   render() {
@@ -20,10 +21,10 @@ export default class RadioButton extends Component {
                 <TouchableOpacity
                   style={styles.circle}
                   onPress={() => {
-                    this.props.parentCallback(item.key);
+                    this.props.parentCallback(item.key); //return callBack value to parent component
                     this.setState({
                       value: item.key,
-                    });
+                    }); // assign value to radioButton accordingly
                   }}
                 >
                   {value === item.key && <View style={styles.checkedCircle} />}
