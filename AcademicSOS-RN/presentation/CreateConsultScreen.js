@@ -1,5 +1,5 @@
-import React from "react";
-import { useFonts } from "@use-expo/font";
+import React, { Component } from "react";
+import * as Font from "expo-font";
 import { AppLoading } from "expo";
 import {
   StyleSheet,
@@ -39,77 +39,103 @@ const type = [
   },
 ];
 
-export default function CreateConsultScreen() {
-  let [fontsLoaded] = useFonts({
-    "Righteous-Regular": require("../assets/fonts/Righteous-Regular.ttf"),
-  });
+let customFonts = {
+  "Righteous-Regular": require("../assets/fonts/Righteous-Regular.ttf"),
+};
 
-  if (!fontsLoaded) {
-    return <AppLoading />;
-  } else {
-    return (
-      <View>
-        <BreadCrumb />
-        <ScrollView style={styles.body}>
-          <Text style={styles.title}> Fill in consultation details: </Text>
-          {options.map((item) => (
-            <View key={item.id}>
-              <Text style={styles.itemName}>{item.name}</Text>
-              <View style={styles.textInput}>
-                <TextInput
-                  style={{ flex: 1, paddingHorizontal: wp("2%") }}
-                  underlineColorAndroid="transparent"
-                />
-                <TouchableOpacity style={styles.button}>
-                  <Image source={item.image} style={styles.imageStyle} />
-                </TouchableOpacity>
+export default class CreateConsultScreen extends Component {
+  state = {
+    consultType: "public",
+    fontsLoaded: false,
+  };
+
+  callbackFunction = (childData) => {
+    this.setState((prevState) => ({
+      consultType: prevState.consultType,
+    }));
+    this.setState({ consultType: childData });
+  };
+
+  async _loadFontsAsync() {
+    await Font.loadAsync(customFonts);
+    this.setState({ fontsLoaded: true });
+  }
+
+  componentDidMount() {
+    this._loadFontsAsync();
+  }
+
+  render() {
+    if (this.state.fontsLoaded) {
+      return (
+        <View>
+          <BreadCrumb />
+          <ScrollView style={styles.body}>
+            <Text style={styles.title}> Fill in consultation details: </Text>
+            {options.map((item) => (
+              <View key={item.id}>
+                <Text style={styles.itemName}>{item.name}</Text>
+                <View style={styles.textInput}>
+                  <TextInput
+                    style={{ flex: 1, paddingHorizontal: wp("2%") }}
+                    underlineColorAndroid="transparent"
+                  />
+                  <TouchableOpacity style={styles.button}>
+                    <Image source={item.image} style={styles.imageStyle} />
+                  </TouchableOpacity>
+                </View>
               </View>
+            ))}
+            <Text style={styles.itemName}> Type:</Text>
+            <View style={styles.typeContainer}>
+              <RadioButton type={type} parentCallback={this.callbackFunction} />
             </View>
-          ))}
-          <Text style={styles.itemName}> Type:</Text>
-          <View style={styles.typeContainer}>
-            <RadioButton type={type} />
-          </View>
-          <View>
-            <Text style={styles.itemName}>{"Students involved:"}</Text>
-            <View style={styles.textInput}>
+            {/* <Text style={styles.itemName}>{this.state.consultType}</Text> //print out privateType */}
+            {this.state.consultType == "private" ? (
+              <View>
+                <Text style={styles.itemName}>{"Students involved:"}</Text>
+                <View style={styles.textInput}>
+                  <TextInput
+                    style={{ flex: 1, paddingHorizontal: wp("2%") }}
+                    underlineColorAndroid="transparent"
+                  />
+                  <TouchableOpacity style={styles.button}>
+                    <Image
+                      source={require("../assets/images/student.png")}
+                      style={styles.imageStyle}
+                    />
+                  </TouchableOpacity>
+                </View>
+              </View>
+            ) : null}
+            <Text style={styles.itemName}> Size:</Text>
+            <View>
               <TextInput
-                style={{ flex: 1, paddingHorizontal: wp("2%") }}
+                style={styles.sizeContainer}
+                maxLength={3}
+                autoFocus={true}
+              />
+            </View>
+            <Text style={styles.itemName}> Remarks:</Text>
+            <View>
+              <TextInput
+                multiline={true}
+                maxLength={200}
+                autoFocus={true}
+                numberofLines={10}
+                style={styles.remarkBox}
                 underlineColorAndroid="transparent"
               />
-              <TouchableOpacity style={styles.button}>
-                <Image
-                  source={require("../assets/images/student.png")}
-                  style={styles.imageStyle}
-                />
-              </TouchableOpacity>
             </View>
-          </View>
-          <Text style={styles.itemName}> Size:</Text>
-          <View>
-            <TextInput
-              style={styles.sizeContainer}
-              maxLength={3}
-              autoFocus={true}
-            />
-          </View>
-          <Text style={styles.itemName}> Remarks:</Text>
-          <View>
-            <TextInput
-              multiline={true}
-              maxLength={200}
-              autoFocus={true}
-              numberofLines={10}
-              style={styles.remarkBox}
-              underlineColorAndroid="transparent"
-            />
-          </View>
-          <TouchableOpacity style={styles.createBtn}>
-            <Text style={styles.createBtnText}>Create</Text>
-          </TouchableOpacity>
-        </ScrollView>
-      </View>
-    );
+            <TouchableOpacity style={styles.createBtn}>
+              <Text style={styles.createBtnText}>Create</Text>
+            </TouchableOpacity>
+          </ScrollView>
+        </View>
+      );
+    } else {
+      return <AppLoading />;
+    }
   }
 }
 
@@ -126,6 +152,12 @@ const styles = StyleSheet.create({
     fontFamily: "Righteous-Regular",
     color: "#FFFFFF",
     marginBottom: hp("2%"),
+  },
+  text: {
+    marginHorizontal: 80,
+    marginVertical: 4,
+    color: "white",
+    fontFamily: "Righteous-Regular",
   },
   textInput: {
     marginHorizontal: wp("15%"),
@@ -170,6 +202,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   sizeContainer: {
+    marginTop: hp("1.5%"),
     marginHorizontal: "42.5%",
     marginVertical: "1%",
     flexDirection: "row",
@@ -177,14 +210,11 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     borderWidth: 0.5,
     borderColor: "#000",
-    height: hp("3%"),
-    width: wp("0.5%"),
     borderRadius: 5,
-    margin: 8,
-    paddingHorizontal: wp("2%"),
+    paddingHorizontal: wp("4%"),
   },
   remarkBox: {
-    marginTop: hp("3%"),
+    marginTop: hp("2%"),
     marginLeft: wp("15%"),
     flexDirection: "row",
     borderColor: "black",
