@@ -1,10 +1,11 @@
 import React from "react";
-import LoginPresentation from "./presentation/LoginPresentation.js";
-import SelectModulePresentation from "./presentation/SelectModulePresentation.js";
-import BreadCrumb from "./components/BreadCrumb.js";
+import LoginScreen from "./presentation/LoginScreen.js";
+import SelectModuleScreen from "./presentation/SelectModuleScreen.js";
 import BookConsultScreen from "./presentation/BookConsultScreen.js";
 import HomeScreen from "./presentation/HomeScreen.js";
 import CreateConsultScreen from "./presentation/CreateConsultScreen.js";
+import ManageBookingScreen from "./presentation/ManageBookingScreen.js";
+import PublicConsultScreen from "./presentation/PublicConsultScreen.js";
 import RadioButton from "./components/RadioButton.js";
 import { Text, View, TouchableOpacity, StyleSheet } from "react-native";
 const options = [
@@ -21,10 +22,12 @@ const options = [
 //Testing: Always uncomment whatever component you would like to show.
 export default function App() {
   return (
-    //<LoginPresentation></LoginPresentation>
+    //<LoginScreen></LoginScreen>
     //<HomeScreen></HomeScreen>
-    //<SelectModulePresentation></SelectModulePresentation>
+    //<SelectModuleScreen></SelectModuleScreen>
     //<BreadCrumb></BreadCrumb>
-    <CreateConsultScreen></CreateConsultScreen>
+    //<CreateConsultScreen></CreateConsultScreen>
+    //<PublicConsultScreen></PublicConsultScreen>
+    //<ManageBookingScreen></ManageBookingScreen>
   );
 }

@@ -4,9 +4,9 @@ import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity } from 'reac
 import { AppLoading } from 'expo';
 import { FlatGrid } from 'react-native-super-grid';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
-import BreadCrumb from './BreadCrumb.js';
+import BreadCrumb from "../components/BreadCrumb";
 
-export default function SelectModulePresentation() {
+export default function SelectModuleScreen() {
 
   let [fontsLoaded] = useFonts({
     'SonsieOne-Regular': require('../assets/fonts/SonsieOne-Regular.ttf'),
