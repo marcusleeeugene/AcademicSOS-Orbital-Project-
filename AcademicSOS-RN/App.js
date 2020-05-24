@@ -6,6 +6,7 @@ import HomeScreen from "./presentation/HomeScreen.js";
 import CreateConsultScreen from "./presentation/CreateConsultScreen.js";
 import ManageBookingScreen from "./presentation/ManageBookingScreen.js";
 import PublicConsultScreen from "./presentation/PublicConsultScreen.js";
+import ConsultDetailScreen from "./presentation/ConsultDetailScreen.js";
 import RadioButton from "./components/RadioButton.js";
 import { Text, View, TouchableOpacity, StyleSheet } from "react-native";
 const options = [
@@ -28,6 +29,7 @@ export default function App() {
     //<BreadCrumb></BreadCrumb>
     //<CreateConsultScreen></CreateConsultScreen>
     //<PublicConsultScreen></PublicConsultScreen>
-    //<ManageBookingScreen></ManageBookingScreen>
+    <ManageBookingScreen></ManageBookingScreen>
+    //<ConsultDetailScreen></ConsultDetailScreen>
   );
 }

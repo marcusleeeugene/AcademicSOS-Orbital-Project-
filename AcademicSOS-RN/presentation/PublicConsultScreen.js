@@ -1,9 +1,13 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { useFonts } from '@use-expo/font';
 import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, ScrollView } from 'react-native';
 import { AppLoading } from 'expo';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import BreadCrumb from "../components/BreadCrumb";
+import Modal from 'react-native-modal';
+import DateTimePicker from '@react-native-community/datetimepicker';
+import moment from 'moment';
+
 
 export default function PublicConsultScreen() {
 
@@ -12,6 +16,47 @@ export default function PublicConsultScreen() {
     'Righteous-Regular': require('../assets/fonts/Righteous-Regular.ttf'),
   });
 
+  const [isStatusModalVisible, setStatusModalVisible] = useState(false);
+  const [isDateModalVisible, setDateModalVisible] = useState(false);
+  const [isTimeModalVisible, setTimeModalVisible] = useState(false);
+
+  const [status, setStatus] = useState('Status');
+  const [date, setDate] = useState('Date');
+  const [time, setTime] = useState('Time');
+
+  const toggleModal = (type) => {
+    if (type === "Status") {
+      setStatusModalVisible(!isStatusModalVisible);
+    } else if (type === "Date") {
+      setDateModalVisible(!isDateModalVisible);
+    } else if (type === "Time") {
+      setTimeModalVisible(!isTimeModalVisible);
+    }
+  };
+
+  const updateModalChoice = (data) => {
+    var type = data.split('#')[0];
+    var val = data.split('#')[1];
+    if (type === "Status") {
+      setStatus(val);
+    } else if (type === "Date") {
+      setDate(val);
+    } else if (type === "Time") {
+      setTime(val);
+    }
+    toggleModal(type);
+  }
+
+  let tempDateStorage = '';
+  const selectedDate = (event, selectedDate) => {
+    tempDateStorage = moment(selectedDate).format("DD-MMM-YY");
+  };
+
+  let tempTimeStorage = '';
+  const selectedTime = (event, selectedTime) => {
+    tempTimeStorage = moment(selectedTime).format("hh:MM A");
+  };
+
   const consultations = [
       { name: 'CS1101S', ta: "John Tan", remarks: "Recursion problems", date: "21 - Jun - 20", time: "11.00 AM", color: '#90CAF9', type: 'approved'},
       { name: 'MA1101R', ta: "Peter Lee", remarks: "How to gaussian eliminate", date: "21 - Jun - 20", time: "11.00 AM", color: '#A5D6A7', type: 'approved'},
@@ -19,7 +64,7 @@ export default function PublicConsultScreen() {
       { name: 'NM3221', ta: "Bob Tan", remarks: "Verbs and adjectives", date: "21 - Jun - 20", time: "11.00 AM", color: '#B39DDB', type: 'pending'}
     ];
 
-  let consultationsJSX = []
+  const consultationsJSX = []
   for (var i = 0; i < consultations.length; i++) {
     consultationsJSX.push(
       <View style = {styles.moduleRow}>
@@ -36,6 +81,66 @@ export default function PublicConsultScreen() {
     );
   }
 
+  const statusJSX = (
+    <Modal isVisible={isStatusModalVisible} onBackdropPress={() => setStatusModalVisible(false)}>
+      <View style={styles.modalView}>
+        <Text style = {styles.modalTitle}> Status: </Text>
+        <TouchableOpacity style = {styles.modalBtn} onPress={() => updateModalChoice('Status#All Types')}>
+          <Text style = {styles.modalBtnText}> All </Text>
+        </TouchableOpacity>
+        <TouchableOpacity style = {styles.modalBtn} onPress={() => updateModalChoice('Status#Confirmed')}>
+          <Text style = {styles.modalBtnText}> Confirmed </Text>
+        </TouchableOpacity>
+        <TouchableOpacity style = {styles.modalBtn} onPress={() => updateModalChoice('Status#Pending')}>
+          <Text style = {styles.modalBtnText}> Pending </Text>
+        </TouchableOpacity>
+      </View>
+    </Modal>
+  );
+
+  const dateJSX = (
+    <Modal isVisible={isDateModalVisible} onBackdropPress={() => setDateModalVisible(false)}>
+      <View style={styles.modalView}>
+        <Text style = {styles.modalTitle}> Date: </Text>
+        <DateTimePicker
+          testID="dateTimePicker"
+          value={new Date()}
+          mode='date'
+          display="default"
+          onChange={selectedDate}
+        />
+        <TouchableOpacity style={styles.modalBtn} onPress={() => updateModalChoice('Date#All Dates')}>
+          <Text style = {styles.modalBtnText}> All Dates </Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.modalBtn} onPress={() => updateModalChoice('Date#' + tempDateStorage)}>
+          <Text style = {styles.modalBtnText}> Set </Text>
+        </TouchableOpacity>
+      </View>
+    </Modal>
+  );
+
+  const timeJSX = (
+    <Modal isVisible={isTimeModalVisible} onBackdropPress={() => setTimeModalVisible(false)}>
+      <View style={styles.modalView}>
+        <Text style = {styles.modalTitle}> Date: </Text>
+        <DateTimePicker
+          testID="dateTimePicker"
+          value={new Date()}
+          mode='time'
+          display="default"
+          onChange={selectedTime}
+        />
+        <TouchableOpacity style={styles.modalBtn} onPress={() => updateModalChoice('Time#Any Time')}>
+          <Text style = {styles.modalBtnText}> Any Time </Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.modalBtn} onPress={() => updateModalChoice('Time#' + tempTimeStorage)}>
+          <Text style = {styles.modalBtnText}> Set </Text>
+        </TouchableOpacity>
+      </View>
+    </Modal>
+  );
+
+
   if (!fontsLoaded) {
     return <AppLoading />;
   } else {
@@ -45,18 +150,21 @@ export default function PublicConsultScreen() {
         <View style = {styles.body}>
           <Text style = {styles.title}> Public Consultation </Text>
           <View style = {styles.filter}>
-            <TouchableOpacity style = {styles.filterBtn}>
-              <Text style = {styles.filter_text}> Status <Image style={styles.chevron} source={require("../assets/images/chevron.png")}/></Text>
+            <TouchableOpacity style = {styles.filterBtn} onPress = {() => toggleModal("Status")}>
+              <Text style = {styles.filter_text}> {status} <Image style={styles.chevron} source={require("../assets/images/chevron.png")}/></Text>
             </TouchableOpacity>
-            <TouchableOpacity style = {styles.filterBtn}>
-              <Text style = {styles.filter_text}> Date <Image style={styles.chevron} source={require("../assets/images/chevron.png")}/></Text>
+            <TouchableOpacity style = {styles.filterBtn} onPress = {() => toggleModal("Date")}>
+              <Text style = {styles.filter_text}> {date} <Image style={styles.chevron} source={require("../assets/images/chevron.png")}/></Text>
             </TouchableOpacity>
-            <TouchableOpacity style = {styles.filterBtn}>
-              <Text style = {styles.filter_text}> Time <Image style={styles.chevron} source={require("../assets/images/chevron.png")}/></Text>
+            <TouchableOpacity style = {styles.filterBtn} onPress = {() => toggleModal("Time")}>
+              <Text style = {styles.filter_text}> {time} <Image style={styles.chevron} source={require("../assets/images/chevron.png")}/></Text>
             </TouchableOpacity>
           </View>
           <ScrollView style = {styles.moduleView}>
             {consultationsJSX}
+            {statusJSX}
+            {dateJSX}
+            {timeJSX}
           </ScrollView>
         </View>
       </View>
@@ -92,7 +200,7 @@ const styles = StyleSheet.create({
     fontSize: hp("1.5%"),
     height: hp('2%'),
     fontFamily: "Righteous-Regular",
-    textAlign: 'center'
+    textAlign: 'center',
   },
   chevron: {
     transform: [{ rotate: '90deg' }],
@@ -134,6 +242,35 @@ const styles = StyleSheet.create({
   },
   consultationInfo: {
     fontSize: hp('1.5%'),
+    fontFamily: "Righteous-Regular",
+  },
+  modal: {
+    justifyContent: 'center',
+  },
+  modalView: {
+    backgroundColor: '#CFD8DC',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    height: hp('40%'),
+  },
+  modalTitle: {
+    textAlign: 'center',
+    fontSize: hp('3%'),
+    fontFamily: "Righteous-Regular",
+    marginBottom: '5%'
+  },
+  modalBtn: {
+    backgroundColor: "#FFFFFF",
+    borderRadius: hp("1.1%"),
+    height: hp("3.5%"),
+    width: wp("25%"),
+    justifyContent: 'center',
+    left: '36%',
+    marginBottom: '3%'
+  },
+  modalBtnText: {
+    textAlign: 'center',
+    fontSize: hp('2%'),
     fontFamily: "Righteous-Regular",
   }
 });
