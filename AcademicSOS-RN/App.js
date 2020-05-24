@@ -7,18 +7,6 @@ import CreateConsultScreen from "./presentation/CreateConsultScreen.js";
 import ManageBookingScreen from "./presentation/ManageBookingScreen.js";
 import PublicConsultScreen from "./presentation/PublicConsultScreen.js";
 import ConsultDetailScreen from "./presentation/ConsultDetailScreen.js";
-import RadioButton from "./components/RadioButton.js";
-import { Text, View, TouchableOpacity, StyleSheet } from "react-native";
-const options = [
-  {
-    key: "public",
-    text: "Public",
-  },
-  {
-    key: "private",
-    text: "Private",
-  },
-];
 
 //Testing: Always uncomment whatever component you would like to show.
 export default function App() {

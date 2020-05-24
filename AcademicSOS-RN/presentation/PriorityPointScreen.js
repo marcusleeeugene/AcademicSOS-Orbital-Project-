@@ -1,15 +1,7 @@
 import React from "react";
 import { useFonts } from "@use-expo/font";
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  TextInput,
-  TouchableOpacity,
-} from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { AppLoading } from "expo";
-import { FlatGrid } from "react-native-super-grid";
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -18,7 +10,6 @@ import BreadCrumb from "./BreadCrumb.js";
 
 export default function SelectModulePresentation() {
   let [fontsLoaded] = useFonts({
-    "SonsieOne-Regular": require("../assets/fonts/SonsieOne-Regular.ttf"),
     "Righteous-Regular": require("../assets/fonts/Righteous-Regular.ttf"),
   });
 
