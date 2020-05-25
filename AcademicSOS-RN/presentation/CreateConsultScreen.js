@@ -17,16 +17,8 @@ import {
 } from "react-native-responsive-screen";
 import BreadCrumb from "../components/BreadCrumb";
 import RadioButton from "../components/RadioButton.js";
-
-const options = [
-  { name: "Date:", image: require("../assets/images/date.png"), id: 1 },
-  { name: "Time:", image: require("../assets/images/time.png"), id: 2 },
-  {
-    name: "Location:",
-    image: require("../assets/images/location.png"),
-    id: 3,
-  },
-];
+import DateTimePicker from "react-native-modal-datetime-picker";
+import moment from "moment";
 
 const type = [
   {
@@ -47,6 +39,48 @@ export default class CreateConsultScreen extends Component {
   state = {
     consultType: "public",
     fontsLoaded: false,
+    isDatePickerVisible: false,
+    isTimePickerVisible: false,
+    chosenDate: "",
+    chosenTime: "",
+  };
+
+  handleDatePicker = (date) => {
+    this.setState({
+      isDatePickerVisible: false,
+      chosenDate: moment(date).format("DD-MMM-YY"),
+    });
+  };
+
+  handleTimePicker = (time) => {
+    this.setState({
+      isTimePickerVisible: false,
+      chosenTime: moment(time).format("hh:mm A"),
+    });
+  };
+
+  showDatePicker = () => {
+    this.setState({
+      isDatePickerVisible: true,
+    });
+  };
+
+  showTimePicker = () => {
+    this.setState({
+      isTimePickerVisible: true,
+    });
+  };
+
+  hideDatePicker = () => {
+    this.setState({
+      isDatePickerVisible: false,
+    });
+  };
+
+  hideTimePicker = () => {
+    this.setState({
+      isTimePickerVisible: false,
+    });
   };
 
   callbackFunction = (childData) => {
@@ -72,20 +106,76 @@ export default class CreateConsultScreen extends Component {
           <BreadCrumb />
           <ScrollView style={styles.body}>
             <Text style={styles.title}> Fill in consultation details: </Text>
-            {options.map((item) => (
-              <View key={item.id}>
-                <Text style={styles.itemName}>{item.name}</Text>
-                <View style={styles.textInput}>
-                  <TextInput
-                    style={{ flex: 1, paddingHorizontal: wp("2%") }}
-                    underlineColorAndroid="transparent"
+
+            <View>
+              <Text style={styles.itemName}>{"Date:"}</Text>
+              <View style={styles.textInput}>
+                <TextInput
+                  style={styles.textBox}
+                  underlineColorAndroid="transparent"
+                  value={this.state.chosenDate}
+                  editable={false}
+                />
+                <TouchableOpacity
+                  style={styles.button}
+                  onPress={this.showDatePicker}
+                >
+                  <Image
+                    source={require("../assets/images/date.png")}
+                    style={styles.imageStyle}
                   />
-                  <TouchableOpacity style={styles.button}>
-                    <Image source={item.image} style={styles.imageStyle} />
-                  </TouchableOpacity>
-                </View>
+                  <DateTimePicker
+                    style={styles.overlay}
+                    isVisible={this.state.isDatePickerVisible}
+                    onConfirm={this.handleDatePicker}
+                    onCancel={this.hideDatePicker}
+                    mode={"date"}
+                  />
+                </TouchableOpacity>
               </View>
-            ))}
+
+              <Text style={styles.itemName}>{"Time:"}</Text>
+              <View style={styles.textInput}>
+                <TextInput
+                  style={styles.textBox}
+                  underlineColorAndroid="transparent"
+                  value={this.state.chosenTime}
+                  editable={false}
+                />
+                <TouchableOpacity
+                  style={styles.button}
+                  onPress={this.showTimePicker}
+                >
+                  <Image
+                    source={require("../assets/images/time.png")}
+                    style={styles.imageStyle}
+                  />
+
+                  <DateTimePicker
+                    isVisible={this.state.isTimePickerVisible}
+                    onConfirm={this.handleTimePicker}
+                    onCancel={this.hideTimePicker}
+                    mode={"time"}
+                    is24Hour={false}
+                  />
+                </TouchableOpacity>
+              </View>
+
+              <Text style={styles.itemName}>{"Location:"}</Text>
+              <View style={styles.textInput}>
+                <TextInput
+                  style={styles.textBox}
+                  underlineColorAndroid="transparent"
+                />
+                <TouchableOpacity style={styles.button}>
+                  <Image
+                    source={require("../assets/images/location.png")}
+                    style={styles.imageStyle}
+                  />
+                </TouchableOpacity>
+              </View>
+            </View>
+
             <Text style={styles.itemName}> Type:</Text>
             <View style={styles.typeContainer}>
               <RadioButton type={type} parentCallback={this.callbackFunction} />
@@ -96,7 +186,7 @@ export default class CreateConsultScreen extends Component {
                 <Text style={styles.itemName}>{"Students involved:"}</Text>
                 <View style={styles.textInput}>
                   <TextInput
-                    style={{ flex: 1, paddingHorizontal: wp("2%") }}
+                    style={styles.textBox}
                     underlineColorAndroid="transparent"
                   />
                   <TouchableOpacity style={styles.button}>
@@ -114,6 +204,7 @@ export default class CreateConsultScreen extends Component {
                 style={styles.sizeContainer}
                 maxLength={3}
                 autoFocus={true}
+                keyboardType="numeric"
               />
             </View>
             <Text style={styles.itemName}> Remarks:</Text>
@@ -159,15 +250,25 @@ const styles = StyleSheet.create({
     color: "white",
     fontFamily: "Righteous-Regular",
   },
+  overlay: {
+    marginTop: 50,
+  },
+  textBox: {
+    flex: 1,
+    paddingHorizontal: wp("2%"),
+    textAlign: "center",
+    fontSize: hp("2%"),
+    fontWeight: "bold",
+  },
   textInput: {
-    marginHorizontal: wp("15%"),
+    marginHorizontal: wp("25%"),
     flexDirection: "row",
     alignItems: "center",
     backgroundColor: "#fff",
     borderWidth: 0.5,
     borderColor: "#000",
     height: hp("3.5%"),
-    width: wp("70%"),
+    width: wp("55%"),
     borderRadius: 5,
     margin: 8,
   },
@@ -211,7 +312,9 @@ const styles = StyleSheet.create({
     borderWidth: 0.5,
     borderColor: "#000",
     borderRadius: 5,
-    paddingHorizontal: wp("4%"),
+    paddingHorizontal: wp("3.5%"),
+    fontWeight: "bold",
+    fontSize: hp("2%"),
   },
   remarkBox: {
     marginTop: hp("2%"),
