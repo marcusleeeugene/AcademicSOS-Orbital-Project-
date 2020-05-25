@@ -209,7 +209,7 @@ export default function ManageBookingScreen() {
       <View>
         <BreadCrumb />
         <View style={styles.body}>
-          <Text style={styles.title}> Manage Bookings </Text>
+          <Text style={styles.title}> Public Consultation </Text>
           <View style={styles.filter}>
             <TouchableOpacity
               style={styles.filterBtn}
