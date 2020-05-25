@@ -19,6 +19,7 @@ import BreadCrumb from "../components/BreadCrumb";
 import RadioButton from "../components/RadioButton.js";
 import DateTimePicker from "react-native-modal-datetime-picker";
 import moment from "moment";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 const type = [
   {
@@ -103,87 +104,68 @@ export default class CreateConsultScreen extends Component {
     if (this.state.fontsLoaded) {
       return (
         <View>
-          <BreadCrumb />
-          <ScrollView style={styles.body}>
-            <Text style={styles.title}> Fill in consultation details: </Text>
+          <KeyboardAwareScrollView
+            innerRef={(ref) => {
+              this.scroll = ref;
+            }}
+          >
+            <BreadCrumb />
+            <ScrollView style={styles.body}>
+              <Text style={styles.title}> Fill in consultation details: </Text>
 
-            <View>
-              <Text style={styles.itemName}>{"Date:"}</Text>
-              <View style={styles.textInput}>
-                <TextInput
-                  style={styles.textBox}
-                  underlineColorAndroid="transparent"
-                  value={this.state.chosenDate}
-                  editable={false}
-                />
-                <TouchableOpacity
-                  style={styles.button}
-                  onPress={this.showDatePicker}
-                >
-                  <Image
-                    source={require("../assets/images/date.png")}
-                    style={styles.imageStyle}
-                  />
-                  <DateTimePicker
-                    style={styles.overlay}
-                    isVisible={this.state.isDatePickerVisible}
-                    onConfirm={this.handleDatePicker}
-                    onCancel={this.hideDatePicker}
-                    mode={"date"}
-                  />
-                </TouchableOpacity>
-              </View>
-
-              <Text style={styles.itemName}>{"Time:"}</Text>
-              <View style={styles.textInput}>
-                <TextInput
-                  style={styles.textBox}
-                  underlineColorAndroid="transparent"
-                  value={this.state.chosenTime}
-                  editable={false}
-                />
-                <TouchableOpacity
-                  style={styles.button}
-                  onPress={this.showTimePicker}
-                >
-                  <Image
-                    source={require("../assets/images/time.png")}
-                    style={styles.imageStyle}
-                  />
-
-                  <DateTimePicker
-                    isVisible={this.state.isTimePickerVisible}
-                    onConfirm={this.handleTimePicker}
-                    onCancel={this.hideTimePicker}
-                    mode={"time"}
-                    is24Hour={false}
-                  />
-                </TouchableOpacity>
-              </View>
-
-              <Text style={styles.itemName}>{"Location:"}</Text>
-              <View style={styles.textInput}>
-                <TextInput
-                  style={styles.textBox}
-                  underlineColorAndroid="transparent"
-                />
-                <TouchableOpacity style={styles.button}>
-                  <Image
-                    source={require("../assets/images/location.png")}
-                    style={styles.imageStyle}
-                  />
-                </TouchableOpacity>
-              </View>
-            </View>
-
-            <Text style={styles.itemName}> Type:</Text>
-            <View style={styles.typeContainer}>
-              <RadioButton type={type} parentCallback={this.callbackFunction} />
-            </View>
-            {/* <Text style={styles.itemName}>{this.state.consultType}</Text> //print out privateType */}
-            {this.state.consultType == "private" ? (
               <View>
-                <Text style={styles.itemName}>{"Students involved:"}</Text>
+                <Text style={styles.itemName}>{"Date:"}</Text>
+                <View style={styles.textInput}>
+                  <TextInput
+                    style={styles.dateTimeTextBox}
+                    underlineColorAndroid="transparent"
+                    value={this.state.chosenDate}
+                    editable={false}
+                  />
+                  <TouchableOpacity
+                    style={styles.button}
+                    onPress={this.showDatePicker}
+                  >
+                    <Image
+                      source={require("../assets/images/date.png")}
+                      style={styles.imageStyle}
+                    />
+                    <DateTimePicker
+                      isVisible={this.state.isDatePickerVisible}
+                      onConfirm={this.handleDatePicker}
+                      onCancel={this.hideDatePicker}
+                      mode={"date"}
+                    />
+                  </TouchableOpacity>
+                </View>
+                <Text style={styles.itemName}>{"Time:"}</Text>
+                <View style={styles.textInput}>
+                  <TextInput
+                    style={styles.dateTimeTextBox}
+                    underlineColorAndroid="transparent"
+                    value={this.state.chosenTime}
+                    editable={false}
+                  />
+                  <TouchableOpacity
+                    style={styles.button}
+                    onPress={this.showTimePicker}
+                  >
+                    <Image
+                      source={require("../assets/images/time.png")}
+                      style={styles.imageStyle}
+                    />
+
+                    <DateTimePicker
+                      isVisible={this.state.isTimePickerVisible}
+                      onConfirm={this.handleTimePicker}
+                      onCancel={this.hideTimePicker}
+                      mode={"time"}
+                      is24Hour={false}
+                    />
+                  </TouchableOpacity>
+                </View>
+
+                <Text style={styles.itemName}>{"Location:"}</Text>
                 <View style={styles.textInput}>
                   <TextInput
                     style={styles.textBox}
@@ -191,37 +173,63 @@ export default class CreateConsultScreen extends Component {
                   />
                   <TouchableOpacity style={styles.button}>
                     <Image
-                      source={require("../assets/images/student.png")}
+                      source={require("../assets/images/location.png")}
                       style={styles.imageStyle}
                     />
                   </TouchableOpacity>
                 </View>
               </View>
-            ) : null}
-            <Text style={styles.itemName}> Size:</Text>
-            <View>
-              <TextInput
-                style={styles.sizeContainer}
-                maxLength={3}
-                autoFocus={true}
-                keyboardType="numeric"
-              />
-            </View>
-            <Text style={styles.itemName}> Remarks:</Text>
-            <View>
-              <TextInput
-                multiline={true}
-                maxLength={200}
-                autoFocus={true}
-                numberofLines={10}
-                style={styles.remarkBox}
-                underlineColorAndroid="transparent"
-              />
-            </View>
-            <TouchableOpacity style={styles.createBtn}>
-              <Text style={styles.createBtnText}>Create</Text>
-            </TouchableOpacity>
-          </ScrollView>
+
+              <Text style={styles.itemName}> Type:</Text>
+              <View style={styles.typeContainer}>
+                <RadioButton
+                  type={type}
+                  parentCallback={this.callbackFunction}
+                />
+              </View>
+              {/* <Text style={styles.itemName}>{this.state.consultType}</Text> //print out privateType */}
+              {this.state.consultType == "private" ? (
+                <View>
+                  <Text style={styles.itemName}>{"Students involved:"}</Text>
+                  <View style={styles.textInput}>
+                    <TextInput
+                      style={styles.textBox}
+                      underlineColorAndroid="transparent"
+                      maxLength={20}
+                      numberofLines={5}
+                    />
+                    <TouchableOpacity style={styles.button}>
+                      <Image
+                        source={require("../assets/images/student.png")}
+                        style={styles.imageStyle}
+                      />
+                    </TouchableOpacity>
+                  </View>
+                </View>
+              ) : null}
+              <Text style={styles.itemName}> Size:</Text>
+              <View>
+                <TextInput
+                  style={styles.sizeContainer}
+                  maxLength={3}
+                  keyboardType="numeric"
+                />
+              </View>
+              <Text style={styles.itemName}> Remarks:</Text>
+              <View>
+                <TextInput
+                  multiline={true}
+                  maxLength={200}
+                  numberofLines={10}
+                  style={styles.remarkBox}
+                  underlineColorAndroid="transparent"
+                />
+              </View>
+              <TouchableOpacity style={styles.createBtn}>
+                <Text style={styles.createBtnText}>Create</Text>
+              </TouchableOpacity>
+            </ScrollView>
+          </KeyboardAwareScrollView>
         </View>
       );
     } else {
@@ -245,32 +253,35 @@ const styles = StyleSheet.create({
     marginBottom: hp("2%"),
   },
   text: {
-    marginHorizontal: 80,
-    marginVertical: 4,
     color: "white",
     fontFamily: "Righteous-Regular",
   },
-  overlay: {
-    marginTop: 50,
-  },
-  textBox: {
+  dateTimeTextBox: {
+    marginLeft: wp("7%"),
     flex: 1,
     paddingHorizontal: wp("2%"),
-    textAlign: "center",
     fontSize: hp("2%"),
     fontWeight: "bold",
+    textAlign: "center",
   },
   textInput: {
-    marginHorizontal: wp("25%"),
+    marginHorizontal: wp("25"),
     flexDirection: "row",
     alignItems: "center",
     backgroundColor: "#fff",
     borderWidth: 0.5,
     borderColor: "#000",
     height: hp("3.5%"),
-    width: wp("55%"),
+    width: wp("50%"),
     borderRadius: 5,
-    margin: 8,
+    margin: hp("2%"),
+  },
+  textBox: {
+    flex: 1,
+    paddingHorizontal: wp("1%"),
+    fontSize: hp("2%"),
+    fontWeight: "bold",
+    textAlign: "center",
   },
   itemName: {
     marginTop: hp("1%"),
@@ -327,7 +338,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFFFFF",
     borderRadius: hp("1.1%"),
     paddingHorizontal: wp("2%"),
-    alignItems: 'center'
+    alignItems: "center",
   },
   createBtn: {
     backgroundColor: "#FFFFFF",
