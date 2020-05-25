@@ -8,6 +8,7 @@ import {
   TextInput,
   TouchableOpacity,
   ScrollView,
+  Platform
 } from "react-native";
 import { AppLoading } from "expo";
 import {
@@ -56,14 +57,14 @@ export default function ManageBookingScreen() {
     toggleModal(type);
   };
 
-  let tempDateStorage = "";
+  let tempDateStorage = moment(new Date()).format("DD-MMM-YY");
   const selectedDate = (event, selectedDate) => {
     tempDateStorage = moment(selectedDate).format("DD-MMM-YY");
   };
 
-  let tempTimeStorage = "";
+  let tempTimeStorage = moment(new Date()).format("hh:mm A");
   const selectedTime = (event, selectedTime) => {
-    tempTimeStorage = moment(selectedTime).format("hh:MM A");
+    tempTimeStorage = moment(selectedTime).format("hh:mm A");
   };
 
   const consultations = [
@@ -147,7 +148,7 @@ export default function ManageBookingScreen() {
           style={styles.modalBtn}
           onPress={() => updateModalChoice("Status#All Types")}
         >
-          <Text style={styles.modalBtnText}> All </Text>
+          <Text style={styles.modalBtnText}> All Types </Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.modalBtn}
@@ -242,8 +243,8 @@ export default function ManageBookingScreen() {
                 {" "}
                 {status}{" "}
                 <Image
-                  style={styles.chevron}
-                  source={require("../assets/images/chevron.png")}
+                  style={styles.chevron_inv}
+                  source={require("../assets/images/chevron-inv.png")}
                 />
               </Text>
             </TouchableOpacity>
@@ -255,8 +256,8 @@ export default function ManageBookingScreen() {
                 {" "}
                 {date}{" "}
                 <Image
-                  style={styles.chevron}
-                  source={require("../assets/images/chevron.png")}
+                  style={styles.chevron_inv}
+                  source={require("../assets/images/chevron-inv.png")}
                 />
               </Text>
             </TouchableOpacity>
@@ -268,17 +269,17 @@ export default function ManageBookingScreen() {
                 {" "}
                 {time}{" "}
                 <Image
-                  style={styles.chevron}
-                  source={require("../assets/images/chevron.png")}
+                  style={styles.chevron_inv}
+                  source={require("../assets/images/chevron-inv.png")}
                 />
               </Text>
             </TouchableOpacity>
           </View>
+          {statusJSX}
+          {dateJSX}
+          {timeJSX}
           <ScrollView style={styles.moduleView}>
             {consultationsJSX}
-            {statusJSX}
-            {dateJSX}
-            {timeJSX}
           </ScrollView>
         </View>
       </View>
@@ -308,17 +309,15 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFFFFF",
     borderRadius: hp("1.1%"),
     height: hp("3%"),
-    width: wp("21%"),
+    width: wp("25%"),
   },
   filter_text: {
-    marginTop: hp("0%"),
     textAlign: "center",
-    fontSize: hp("2%"),
-    height: hp("5%"),
+    fontSize: hp("1.5%"),
     fontFamily: "Righteous-Regular",
+    justifyContent: "center"
   },
-  chevron: {
-    transform: [{ rotate: "90deg" }],
+  chevron_inv: {
     height: hp("2%"),
     width: wp("3%"),
     resizeMode: "contain",
@@ -363,10 +362,14 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   modalView: {
-    backgroundColor: "#CFD8DC",
-    flexDirection: "column",
-    justifyContent: "center",
-    height: hp("40%"),
+    if (Platform.OS === 'ios') {
+      backgroundColor: "#CFD8DC",
+      flexDirection: "column",
+      justifyContent: "center",
+      height: hp("40%")
+    } else if (Platform.OS === 'android') {
+      visibility: 'hidden',
+    }
   },
   modalTitle: {
     textAlign: "center",
