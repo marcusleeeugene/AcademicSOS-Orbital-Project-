@@ -1,5 +1,5 @@
 https://github.com/marudy/react-native-responsive-screen#readme (Responsive screen)
-https://github.com/react-native-community/datetimepicker (Date time ios & android)
+https://github.com/mmazzarolo/react-native-modal-datetime-picker (Date time ios & android)
 https://github.com/saleel/react-native-super-grid/blob/master/README.md (Super grid)
 https://github.com/react-native-community/react-native-modal (Modal)
 https://momentjs.com/docs/ (Moment date time format)

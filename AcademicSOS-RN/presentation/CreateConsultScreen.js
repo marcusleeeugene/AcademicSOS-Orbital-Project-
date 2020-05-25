@@ -319,7 +319,6 @@ const styles = StyleSheet.create({
   remarkBox: {
     marginTop: hp("2%"),
     marginLeft: wp("15%"),
-    flexDirection: "row",
     borderColor: "black",
     fontSize: hp("1.5%"),
     marginBottom: "5%",
@@ -328,6 +327,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFFFFF",
     borderRadius: hp("1.1%"),
     paddingHorizontal: wp("2%"),
+    alignItems: 'center'
   },
   createBtn: {
     backgroundColor: "#FFFFFF",

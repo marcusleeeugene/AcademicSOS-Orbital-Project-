@@ -5,7 +5,7 @@ import BookConsultScreen from "./presentation/BookConsultScreen.js";
 import HomeScreen from "./presentation/HomeScreen.js";
 import CreateConsultScreen from "./presentation/CreateConsultScreen.js";
 import ManageBookingScreen from "./presentation/ManageBookingScreen.js";
-//import PublicConsultScreen from "./presentation/PublicConsultScreen.js";
+import PublicConsultScreen from "./presentation/PublicConsultScreen.js";
 import ConsultDetailScreen from "./presentation/ConsultDetailScreen.js";
 
 //Testing: Always uncomment whatever component you would like to show.
@@ -17,7 +17,8 @@ export default function App() {
     //<BreadCrumb></BreadCrumb>
     //<CreateConsultScreen></CreateConsultScreen>
     //<PublicConsultScreen></PublicConsultScreen>
-    <ManageBookingScreen></ManageBookingScreen>
+    //<ManageBookingScreen></ManageBookingScreen>
     //<ConsultDetailScreen></ConsultDetailScreen>
+    <BookConsultScreen></BookConsultScreen>
   );
 }

@@ -16,6 +16,7 @@ import {
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 import BreadCrumb from "../components/BreadCrumb";
+import Modal from 'react-native-modal';
 
 export default function ManageBookingScreen() {
   let [fontsLoaded] = useFonts({
@@ -42,7 +43,6 @@ export default function ManageBookingScreen() {
   };
 
   const updateModalChoice = (data) => {
-    console.log(data);
     var type = data.split("#")[0];
     var val = data.split("#")[1];
     if (type === "Status") {
