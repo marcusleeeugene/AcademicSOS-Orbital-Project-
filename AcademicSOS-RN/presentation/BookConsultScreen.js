@@ -19,26 +19,16 @@ import BreadCrumb from "../components/BreadCrumb";
 import DateTimePicker from "react-native-modal-datetime-picker";
 import moment from "moment";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import Modal from "react-native-modal";
 
-// const options = [
-//   {
-//     name: "Teaching Assistant:",
-//     image: require("../assets/images/teachingassistant.png"),
-//     id: 1,
-//   },
-//   { name: "Date:", image: require("../assets/images/date.png"), id: 2 },
-//   { name: "Time:", image: require("../assets/images/time.png"), id: 3 },
-//   {
-//     name: "Location:",
-//     image: require("../assets/images/location.png"),
-//     id: 4,
-//   },
-//   {
-//     name: "Students involved:",
-//     image: require("../assets/images/student.png"),
-//     id: 5,
-//   },
-// ];
+const tutor = [
+  { key: "John Tan Ah kow" },
+  { key: "Peter Lee" },
+  { key: "Mary Goh" },
+  { key: "Prof Aaron Tan" },
+  { key: "Prof Martin Henz" },
+  { key: "Prof Henry" },
+];
 
 let customFonts = {
   "Righteous-Regular": require("../assets/fonts/Righteous-Regular.ttf"),
@@ -50,8 +40,21 @@ export default class BookConsultScreen extends Component {
     fontsLoaded: false,
     isDatePickerVisible: false,
     isTimePickerVisible: false,
+    modalVisible: false,
     chosenDate: "",
     chosenTime: "",
+    chosenTutor: "",
+  };
+
+  setModalVisible = (visible) => {
+    this.setState({ modalVisible: visible });
+  };
+
+  updateTutorModalChoice = (data) => {
+    this.setState({
+      chosenTutor: data,
+      modalVisible: !this.state.modalVisible,
+    });
   };
 
   handleDatePicker = (date) => {
@@ -102,6 +105,7 @@ export default class BookConsultScreen extends Component {
   }
 
   render() {
+    const { modalVisible } = this.state;
     if (this.state.fontsLoaded) {
       return (
         <View>
@@ -115,13 +119,46 @@ export default class BookConsultScreen extends Component {
               <Text style={styles.title}> Fill in consultation details: </Text>
 
               <View>
+                <Modal
+                  animationType="slide"
+                  transparent={true}
+                  visible={modalVisible}
+                >
+                  <View>
+                    <View style={styles.modalView}>
+                      <Text style={styles.modalTitle}>Teaching Assistant:</Text>
+                      <ScrollView>
+                        {tutor.map((item) => (
+                          <TouchableOpacity
+                            style={styles.modalBtn}
+                            onPress={() =>
+                              this.updateTutorModalChoice(item.key)
+                            }
+                          >
+                            <Text style={styles.modalBtnText}>
+                              {" "}
+                              {item.key}{" "}
+                            </Text>
+                          </TouchableOpacity>
+                        ))}
+                      </ScrollView>
+                    </View>
+                  </View>
+                </Modal>
                 <Text style={styles.itemName}>{"Teaching Assistant:"}</Text>
                 <View style={styles.textInput}>
                   <TextInput
                     style={styles.textBox}
                     underlineColorAndroid="transparent"
+                    editable={false}
+                    value={this.state.chosenTutor}
                   />
-                  <TouchableOpacity style={styles.button}>
+                  <TouchableOpacity
+                    style={styles.button}
+                    onPress={() => {
+                      this.setModalVisible(true);
+                    }}
+                  >
                     <Image
                       source={require("../assets/images/teachingassistant.png")}
                       style={styles.imageStyle}
@@ -329,5 +366,34 @@ const styles = StyleSheet.create({
     fontFamily: "Righteous-Regular",
     alignItems: "center",
     marginTop: "4%",
+  },
+
+  modal: {
+    justifyContent: "center",
+  },
+  modalView: {
+    backgroundColor: "#CFD8DC",
+    flexDirection: "column",
+    height: hp("36%"),
+  },
+  modalTitle: {
+    textAlign: "center",
+    fontSize: hp("3%"),
+    fontFamily: "Righteous-Regular",
+    marginBottom: "5%",
+  },
+  modalBtn: {
+    backgroundColor: "#FFFFFF",
+    borderRadius: hp("1.1%"),
+    height: hp("3.5%"),
+    width: wp("45%"),
+    justifyContent: "center",
+    left: "25%",
+    marginBottom: "3%",
+  },
+  modalBtnText: {
+    textAlign: "center",
+    fontSize: hp("2%"),
+    fontFamily: "Righteous-Regular",
   },
 });
