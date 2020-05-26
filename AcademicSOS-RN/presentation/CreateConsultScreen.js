@@ -188,7 +188,7 @@ export default class CreateConsultScreen extends Component {
                 />
               </View>
               {/* <Text style={styles.itemName}>{this.state.consultType}</Text> //print out privateType */}
-              {this.state.consultType == "private" ? (
+              {this.state.consultType === "private" ? (
                 <View>
                   <Text style={styles.itemName}>{"Students involved:"}</Text>
                   <View style={styles.textInput}>

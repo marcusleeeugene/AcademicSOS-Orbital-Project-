@@ -43,6 +43,7 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 let customFonts = {
   "Righteous-Regular": require("../assets/fonts/Righteous-Regular.ttf"),
 };
+
 export default class BookConsultScreen extends Component {
   state = {
     consultType: "public",
@@ -99,6 +100,7 @@ export default class BookConsultScreen extends Component {
   componentDidMount() {
     this._loadFontsAsync();
   }
+
   render() {
     if (this.state.fontsLoaded) {
       return (
@@ -168,6 +170,7 @@ export default class BookConsultScreen extends Component {
                     />
 
                     <DateTimePicker
+                      headerTextIOS="Pick a time"
                       isVisible={this.state.isTimePickerVisible}
                       onConfirm={this.handleTimePicker}
                       onCancel={this.hideTimePicker}
