@@ -38,20 +38,20 @@ const db = {
 
 export default db;
 
-
 //First time pump in dummy data here:
 //===========================
+
 //Add accounts
-db.createUserData('students', 'e0415870', 'password', 'Marcus Lee Eugene');
-db.createUserData('professors', 'p0123456', 'password', 'Martin Henz');
-
-//Add modules
-db.addModule('CS1231S', 'Discrete Structures');
-db.addModule('CS1101S', 'Programming Methodology');
-db.addModule('NM3221', 'Mobile Interaction Design');
-db.addModule('MA1101R', 'Linear Algebra I');
-db.addModule('ES1691', 'English Communication');
-
-//Add modules under student / professor
-db.addModuleUnderProfessor('p0123456', 'CS1101S', 'Programming Methodology', 'Professor');
-db.addModuleUnderStudent('e0415870', 'CS1101S', 'Programming Methodology', 'Student');
+// db.createUserData('students', 'e0415870', 'password', 'Marcus Lee Eugene');
+// db.createUserData('professors', 'p0123456', 'password', 'Martin Henz');
+//
+// //Add modules
+// db.addModule('CS1231S', 'Discrete Structures');
+// db.addModule('CS1101S', 'Programming Methodology');
+// db.addModule('NM3221', 'Mobile Interaction Design');
+// db.addModule('MA1101R', 'Linear Algebra I');
+// db.addModule('ES1691', 'English Communication');
+//
+// //Add modules under student / professor
+// db.addModuleUnderProfessor('p0123456', 'CS1101S', 'Programming Methodology', 'Professor');
+// db.addModuleUnderStudent('e0415870', 'CS1101S', 'Programming Methodology', 'Student');

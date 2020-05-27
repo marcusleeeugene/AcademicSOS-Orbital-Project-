@@ -14,3 +14,4 @@ https://docs.expo.io/guides/using-firebase/#firebase-sdk-setup (Firebase setup)
 5) npm install moment
 6) npm i react-native-keyboard-aware-scroll-view --save
 7) expo install firebase
+8) npm install react-native-app-auth
