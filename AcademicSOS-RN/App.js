@@ -11,14 +11,14 @@ import ConsultDetailScreen from "./presentation/ConsultDetailScreen.js";
 //Testing: Always uncomment whatever component you would like to show.
 export default function App() {
   return (
-    /* <LoginScreen></LoginScreen>
-<HomeScreen></HomeScreen>
-<SelectModuleScreen></SelectModuleScreen>
-<BreadCrumb></BreadCrumb> */
-    //  <CreateConsultScreen></CreateConsultScreen>
-    // <PublicConsultScreen></PublicConsultScreen>
-    // <ManageBookingScreen></ManageBookingScreen>
-    // <ConsultDetailScreen></ConsultDetailScreen>
-    <BookConsultScreen></BookConsultScreen>
+    <LoginScreen></LoginScreen>
+    //<HomeScreen></HomeScreen>
+    //<SelectModuleScreen></SelectModuleScreen>
+    //<BreadCrumb></BreadCrumb>
+    //<CreateConsultScreen></CreateConsultScreen>
+    //<PublicConsultScreen></PublicConsultScreen>
+    //<ManageBookingScreen></ManageBookingScreen>
+    //<ConsultDetailScreen></ConsultDetailScreen>
+    //<BookConsultScreen></BookConsultScreen>
   );
 }

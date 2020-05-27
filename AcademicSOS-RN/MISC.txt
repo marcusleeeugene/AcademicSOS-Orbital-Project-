@@ -3,12 +3,14 @@ https://github.com/mmazzarolo/react-native-modal-datetime-picker (Date time ios 
 https://github.com/saleel/react-native-super-grid/blob/master/README.md (Super grid)
 https://github.com/react-native-community/react-native-modal (Modal)
 https://momentjs.com/docs/ (Moment date time format)
-https://github.com/APSL/react-native-keyboard-aware-scroll-view (Keyaboard Aware scroll view)
+https://github.com/APSL/react-native-keyboard-aware-scroll-view (Keyboard Aware scroll view)
+https://docs.expo.io/guides/using-firebase/#firebase-sdk-setup (Firebase setup)
 
 
 1) npm install react-native-responsive-screen --save
 2) expo install react-native-modal-datetime-picker @react-native-community/datetimepicker
 3) npm install react-native-super-grid
-4) npm i react-native-modal 
+4) npm i react-native-modal
 5) npm install moment
 6) npm i react-native-keyboard-aware-scroll-view --save
+7) expo install firebase
