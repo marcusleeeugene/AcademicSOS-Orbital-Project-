@@ -15,7 +15,8 @@ import {
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 import * as firebase from "firebase";
-import LoginFB from "../firebase/LoginFireBase.js";
+//import LoginFB from "../firebase/LoginFireBase.js";
+import HomeScreenFB from "../firebase/HomeScreenFireBase.js";
 
 export default function LoginScreen({ navigation }) {
   let [fontsLoaded] = useFonts({
