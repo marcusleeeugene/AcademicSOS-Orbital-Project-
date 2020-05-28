@@ -1,33 +1,59 @@
-import React from "react";
+import React, { useState } from "react";
 import { useFonts } from "@use-expo/font";
-import { Dimensions, Platform, StyleSheet, Text, View, StatusBar, SafeAreaView, Image, TextInput, TouchableOpacity } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  SafeAreaView,
+  Image,
+  TextInput,
+  TouchableOpacity,
+} from "react-native";
 import { AppLoading } from "expo";
-import { widthPercentageToDP as wp, heightPercentageToDP as hp} from "react-native-responsive-screen";
-import SelectModuleFB from "../firebase/SelectModuleFireBase.js";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
+import * as firebase from "firebase";
+import LoginFB from "../firebase/LoginFireBase.js";
 
-const X_WIDTH = 375;
-const X_HEIGHT = 812;
-const XSMAX_WIDTH = 414;
-const XSMAX_HEIGHT = 896;
-const { height, width } = Dimensions.get("window");
-
-const isIPhoneX = () =>
-  Platform.OS === "ios" && !Platform.isPad && !Platform.isTVOS
-    ? (width === X_WIDTH && height === X_HEIGHT) ||
-      (width === XSMAX_WIDTH && height === XSMAX_HEIGHT)
-    : false;
-
-const StatusBarHeight = Platform.select({
-  ios: isIPhoneX() ? 44 : 20,
-  android: StatusBar.currentHeight + 30,
-  default: 0,
-});
-
-export default function LoginPresentation() {
+export default function LoginScreen({ navigation }) {
   let [fontsLoaded] = useFonts({
     "SonsieOne-Regular": require("../assets/fonts/SonsieOne-Regular.ttf"),
     "Righteous-Regular": require("../assets/fonts/Righteous-Regular.ttf"),
   });
+
+  const [userID, handleUpdateUserID] = useState("");
+  const [password, handleUpdatePassword] = useState("");
+
+  login = (userID, password) => {
+    try {
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(`${userID}@u.nus.edu`, password)
+        .then(() => {
+          navigation.navigate("Home", {
+            userID: userID,
+          });
+        })
+        .catch((error) => {
+          switch (error.code) {
+            case "auth/invalid-email":
+              alert("Invalid User ID or blank fields !!!");
+              break;
+            case "auth/wrong-password":
+              alert("Invalid password or blank fields !!!");
+              break;
+            default:
+              alert("Invalid User !!!");
+          }
+        });
+      handleUpdateUserID("");
+      handleUpdatePassword("");
+    } catch (error) {
+      console.log(error.toString());
+    }
+  };
 
   if (!fontsLoaded) {
     return <AppLoading />;
@@ -35,13 +61,30 @@ export default function LoginPresentation() {
     return (
       <SafeAreaView style={styles.container}>
         <Text style={styles.AcademicSOS}> AcademicSOS </Text>
-        <Image style={styles.nusLogo} source={require("../assets/images/NUS_logo_Transparent.png")}/>
+        <Image
+          style={styles.nusLogo}
+          source={require("../assets/images/NUS_logo_Transparent.png")}
+        />
         <View style={styles.loginBackground}>
           <Text style={styles.textInputTitle}> Student ID: </Text>
-          <TextInput style={styles.textInput} placeholder="    Student ID" />
+          <TextInput
+            style={styles.textInput}
+            placeholder="    Student ID"
+            onChangeText={handleUpdateUserID}
+            value={userID}
+          />
           <Text style={styles.textInputTitle}> Password: </Text>
-          <TextInput secureTextEntry={true} style={styles.textInput} placeholder="    Password" />
-          <TouchableOpacity style={styles.loginBtn}>
+          <TextInput
+            secureTextEntry={true}
+            style={styles.textInput}
+            placeholder="    Password"
+            onChangeText={handleUpdatePassword}
+            value={password}
+          />
+          <TouchableOpacity
+            style={styles.loginBtn}
+            onPress={() => login(userID, password)}
+          >
             <Text style={styles.loginBtnText}> LOGIN </Text>
           </TouchableOpacity>
         </View>
@@ -91,7 +134,7 @@ const styles = StyleSheet.create({
     width: wp("50%"),
     backgroundColor: "#FFFFFF",
     borderRadius: hp("1.1%"),
-    paddingHorizontal: wp('2%'),
+    paddingHorizontal: wp("2%"),
   },
   loginBtn: {
     marginTop: "5%",

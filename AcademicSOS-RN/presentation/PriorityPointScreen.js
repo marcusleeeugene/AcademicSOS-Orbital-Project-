@@ -1,6 +1,6 @@
 import React from "react";
 import { useFonts } from "@use-expo/font";
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { AppLoading } from "expo";
 import {
   widthPercentageToDP as wp,
@@ -8,7 +8,7 @@ import {
 } from "react-native-responsive-screen";
 import BreadCrumb from "./BreadCrumb.js";
 
-export default function SelectModulePresentation() {
+export default function PriorityPointsPresentation() {
   let [fontsLoaded] = useFonts({
     "Righteous-Regular": require("../assets/fonts/Righteous-Regular.ttf"),
   });
