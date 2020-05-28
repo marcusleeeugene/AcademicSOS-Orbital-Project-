@@ -52,7 +52,13 @@ InputDataFB.addModule('CS1101S', 'Programming Methodology');
 InputDataFB.addModule('NM3221', 'Mobile Interaction Design');
 InputDataFB.addModule('MA1101R', 'Linear Algebra I');
 InputDataFB.addModule('ES1691', 'English Communication');
+InputDataFB.addModule('GEQ1918', 'GE: Environment and Sustainability');
 
 //Add modules under student / professor
 InputDataFB.addModuleUnderProfessor('p0123456', 'CS1101S', 'Programming Methodology', 'Professor');
-InputDataFB.addModuleUnderStudent('e0415870', 'CS1101S', 'Programming Methodology', 'Student');
+
+InputDataFB.addModuleUnderStudent('e0415870', 'CS1231S', 'Programming Methodology', 'Student');
+InputDataFB.addModuleUnderStudent('e0415870', 'MA1101R', 'Linear Algebra I', 'TA');
+InputDataFB.addModuleUnderStudent('e0415870', 'NM3221', 'Mobile Interaction Design', 'Student');
+InputDataFB.addModuleUnderStudent('e0415870', 'ES1103', 'English Communication', 'Student');
+InputDataFB.addModuleUnderStudent('e0415870', 'GEQ1917', 'GE: Environment and Sustainability', 'Student');
