@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import * as Font from "expo-font";
+import React, { useState } from "react";
+import { useFonts } from "@use-expo/font";
 import { AppLoading } from "expo";
 import {
   StyleSheet,
@@ -32,209 +32,168 @@ const type = [
   },
 ];
 
-let customFonts = {
-  "Righteous-Regular": require("../assets/fonts/Righteous-Regular.ttf"),
-};
+export default function CreateConsultScreen() {
+  let [fontsLoaded] = useFonts({
+    "Righteous-Regular": require("../assets/fonts/Righteous-Regular.ttf"),
+  });
 
-export default class CreateConsultScreen extends Component {
-  state = {
-    consultType: "public",
-    fontsLoaded: false,
-    isDatePickerVisible: false,
-    isTimePickerVisible: false,
-    chosenDate: "",
-    chosenTime: "",
+  const [isDatePickerVisible, showDatePicker] = useState(false);
+  const [isTimePickerVisible, showTimePicker] = useState(false);
+
+  const [chosenDate, handleDatePicker] = useState("");
+  const [chosenTime, handleTimePicker] = useState("");
+  const [consultType, setConsultType] = useState("public");
+
+  const updateDatePicker = (date) => {
+    showDatePicker(false);
+    handleDatePicker(moment(date).format("DD-MMM-YY"));
   };
 
-  handleDatePicker = (date) => {
-    this.setState({
-      isDatePickerVisible: false,
-      chosenDate: moment(date).format("DD-MMM-YY"),
-    });
+  const updateTimePicker = (time) => {
+    showTimePicker(false);
+    handleTimePicker(moment(time).format("hh:mm A"));
   };
 
-  handleTimePicker = (time) => {
-    this.setState({
-      isTimePickerVisible: false,
-      chosenTime: moment(time).format("hh:mm A"),
-    });
-  };
-
-  showDatePicker = () => {
-    this.setState({
-      isDatePickerVisible: true,
-    });
-  };
-
-  showTimePicker = () => {
-    this.setState({
-      isTimePickerVisible: true,
-    });
-  };
-
-  hideDatePicker = () => {
-    this.setState({
-      isDatePickerVisible: false,
-    });
-  };
-
-  hideTimePicker = () => {
-    this.setState({
-      isTimePickerVisible: false,
-    });
-  };
-
-  callbackFunction = (childData) => {
-    this.setState((prevState) => ({
-      consultType: prevState.consultType,
-    }));
-    this.setState({ consultType: childData });
+  const updateConsultType = (consultType) => {
+    setConsultType(consultType);
   }; // handle callBack of button (public, private consult type)
 
-  async _loadFontsAsync() {
-    await Font.loadAsync(customFonts);
-    this.setState({ fontsLoaded: true });
-  }
+  // callbackFunction = (childData) => {
+  //   this.setState((prevState) => ({
+  //     consultType: prevState.consultType,
+  //   }));
+  //   this.setState({ consultType: childData });
+  // }; // handle callBack of button (public, private consult type)
 
-  componentDidMount() {
-    this._loadFontsAsync();
-  }
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  } else {
+    return (
+      <View>
+        <KeyboardAwareScrollView
+          innerRef={(ref) => {
+            this.scroll = ref;
+          }}
+        >
+          <BreadCrumb />
+          <ScrollView style={styles.body}>
+            <Text style={styles.title}> Fill in consultation details: </Text>
+            <View>
+              <Text style={styles.itemName}>{"Date:"}</Text>
+              <View style={styles.textInput}>
+                <TextInput
+                  style={styles.dateTimeTextBox}
+                  underlineColorAndroid="transparent"
+                  value={chosenDate}
+                  editable={false}
+                />
+                <TouchableOpacity
+                  style={styles.button}
+                  onPress={() => showDatePicker(true)}
+                >
+                  <Image
+                    source={require("../assets/images/date.png")}
+                    style={styles.imageStyle}
+                  />
+                  <DateTimePicker
+                    isVisible={isDatePickerVisible}
+                    onConfirm={updateDatePicker}
+                    onCancel={() => showDatePicker(false)}
+                    mode={"date"}
+                  />
+                </TouchableOpacity>
+              </View>
+              <Text style={styles.itemName}>{"Time:"}</Text>
+              <View style={styles.textInput}>
+                <TextInput
+                  style={styles.dateTimeTextBox}
+                  underlineColorAndroid="transparent"
+                  value={chosenTime}
+                  editable={false}
+                />
+                <TouchableOpacity
+                  style={styles.button}
+                  onPress={() => showTimePicker(true)}
+                >
+                  <Image
+                    source={require("../assets/images/time.png")}
+                    style={styles.imageStyle}
+                  />
 
-  render() {
-    if (this.state.fontsLoaded) {
-      return (
-        <View>
-          <KeyboardAwareScrollView
-            innerRef={(ref) => {
-              this.scroll = ref;
-            }}
-          >
-            <BreadCrumb />
-            <ScrollView style={styles.body}>
-              <Text style={styles.title}> Fill in consultation details: </Text>
+                  <DateTimePicker
+                    headerTextIOS="Pick a time"
+                    isVisible={isTimePickerVisible}
+                    onConfirm={updateTimePicker}
+                    onCancel={() => showTimePicker(false)}
+                    mode={"time"}
+                    is24Hour={false}
+                  />
+                </TouchableOpacity>
+              </View>
 
+              <Text style={styles.itemName}>{"Location:"}</Text>
+              <View style={styles.textInput}>
+                <TextInput
+                  style={styles.textBox}
+                  underlineColorAndroid="transparent"
+                />
+                <TouchableOpacity style={styles.button}>
+                  <Image
+                    source={require("../assets/images/location.png")}
+                    style={styles.imageStyle}
+                  />
+                </TouchableOpacity>
+              </View>
+            </View>
+
+            <Text style={styles.itemName}> Type:</Text>
+            <View style={styles.typeContainer}>
+              <RadioButton type={type} parentCallback={updateConsultType} />
+            </View>
+            {consultType === "private" ? (
               <View>
-                <Text style={styles.itemName}>{"Date:"}</Text>
-                <View style={styles.textInput}>
-                  <TextInput
-                    style={styles.dateTimeTextBox}
-                    underlineColorAndroid="transparent"
-                    value={this.state.chosenDate}
-                    editable={false}
-                  />
-                  <TouchableOpacity
-                    style={styles.button}
-                    onPress={this.showDatePicker}
-                  >
-                    <Image
-                      source={require("../assets/images/date.png")}
-                      style={styles.imageStyle}
-                    />
-                    <DateTimePicker
-                      isVisible={this.state.isDatePickerVisible}
-                      onConfirm={this.handleDatePicker}
-                      onCancel={this.hideDatePicker}
-                      mode={"date"}
-                    />
-                  </TouchableOpacity>
-                </View>
-                <Text style={styles.itemName}>{"Time:"}</Text>
-                <View style={styles.textInput}>
-                  <TextInput
-                    style={styles.dateTimeTextBox}
-                    underlineColorAndroid="transparent"
-                    value={this.state.chosenTime}
-                    editable={false}
-                  />
-                  <TouchableOpacity
-                    style={styles.button}
-                    onPress={this.showTimePicker}
-                  >
-                    <Image
-                      source={require("../assets/images/time.png")}
-                      style={styles.imageStyle}
-                    />
-
-                    <DateTimePicker
-                      isVisible={this.state.isTimePickerVisible}
-                      onConfirm={this.handleTimePicker}
-                      onCancel={this.hideTimePicker}
-                      mode={"time"}
-                      is24Hour={false}
-                    />
-                  </TouchableOpacity>
-                </View>
-
-                <Text style={styles.itemName}>{"Location:"}</Text>
+                <Text style={styles.itemName}>{"Students involved:"}</Text>
                 <View style={styles.textInput}>
                   <TextInput
                     style={styles.textBox}
                     underlineColorAndroid="transparent"
+                    maxLength={20}
+                    numberofLines={5}
                   />
                   <TouchableOpacity style={styles.button}>
                     <Image
-                      source={require("../assets/images/location.png")}
+                      source={require("../assets/images/student.png")}
                       style={styles.imageStyle}
                     />
                   </TouchableOpacity>
                 </View>
               </View>
-
-              <Text style={styles.itemName}> Type:</Text>
-              <View style={styles.typeContainer}>
-                <RadioButton
-                  type={type}
-                  parentCallback={this.callbackFunction}
-                />
-              </View>
-              {/* <Text style={styles.itemName}>{this.state.consultType}</Text> //print out privateType */}
-              {this.state.consultType === "private" ? (
-                <View>
-                  <Text style={styles.itemName}>{"Students involved:"}</Text>
-                  <View style={styles.textInput}>
-                    <TextInput
-                      style={styles.textBox}
-                      underlineColorAndroid="transparent"
-                      maxLength={20}
-                      numberofLines={5}
-                    />
-                    <TouchableOpacity style={styles.button}>
-                      <Image
-                        source={require("../assets/images/student.png")}
-                        style={styles.imageStyle}
-                      />
-                    </TouchableOpacity>
-                  </View>
-                </View>
-              ) : null}
-              <Text style={styles.itemName}> Size:</Text>
-              <View>
-                <TextInput
-                  style={styles.sizeContainer}
-                  maxLength={3}
-                  keyboardType="numeric"
-                />
-              </View>
-              <Text style={styles.itemName}> Remarks:</Text>
-              <View>
-                <TextInput
-                  multiline={true}
-                  maxLength={200}
-                  numberofLines={10}
-                  style={styles.remarkBox}
-                  underlineColorAndroid="transparent"
-                />
-              </View>
-              <TouchableOpacity style={styles.createBtn}>
-                <Text style={styles.createBtnText}>Create</Text>
-              </TouchableOpacity>
-            </ScrollView>
-          </KeyboardAwareScrollView>
-        </View>
-      );
-    } else {
-      return <AppLoading />;
-    }
+            ) : null}
+            <Text style={styles.itemName}> Size:</Text>
+            <View>
+              <TextInput
+                style={styles.sizeContainer}
+                maxLength={3}
+                keyboardType="numeric"
+              />
+            </View>
+            <Text style={styles.itemName}> Remarks:</Text>
+            <View>
+              <TextInput
+                multiline={true}
+                maxLength={200}
+                numberofLines={10}
+                style={styles.remarkBox}
+                underlineColorAndroid="transparent"
+              />
+            </View>
+            <TouchableOpacity style={styles.createBtn}>
+              <Text style={styles.createBtnText}>Create</Text>
+            </TouchableOpacity>
+          </ScrollView>
+        </KeyboardAwareScrollView>
+      </View>
+    );
   }
 }
 
