@@ -8,7 +8,7 @@ import {
 } from "react-native-responsive-screen";
 import BreadCrumb from "./BreadCrumb.js";
 
-export default function SelectModulePresentation() {
+export default function PriorityPointsPresentation() {
   let [fontsLoaded] = useFonts({
     "Righteous-Regular": require("../assets/fonts/Righteous-Regular.ttf"),
   });

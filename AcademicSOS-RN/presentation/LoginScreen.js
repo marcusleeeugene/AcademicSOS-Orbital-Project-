@@ -4,7 +4,6 @@ import {
   StyleSheet,
   Text,
   View,
-  StatusBar,
   SafeAreaView,
   Image,
   TextInput,
