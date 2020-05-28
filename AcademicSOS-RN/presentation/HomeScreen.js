@@ -8,7 +8,6 @@ import {
 } from "react-native-responsive-screen";
 import { FlatGrid } from "react-native-super-grid";
 import BreadCrumb from "../components/BreadCrumb";
-import { NavigationContainer } from "@react-navigation/native";
 
 export default function HomeScreen({ route, navigation }) {
   let [fontsLoaded] = useFonts({

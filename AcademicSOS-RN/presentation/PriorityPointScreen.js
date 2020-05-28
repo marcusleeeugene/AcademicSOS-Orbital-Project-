@@ -1,6 +1,6 @@
 import React from "react";
 import { useFonts } from "@use-expo/font";
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { AppLoading } from "expo";
 import {
   widthPercentageToDP as wp,
