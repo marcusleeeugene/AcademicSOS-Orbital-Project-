@@ -3,9 +3,10 @@ import FireBaseConfig from "./FireBaseConfig.js";
 
 const database = firebase.initializeApp(FireBaseConfig).database();
 
-const HomeScreenFB = {
+const HomeFB = {
   checkUserRole: function(id) { //returns "Student / TA / Professor"
     var role;
+    var moduleRole = "Student";
     if (id.charAt(0) == "e" || id.charAt(0) == "E" ) {
       role = "students";
     } else {
@@ -13,7 +14,6 @@ const HomeScreenFB = {
     }
     database.ref(`users/${role}/${id}/modules/`).once('value').then(function(snapshot) {
       var obj = snapshot.val();
-      var moduleRole = "Student";
       var count = Object.keys(obj).length;
       for (var i = 0; i < count; i++) {
         var each = obj[Object.keys(obj)[i]];
@@ -22,8 +22,8 @@ const HomeScreenFB = {
           break;
         }
       }
-      return moduleRole;
     });
+    return moduleRole;
   },
   logOutUser: function() {
     firebase.auth().signOut().then(function() {
@@ -38,6 +38,4 @@ const HomeScreenFB = {
   }
 }
 
-export default HomeScreenFB;
-
-HomeScreenFB.checkUserRole("e0415870");
+export default HomeFB;
