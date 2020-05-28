@@ -8,11 +8,14 @@ import {
 } from "react-native-responsive-screen";
 import { FlatGrid } from "react-native-super-grid";
 import BreadCrumb from "../components/BreadCrumb";
+import { NavigationContainer } from "@react-navigation/native";
 
-export default function HomeScreen() {
+export default function HomeScreen({ route, navigation }) {
   let [fontsLoaded] = useFonts({
     "Righteous-Regular": require("../assets/fonts/Righteous-Regular.ttf"),
   });
+
+  const { userID } = route.params;
 
   const options = [
     {
@@ -44,7 +47,7 @@ export default function HomeScreen() {
       <View>
         <BreadCrumb />
         <View style={styles.body}>
-          <Text style={styles.title}> Welcome E0407217! </Text>
+          <Text style={styles.title}>Welcome {userID}!</Text>
           <FlatGrid
             itemDimension={130}
             items={options}
@@ -56,7 +59,10 @@ export default function HomeScreen() {
               </View>
             )}
           />
-          <TouchableOpacity style={styles.logoutBtn}>
+          <TouchableOpacity
+            style={styles.logoutBtn}
+            onPress={() => navigation.navigate("Login")}
+          >
             <Text style={styles.logoutBtnText}> Log out </Text>
           </TouchableOpacity>
         </View>
