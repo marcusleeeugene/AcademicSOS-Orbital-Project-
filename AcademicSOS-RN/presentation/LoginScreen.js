@@ -3,6 +3,7 @@ import { useFonts } from "@use-expo/font";
 import { Dimensions, Platform, StyleSheet, Text, View, StatusBar, SafeAreaView, Image, TextInput, TouchableOpacity } from "react-native";
 import { AppLoading } from "expo";
 import { widthPercentageToDP as wp, heightPercentageToDP as hp} from "react-native-responsive-screen";
+import SelectModuleFB from "../firebase/SelectModuleFireBase.js";
 
 const X_WIDTH = 375;
 const X_HEIGHT = 812;
