@@ -33,6 +33,7 @@ export default function LoginScreen({ navigation }) {
         .then(() => {
           navigation.navigate("Home", {
             userID: userID,
+            firstScreen: "Home",
           });
         })
         .catch((error) => {
@@ -47,6 +48,8 @@ export default function LoginScreen({ navigation }) {
               alert("Invalid User !!!");
           }
         });
+      setUserID("");
+      setPassword("");
     } catch (error) {
       console.log(error.toString());
     }

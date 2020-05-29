@@ -8,7 +8,7 @@ import {
   TextInput,
   TouchableOpacity,
   ScrollView,
-  Platform
+  Platform,
 } from "react-native";
 import { AppLoading } from "expo";
 import {
@@ -16,12 +16,20 @@ import {
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 import BreadCrumb from "../components/BreadCrumb";
+import Modal from "react-native-modal";
 
-export default function ManageBookingScreen() {
+export default function PublicConsultScreen({ route, navigation }) {
   let [fontsLoaded] = useFonts({
     "SonsieOne-Regular": require("../assets/fonts/SonsieOne-Regular.ttf"),
     "Righteous-Regular": require("../assets/fonts/Righteous-Regular.ttf"),
   });
+
+  const { firstScreen, secondScreen, thirdScreen } = route.params;
+  const navHistory = [
+    { key: firstScreen },
+    { key: secondScreen },
+    { key: thirdScreen },
+  ];
 
   const [isStatusModalVisible, setStatusModalVisible] = useState(false);
   const [isWeekModalVisible, setWeekModalVisible] = useState(false);
@@ -83,12 +91,29 @@ export default function ManageBookingScreen() {
         >
           <Text style={styles.modalBtnText}> Pending </Text>
         </TouchableOpacity>
-
       </View>
     </Modal>
   );
 
-  const weeks = [{key:"Week 1"}, {key:"Week 2"}, {key:"Week 3"}, {key:"Week 4"}, {key:"Week 5"}, {key:"Week 6"}, {key:"Reading 1"}, {key:"Week 7"}, {key:"Week 8"}, {key:"Week 9"}, {key:"Week 10"}, {key:"Week 11"}, {key:"Week 12"}, {key:"Week 13"}, {key:"Reading 2"}, {key:"Exam 1"}, {key:"Exam 2"}]
+  const weeks = [
+    { key: "Week 1" },
+    { key: "Week 2" },
+    { key: "Week 3" },
+    { key: "Week 4" },
+    { key: "Week 5" },
+    { key: "Week 6" },
+    { key: "Reading 1" },
+    { key: "Week 7" },
+    { key: "Week 8" },
+    { key: "Week 9" },
+    { key: "Week 10" },
+    { key: "Week 11" },
+    { key: "Week 12" },
+    { key: "Week 13" },
+    { key: "Reading 2" },
+    { key: "Exam 1" },
+    { key: "Exam 2" },
+  ];
   const weekJSX = (
     <Modal
       isVisible={isWeekModalVisible}
@@ -110,7 +135,15 @@ export default function ManageBookingScreen() {
     </Modal>
   );
 
-  const days = [{key:"Monday"}, {key:"Tuesday"}, {key:"Wednesday"}, {key:"Thursday"}, {key:"Friday"}, {key:"Saturday"}, {key:"Sunday"}]
+  const days = [
+    { key: "Monday" },
+    { key: "Tuesday" },
+    { key: "Wednesday" },
+    { key: "Thursday" },
+    { key: "Friday" },
+    { key: "Saturday" },
+    { key: "Sunday" },
+  ];
   const dayJSX = (
     <Modal
       isVisible={isDayModalVisible}
@@ -207,7 +240,7 @@ export default function ManageBookingScreen() {
   } else {
     return (
       <View>
-        <BreadCrumb />
+        <BreadCrumb navHistory={navHistory} />
         <View style={styles.body}>
           <Text style={styles.title}> Public Consultation </Text>
           <View style={styles.filter}>
@@ -254,9 +287,7 @@ export default function ManageBookingScreen() {
           {statusJSX}
           {weekJSX}
           {dayJSX}
-          <ScrollView style={styles.moduleView}>
-            {consultationsJSX}
-          </ScrollView>
+          <ScrollView style={styles.moduleView}>{consultationsJSX}</ScrollView>
         </View>
       </View>
     );
@@ -291,7 +322,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: hp("1.5%"),
     fontFamily: "Righteous-Regular",
-    justifyContent: "center"
+    justifyContent: "center",
   },
   chevron_inv: {
     height: hp("2%"),
@@ -340,7 +371,7 @@ const styles = StyleSheet.create({
   modalView: {
     backgroundColor: "#CFD8DC",
     flexDirection: "column",
-    height: hp("40%")
+    height: hp("40%"),
   },
   modalTitle: {
     textAlign: "center",

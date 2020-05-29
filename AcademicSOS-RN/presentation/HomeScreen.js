@@ -8,84 +8,126 @@ import {
 } from "react-native-responsive-screen";
 import { FlatGrid } from "react-native-super-grid";
 import BreadCrumb from "../components/BreadCrumb";
-import * as firebase from "firebase";
 import HomeFB from "../firebase/HomeFireBase.js";
+import * as firebase from "firebase";
 
 export default function HomeScreen({ route, navigation }) {
   let [fontsLoaded] = useFonts({
     "Righteous-Regular": require("../assets/fonts/Righteous-Regular.ttf"),
   });
 
-  const { userID } = route.params;
+  const { userID, firstScreen } = route.params;
   const [userType, setUserType] = useState("");
 
+  const navHistory = [{ key: firstScreen, nextScreen: firstScreen }];
+
+  // const goNextScreen = (nextScreen) => {
+  //   navigation.navigate(nextScreen);
+  // };
+
   useEffect(() => {
-    HomeFB.checkUserRole("e0415870").then((data) => {
-      // for (var i = 0; i < data.length; i++) {
-      //   tempModules.push({name: data[i], code: colourCodes[i]});
-      // }
-      setUserType(data);
+    var tempUserType = "Student";
+    HomeFB.checkUserRole(userID).then((data) => {
+      for (var i = 0; i < data.length; i++) {
+        if (data[i] === "Student") {
+          continue;
+        } else {
+          tempUserType = data[i];
+          break;
+        }
+      }
+      setUserType(tempUserType);
     });
   });
 
-  logOut = () => {
-    firebase.auth().signOut().then(function() {
-      // Sign-out successful.
-      navigation.navigate("Login");
-      alert("Signed out successfully!");
-    }).catch(function(error) {
-      // An error happened.
-      alert(error);
-    });
-  }
+  const logOut = () => {
+    firebase
+      .auth()
+      .signOut()
+      .then(function () {
+        // Sign-out successful.
+        navigation.navigate("Login");
+        alert("Signed out successfully!");
+      })
+      .catch(function (error) {
+        // An error happened.
+        alert(error);
+      });
+  };
 
-  const options = [
+  const optionTA = [
     {
-      name: "Book consultation",
+      key: "Book consultation",
       image: require("../assets/images/bookConsult.png"),
+      upcomingScreen: "Book",
     },
     {
-      name: "Public consultation",
+      key: "Public consultation",
       image: require("../assets/images/publicConsult.png"),
+      upcomingScreen: "Public Consultation",
     },
     {
-      name: "Priority\n Points",
+      key: "Priority\n Points",
       image: require("../assets/images/priorityPoints.png"),
+      upcomingScreen: "Priority Points",
     },
     {
-      name: "Manage Bookings",
+      key: "Manage Bookings",
       image: require("../assets/images/manageBookings.png"),
+      upcomingScreen: "Manage Bookings",
     },
     {
-      name: "Create Consulation",
+      key: "Create Consulation",
       image: require("../assets/images/createConsult.png"),
+      upcomingScreen: "Create Consultation",
     },
   ];
+
+  const optionStudent = optionTA.slice(0, 4);
+
+  const optionProf = optionTA.slice(4).concat(optionTA.slice(3, 4));
 
   if (!fontsLoaded) {
     return <AppLoading />;
   } else {
     return (
       <View>
-        <BreadCrumb />
+        <BreadCrumb navHistory={navHistory} />
         <View style={styles.body}>
           <Text style={styles.title}>Welcome {userID} !</Text>
           <FlatGrid
             itemDimension={130}
-            items={options}
+            items={
+              userType === "TA"
+                ? optionTA
+                : userType === "Professor"
+                ? optionProf
+                : optionStudent
+            }
             style={styles.gridView}
-            renderItem={({ item, index }) => (
+            renderItem={({ item }) => (
               <View style={[styles.optionContainer]}>
-                <Text style={styles.optionName}> {item.name} </Text>
-                <Image style={styles.optionImage} source={item.image} />
+                <TouchableOpacity
+                  onPress={() =>
+                    item.key !== "Manage Bookings"
+                      ? navigation.navigate("Select Module", {
+                          secondScreen: item.upcomingScreen,
+                          firstScreen: "Home",
+                        })
+                      : navigation.navigate("Manage Bookings", {
+                          secondScreen: item.upcomingScreen,
+                          firstScreen: "Home",
+                        })
+                  }
+                >
+                  <Text style={styles.optionName}> {item.key} </Text>
+                  <Image style={styles.optionImage} source={item.image} />
+                </TouchableOpacity>
               </View>
             )}
           />
-          <TouchableOpacity
-            style={styles.logoutBtn}
-            onPress={() => logOut()}
-          >
-            <Text style={styles.logoutBtnText}> Log Out </Text>
+          <TouchableOpacity style={styles.logoutBtn} onPress={logOut}>
+            <Text style={styles.logoutBtnText}>Logout</Text>
           </TouchableOpacity>
         </View>
       </View>

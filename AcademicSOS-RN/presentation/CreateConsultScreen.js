@@ -21,10 +21,17 @@ import DateTimePicker from "react-native-modal-datetime-picker";
 import moment from "moment";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
-export default function CreateConsultScreen() {
+export default function CreateConsultScreen({ route, navigation }) {
   let [fontsLoaded] = useFonts({
     "Righteous-Regular": require("../assets/fonts/Righteous-Regular.ttf"),
   });
+
+  const { firstScreen, secondScreen, thirdScreen } = route.params;
+  const navHistory = [
+    { key: firstScreen },
+    { key: secondScreen },
+    { key: thirdScreen },
+  ];
 
   const [isDatePickerVisible, showDatePicker] = useState(false);
   const [isTimePickerVisible, showTimePicker] = useState(false);
@@ -69,7 +76,7 @@ export default function CreateConsultScreen() {
     return (
       <View>
         <KeyboardAwareScrollView>
-          <BreadCrumb />
+          <BreadCrumb navHistory={navHistory} />
           <ScrollView style={styles.body}>
             <Text style={styles.title}> Fill in consultation details: </Text>
             <View>

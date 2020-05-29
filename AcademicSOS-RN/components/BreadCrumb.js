@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useFonts } from "@use-expo/font";
 import { StyleSheet, Text, View, Image } from "react-native";
 import { AppLoading } from "expo";
@@ -6,47 +6,50 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
-export default function BreadCrumb() {
+import { useNavigation } from "@react-navigation/native";
+
+const BreadCrumb = (props) => {
   let [fontsLoaded] = useFonts({
     "SonsieOne-Regular": require("../assets/fonts/SonsieOne-Regular.ttf"),
     "Righteous-Regular": require("../assets/fonts/Righteous-Regular.ttf"),
   });
 
   //Navigation elements to show (To be changed )
-  const navigation = [
-    { name: "Home", code: "bye" },
-    { name: "NextOne", code: "bye" },
-    { name: "NextTwo", code: "bye" },
-  ];
+  const { navHistory } = props;
+  const [value, setValue] = useState("Home");
+  const navigation = useNavigation();
 
-  //Handle navigation system
   let navJSX = [];
-  let lastElem = navigation.length - 1;
-  for (var i = 0; i < navigation.length; i++) {
+  let lastElem = navHistory.length - 1;
+  for (var i = 0; i < navHistory.length; i++) {
     if (i == lastElem) {
       //Current directory
       navJSX.push(
         <View style={[styles.textContainer, styles.underline]}>
-          <Text style={styles.breadCrumbText} onPress={() => null}>
-            {" "}
-            {navigation[i].name}{" "}
-          </Text>
+          <TouchableOpacity>
+            <Text style={styles.breadCrumbText}> {navHistory[i].key} </Text>
+          </TouchableOpacity>
         </View>
       );
     } else {
       //Previous directories
       navJSX.push(
         <View style={styles.textContainer}>
-          <Text style={styles.breadCrumbText} onPress={() => null}>
-            {" "}
-            {navigation[i].name}{" "}
-          </Text>
+          <TouchableOpacity
+            onPress={() => {
+              setValue(navHistory);
+              navigation.navigate(value); //navHistory[i].key not working
+            }}
+          >
+            <Text style={styles.breadCrumbText}>{navHistory[i].key}</Text>
+          </TouchableOpacity>
         </View>
       );
     }
 
-    if (i != lastElem && navigation.length > 1) {
+    if (i != lastElem && navHistory.length > 1) {
       //Only render chevron if it is not last element
       navJSX.push(
         <Image
@@ -62,7 +65,7 @@ export default function BreadCrumb() {
   } else {
     return <View style={styles.header}>{navJSX}</View>;
   }
-}
+};
 
 const styles = StyleSheet.create({
   header: {
@@ -86,3 +89,5 @@ const styles = StyleSheet.create({
     marginTop: "19.5%",
   },
 });
+
+export default BreadCrumb;
