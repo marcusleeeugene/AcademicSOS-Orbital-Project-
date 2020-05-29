@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useFonts } from '@use-expo/font';
 import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity } from 'react-native';
 import { AppLoading } from 'expo';
 import { FlatGrid } from 'react-native-super-grid';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import BreadCrumb from "../components/BreadCrumb";
+import SelectModuleFB from "../firebase/SelectModuleFireBase.js";
 
 export default function SelectModuleScreen() {
 
@@ -13,11 +14,18 @@ export default function SelectModuleScreen() {
     'Righteous-Regular': require('../assets/fonts/Righteous-Regular.ttf'),
   });
 
-  const modules = [
-      { name: 'CS1101S', code: '#90CAF9'}, { name: 'CS1231S', code: '#FFF59D'},
-      { name: 'MA1101R', code: '#A5D6A7'}, { name: 'ES1103', code: '#FFAB91'},
-      { name: 'NM3221', code: '#B39DDB'}, { name: 'GEQ1917', code: '#80CBC4'},
-    ];
+  const [modules, setModules] = useState([]);
+
+  useEffect(() => {
+    var tempModules = [];
+    const colourCodes = ['#90CAF9', '#FFF59D', '#A5D6A7', '#FFAB91', '#B39DDB', '#80CBC4', '#c5e1a5', '#fff59d', '#ffcc80', '#bcaaa4'];
+    SelectModuleFB.loadUserModules("e0415870").then(data => {
+      for (var i = 0; i < data.length; i++) {
+        tempModules.push({name: data[i], code: colourCodes[i]});
+      }
+      setModules(tempModules);
+    });
+  }, []);
 
   if (!fontsLoaded) {
     return <AppLoading />;

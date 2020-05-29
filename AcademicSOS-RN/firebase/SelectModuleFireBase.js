@@ -24,4 +24,4 @@ const SelectModuleFB = {
 }
 
 export default SelectModuleFB;
-SelectModuleFB.loadUserModules("e0415870").then(data => console.log(data));
+//SelectModuleFB.loadUserModules("e0415870").then(data => console.log(data));
