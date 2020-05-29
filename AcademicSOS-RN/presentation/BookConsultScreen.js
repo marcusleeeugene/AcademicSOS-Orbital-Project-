@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import * as Font from "expo-font";
+import React, { useState } from "react";
+import { useFonts } from "@use-expo/font";
 import { AppLoading } from "expo";
 import {
   StyleSheet,
@@ -30,244 +30,190 @@ const tutor = [
   { key: "Prof Henry" },
 ];
 
-let customFonts = {
-  "Righteous-Regular": require("../assets/fonts/Righteous-Regular.ttf"),
-};
+export default function BookConsultScreen() {
+  let [fontsLoaded] = useFonts({
+    "Righteous-Regular": require("../assets/fonts/Righteous-Regular.ttf"),
+  });
 
-export default class BookConsultScreen extends Component {
-  state = {
-    consultType: "public",
-    fontsLoaded: false,
-    isDatePickerVisible: false,
-    isTimePickerVisible: false,
-    modalVisible: false,
-    chosenDate: "",
-    chosenTime: "",
-    chosenTutor: "",
+  const [isDatePickerVisible, showDatePicker] = useState(false);
+  const [isTimePickerVisible, showTimePicker] = useState(false);
+  const [isModalVisible, setModalVisible] = useState(false);
+
+  const [chosenDate, handleDatePicker] = useState("");
+  const [chosenTime, handleTimePicker] = useState("");
+  const [chosenTutor, handleTutorPicker] = useState("");
+
+  const updateTutorModalChoice = (data) => {
+    handleTutorPicker(data);
+    setModalVisible(!isModalVisible);
   };
 
-  setModalVisible = (visible) => {
-    this.setState({ modalVisible: visible });
+  const updateDatePicker = (date) => {
+    showDatePicker(false);
+    handleDatePicker(moment(date).format("DD-MMM-YY"));
   };
 
-  updateTutorModalChoice = (data) => {
-    this.setState({
-      chosenTutor: data,
-      modalVisible: !this.state.modalVisible,
-    });
+  const updateTimePicker = (time) => {
+    showTimePicker(false);
+    handleTimePicker(moment(time).format("hh:mm A"));
   };
 
-  handleDatePicker = (date) => {
-    this.setState({
-      isDatePickerVisible: false,
-      chosenDate: moment(date).format("DD-MMM-YY"),
-    });
-  };
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  } else {
+    return (
+      <View>
+        <KeyboardAwareScrollView
+          innerRef={(ref) => {
+            this.scroll = ref;
+          }}
+        >
+          <BreadCrumb />
+          <ScrollView style={styles.body}>
+            <Text style={styles.title}> Fill in consultation details: </Text>
 
-  handleTimePicker = (time) => {
-    this.setState({
-      isTimePickerVisible: false,
-      chosenTime: moment(time).format("hh:mm A"),
-    });
-  };
-
-  showDatePicker = () => {
-    this.setState({
-      isDatePickerVisible: true,
-    });
-  };
-
-  showTimePicker = () => {
-    this.setState({
-      isTimePickerVisible: true,
-    });
-  };
-
-  hideDatePicker = () => {
-    this.setState({
-      isDatePickerVisible: false,
-    });
-  };
-
-  hideTimePicker = () => {
-    this.setState({
-      isTimePickerVisible: false,
-    });
-  };
-
-  async _loadFontsAsync() {
-    await Font.loadAsync(customFonts);
-    this.setState({ fontsLoaded: true });
-  }
-
-  componentDidMount() {
-    this._loadFontsAsync();
-  }
-
-  render() {
-    const { modalVisible } = this.state;
-    if (this.state.fontsLoaded) {
-      return (
-        <View>
-          <KeyboardAwareScrollView
-            innerRef={(ref) => {
-              this.scroll = ref;
-            }}
-          >
-            <BreadCrumb />
-            <ScrollView style={styles.body}>
-              <Text style={styles.title}> Fill in consultation details: </Text>
-
-              <View>
-                <Modal
-                  animationType="slide"
-                  transparent={true}
-                  visible={modalVisible}
-                >
-                  <View>
-                    <View style={styles.modalView}>
-                      <Text style={styles.modalTitle}>Teaching Assistant:</Text>
-                      <ScrollView>
-                        {tutor.map((item) => (
-                          <TouchableOpacity
-                            style={styles.modalBtn}
-                            onPress={() =>
-                              this.updateTutorModalChoice(item.key)
-                            }
-                          >
-                            <Text style={styles.modalBtnText}>
-                              {" "}
-                              {item.key}{" "}
-                            </Text>
-                          </TouchableOpacity>
-                        ))}
-                      </ScrollView>
-                    </View>
+            <View>
+              <Modal
+                animationType="slide"
+                transparent={true}
+                visible={isModalVisible}
+              >
+                <View>
+                  <View style={styles.modalView}>
+                    <Text style={styles.modalTitle}>Teaching Assistant:</Text>
+                    <ScrollView>
+                      {tutor.map((item) => (
+                        <TouchableOpacity
+                          style={styles.modalBtn}
+                          onPress={() => updateTutorModalChoice(item.key)}
+                        >
+                          <Text style={styles.modalBtnText}>{item.key}</Text>
+                        </TouchableOpacity>
+                      ))}
+                    </ScrollView>
                   </View>
-                </Modal>
-                <Text style={styles.itemName}>{"Teaching Assistant:"}</Text>
-                <View style={styles.textInput}>
-                  <TextInput
-                    style={styles.textBox}
-                    underlineColorAndroid="transparent"
-                    editable={false}
-                    value={this.state.chosenTutor}
-                  />
-                  <TouchableOpacity
-                    style={styles.button}
-                    onPress={() => {
-                      this.setModalVisible(true);
-                    }}
-                  >
-                    <Image
-                      source={require("../assets/images/teachingassistant.png")}
-                      style={styles.imageStyle}
-                    />
-                  </TouchableOpacity>
                 </View>
-                <Text style={styles.itemName}>{"Date:"}</Text>
-                <View style={styles.textInput}>
-                  <TextInput
-                    style={styles.dateTimeTextBox}
-                    underlineColorAndroid="transparent"
-                    value={this.state.chosenDate}
-                    editable={false}
-                  />
-                  <TouchableOpacity
-                    style={styles.button}
-                    onPress={this.showDatePicker}
-                  >
-                    <Image
-                      source={require("../assets/images/date.png")}
-                      style={styles.imageStyle}
-                    />
-                    <DateTimePicker
-                      isVisible={this.state.isDatePickerVisible}
-                      onConfirm={this.handleDatePicker}
-                      onCancel={this.hideDatePicker}
-                      mode={"date"}
-                    />
-                  </TouchableOpacity>
-                </View>
-                <Text style={styles.itemName}>{"Time:"}</Text>
-                <View style={styles.textInput}>
-                  <TextInput
-                    style={styles.dateTimeTextBox}
-                    underlineColorAndroid="transparent"
-                    value={this.state.chosenTime}
-                    editable={false}
-                  />
-                  <TouchableOpacity
-                    style={styles.button}
-                    onPress={this.showTimePicker}
-                  >
-                    <Image
-                      source={require("../assets/images/time.png")}
-                      style={styles.imageStyle}
-                    />
-
-                    <DateTimePicker
-                      headerTextIOS="Pick a time"
-                      isVisible={this.state.isTimePickerVisible}
-                      onConfirm={this.handleTimePicker}
-                      onCancel={this.hideTimePicker}
-                      mode={"time"}
-                      is24Hour={false}
-                    />
-                  </TouchableOpacity>
-                </View>
-                <Text style={styles.itemName}>{"Location:"}</Text>
-                <View style={styles.textInput}>
-                  <TextInput
-                    style={styles.textBox}
-                    underlineColorAndroid="transparent"
-                  />
-                  <TouchableOpacity style={styles.button}>
-                    <Image
-                      source={require("../assets/images/location.png")}
-                      style={styles.imageStyle}
-                    />
-                  </TouchableOpacity>
-                </View>
-              </View>
-
-              <View>
-                <Text style={styles.itemName}>{"Students involved:"}</Text>
-                <View style={styles.textInput}>
-                  <TextInput
-                    style={styles.textBox}
-                    underlineColorAndroid="transparent"
-                    maxLength={20}
-                    numberofLines={5}
-                  />
-                  <TouchableOpacity style={styles.button}>
-                    <Image
-                      source={require("../assets/images/student.png")}
-                      style={styles.imageStyle}
-                    />
-                  </TouchableOpacity>
-                </View>
-              </View>
-              <Text style={styles.itemName}> Remarks:</Text>
-              <View>
+              </Modal>
+              <Text style={styles.itemName}>{"Teaching Assistant:"}</Text>
+              <View style={styles.textInput}>
                 <TextInput
-                  multiline={true}
-                  maxLength={200}
-                  numberofLines={10}
-                  style={styles.remarkBox}
+                  style={styles.textBox}
+                  underlineColorAndroid="transparent"
+                  editable={false}
+                  value={chosenTutor}
+                />
+                <TouchableOpacity
+                  style={styles.button}
+                  onPress={() => {
+                    setModalVisible(true);
+                  }}
+                >
+                  <Image
+                    source={require("../assets/images/teachingassistant.png")}
+                    style={styles.imageStyle}
+                  />
+                </TouchableOpacity>
+              </View>
+              <Text style={styles.itemName}>{"Date:"}</Text>
+              <View style={styles.textInput}>
+                <TextInput
+                  style={styles.dateTimeTextBox}
+                  underlineColorAndroid="transparent"
+                  value={chosenDate}
+                  editable={false}
+                />
+                <TouchableOpacity
+                  style={styles.button}
+                  onPress={() => showDatePicker(true)}
+                >
+                  <Image
+                    source={require("../assets/images/date.png")}
+                    style={styles.imageStyle}
+                  />
+                  <DateTimePicker
+                    isVisible={isDatePickerVisible}
+                    onConfirm={updateDatePicker}
+                    onCancel={() => showDatePicker(false)}
+                    mode={"date"}
+                  />
+                </TouchableOpacity>
+              </View>
+              <Text style={styles.itemName}>{"Time:"}</Text>
+              <View style={styles.textInput}>
+                <TextInput
+                  style={styles.dateTimeTextBox}
+                  underlineColorAndroid="transparent"
+                  value={chosenTime}
+                  editable={false}
+                />
+                <TouchableOpacity
+                  style={styles.button}
+                  onPress={() => showTimePicker(true)}
+                >
+                  <Image
+                    source={require("../assets/images/time.png")}
+                    style={styles.imageStyle}
+                  />
+
+                  <DateTimePicker
+                    headerTextIOS="Pick a time"
+                    isVisible={isTimePickerVisible}
+                    onConfirm={updateTimePicker}
+                    onCancel={() => showTimePicker(false)}
+                    mode={"time"}
+                    is24Hour={false}
+                  />
+                </TouchableOpacity>
+              </View>
+              <Text style={styles.itemName}>{"Location:"}</Text>
+              <View style={styles.textInput}>
+                <TextInput
+                  style={styles.textBox}
                   underlineColorAndroid="transparent"
                 />
+                <TouchableOpacity style={styles.button}>
+                  <Image
+                    source={require("../assets/images/location.png")}
+                    style={styles.imageStyle}
+                  />
+                </TouchableOpacity>
               </View>
-              <TouchableOpacity style={styles.bookBtn}>
-                <Text style={styles.bookBtnText}>Book</Text>
-              </TouchableOpacity>
-            </ScrollView>
-          </KeyboardAwareScrollView>
-        </View>
-      );
-    } else {
-      return <AppLoading />;
-    }
+            </View>
+
+            <View>
+              <Text style={styles.itemName}>{"Students involved:"}</Text>
+              <View style={styles.textInput}>
+                <TextInput
+                  style={styles.textBox}
+                  underlineColorAndroid="transparent"
+                  maxLength={20}
+                  numberofLines={5}
+                />
+                <TouchableOpacity style={styles.button}>
+                  <Image
+                    source={require("../assets/images/student.png")}
+                    style={styles.imageStyle}
+                  />
+                </TouchableOpacity>
+              </View>
+            </View>
+            <Text style={styles.itemName}> Remarks:</Text>
+            <View>
+              <TextInput
+                multiline={true}
+                maxLength={200}
+                numberofLines={10}
+                style={styles.remarkBox}
+                underlineColorAndroid="transparent"
+              />
+            </View>
+            <TouchableOpacity style={styles.bookBtn}>
+              <Text style={styles.bookBtnText}>Book</Text>
+            </TouchableOpacity>
+          </ScrollView>
+        </KeyboardAwareScrollView>
+      </View>
+    );
   }
 }
 
