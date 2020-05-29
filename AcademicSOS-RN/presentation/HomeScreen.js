@@ -19,15 +19,21 @@ export default function HomeScreen({ route, navigation }) {
   const [userType, setUserType] = useState("");
 
   useEffect(() => {
-    HomeFB.checkUserRole("e0415870").then((data) => {
-      // for (var i = 0; i < data.length; i++) {
-      //   tempModules.push({name: data[i], code: colourCodes[i]});
-      // }
-      setUserType(data);
+    var tempUserType = "Student";
+    HomeFB.checkUserRole(userID).then((data) => {
+      for (var i = 0; i < data.length; i++) {
+        if (data[i] === "Student") {
+          continue;
+        } else {
+          tempUserType = data[i];
+          break;
+        }
+      }
+      setUserType(tempUserType);
     });
   });
 
-  const options = [
+  const optionTA = [
     {
       name: "Book consultation",
       image: require("../assets/images/bookConsult.png"),
@@ -50,6 +56,10 @@ export default function HomeScreen({ route, navigation }) {
     },
   ];
 
+  const optionStudent = optionTA.slice(0, 4);
+
+  const optionProf = optionTA.slice(4).concat(optionTA.slice(3, 4));
+
   if (!fontsLoaded) {
     return <AppLoading />;
   } else {
@@ -60,12 +70,26 @@ export default function HomeScreen({ route, navigation }) {
           <Text style={styles.title}>Welcome {userID} !</Text>
           <FlatGrid
             itemDimension={130}
-            items={options}
+            items={
+              userType === "TA"
+                ? optionTA
+                : userType === "Professor"
+                ? optionProf
+                : optionStudent
+            }
             style={styles.gridView}
-            renderItem={({ item, index }) => (
+            renderItem={({ item }) => (
               <View style={[styles.optionContainer]}>
-                <Text style={styles.optionName}> {item.name} </Text>
-                <Image style={styles.optionImage} source={item.image} />
+                <TouchableOpacity
+                  onPress={() =>
+                    item.name !== "Manage Bookings"
+                      ? navigation.navigate("Select Module")
+                      : navigation.navigate("Bookings")
+                  }
+                >
+                  <Text style={styles.optionName}> {item.name} </Text>
+                  <Image style={styles.optionImage} source={item.image} />
+                </TouchableOpacity>
               </View>
             )}
           />
@@ -73,7 +97,7 @@ export default function HomeScreen({ route, navigation }) {
             style={styles.logoutBtn}
             onPress={() => navigation.navigate("Login")}
           >
-            <Text style={styles.logoutBtnText}>{userType}</Text>
+            <Text style={styles.logoutBtnText}>Logout</Text>
           </TouchableOpacity>
         </View>
       </View>

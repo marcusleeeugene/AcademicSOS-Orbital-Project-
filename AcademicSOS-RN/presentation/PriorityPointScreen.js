@@ -6,7 +6,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
-import BreadCrumb from "./BreadCrumb.js";
+import BreadCrumb from "../components/BreadCrumb.js";
 
 export default function PriorityPointsPresentation() {
   let [fontsLoaded] = useFonts({
