@@ -8,4 +8,5 @@ const FireBaseConfig = {
   storageBucket: "academicsos-db.appspot.com",
 };
 
-export default FireBaseConfig;
+let app = firebase.initializeApp(FireBaseConfig);
+export const database = app.database();

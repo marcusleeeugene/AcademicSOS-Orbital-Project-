@@ -1,7 +1,5 @@
 import * as firebase from 'firebase';
-import FireBaseConfig from "./FireBaseConfig.js";
-
-const database = firebase.initializeApp(FireBaseConfig).database();
+import { database } from "./FireBaseConfig.js";
 
 const LoginFB = {
   loginUser: function(id, pw) {
