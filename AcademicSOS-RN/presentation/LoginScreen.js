@@ -22,8 +22,8 @@ export default function LoginScreen({ navigation }) {
     "Righteous-Regular": require("../assets/fonts/Righteous-Regular.ttf"),
   });
 
-  const [userID, handleUpdateUserID] = useState("");
-  const [password, handleUpdatePassword] = useState("");
+  const [userID, setUserID] = useState("");
+  const [password, setPassword] = useState("");
 
   login = (userID, password) => {
     try {
@@ -47,8 +47,6 @@ export default function LoginScreen({ navigation }) {
               alert("Invalid User !!!");
           }
         });
-      handleUpdateUserID("");
-      handleUpdatePassword("");
     } catch (error) {
       console.log(error.toString());
     }
@@ -69,7 +67,7 @@ export default function LoginScreen({ navigation }) {
           <TextInput
             style={styles.textInput}
             placeholder="    Student ID"
-            onChangeText={handleUpdateUserID}
+            onChangeText={setUserID}
             value={userID}
           />
           <Text style={styles.textInputTitle}> Password: </Text>
@@ -77,7 +75,7 @@ export default function LoginScreen({ navigation }) {
             secureTextEntry={true}
             style={styles.textInput}
             placeholder="    Password"
-            onChangeText={handleUpdatePassword}
+            onChangeText={setPassword}
             value={password}
           />
           <TouchableOpacity

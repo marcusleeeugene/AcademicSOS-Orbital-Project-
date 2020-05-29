@@ -8,6 +8,7 @@ import {
 } from "react-native-responsive-screen";
 import { FlatGrid } from "react-native-super-grid";
 import BreadCrumb from "../components/BreadCrumb";
+import * as firebase from "firebase";
 import HomeFB from "../firebase/HomeFireBase.js";
 
 export default function HomeScreen({ route, navigation }) {
@@ -19,21 +20,26 @@ export default function HomeScreen({ route, navigation }) {
   const [userType, setUserType] = useState("");
 
   useEffect(() => {
-    var tempUserType = "Student";
-    HomeFB.checkUserRole(userID).then((data) => {
-      for (var i = 0; i < data.length; i++) {
-        if (data[i] === "Student") {
-          continue;
-        } else {
-          tempUserType = data[i];
-          break;
-        }
-      }
-      setUserType(tempUserType);
+    HomeFB.checkUserRole("e0415870").then((data) => {
+      // for (var i = 0; i < data.length; i++) {
+      //   tempModules.push({name: data[i], code: colourCodes[i]});
+      // }
+      setUserType(data);
     });
   });
 
-  const optionTA = [
+  logOut = () => {
+    firebase.auth().signOut().then(function() {
+      // Sign-out successful.
+      navigation.navigate("Login");
+      alert("Signed out successfully!");
+    }).catch(function(error) {
+      // An error happened.
+      alert(error);
+    });
+  }
+
+  const options = [
     {
       name: "Book consultation",
       image: require("../assets/images/bookConsult.png"),
@@ -56,10 +62,6 @@ export default function HomeScreen({ route, navigation }) {
     },
   ];
 
-  const optionStudent = optionTA.slice(0, 4);
-
-  const optionProf = optionTA.slice(4).concat(optionTA.slice(3, 4));
-
   if (!fontsLoaded) {
     return <AppLoading />;
   } else {
@@ -70,34 +72,20 @@ export default function HomeScreen({ route, navigation }) {
           <Text style={styles.title}>Welcome {userID} !</Text>
           <FlatGrid
             itemDimension={130}
-            items={
-              userType === "TA"
-                ? optionTA
-                : userType === "Professor"
-                ? optionProf
-                : optionStudent
-            }
+            items={options}
             style={styles.gridView}
-            renderItem={({ item }) => (
+            renderItem={({ item, index }) => (
               <View style={[styles.optionContainer]}>
-                <TouchableOpacity
-                  onPress={() =>
-                    item.name !== "Manage Bookings"
-                      ? navigation.navigate("Select Module")
-                      : navigation.navigate("Bookings")
-                  }
-                >
-                  <Text style={styles.optionName}> {item.name} </Text>
-                  <Image style={styles.optionImage} source={item.image} />
-                </TouchableOpacity>
+                <Text style={styles.optionName}> {item.name} </Text>
+                <Image style={styles.optionImage} source={item.image} />
               </View>
             )}
           />
           <TouchableOpacity
             style={styles.logoutBtn}
-            onPress={() => navigation.navigate("Login")}
+            onPress={() => logOut()}
           >
-            <Text style={styles.logoutBtnText}>Logout</Text>
+            <Text style={styles.logoutBtnText}> Log Out </Text>
           </TouchableOpacity>
         </View>
       </View>
