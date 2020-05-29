@@ -9,6 +9,7 @@ import {
   TextInput,
   TouchableOpacity,
   ScrollView,
+  Modal,
 } from "react-native";
 
 import {
@@ -19,34 +20,20 @@ import BreadCrumb from "../components/BreadCrumb";
 import DateTimePicker from "react-native-modal-datetime-picker";
 import moment from "moment";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import Modal from "react-native-modal";
-
-const tutor = [
-  { key: "John Tan Ah kow" },
-  { key: "Peter Lee" },
-  { key: "Mary Goh" },
-  { key: "Prof Aaron Tan" },
-  { key: "Prof Martin Henz" },
-  { key: "Prof Henry" },
-];
 
 export default function BookConsultScreen() {
   let [fontsLoaded] = useFonts({
     "Righteous-Regular": require("../assets/fonts/Righteous-Regular.ttf"),
   });
 
+  const [isModalVisible, setModalVisible] = useState(false);
+  const [chosenTutor, handleTutorPicker] = useState("");
+
   const [isDatePickerVisible, showDatePicker] = useState(false);
   const [isTimePickerVisible, showTimePicker] = useState(false);
-  const [isModalVisible, setModalVisible] = useState(false);
 
   const [chosenDate, handleDatePicker] = useState("");
   const [chosenTime, handleTimePicker] = useState("");
-  const [chosenTutor, handleTutorPicker] = useState("");
-
-  const updateTutorModalChoice = (data) => {
-    handleTutorPicker(data);
-    setModalVisible(!isModalVisible);
-  };
 
   const updateDatePicker = (date) => {
     showDatePicker(false);
@@ -58,42 +45,51 @@ export default function BookConsultScreen() {
     handleTimePicker(moment(time).format("hh:mm A"));
   };
 
+  const updateTutorModalChoice = (data) => {
+    handleTutorPicker(data);
+    setModalVisible(!isModalVisible);
+  };
+
+  const tutor = [
+    { key: "John Tan Ah kow" },
+    { key: "Peter Lee" },
+    { key: "Mary Goh" },
+    { key: "Prof Aaron Tan" },
+    { key: "Prof Martin Henz" },
+    { key: "Prof Henry" },
+  ];
+
+  const tutorJSX = (
+    <Modal animationType="slide" transparent={true} visible={isModalVisible}>
+      <View>
+        <View style={styles.modalView}>
+          <Text style={styles.modalTitle}>Teaching Assistant:</Text>
+          <ScrollView>
+            {tutor.map((item) => (
+              <TouchableOpacity
+                style={styles.modalBtn}
+                onPress={() => updateTutorModalChoice(item.key)}
+              >
+                <Text style={styles.modalBtnText}>{item.key}</Text>
+              </TouchableOpacity>
+            ))}
+          </ScrollView>
+        </View>
+      </View>
+    </Modal>
+  );
+
   if (!fontsLoaded) {
     return <AppLoading />;
   } else {
     return (
       <View>
-        <KeyboardAwareScrollView
-          innerRef={(ref) => {
-            this.scroll = ref;
-          }}
-        >
+        <KeyboardAwareScrollView>
           <BreadCrumb />
           <ScrollView style={styles.body}>
             <Text style={styles.title}> Fill in consultation details: </Text>
-
             <View>
-              <Modal
-                animationType="slide"
-                transparent={true}
-                visible={isModalVisible}
-              >
-                <View>
-                  <View style={styles.modalView}>
-                    <Text style={styles.modalTitle}>Teaching Assistant:</Text>
-                    <ScrollView>
-                      {tutor.map((item) => (
-                        <TouchableOpacity
-                          style={styles.modalBtn}
-                          onPress={() => updateTutorModalChoice(item.key)}
-                        >
-                          <Text style={styles.modalBtnText}>{item.key}</Text>
-                        </TouchableOpacity>
-                      ))}
-                    </ScrollView>
-                  </View>
-                </View>
-              </Modal>
+              {tutorJSX}
               <Text style={styles.itemName}>{"Teaching Assistant:"}</Text>
               <View style={styles.textInput}>
                 <TextInput
@@ -231,14 +227,6 @@ const styles = StyleSheet.create({
     color: "#FFFFFF",
     marginBottom: "3%",
   },
-  dateTimeTextBox: {
-    marginLeft: wp("7%"),
-    flex: 1,
-    paddingHorizontal: wp("2%"),
-    fontSize: hp("2%"),
-    fontWeight: "bold",
-    textAlign: "center",
-  },
   textInput: {
     marginHorizontal: wp("25"),
     flexDirection: "row",
@@ -250,6 +238,14 @@ const styles = StyleSheet.create({
     width: wp("50%"),
     borderRadius: 5,
     margin: hp("2%"),
+  },
+  dateTimeTextBox: {
+    marginLeft: wp("7%"),
+    flex: 1,
+    paddingHorizontal: wp("2%"),
+    fontSize: hp("2%"),
+    fontWeight: "bold",
+    textAlign: "center",
   },
   textBox: {
     flex: 1,
@@ -313,7 +309,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginTop: "4%",
   },
-
   modal: {
     justifyContent: "center",
   },

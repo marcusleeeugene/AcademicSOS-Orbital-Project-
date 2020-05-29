@@ -1,30 +1,31 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
+import { useFonts } from "@use-expo/font";
+import { AppLoading } from "expo";
 import { Text, View, TouchableOpacity, StyleSheet } from "react-native";
 
-export default class RadioButton extends Component {
-  //works for all cases of Radio Button
-  state = {
-    value: "", // set default value whether the black selection dot will appear on screen
-  };
+const RadioButton = (props) => {
+  let [fontsLoaded] = useFonts({
+    "Righteous-Regular": require("../assets/fonts/Righteous-Regular.ttf"),
+  });
 
-  render() {
-    const { type } = this.props;
-    const { value } = this.state;
+  const { type } = props;
+  const [value, setValue] = useState("");
 
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  } else {
     return (
       <View>
         <View style={{ flexDirection: "row" }}>
           {type.map((item) => {
             return (
               <View key={item.key} style={styles.buttonContainer}>
-                <Text style={styles.text}>{item.text}</Text>
+                <Text style={styles.text}>{item.key}</Text>
                 <TouchableOpacity
                   style={styles.circle}
                   onPress={() => {
-                    this.props.parentCallback(item.key); //return callBack value to parent component
-                    this.setState({
-                      value: item.key,
-                    }); // assign value to radioButton accordingly
+                    props.parentCallback(item.key); //return callBack value to parent component
+                    setValue(item.key); // assign value to radioButton accordingly
                   }}
                 >
                   {value === item.key && <View style={styles.checkedCircle} />}
@@ -33,11 +34,10 @@ export default class RadioButton extends Component {
             );
           })}
         </View>
-        {/* <Text style={styles.text}> Selected: {this.state.value} </Text> */}
       </View>
     );
   }
-}
+};
 
 const styles = StyleSheet.create({
   buttonContainer: {
@@ -46,7 +46,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginLeft: 20,
   },
-
   circle: {
     backgroundColor: "white",
     marginHorizontal: 2,
@@ -58,7 +57,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-
   checkedCircle: {
     width: 14,
     height: 14,
@@ -72,3 +70,5 @@ const styles = StyleSheet.create({
     fontFamily: "Righteous-Regular",
   },
 });
+
+export default RadioButton;

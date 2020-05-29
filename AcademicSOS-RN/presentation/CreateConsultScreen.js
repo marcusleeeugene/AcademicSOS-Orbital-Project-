@@ -21,17 +21,6 @@ import DateTimePicker from "react-native-modal-datetime-picker";
 import moment from "moment";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
-const type = [
-  {
-    key: "public",
-    text: "Public",
-  },
-  {
-    key: "private",
-    text: "Private",
-  },
-];
-
 export default function CreateConsultScreen() {
   let [fontsLoaded] = useFonts({
     "Righteous-Regular": require("../assets/fonts/Righteous-Regular.ttf"),
@@ -42,7 +31,16 @@ export default function CreateConsultScreen() {
 
   const [chosenDate, handleDatePicker] = useState("");
   const [chosenTime, handleTimePicker] = useState("");
-  const [consultType, setConsultType] = useState("public");
+  const [consultType, setConsultType] = useState("Public");
+
+  const type = [
+    {
+      key: "Public",
+    },
+    {
+      key: "Private",
+    },
+  ];
 
   const updateDatePicker = (date) => {
     showDatePicker(false);
@@ -70,11 +68,7 @@ export default function CreateConsultScreen() {
   } else {
     return (
       <View>
-        <KeyboardAwareScrollView
-          innerRef={(ref) => {
-            this.scroll = ref;
-          }}
-        >
+        <KeyboardAwareScrollView>
           <BreadCrumb />
           <ScrollView style={styles.body}>
             <Text style={styles.title}> Fill in consultation details: </Text>
@@ -150,7 +144,7 @@ export default function CreateConsultScreen() {
             <View style={styles.typeContainer}>
               <RadioButton type={type} parentCallback={updateConsultType} />
             </View>
-            {consultType === "private" ? (
+            {consultType === "Private" ? (
               <View>
                 <Text style={styles.itemName}>{"Students involved:"}</Text>
                 <View style={styles.textInput}>

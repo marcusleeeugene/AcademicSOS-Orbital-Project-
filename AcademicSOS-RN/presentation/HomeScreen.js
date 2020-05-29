@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useFonts } from "@use-expo/font";
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import { AppLoading } from "expo";
@@ -8,6 +8,7 @@ import {
 } from "react-native-responsive-screen";
 import { FlatGrid } from "react-native-super-grid";
 import BreadCrumb from "../components/BreadCrumb";
+import HomeFB from "../firebase/HomeFireBase.js";
 
 export default function HomeScreen({ route, navigation }) {
   let [fontsLoaded] = useFonts({
@@ -15,6 +16,16 @@ export default function HomeScreen({ route, navigation }) {
   });
 
   const { userID } = route.params;
+  const [userType, setUserType] = useState("");
+
+  useEffect(() => {
+    HomeFB.checkUserRole("e0415870").then((data) => {
+      // for (var i = 0; i < data.length; i++) {
+      //   tempModules.push({name: data[i], code: colourCodes[i]});
+      // }
+      setUserType(data);
+    });
+  });
 
   const options = [
     {
@@ -46,7 +57,7 @@ export default function HomeScreen({ route, navigation }) {
       <View>
         <BreadCrumb />
         <View style={styles.body}>
-          <Text style={styles.title}>Welcome {userID}!</Text>
+          <Text style={styles.title}>Welcome {userID} !</Text>
           <FlatGrid
             itemDimension={130}
             items={options}
@@ -62,7 +73,7 @@ export default function HomeScreen({ route, navigation }) {
             style={styles.logoutBtn}
             onPress={() => navigation.navigate("Login")}
           >
-            <Text style={styles.logoutBtnText}> Log out </Text>
+            <Text style={styles.logoutBtnText}>{userType}</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -113,7 +124,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     backgroundColor: "#FFFFFF",
     height: hp("3.5%"),
-    width: wp("20%"),
+    width: wp("30%"),
     fontFamily: "Righteous-Regular",
     borderRadius: hp("1.1%"),
     alignItems: "center",
