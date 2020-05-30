@@ -44,11 +44,11 @@ export default function Navigation() {
         const previousRouteName = routeNameRef.current;
         const currentRouteName = getActiveRouteName(state);
 
-        if (previousRouteName !== currentRouteName) {
-          alert(
-            `The route from ${previousRouteName} changed to ${currentRouteName}`
-          );
-        }
+        // if (previousRouteName !== currentRouteName) {
+        //   alert(
+        //     `The route from ${previousRouteName} changed to ${currentRouteName}`
+        //   );
+        // }
 
         // Save the current route name for later comparision
         routeNameRef.current = currentRouteName;

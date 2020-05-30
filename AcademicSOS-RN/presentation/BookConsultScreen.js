@@ -27,9 +27,9 @@ export default function BookConsultScreen({ route, navigation }) {
 
   const { firstScreen, secondScreen, thirdScreen } = route.params;
   const navHistory = [
-    { key: firstScreen },
-    { key: secondScreen },
-    { key: thirdScreen },
+    { dest: firstScreen, alt_dest: ""},
+    { dest: secondScreen, alt_dest: "Select Module"},
+    { dest: thirdScreen, alt_dest: "" },
   ];
 
   const [isModalVisible, setModalVisible] = useState(false);
@@ -83,6 +83,8 @@ export default function BookConsultScreen({ route, navigation }) {
     </Modal>
   );
 
+  
+//SCROLLVIEW SHOULD BE IN BODY BUT SOME WEIRD ERROR HAPPENING
   if (!fontsLoaded) {
     return <AppLoading />;
   } else {

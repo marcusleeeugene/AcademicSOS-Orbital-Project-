@@ -19,7 +19,7 @@ export default function HomeScreen({ route, navigation }) {
   const { userID, firstScreen } = route.params;
   const [userType, setUserType] = useState("");
 
-  const navHistory = [{ key: firstScreen}];
+  const navHistory = [{ dest: firstScreen, alt_dest: ""}];
 
   // const goNextScreen = (nextScreen) => {
   //   navigation.navigate(nextScreen);
@@ -100,9 +100,9 @@ export default function HomeScreen({ route, navigation }) {
             items={
               userType === "TA"
                 ? optionTA
-                : userType === "Professor"
-                ? optionProf
-                : optionStudent
+                  : userType === "Professor"
+                    ? optionProf
+                    : optionStudent
             }
             style={styles.gridView}
             renderItem={({ item }) => (

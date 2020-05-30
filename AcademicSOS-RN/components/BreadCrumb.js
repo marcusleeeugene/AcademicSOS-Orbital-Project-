@@ -24,8 +24,8 @@ const BreadCrumb = (props) => {
     <View style={styles.header}>
       {navHistory.map((item, index) => (
         <View style= {(index != navHistory.length - 1) ? styles.textContainer : [styles.textContainer, styles.underline]}>
-            <TouchableOpacity onPress={()=> {navigation.navigate(item.key);}}>
-              <Text style={styles.breadCrumbText}> {item.key} </Text>
+            <TouchableOpacity onPress={()=> {(item.alt_dest == "") ? navigation.navigate(item.dest) : navigation.navigate(item.alt_dest);}}>
+              <Text style={styles.breadCrumbText}> {item.dest} </Text>
             </TouchableOpacity>
             {(index != navHistory.length - 1) ? //If not only "Home", generate chevron for directories
               <Image

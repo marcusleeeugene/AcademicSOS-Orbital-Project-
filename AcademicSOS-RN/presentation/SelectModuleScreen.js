@@ -26,7 +26,10 @@ export default function SelectModuleScreen({ route, navigation }) {
   const { firstScreen, secondScreen } = route.params;
   const [modules, setModules] = useState([]);
 
-  const navHistory = [{ key: firstScreen }, { key: secondScreen }];
+  const navHistory = [
+    { dest: firstScreen, alt_dest: ""},
+    { dest: secondScreen, alt_dest: ""}
+  ];
 
   // const goNextScreen = (nextScreen) => {
   //   navigation.navigate(nextScreen);

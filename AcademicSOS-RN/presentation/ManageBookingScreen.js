@@ -25,7 +25,10 @@ export default function ManageBookingScreen({ route, navigation }) {
   });
 
   const { firstScreen, secondScreen } = route.params;
-  const navHistory = [{ key: firstScreen }, { key: secondScreen }];
+  const navHistory = [
+    { dest: firstScreen, alt_dest: ""},
+    { dest: secondScreen, alt_dest: ""}
+  ];
 
   const [isStatusModalVisible, setStatusModalVisible] = useState(false);
   const [isWeekModalVisible, setWeekModalVisible] = useState(false);
