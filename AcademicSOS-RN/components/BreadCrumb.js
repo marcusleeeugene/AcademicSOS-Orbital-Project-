@@ -17,22 +17,33 @@ const BreadCrumb = (props) => {
   });
 
   const { navHistory } = props;
-  const [value, setValue] = useState("Home");
   const navigation = useNavigation();
 
   const navJSX = (
     <View style={styles.header}>
       {navHistory.map((item, index) => (
-        <View style= {(index != navHistory.length - 1) ? styles.textContainer : [styles.textContainer, styles.underline]}>
-            <TouchableOpacity onPress={()=> {(item.alt_dest == "") ? navigation.navigate(item.dest) : navigation.navigate(item.alt_dest);}}>
-              <Text style={styles.breadCrumbText}> {item.dest} </Text>
-            </TouchableOpacity>
-            {(index != navHistory.length - 1) ? //If not only "Home", generate chevron for directories
-              <Image
-                styles ={styles.chevron}
-                source={require("../assets/images/chevron.png")}
-              /> : null
-            }
+        <View
+          style={
+            index != navHistory.length - 1
+              ? styles.textContainer
+              : [styles.textContainer, styles.underline]
+          }
+        >
+          <TouchableOpacity
+            onPress={() => {
+              item.alt_dest == ""
+                ? navigation.navigate(item.dest)
+                : navigation.navigate(item.alt_dest);
+            }}
+          >
+            <Text style={styles.breadCrumbText}> {item.dest} </Text>
+          </TouchableOpacity>
+          {index != navHistory.length - 1 ? ( //If not only "Home", generate chevron for directories
+            <Image
+              styles={styles.chevron}
+              source={require("../assets/images/chevron.png")}
+            />
+          ) : null}
         </View>
       ))}
     </View>
@@ -43,7 +54,6 @@ const BreadCrumb = (props) => {
   } else {
     return <View>{navJSX}</View>;
   }
-
 };
 
 const styles = StyleSheet.create({

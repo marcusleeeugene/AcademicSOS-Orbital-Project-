@@ -24,10 +24,10 @@ export default function ManageBookingScreen({ route, navigation }) {
     "Righteous-Regular": require("../assets/fonts/Righteous-Regular.ttf"),
   });
 
-  const { firstScreen, secondScreen } = route.params;
+  const { firstScreen, secondScreen, userID } = route.params;
   const navHistory = [
-    { dest: firstScreen, alt_dest: ""},
-    { dest: secondScreen, alt_dest: ""}
+    { dest: firstScreen, alt_dest: "" },
+    { dest: secondScreen, alt_dest: "" },
   ];
 
   const [isStatusModalVisible, setStatusModalVisible] = useState(false);

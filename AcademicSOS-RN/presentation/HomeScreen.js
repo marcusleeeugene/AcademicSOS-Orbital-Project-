@@ -19,11 +19,7 @@ export default function HomeScreen({ route, navigation }) {
   const { userID, firstScreen } = route.params;
   const [userType, setUserType] = useState("");
 
-  const navHistory = [{ dest: firstScreen, alt_dest: ""}];
-
-  // const goNextScreen = (nextScreen) => {
-  //   navigation.navigate(nextScreen);
-  // };
+  const navHistory = [{ dest: firstScreen, alt_dest: "" }];
 
   useEffect(() => {
     var tempUserType = "Student";
@@ -95,11 +91,11 @@ export default function HomeScreen({ route, navigation }) {
           <FlatGrid
             itemDimension={130}
             items={
-              userType === "TA"
+              userType == "TA"
                 ? optionTA
-                  : userType === "Professor"
-                    ? optionProf
-                    : optionStudent
+                : userType == "Professor"
+                ? optionProf
+                : optionStudent
             }
             style={styles.gridView}
             renderItem={({ item }) => (
@@ -110,10 +106,12 @@ export default function HomeScreen({ route, navigation }) {
                       ? navigation.navigate("Select Module", {
                           secondScreen: item.upcomingScreen,
                           firstScreen: "Home",
+                          userID: userID,
                         })
                       : navigation.navigate("Manage Bookings", {
                           secondScreen: item.upcomingScreen,
                           firstScreen: "Home",
+                          userID: userID,
                         })
                   }
                 >

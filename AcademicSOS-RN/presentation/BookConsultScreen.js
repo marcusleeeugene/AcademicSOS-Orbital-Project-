@@ -8,7 +8,7 @@ import {
   Image,
   TextInput,
   TouchableOpacity,
-  ScrollView
+  ScrollView,
 } from "react-native";
 import {
   widthPercentageToDP as wp,
@@ -25,10 +25,10 @@ export default function BookConsultScreen({ route, navigation }) {
     "Righteous-Regular": require("../assets/fonts/Righteous-Regular.ttf"),
   });
 
-  const { firstScreen, secondScreen, thirdScreen } = route.params;
+  const { firstScreen, secondScreen, thirdScreen, userID } = route.params;
   const navHistory = [
-    { dest: firstScreen, alt_dest: ""},
-    { dest: secondScreen, alt_dest: "Select Module"},
+    { dest: firstScreen, alt_dest: "" },
+    { dest: secondScreen, alt_dest: "Select Module" },
     { dest: thirdScreen, alt_dest: "" },
   ];
 
@@ -51,7 +51,7 @@ export default function BookConsultScreen({ route, navigation }) {
     setTimePicker(moment(time).format("hh:mm A"));
   };
 
-  const updateTutorModalChoice = (data) => { //Toggle
+  const updateTutorModalChoice = (data) => {
     setTutorPicker(data);
     setModalVisible(!isModalVisible);
   };
@@ -66,7 +66,10 @@ export default function BookConsultScreen({ route, navigation }) {
   ];
 
   const tutorJSX = (
-    <Modal visible={isModalVisible} onBackdropPress={() => setModalVisible(false)}>
+    <Modal
+      visible={isModalVisible}
+      onBackdropPress={() => setModalVisible(false)}
+    >
       <View style={styles.modalView}>
         <Text style={styles.modalTitle}>Teaching Assistant:</Text>
         <ScrollView>
@@ -83,8 +86,7 @@ export default function BookConsultScreen({ route, navigation }) {
     </Modal>
   );
 
-  
-//SCROLLVIEW SHOULD BE IN BODY BUT SOME WEIRD ERROR HAPPENING
+  //SCROLLVIEW SHOULD BE IN BODY BUT SOME WEIRD ERROR HAPPENING
   if (!fontsLoaded) {
     return <AppLoading />;
   } else {

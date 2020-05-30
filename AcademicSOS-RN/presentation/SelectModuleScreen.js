@@ -23,17 +23,13 @@ export default function SelectModuleScreen({ route, navigation }) {
     "Righteous-Regular": require("../assets/fonts/Righteous-Regular.ttf"),
   });
 
-  const { firstScreen, secondScreen } = route.params;
+  const { firstScreen, secondScreen, userID } = route.params;
   const [modules, setModules] = useState([]);
 
   const navHistory = [
-    { dest: firstScreen, alt_dest: ""},
-    { dest: secondScreen, alt_dest: ""}
+    { dest: firstScreen, alt_dest: "" },
+    { dest: secondScreen, alt_dest: "" },
   ];
-
-  // const goNextScreen = (nextScreen) => {
-  //   navigation.navigate(nextScreen);
-  // };
 
   useEffect(() => {
     var tempModules = [];
@@ -49,7 +45,7 @@ export default function SelectModuleScreen({ route, navigation }) {
       "#ffcc80",
       "#bcaaa4",
     ];
-    SelectModuleFB.loadUserModules("e0415870").then((data) => {
+    SelectModuleFB.loadUserModules(userID).then((data) => {
       for (var i = 0; i < data.length; i++) {
         tempModules.push({ name: data[i], code: colourCodes[i] });
       }
@@ -79,6 +75,7 @@ export default function SelectModuleScreen({ route, navigation }) {
                       thirdScreen: item.name,
                       secondScreen: secondScreen,
                       firstScreen: firstScreen,
+                      userID: userID,
                     })
                   }
                 >

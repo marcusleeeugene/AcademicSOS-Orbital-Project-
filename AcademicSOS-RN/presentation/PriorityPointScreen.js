@@ -13,12 +13,19 @@ export default function PriorityPointsPresentation({ route, navigation }) {
     "Righteous-Regular": require("../assets/fonts/Righteous-Regular.ttf"),
   });
 
+  const { firstScreen, secondScreen, thirdScreen, userID } = route.params;
+  const navHistory = [
+    { dest: firstScreen, alt_dest: "" },
+    { dest: secondScreen, alt_dest: "Select Module" },
+    { dest: thirdScreen, alt_dest: "" },
+  ];
+
   if (!fontsLoaded) {
     return <AppLoading />;
   } else {
     return (
       <View>
-        <BreadCrumb />
+        <BreadCrumb navHistory={navHistory} />
         <View style={styles.body}>
           <Text style={styles.title}> CS1101S </Text>
           <View style={styles.SquareShapeView}>

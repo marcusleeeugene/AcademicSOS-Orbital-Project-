@@ -26,10 +26,10 @@ export default function CreateConsultScreen({ route, navigation }) {
     "Righteous-Regular": require("../assets/fonts/Righteous-Regular.ttf"),
   });
 
-  const { firstScreen, secondScreen, thirdScreen } = route.params;
+  const { firstScreen, secondScreen, thirdScreen, userID } = route.params;
   const navHistory = [
-    { dest: firstScreen, alt_dest: ""},
-    { dest: secondScreen, alt_dest: "Select Module"},
+    { dest: firstScreen, alt_dest: "" },
+    { dest: secondScreen, alt_dest: "Select Module" },
     { dest: thirdScreen, alt_dest: "" },
   ];
 

@@ -24,13 +24,12 @@ export default function PublicConsultScreen({ route, navigation }) {
     "Righteous-Regular": require("../assets/fonts/Righteous-Regular.ttf"),
   });
 
-  const { firstScreen, secondScreen, thirdScreen } = route.params;
+  const { firstScreen, secondScreen, thirdScreen, userID } = route.params;
   const navHistory = [
-    { key: firstScreen },
-    { key: secondScreen },
-    { key: thirdScreen },
+    { dest: firstScreen, alt_dest: "" },
+    { dest: secondScreen, alt_dest: "Select Module" },
+    { dest: thirdScreen, alt_dest: "" },
   ];
-
   const [isStatusModalVisible, setStatusModalVisible] = useState(false);
   const [isWeekModalVisible, setWeekModalVisible] = useState(false);
   const [isDayModalVisible, setDayModalVisible] = useState(false);
