@@ -16,55 +16,34 @@ const BreadCrumb = (props) => {
     "Righteous-Regular": require("../assets/fonts/Righteous-Regular.ttf"),
   });
 
-  //Navigation elements to show (To be changed )
   const { navHistory } = props;
   const [value, setValue] = useState("Home");
   const navigation = useNavigation();
 
-  let navJSX = [];
-  let lastElem = navHistory.length - 1;
-  for (var i = 0; i < navHistory.length; i++) {
-    if (i == lastElem) {
-      //Current directory
-      navJSX.push(
-        <View style={[styles.textContainer, styles.underline]}>
-          <TouchableOpacity>
-            <Text style={styles.breadCrumbText}> {navHistory[i].key} </Text>
-          </TouchableOpacity>
+  const navJSX = (
+    <View style={styles.header}>
+      {navHistory.map((item, index) => (
+        <View style= {(index != navHistory.length - 1) ? styles.textContainer : [styles.textContainer, styles.underline]}>
+            <TouchableOpacity onPress={()=> {navigation.navigate(item.key);}}>
+              <Text style={styles.breadCrumbText}> {item.key} </Text>
+            </TouchableOpacity>
+            {(index != navHistory.length - 1) ? //If not only "Home", generate chevron for directories
+              <Image
+                styles ={styles.chevron}
+                source={require("../assets/images/chevron.png")}
+              /> : null
+            }
         </View>
-      );
-    } else {
-      //Previous directories
-      navJSX.push(
-        <View style={styles.textContainer}>
-          <TouchableOpacity
-            onPress={() => {
-              setValue(navHistory);
-              navigation.navigate(value); //navHistory[i].key not working
-            }}
-          >
-            <Text style={styles.breadCrumbText}>{navHistory[i].key}</Text>
-          </TouchableOpacity>
-        </View>
-      );
-    }
-
-    if (i != lastElem && navHistory.length > 1) {
-      //Only render chevron if it is not last element
-      navJSX.push(
-        <Image
-          style={styles.chevron}
-          source={require("../assets/images/chevron.png")}
-        />
-      );
-    }
-  }
+      ))}
+    </View>
+  );
 
   if (!fontsLoaded) {
     return <AppLoading />;
   } else {
-    return <View style={styles.header}>{navJSX}</View>;
+    return <View>{navJSX}</View>;
   }
+
 };
 
 const styles = StyleSheet.create({
@@ -76,17 +55,19 @@ const styles = StyleSheet.create({
   },
   textContainer: {
     marginTop: "20%",
+    flexDirection: "row",
   },
   breadCrumbText: {
     fontSize: hp("2%"),
     fontFamily: "Righteous-Regular",
+    justifyContent: "center",
   },
   underline: {
     height: hp("3%"),
     borderBottomWidth: 3,
   },
   chevron: {
-    marginTop: "19.5%",
+    marginTop: "100%",
   },
 });
 

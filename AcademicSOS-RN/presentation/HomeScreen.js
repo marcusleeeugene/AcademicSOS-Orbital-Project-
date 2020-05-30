@@ -19,7 +19,7 @@ export default function HomeScreen({ route, navigation }) {
   const { userID, firstScreen } = route.params;
   const [userType, setUserType] = useState("");
 
-  const navHistory = [{ key: firstScreen, nextScreen: firstScreen }];
+  const navHistory = [{ key: firstScreen}];
 
   // const goNextScreen = (nextScreen) => {
   //   navigation.navigate(nextScreen);
