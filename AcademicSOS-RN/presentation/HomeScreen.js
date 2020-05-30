@@ -28,13 +28,10 @@ export default function HomeScreen({ route, navigation }) {
   useEffect(() => {
     var tempUserType = "Student";
     HomeFB.checkUserRole(userID).then((data) => {
-      for (var i = 0; i < data.length; i++) {
-        if (data[i] === "Student") {
-          continue;
-        } else {
-          tempUserType = data[i];
-          break;
-        }
+      if (data.includes("Professor")) {
+        tempUserType = "Professor";
+      } else if (data.includes("TA")) {
+        tempUserType = "TA";
       }
       setUserType(tempUserType);
     });
