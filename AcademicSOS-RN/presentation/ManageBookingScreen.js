@@ -17,7 +17,7 @@ import {
 } from "react-native-responsive-screen";
 import BreadCrumb from "../components/BreadCrumb";
 import Modal from "react-native-modal";
-//test
+
 export default function ManageBookingScreen({ route, navigation }) {
   let [fontsLoaded] = useFonts({
     "SonsieOne-Regular": require("../assets/fonts/SonsieOne-Regular.ttf"),
@@ -359,9 +359,6 @@ const styles = StyleSheet.create({
   consultationInfo: {
     fontSize: hp("1.5%"),
     fontFamily: "Righteous-Regular",
-  },
-  modal: {
-    justifyContent: "center",
   },
   modalView: {
     backgroundColor: "#CFD8DC",

@@ -8,10 +8,8 @@ import {
   Image,
   TextInput,
   TouchableOpacity,
-  ScrollView,
-  Modal,
+  ScrollView
 } from "react-native";
-
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -20,6 +18,7 @@ import BreadCrumb from "../components/BreadCrumb";
 import DateTimePicker from "react-native-modal-datetime-picker";
 import moment from "moment";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import Modal from "react-native-modal";
 
 export default function BookConsultScreen({ route, navigation }) {
   let [fontsLoaded] = useFonts({
@@ -34,26 +33,26 @@ export default function BookConsultScreen({ route, navigation }) {
   ];
 
   const [isModalVisible, setModalVisible] = useState(false);
-  const [chosenTutor, handleTutorPicker] = useState("");
+  const [chosenTutor, setTutorPicker] = useState("");
 
   const [isDatePickerVisible, showDatePicker] = useState(false);
   const [isTimePickerVisible, showTimePicker] = useState(false);
 
-  const [chosenDate, handleDatePicker] = useState("");
-  const [chosenTime, handleTimePicker] = useState("");
+  const [chosenDate, setDatePicker] = useState("");
+  const [chosenTime, setTimePicker] = useState("");
 
   const updateDatePicker = (date) => {
     showDatePicker(false);
-    handleDatePicker(moment(date).format("DD-MMM-YY"));
+    setDatePicker(moment(date).format("DD-MMM-YY"));
   };
 
   const updateTimePicker = (time) => {
     showTimePicker(false);
-    handleTimePicker(moment(time).format("hh:mm A"));
+    setTimePicker(moment(time).format("hh:mm A"));
   };
 
-  const updateTutorModalChoice = (data) => {
-    handleTutorPicker(data);
+  const updateTutorModalChoice = (data) => { //Toggle
+    setTutorPicker(data);
     setModalVisible(!isModalVisible);
   };
 
@@ -67,21 +66,19 @@ export default function BookConsultScreen({ route, navigation }) {
   ];
 
   const tutorJSX = (
-    <Modal animationType="slide" transparent={true} visible={isModalVisible}>
-      <View>
-        <View style={styles.modalView}>
-          <Text style={styles.modalTitle}>Teaching Assistant:</Text>
-          <ScrollView>
-            {tutor.map((item) => (
-              <TouchableOpacity
-                style={styles.modalBtn}
-                onPress={() => updateTutorModalChoice(item.key)}
-              >
-                <Text style={styles.modalBtnText}>{item.key}</Text>
-              </TouchableOpacity>
-            ))}
-          </ScrollView>
-        </View>
+    <Modal visible={isModalVisible} onBackdropPress={() => setModalVisible(false)}>
+      <View style={styles.modalView}>
+        <Text style={styles.modalTitle}>Teaching Assistant:</Text>
+        <ScrollView>
+          {tutor.map((item) => (
+            <TouchableOpacity
+              style={styles.modalBtn}
+              onPress={() => updateTutorModalChoice(item.key)}
+            >
+              <Text style={styles.modalBtnText}>{item.key}</Text>
+            </TouchableOpacity>
+          ))}
+        </ScrollView>
       </View>
     </Modal>
   );
@@ -108,7 +105,7 @@ export default function BookConsultScreen({ route, navigation }) {
                 <TouchableOpacity
                   style={styles.button}
                   onPress={() => {
-                    setModalVisible(true);
+                    setModalVisible(!isModalVisible);
                   }}
                 >
                   <Image
@@ -315,9 +312,6 @@ const styles = StyleSheet.create({
     fontFamily: "Righteous-Regular",
     alignItems: "center",
     marginTop: "4%",
-  },
-  modal: {
-    justifyContent: "center",
   },
   modalView: {
     backgroundColor: "#CFD8DC",
