@@ -83,7 +83,7 @@ export default function LoginScreen({ navigation }) {
           />
           <TouchableOpacity
             style={styles.loginBtn}
-            onPress={() => login(userID, password)}
+            onPress={() => login(userID.toLowerCase(), password)}
           >
             <Text style={styles.loginBtnText}> LOGIN </Text>
           </TouchableOpacity>
