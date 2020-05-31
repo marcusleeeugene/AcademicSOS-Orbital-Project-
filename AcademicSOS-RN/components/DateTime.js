@@ -8,6 +8,7 @@ import {
   View,
   Image,
   TouchableOpacity,
+  Platform,
 } from "react-native";
 import DateTimePicker from "react-native-modal-datetime-picker";
 import moment from "moment";
@@ -16,87 +17,95 @@ import {
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 
-export default function DateTime() {
+const DateTime = (props) => {
   let [fontsLoaded] = useFonts({
     "Righteous-Regular": require("../assets/fonts/Righteous-Regular.ttf"),
   });
 
+  const options = [
+    { name: "Date", image: require("../assets/images/date.png"), id: 1 },
+    { name: "Time", image: require("../assets/images/time.png"), id: 2 },
+  ];
+
   const [isDatePickerVisible, showDatePicker] = useState(false);
   const [isTimePickerVisible, showTimePicker] = useState(false);
 
-  const [chosenDate, handleDatePicker] = useState("");
-  const [chosenTime, handleTimePicker] = useState("");
+  const [chosenDate, setDatePicker] = useState("");
+  const [chosenTime, setTimePicker] = useState("");
 
   const updateDatePicker = (date) => {
     showDatePicker(false);
-    handleDatePicker(moment(date).format("DD-MMM-YY"));
+    var pickedDate = moment(date).format("DD-MMM-YY");
+    setDatePicker(pickedDate);
+    props.dateCallback(pickedDate);
   };
 
   const updateTimePicker = (time) => {
     showTimePicker(false);
-    handleTimePicker(moment(time).format("hh:mm A"));
+    var pickedTime = moment(time).format("hh:mm A");
+    setTimePicker(pickedTime);
+    props.timeCallback(pickedTime);
   };
+
+  const dateView = (
+    <View>
+      <DateTimePicker
+        isVisible={isDatePickerVisible}
+        onConfirm={updateDatePicker}
+        onCancel={() => showDatePicker(false)}
+        mode={"date"}
+      />
+    </View>
+  );
+
+  const timeView = (
+    <View>
+      <DateTimePicker
+        headerTextIOS="Pick a time"
+        isVisible={isTimePickerVisible}
+        onConfirm={updateTimePicker}
+        onCancel={() => showTimePicker(false)}
+        mode={"time"}
+        is24Hour={false}
+      />
+    </View>
+  );
+
+  const dateTimeJSX = (
+    <View>
+      {options.map((item) => (
+        <View key={item.id}>
+          <Text style={styles.itemName}>{item.name}:</Text>
+          <View style={styles.textInput}>
+            <TextInput
+              style={styles.dateTimeTextBox}
+              underlineColorAndroid="transparent"
+              value={item.name === "Date" ? chosenDate : chosenTime}
+              editable={false}
+            />
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => {
+                item.name === "Date"
+                  ? showDatePicker(true)
+                  : showTimePicker(true);
+              }}
+            >
+              <Image source={item.image} style={styles.imageStyle} />
+              {item.name === "Time" ? timeView : dateView}
+            </TouchableOpacity>
+          </View>
+        </View>
+      ))}
+    </View>
+  );
 
   if (!fontsLoaded) {
     return <AppLoading />;
   } else {
-    return (
-      <View>
-        <Text style={styles.itemName}>{"Date:"}</Text>
-        <View style={styles.textInput}>
-          <TextInput
-            style={styles.dateTimeTextBox}
-            underlineColorAndroid="transparent"
-            value={chosenDate}
-            editable={false}
-          />
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => showDatePicker(true)}
-          >
-            <Image
-              source={require("../assets/images/date.png")}
-              style={styles.imageStyle}
-            />
-            <DateTimePicker
-              isVisible={isDatePickerVisible}
-              onConfirm={updateDatePicker}
-              onCancel={() => showDatePicker(false)}
-              mode={"date"}
-            />
-          </TouchableOpacity>
-        </View>
-        <Text style={styles.itemName}>{"Time:"}</Text>
-        <View style={styles.textInput}>
-          <TextInput
-            style={styles.dateTimeTextBox}
-            underlineColorAndroid="transparent"
-            value={chosenTime}
-            editable={false}
-          />
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => showTimePicker(true)}
-          >
-            <Image
-              source={require("../assets/images/time.png")}
-              style={styles.imageStyle}
-            />
-
-            <DateTimePicker
-              headerTextIOS="Pick a time"
-              isVisible={isTimePickerVisible}
-              onConfirm={updateTimePicker}
-              onCancel={() => showTimePicker(false)}
-              mode={"time"}
-              is24Hour={false}
-            />
-          </TouchableOpacity>
-        </View>
-      </View>
-    );
+    return <View>{dateTimeJSX}</View>;
   }
-}
+};
 
 const styles = StyleSheet.create({
   dateTimeTextBox: {
@@ -145,3 +154,5 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
 });
+
+export default DateTime;

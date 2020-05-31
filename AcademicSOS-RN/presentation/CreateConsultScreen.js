@@ -10,15 +10,13 @@ import {
   TouchableOpacity,
   ScrollView,
 } from "react-native";
-
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 import BreadCrumb from "../components/BreadCrumb";
 import RadioButton from "../components/RadioButton.js";
-import DateTimePicker from "react-native-modal-datetime-picker";
-import moment from "moment";
+import DateTime from "../components/DateTime.js";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 export default function CreateConsultScreen({ route, navigation }) {
@@ -33,11 +31,8 @@ export default function CreateConsultScreen({ route, navigation }) {
     { dest: thirdScreen, alt_dest: "" },
   ];
 
-  const [isDatePickerVisible, showDatePicker] = useState(false);
-  const [isTimePickerVisible, showTimePicker] = useState(false);
-
-  const [chosenDate, handleDatePicker] = useState("");
-  const [chosenTime, handleTimePicker] = useState("");
+  const [date, setDate] = useState("");
+  const [time, setTime] = useState("");
   const [consultType, setConsultType] = useState("Public");
 
   const type = [
@@ -49,26 +44,60 @@ export default function CreateConsultScreen({ route, navigation }) {
     },
   ];
 
-  const updateDatePicker = (date) => {
-    showDatePicker(false);
-    handleDatePicker(moment(date).format("DD-MMM-YY"));
+  const updateDate = (date) => {
+    setDate(date);
   };
 
-  const updateTimePicker = (time) => {
-    showTimePicker(false);
-    handleTimePicker(moment(time).format("hh:mm A"));
+  const updateTime = (time) => {
+    setTime(time);
   };
 
   const updateConsultType = (consultType) => {
     setConsultType(consultType);
   }; // handle callBack of button (public, private consult type)
 
-  // callbackFunction = (childData) => {
-  //   this.setState((prevState) => ({
-  //     consultType: prevState.consultType,
-  //   }));
-  //   this.setState({ consultType: childData });
-  // }; // handle callBack of button (public, private consult type)
+  const locationJSX = (
+    <View>
+      <Text style={styles.itemName}>{"Location:"}</Text>
+      <View style={styles.textInput}>
+        <TextInput style={styles.textBox} underlineColorAndroid="transparent" />
+        <TouchableOpacity style={styles.button}>
+          <Image
+            source={require("../assets/images/location.png")}
+            style={styles.imageStyle}
+          />
+        </TouchableOpacity>
+      </View>
+    </View>
+  );
+
+  const typeJSX = (
+    <View>
+      <Text style={styles.itemName}> Type:</Text>
+      <View style={styles.typeContainer}>
+        <RadioButton type={type} parentCallback={updateConsultType} />
+      </View>
+      {consultType === "Private" ? (
+        <View>
+          <Text style={styles.itemName}>{"Students involved:"}</Text>
+          <View style={styles.textInput}>
+            <TextInput
+              style={styles.textBox}
+              underlineColorAndroid="transparent"
+              maxLength={20}
+              numberofLines={5}
+            />
+            <TouchableOpacity style={styles.button}>
+              <Image
+                source={require("../assets/images/student.png")}
+                style={styles.imageStyle}
+              />
+            </TouchableOpacity>
+          </View>
+        </View>
+      ) : null}
+    </View>
+  );
 
   if (!fontsLoaded) {
     return <AppLoading />;
@@ -79,97 +108,9 @@ export default function CreateConsultScreen({ route, navigation }) {
           <BreadCrumb navHistory={navHistory} />
           <ScrollView style={styles.body}>
             <Text style={styles.title}> Fill in consultation details: </Text>
-            <View>
-              <Text style={styles.itemName}>{"Date:"}</Text>
-              <View style={styles.textInput}>
-                <TextInput
-                  style={styles.dateTimeTextBox}
-                  underlineColorAndroid="transparent"
-                  value={chosenDate}
-                  editable={false}
-                />
-                <TouchableOpacity
-                  style={styles.button}
-                  onPress={() => showDatePicker(true)}
-                >
-                  <Image
-                    source={require("../assets/images/date.png")}
-                    style={styles.imageStyle}
-                  />
-                  <DateTimePicker
-                    isVisible={isDatePickerVisible}
-                    onConfirm={updateDatePicker}
-                    onCancel={() => showDatePicker(false)}
-                    mode={"date"}
-                  />
-                </TouchableOpacity>
-              </View>
-              <Text style={styles.itemName}>{"Time:"}</Text>
-              <View style={styles.textInput}>
-                <TextInput
-                  style={styles.dateTimeTextBox}
-                  underlineColorAndroid="transparent"
-                  value={chosenTime}
-                  editable={false}
-                />
-                <TouchableOpacity
-                  style={styles.button}
-                  onPress={() => showTimePicker(true)}
-                >
-                  <Image
-                    source={require("../assets/images/time.png")}
-                    style={styles.imageStyle}
-                  />
-
-                  <DateTimePicker
-                    headerTextIOS="Pick a time"
-                    isVisible={isTimePickerVisible}
-                    onConfirm={updateTimePicker}
-                    onCancel={() => showTimePicker(false)}
-                    mode={"time"}
-                    is24Hour={false}
-                  />
-                </TouchableOpacity>
-              </View>
-
-              <Text style={styles.itemName}>{"Location:"}</Text>
-              <View style={styles.textInput}>
-                <TextInput
-                  style={styles.textBox}
-                  underlineColorAndroid="transparent"
-                />
-                <TouchableOpacity style={styles.button}>
-                  <Image
-                    source={require("../assets/images/location.png")}
-                    style={styles.imageStyle}
-                  />
-                </TouchableOpacity>
-              </View>
-            </View>
-
-            <Text style={styles.itemName}> Type:</Text>
-            <View style={styles.typeContainer}>
-              <RadioButton type={type} parentCallback={updateConsultType} />
-            </View>
-            {consultType === "Private" ? (
-              <View>
-                <Text style={styles.itemName}>{"Students involved:"}</Text>
-                <View style={styles.textInput}>
-                  <TextInput
-                    style={styles.textBox}
-                    underlineColorAndroid="transparent"
-                    maxLength={20}
-                    numberofLines={5}
-                  />
-                  <TouchableOpacity style={styles.button}>
-                    <Image
-                      source={require("../assets/images/student.png")}
-                      style={styles.imageStyle}
-                    />
-                  </TouchableOpacity>
-                </View>
-              </View>
-            ) : null}
+            <DateTime dateCallback={updateDate} timeCallback={updateTime} />
+            {locationJSX}
+            {typeJSX}
             <Text style={styles.itemName}> Size:</Text>
             <View>
               <TextInput
@@ -215,14 +156,6 @@ const styles = StyleSheet.create({
   text: {
     color: "white",
     fontFamily: "Righteous-Regular",
-  },
-  dateTimeTextBox: {
-    marginLeft: wp("7%"),
-    flex: 1,
-    paddingHorizontal: wp("2%"),
-    fontSize: hp("2%"),
-    fontWeight: "bold",
-    textAlign: "center",
   },
   textInput: {
     marginHorizontal: wp("25"),

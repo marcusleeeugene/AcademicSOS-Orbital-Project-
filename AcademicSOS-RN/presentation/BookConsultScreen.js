@@ -15,8 +15,7 @@ import {
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 import BreadCrumb from "../components/BreadCrumb";
-import DateTimePicker from "react-native-modal-datetime-picker";
-import moment from "moment";
+import DateTime from "../components/DateTime.js";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import Modal from "react-native-modal";
 
@@ -35,20 +34,15 @@ export default function BookConsultScreen({ route, navigation }) {
   const [isModalVisible, setModalVisible] = useState(false);
   const [chosenTutor, setTutorPicker] = useState("");
 
-  const [isDatePickerVisible, showDatePicker] = useState(false);
-  const [isTimePickerVisible, showTimePicker] = useState(false);
+  const [date, setDate] = useState("");
+  const [time, setTime] = useState("");
 
-  const [chosenDate, setDatePicker] = useState("");
-  const [chosenTime, setTimePicker] = useState("");
-
-  const updateDatePicker = (date) => {
-    showDatePicker(false);
-    setDatePicker(moment(date).format("DD-MMM-YY"));
+  const updateDate = (date) => {
+    setDate(date);
   };
 
-  const updateTimePicker = (time) => {
-    showTimePicker(false);
-    setTimePicker(moment(time).format("hh:mm A"));
+  const updateTime = (time) => {
+    setTime(time);
   };
 
   const updateTutorModalChoice = (data) => {
@@ -67,7 +61,7 @@ export default function BookConsultScreen({ route, navigation }) {
 
   const tutorJSX = (
     <Modal
-      visible={isModalVisible}
+      isVisible={isModalVisible}
       onBackdropPress={() => setModalVisible(false)}
     >
       <View style={styles.modalView}>
@@ -86,6 +80,41 @@ export default function BookConsultScreen({ route, navigation }) {
     </Modal>
   );
 
+  const locationJSX = (
+    <View>
+      <Text style={styles.itemName}>{"Location:"}</Text>
+      <View style={styles.textInput}>
+        <TextInput style={styles.textBox} underlineColorAndroid="transparent" />
+        <TouchableOpacity style={styles.button}>
+          <Image
+            source={require("../assets/images/location.png")}
+            style={styles.imageStyle}
+          />
+        </TouchableOpacity>
+      </View>
+    </View>
+  );
+
+  const studentJSX = (
+    <View>
+      <Text style={styles.itemName}>{"Students involved:"}</Text>
+      <View style={styles.textInput}>
+        <TextInput
+          style={styles.textBox}
+          underlineColorAndroid="transparent"
+          maxLength={20}
+          numberofLines={5}
+        />
+        <TouchableOpacity style={styles.button}>
+          <Image
+            source={require("../assets/images/student.png")}
+            style={styles.imageStyle}
+          />
+        </TouchableOpacity>
+      </View>
+    </View>
+  );
+
   //SCROLLVIEW SHOULD BE IN BODY BUT SOME WEIRD ERROR HAPPENING
   if (!fontsLoaded) {
     return <AppLoading />;
@@ -96,111 +125,30 @@ export default function BookConsultScreen({ route, navigation }) {
           <BreadCrumb navHistory={navHistory} />
           <ScrollView style={styles.body}>
             <Text style={styles.title}> Fill in consultation details: </Text>
-            <View>
-              {tutorJSX}
-              <Text style={styles.itemName}>{"Teaching Assistant:"}</Text>
-              <View style={styles.textInput}>
-                <TextInput
-                  style={styles.textBox}
-                  underlineColorAndroid="transparent"
-                  editable={false}
-                  value={chosenTutor}
-                />
-                <TouchableOpacity
-                  style={styles.button}
-                  onPress={() => {
-                    setModalVisible(!isModalVisible);
-                  }}
-                >
-                  <Image
-                    source={require("../assets/images/teachingassistant.png")}
-                    style={styles.imageStyle}
-                  />
-                </TouchableOpacity>
-              </View>
-              <Text style={styles.itemName}>{"Date:"}</Text>
-              <View style={styles.textInput}>
-                <TextInput
-                  style={styles.dateTimeTextBox}
-                  underlineColorAndroid="transparent"
-                  value={chosenDate}
-                  editable={false}
-                />
-                <TouchableOpacity
-                  style={styles.button}
-                  onPress={() => showDatePicker(true)}
-                >
-                  <Image
-                    source={require("../assets/images/date.png")}
-                    style={styles.imageStyle}
-                  />
-                  <DateTimePicker
-                    isVisible={isDatePickerVisible}
-                    onConfirm={updateDatePicker}
-                    onCancel={() => showDatePicker(false)}
-                    mode={"date"}
-                  />
-                </TouchableOpacity>
-              </View>
-              <Text style={styles.itemName}>{"Time:"}</Text>
-              <View style={styles.textInput}>
-                <TextInput
-                  style={styles.dateTimeTextBox}
-                  underlineColorAndroid="transparent"
-                  value={chosenTime}
-                  editable={false}
-                />
-                <TouchableOpacity
-                  style={styles.button}
-                  onPress={() => showTimePicker(true)}
-                >
-                  <Image
-                    source={require("../assets/images/time.png")}
-                    style={styles.imageStyle}
-                  />
 
-                  <DateTimePicker
-                    headerTextIOS="Pick a time"
-                    isVisible={isTimePickerVisible}
-                    onConfirm={updateTimePicker}
-                    onCancel={() => showTimePicker(false)}
-                    mode={"time"}
-                    is24Hour={false}
-                  />
-                </TouchableOpacity>
-              </View>
-              <Text style={styles.itemName}>{"Location:"}</Text>
-              <View style={styles.textInput}>
-                <TextInput
-                  style={styles.textBox}
-                  underlineColorAndroid="transparent"
+            <Text style={styles.itemName}>{"Teaching Assistant:"}</Text>
+            <View style={styles.textInput}>
+              <TextInput
+                style={styles.textBox}
+                underlineColorAndroid="transparent"
+                editable={false}
+                value={chosenTutor}
+              />
+              <TouchableOpacity
+                style={styles.button}
+                onPress={() => {
+                  setModalVisible(!isModalVisible);
+                }}
+              >
+                <Image
+                  source={require("../assets/images/teachingassistant.png")}
+                  style={styles.imageStyle}
                 />
-                <TouchableOpacity style={styles.button}>
-                  <Image
-                    source={require("../assets/images/location.png")}
-                    style={styles.imageStyle}
-                  />
-                </TouchableOpacity>
-              </View>
+              </TouchableOpacity>
             </View>
-
-            <View>
-              <Text style={styles.itemName}>{"Students involved:"}</Text>
-              <View style={styles.textInput}>
-                <TextInput
-                  style={styles.textBox}
-                  underlineColorAndroid="transparent"
-                  maxLength={20}
-                  numberofLines={5}
-                />
-                <TouchableOpacity style={styles.button}>
-                  <Image
-                    source={require("../assets/images/student.png")}
-                    style={styles.imageStyle}
-                  />
-                </TouchableOpacity>
-              </View>
-            </View>
+            <DateTime dateCallback={updateDate} timeCallback={updateTime} />
+            {locationJSX}
+            {studentJSX}
             <Text style={styles.itemName}> Remarks:</Text>
             <View>
               <TextInput
@@ -215,6 +163,7 @@ export default function BookConsultScreen({ route, navigation }) {
               <Text style={styles.bookBtnText}>Book</Text>
             </TouchableOpacity>
           </ScrollView>
+          {tutorJSX}
         </KeyboardAwareScrollView>
       </View>
     );
