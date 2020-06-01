@@ -15,7 +15,7 @@ import {
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 import * as firebase from "firebase";
-//import InputDataFB from "../firebase/InputDataFireBase.js";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 export default function LoginScreen({ navigation }) {
   let [fontsLoaded] = useFonts({
@@ -25,6 +25,7 @@ export default function LoginScreen({ navigation }) {
 
   const [userID, setUserID] = useState("");
   const [password, setPassword] = useState("");
+  const [extraScrollHeight, setScrollHeight] = useState(0);
 
   login = (userID, password) => {
     try {
@@ -64,7 +65,11 @@ export default function LoginScreen({ navigation }) {
     return <AppLoading />;
   } else {
     return (
-      <View style={styles.container}>
+      <KeyboardAwareScrollView
+        enableOnAndroid={true}
+        extraScrollHeight={extraScrollHeight}
+        contentContainerStyle={styles.container}
+      >
         <Text style={styles.AcademicSOS}> AcademicSOS </Text>
         <Image
           style={styles.nusLogo}
@@ -79,12 +84,16 @@ export default function LoginScreen({ navigation }) {
             value={userID}
           />
           <Text style={styles.textInputTitle}> Password: </Text>
+
           <TextInput
             secureTextEntry={true}
             style={styles.textInput}
             placeholder="    Password"
             onChangeText={setPassword}
             value={password}
+            onFocus={() => {
+              setScrollHeight(150);
+            }}
           />
           <TouchableOpacity
             style={styles.loginBtn}
@@ -93,7 +102,7 @@ export default function LoginScreen({ navigation }) {
             <Text style={styles.loginBtnText}> LOGIN </Text>
           </TouchableOpacity>
         </View>
-      </View>
+      </KeyboardAwareScrollView>
     );
   }
 }
@@ -106,7 +115,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#EF7C00",
   },
   AcademicSOS: {
-    marginTop: hp("10%"),
+    marginTop: hp("15%"),
     fontSize: hp("4%"),
     textAlign: "center",
     fontFamily: "SonsieOne-Regular",

@@ -91,12 +91,14 @@ export default function SelectModuleScreen({ route, navigation }) {
 }
 
 const styles = StyleSheet.create({
+  breadCrumb: {},
   body: {
     height: hp("100%"),
     width: wp("100%"),
     backgroundColor: "#003D7C",
   },
   title: {
+    marginTop: hp("1.8%"),
     fontSize: hp("3.5%"),
     textAlign: "center",
     fontFamily: "Righteous-Regular",
@@ -110,12 +112,14 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end",
     borderRadius: 5,
     padding: 10,
-    height: 150,
+    height: hp("20%"),
+    textAlign: "center",
+    alignItems: "center",
   },
   itemName: {
     fontSize: hp("2.5%"),
     textAlign: "center",
-    height: hp("9%"),
+    height: hp("10%"),
     fontFamily: "Righteous-Regular",
   },
 });

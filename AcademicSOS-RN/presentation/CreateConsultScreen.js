@@ -33,7 +33,8 @@ export default function CreateConsultScreen({ route, navigation }) {
 
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
-  const [consultType, setConsultType] = useState("Public");
+  const [extraScrollHeight, setScrollHeight] = useState(0);
+  const [consultType, setConsultType] = useState("");
 
   const type = [
     {
@@ -86,6 +87,7 @@ export default function CreateConsultScreen({ route, navigation }) {
               underlineColorAndroid="transparent"
               maxLength={20}
               numberofLines={5}
+              editable={false}
             />
             <TouchableOpacity style={styles.button}>
               <Image
@@ -104,9 +106,14 @@ export default function CreateConsultScreen({ route, navigation }) {
   } else {
     return (
       <View>
-        <KeyboardAwareScrollView>
+        <KeyboardAwareScrollView
+          enableOnAndroid={true}
+          contentContainerStyle={styles.body}
+          extraScrollHeight={extraScrollHeight}
+          resetScrollToCoords={{ x: 0, y: 0 }}
+        >
           <BreadCrumb navHistory={navHistory} />
-          <ScrollView style={styles.body}>
+          <View style={styles.body}>
             <Text style={styles.title}> Fill in consultation details: </Text>
             <DateTime dateCallback={updateDate} timeCallback={updateTime} />
             {locationJSX}
@@ -124,15 +131,16 @@ export default function CreateConsultScreen({ route, navigation }) {
               <TextInput
                 multiline={true}
                 maxLength={200}
-                numberofLines={10}
+                numberofLines={5}
                 style={styles.remarkBox}
                 underlineColorAndroid="transparent"
+                onFocus={() => setScrollHeight(200)}
               />
             </View>
             <TouchableOpacity style={styles.createBtn}>
               <Text style={styles.createBtnText}>Create</Text>
             </TouchableOpacity>
-          </ScrollView>
+          </View>
         </KeyboardAwareScrollView>
       </View>
     );
@@ -167,7 +175,7 @@ const styles = StyleSheet.create({
     height: hp("3.5%"),
     width: wp("50%"),
     borderRadius: 5,
-    margin: hp("2%"),
+    margin: hp("1%"),
   },
   textBox: {
     flex: 1,

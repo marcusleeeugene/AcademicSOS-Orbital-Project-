@@ -50,12 +50,12 @@ export default function HomeScreen({ route, navigation }) {
 
   const optionTA = [
     {
-      key: "Book consultation",
+      key: "Book\n consultation",
       image: require("../assets/images/bookConsult.png"),
       upcomingScreen: "Book",
     },
     {
-      key: "Public consultation",
+      key: "Public\n consultation",
       image: require("../assets/images/publicConsult.png"),
       upcomingScreen: "Public Consultation",
     },
@@ -65,12 +65,12 @@ export default function HomeScreen({ route, navigation }) {
       upcomingScreen: "Priority Points",
     },
     {
-      key: "Manage Bookings",
+      key: "Manage\n Bookings",
       image: require("../assets/images/manageBookings.png"),
       upcomingScreen: "Manage Bookings",
     },
     {
-      key: "Create Consulation",
+      key: "Create\n Consulation",
       image: require("../assets/images/createConsult.png"),
       upcomingScreen: "Create Consultation",
     },
@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
     height: hp("100%"),
     width: wp("100%"),
     backgroundColor: "#003D7C",
-    alignItems: 'center'
+    alignItems: "center",
   },
   title: {
     fontSize: hp("3.5%"),

@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
     height: hp("3.5%"),
     width: wp("50%"),
     borderRadius: 5,
-    margin: hp("2%"),
+    margin: hp("1%"),
   },
   itemName: {
     marginTop: hp("1%"),
