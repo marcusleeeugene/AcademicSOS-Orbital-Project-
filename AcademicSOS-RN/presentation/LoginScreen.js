@@ -36,21 +36,25 @@ export default function LoginScreen({ navigation }) {
             userID: userID,
             firstScreen: "Home",
           });
+          setUserID("");
+          setPassword("");
         })
         .catch((error) => {
           switch (error.code) {
             case "auth/invalid-email":
               alert("Invalid User ID or blank fields !!!");
+              setUserID("");
               break;
             case "auth/wrong-password":
               alert("Invalid password or blank fields !!!");
+              setPassword("");
               break;
             default:
               alert("Invalid User !!!");
+              setUserID("");
+              setPassword("");
           }
         });
-      setUserID("");
-      setPassword("");
     } catch (error) {
       console.log(error.toString());
     }
