@@ -23,6 +23,7 @@ const BreadCrumb = (props) => {
     <View style={styles.header}>
       {navHistory.map((item, index) => (
         <View
+          key={item.dest}
           style={
             index != navHistory.length - 1
               ? styles.textContainer

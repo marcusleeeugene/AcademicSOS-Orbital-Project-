@@ -123,6 +123,7 @@ export default function PublicConsultScreen({ route, navigation }) {
         <ScrollView>
           {weeks.map((item) => (
             <TouchableOpacity
+              key = {item.key}
               style={styles.modalBtn}
               onPress={() => updateModalChoice("Week#" + item.key)}
             >
@@ -153,6 +154,7 @@ export default function PublicConsultScreen({ route, navigation }) {
         <ScrollView>
           {days.map((item) => (
             <TouchableOpacity
+              key = {item.key}
               style={styles.modalBtn}
               onPress={() => updateModalChoice("Day#" + item.key)}
             >
@@ -203,36 +205,37 @@ export default function PublicConsultScreen({ route, navigation }) {
     },
   ];
 
-  const consultationsJSX = [];
-  for (var i = 0; i < consultations.length; i++) {
-    consultationsJSX.push(
-      <View style={styles.moduleRow}>
-        <View style={styles.dateTime}>
-          <Text style={styles.dateTime_Text}> {consultations[i].date} </Text>
-          <Text style={styles.dateTime_Text}> {consultations[i].time} </Text>
+  const consultationsJSX = (
+    <View>
+      {consultations.map((item, index) => (
+        <View key = {"consultation" + index} style={styles.moduleRow}>
+          <View style={styles.dateTime}>
+            <Text style={styles.dateTime_Text}> {item.date} </Text>
+            <Text style={styles.dateTime_Text}> {item.time} </Text>
+          </View>
+          <TouchableOpacity
+            style={[
+              styles.moduleContainer,
+              { backgroundColor: item.color },
+            ]}
+          >
+            <Text style={styles.consultationInfoMod}>
+              {" "}
+              {item.name}{" "}
+            </Text>
+            <Text style={styles.consultationInfo}>
+              {" "}
+              TA: {item.ta}{" "}
+            </Text>
+            <Text style={styles.consultationInfo}>
+              {" "}
+              Remarks: {item.remarks}{" "}
+            </Text>
+          </TouchableOpacity>
         </View>
-        <TouchableOpacity
-          style={[
-            styles.moduleContainer,
-            { backgroundColor: consultations[i].color },
-          ]}
-        >
-          <Text style={styles.consultationInfoMod}>
-            {" "}
-            {consultations[i].name}{" "}
-          </Text>
-          <Text style={styles.consultationInfo}>
-            {" "}
-            TA: {consultations[i].ta}{" "}
-          </Text>
-          <Text style={styles.consultationInfo}>
-            {" "}
-            Remarks: {consultations[i].remarks}{" "}
-          </Text>
-        </TouchableOpacity>
-      </View>
-    );
-  }
+      ))}
+    </View>
+  );
 
   if (!fontsLoaded) {
     return <AppLoading />;
