@@ -15,6 +15,7 @@ import {
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 import * as firebase from "firebase";
+//import InputDataFB from "../firebase/InputDataFireBase.js";
 
 export default function LoginScreen({ navigation }) {
   let [fontsLoaded] = useFonts({
@@ -59,7 +60,7 @@ export default function LoginScreen({ navigation }) {
     return <AppLoading />;
   } else {
     return (
-      <SafeAreaView style={styles.container}>
+      <View style={styles.container}>
         <Text style={styles.AcademicSOS}> AcademicSOS </Text>
         <Image
           style={styles.nusLogo}
@@ -88,7 +89,7 @@ export default function LoginScreen({ navigation }) {
             <Text style={styles.loginBtnText}> LOGIN </Text>
           </TouchableOpacity>
         </View>
-      </SafeAreaView>
+      </View>
     );
   }
 }
@@ -101,7 +102,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#EF7C00",
   },
   AcademicSOS: {
-    marginTop: hp("5%"),
+    marginTop: hp("10%"),
     fontSize: hp("4%"),
     textAlign: "center",
     fontFamily: "SonsieOne-Regular",

@@ -135,6 +135,7 @@ const styles = StyleSheet.create({
     height: hp("100%"),
     width: wp("100%"),
     backgroundColor: "#003D7C",
+    alignItems: 'center'
   },
   title: {
     fontSize: hp("3.5%"),
@@ -168,7 +169,6 @@ const styles = StyleSheet.create({
     fontFamily: "Righteous-Regular",
   },
   logoutBtn: {
-    marginLeft: wp("40%"),
     marginBottom: hp("20%"),
     flexDirection: "column",
     backgroundColor: "#FFFFFF",
