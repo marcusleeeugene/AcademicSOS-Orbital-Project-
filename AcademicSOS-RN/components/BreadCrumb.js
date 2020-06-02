@@ -8,7 +8,7 @@ import {
 } from "react-native-responsive-screen";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useNavigationState } from "@react-navigation/native";
 
 const BreadCrumb = (props) => {
   let [fontsLoaded] = useFonts({
@@ -41,7 +41,7 @@ const BreadCrumb = (props) => {
           </TouchableOpacity>
           {index != navHistory.length - 1 ? ( //If not only "Home", generate chevron for directories
             <Image
-              styles={styles.chevron}
+              style={styles.chevron}
               source={require("../assets/images/chevron.png")}
             />
           ) : null}
@@ -60,12 +60,12 @@ const BreadCrumb = (props) => {
 const styles = StyleSheet.create({
   header: {
     backgroundColor: "#EF7C00",
-    height: hp("16%"),
+    height: hp("15%"),
     flexDirection: "row",
     justifyContent: "center",
   },
   textContainer: {
-    marginTop: "20%",
+    marginTop: hp("8%"),
     flexDirection: "row",
   },
   breadCrumbText: {
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 3,
   },
   chevron: {
-    marginTop: "100%",
+    marginTop: hp("-0.5%"),
   },
 });
 

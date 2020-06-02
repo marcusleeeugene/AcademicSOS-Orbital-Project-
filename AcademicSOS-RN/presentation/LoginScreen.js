@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useFonts } from "@use-expo/font";
 import {
   StyleSheet,
   Text,
   View,
-  SafeAreaView,
+  Dimensions,
   Image,
   TextInput,
   TouchableOpacity,
@@ -17,6 +17,9 @@ import {
 import * as firebase from "firebase";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
+const window = Dimensions.get("window");
+const screen = Dimensions.get("screen");
+
 export default function LoginScreen({ navigation }) {
   let [fontsLoaded] = useFonts({
     "SonsieOne-Regular": require("../assets/fonts/SonsieOne-Regular.ttf"),
@@ -26,6 +29,21 @@ export default function LoginScreen({ navigation }) {
   const [userID, setUserID] = useState("");
   const [password, setPassword] = useState("");
   const [extraScrollHeight, setScrollHeight] = useState(0);
+
+  const [dimensions, setDimensions] = useState({ window, screen });
+
+  // *** Check screen sizes(Do not delete!!!)`${dimensions.screen.height}, ${dimensions.screen.width}`
+
+  const onChange = ({ window, screen }) => {
+    setDimensions({ window, screen });
+  };
+
+  useEffect(() => {
+    Dimensions.addEventListener("change", onChange);
+    return () => {
+      Dimensions.removeEventListener("change", onChange);
+    };
+  });
 
   login = (userID, password) => {
     try {
@@ -76,23 +94,30 @@ export default function LoginScreen({ navigation }) {
           source={require("../assets/images/NUS_logo_Transparent.png")}
         />
         <View style={styles.loginBackground}>
-          <Text style={styles.textInputTitle}> Student ID: </Text>
+          <Text style={styles.textInputTitle}> NUSNET ID: </Text>
           <TextInput
             style={styles.textInput}
-            placeholder="    Student ID"
             onChangeText={setUserID}
+            placeholder={"NUSNET ID"}
             value={userID}
+            onFocus={() => {
+              dimensions.screen.height > 700
+                ? setScrollHeight(250)
+                : setScrollHeight(150);
+            }}
           />
           <Text style={styles.textInputTitle}> Password: </Text>
 
           <TextInput
             secureTextEntry={true}
             style={styles.textInput}
-            placeholder="    Password"
+            placeholder={"Password"}
             onChangeText={setPassword}
             value={password}
             onFocus={() => {
-              setScrollHeight(150);
+              dimensions.screen.height > 700
+                ? setScrollHeight(250)
+                : setScrollHeight(150);
             }}
           />
           <TouchableOpacity
