@@ -34,4 +34,4 @@ const HomeFB = {
 
 export default HomeFB;
 
-HomeFB.checkUserRole("e0415870").then(data => console.log(data));
+//HomeFB.checkUserRole("e0415870").then(data => console.log(data));

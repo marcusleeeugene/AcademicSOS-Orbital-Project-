@@ -61,7 +61,6 @@ export default function ManageBookingScreen({ route, navigation }) {
     toggleModal(type);
   };
 
-  //let tempTimeStorage = moment(new Date()).format("hh:mm A");
   const statusJSX = (
     <Modal
       isVisible={isStatusModalVisible}
@@ -155,7 +154,7 @@ export default function ManageBookingScreen({ route, navigation }) {
             <TouchableOpacity
               key = {item.key}
               style={styles.modalBtn}
-              onPress={() => updateModalChoice(item.key)}
+              onPress={() => updateModalChoice("Day#" + item.key)}
             >
               <Text style={styles.modalBtnText}> {item.key} </Text>
             </TouchableOpacity>

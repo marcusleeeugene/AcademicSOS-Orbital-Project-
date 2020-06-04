@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useFonts } from "@use-expo/font";
 import { AppLoading } from "expo";
 import {
@@ -18,6 +18,8 @@ import BreadCrumb from "../components/BreadCrumb";
 import DateTime from "../components/DateTime.js";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import Modal from "react-native-modal";
+import BookConsultFB from "../firebase/BookConsultFireBase.js";
+import moment from "moment";
 
 export default function BookConsultScreen({ route, navigation }) {
   let [fontsLoaded] = useFonts({
@@ -32,17 +34,21 @@ export default function BookConsultScreen({ route, navigation }) {
   ];
 
   const [isModalVisible, setModalVisible] = useState(false);
+  const [tutor, setTutor] = useState([]);
   const [chosenTutor, setTutorPicker] = useState("");
   const [extraScrollHeight, setScrollHeight] = useState(0);
   const [date, setDate] = useState("");
-  const [time, setTime] = useState("");
+  const [startTime, setStartTime] = useState("");
+  const [location, setLocation] = useState("");
+  const [participants, setParticipants] = useState("");
+  const [remarks, setRemarks] = useState("");
 
   const updateDate = (date) => {
     setDate(date);
   };
 
-  const updateTime = (time) => {
-    setTime(time);
+  const updateStartTime = (time) => {
+    setStartTime(time);
   };
 
   const updateTutorModalChoice = (data) => {
@@ -50,14 +56,31 @@ export default function BookConsultScreen({ route, navigation }) {
     setModalVisible(!isModalVisible);
   };
 
-  const tutor = [
-    { key: "John Tan Ah kow" },
-    { key: "Peter Lee" },
-    { key: "Mary Goh" },
-    { key: "Prof Aaron Tan" },
-    { key: "Prof Martin Henz" },
-    { key: "Prof Henry" },
-  ];
+  //HARDCODE HERE
+  /*
+  1) transfer mod code from select module
+  2) add in endTime textBox
+  3) if possible, get currentDate&Time in DateTime.js
+  */
+  const modCode = "CS1231S"
+  const endTime = "12.00 PM"
+  var currentDate = moment(new Date()).format("DD-MMM-YY");
+  var currentTime = moment(new Date()).format("hh:mm A");
+
+  const bookConsultation = () => {
+    BookConsultFB.addBooking(userID, modCode, chosenTutor, date, startTime, endTime, location, participants, remarks, "Pending", currentDate, currentTime);
+    alert("Successfully booked!");
+  }
+  useEffect(() => {
+      var loadedTA = []
+      var getTutorialClassForStudent = BookConsultFB.getTutorialClass(userID, modCode);
+      getTutorialClassForStudent.then(tutorialClass => BookConsultFB.getTutorialClassTA(tutorialClass)).then( data => {
+        for (var i = 0; i < data.length; i++) {
+          loadedTA.push({ id: data[i]['id'], name: data[i]['name'] });
+        }
+      });
+      setTutor(loadedTA);
+    }, []);
 
   const tutorJSX = (
     <Modal
@@ -69,10 +92,11 @@ export default function BookConsultScreen({ route, navigation }) {
         <ScrollView>
           {tutor.map((item) => (
             <TouchableOpacity
+              key = {item.id}
               style={styles.modalBtn}
-              onPress={() => updateTutorModalChoice(item.key)}
+              onPress={() => updateTutorModalChoice(item.name)}
             >
-              <Text style={styles.modalBtnText}>{item.key}</Text>
+              <Text style={styles.modalBtnText}>{item.name}</Text>
             </TouchableOpacity>
           ))}
         </ScrollView>
@@ -90,6 +114,7 @@ export default function BookConsultScreen({ route, navigation }) {
           onFocus={() => {
             setScrollHeight(50);
           }}
+          onChangeText = {(text) => setLocation(text)}
         />
         <TouchableOpacity style={styles.button}>
           <Image
@@ -101,7 +126,7 @@ export default function BookConsultScreen({ route, navigation }) {
     </View>
   );
 
-  const studentJSX = (
+  const participantJSX = (
     <View>
       <Text style={styles.itemName}>{"Students involved:"}</Text>
       <View style={styles.textInput}>
@@ -111,6 +136,7 @@ export default function BookConsultScreen({ route, navigation }) {
           maxLength={20}
           numberofLines={5}
           editable={false}
+          onChangeText = {(text) => setParticipants(text)}
         />
         <TouchableOpacity style={styles.button}>
           <Image
@@ -153,9 +179,9 @@ export default function BookConsultScreen({ route, navigation }) {
             />
           </TouchableOpacity>
         </View>
-        <DateTime dateCallback={updateDate} timeCallback={updateTime} />
+        <DateTime dateCallback={updateDate} timeCallback={updateStartTime} />
         {locationJSX}
-        {studentJSX}
+        {participantJSX}
         <Text style={styles.itemName}> Remarks:</Text>
         <View>
           <TextInput
@@ -167,9 +193,10 @@ export default function BookConsultScreen({ route, navigation }) {
             onFocus={() => {
               setScrollHeight(200);
             }}
+            onChangeText = {(text) => setRemarks(text)}
           />
         </View>
-        <TouchableOpacity style={styles.bookBtn}>
+        <TouchableOpacity style={styles.bookBtn} onPress = {() => bookConsultation()}>
           <Text style={styles.bookBtnText}>Book</Text>
         </TouchableOpacity>
         {tutorJSX}
@@ -177,6 +204,7 @@ export default function BookConsultScreen({ route, navigation }) {
     );
   }
 }
+//{tutorJSX}
 
 const styles = StyleSheet.create({
   body: {

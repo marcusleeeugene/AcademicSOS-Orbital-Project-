@@ -19,16 +19,20 @@ const InputDataFB = {
       name: modName
     });
   },
-  addModuleUnderStudent: function(id, modCode, modName, role) {
+  addModuleUnderStudent: function(id, modCode, modName, role, tutorialClass, priorityPoint) {
     database.ref(`users/students/${id}/modules/${modCode}`).update({
       name: modName,
-      role: role
+      role: role,
+      tutorialClass: tutorialClass,
+      priorityPoint: priorityPoint
     });
   },
-  addModuleUnderProfessor: function(id, modCode, modName, role) {
+  addModuleUnderProfessor: function(id, modCode, modName, role, tutorialClass, priorityPoint) {
     database.ref(`users/professors/${id}/modules/${modCode}`).update({
       name: modName,
-      role: role
+      role: role,
+      tutorialClass: tutorialClass,
+      priorityPoint: priorityPoint
     });
   },
 }
@@ -53,10 +57,10 @@ InputDataFB.addModule('ES1691', 'English Communication');
 InputDataFB.addModule('GEQ1918', 'GE: Environment and Sustainability');
 
 //Add modules under student / professor
-InputDataFB.addModuleUnderProfessor('p0123456', 'CS1101S', 'Programming Methodology', 'Professor');
+InputDataFB.addModuleUnderProfessor('p0123456', 'CS1101S', 'Programming Methodology', 'Professor', 'C5', "");
 
-InputDataFB.addModuleUnderStudent('e0415870', 'CS1231S', 'Programming Methodology', 'Student');
-InputDataFB.addModuleUnderStudent('e0415870', 'MA1101R', 'Linear Algebra I', 'TA');
-InputDataFB.addModuleUnderStudent('e0415870', 'NM3221', 'Mobile Interaction Design', 'Student');
-InputDataFB.addModuleUnderStudent('e0415870', 'ES1103', 'English Communication', 'Student');
-InputDataFB.addModuleUnderStudent('e0415870', 'GEQ1917', 'GE: Environment and Sustainability', 'Student');
+InputDataFB.addModuleUnderStudent('e0415870', 'CS1231S', 'Programming Methodology', 'Student', 'C5', 100);
+InputDataFB.addModuleUnderStudent('e0415870', 'MA1101R', 'Linear Algebra I', 'TA', 'M4', "");
+InputDataFB.addModuleUnderStudent('e0415870', 'NM3221', 'Mobile Interaction Design', 'Student', 'N2', 100);
+InputDataFB.addModuleUnderStudent('e0415870', 'ES1103', 'English Communication', 'Student', 'E2', 100);
+InputDataFB.addModuleUnderStudent('e0415870', 'GEQ1917', 'GE: Environment and Sustainability', 'Student', 'G6', 100);

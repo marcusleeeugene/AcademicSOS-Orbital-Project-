@@ -62,7 +62,6 @@ export default function PublicConsultScreen({ route, navigation }) {
     toggleModal(type);
   };
 
-  //let tempTimeStorage = moment(new Date()).format("hh:mm A");
   const statusJSX = (
     <Modal
       isVisible={isStatusModalVisible}
