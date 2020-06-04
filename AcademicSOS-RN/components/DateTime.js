@@ -24,14 +24,17 @@ const DateTime = (props) => {
 
   const options = [
     { name: "Date", image: require("../assets/images/date.png"), id: 1 },
-    { name: "Time", image: require("../assets/images/time.png"), id: 2 },
+    { name: "Start Time", image: require("../assets/images/time.png"), id: 2 },
+    { name: "End Time", image: require("../assets/images/time.png"), id: 3 },
   ];
 
   const [isDatePickerVisible, showDatePicker] = useState(false);
-  const [isTimePickerVisible, showTimePicker] = useState(false);
+  const [isStartTimePickerVisible, showStartTimePicker] = useState(false);
+  const [isEndTimePickerVisible, showEndTimePicker] = useState(false);
 
   const [chosenDate, setDatePicker] = useState("");
-  const [chosenTime, setTimePicker] = useState("");
+  const [chosenStartTime, setStartTimePicker] = useState("");
+  const [chosenEndTime, setEndTimePicker] = useState("");
 
   const updateDatePicker = (date) => {
     showDatePicker(false);
@@ -40,11 +43,18 @@ const DateTime = (props) => {
     props.dateCallback(pickedDate);
   };
 
-  const updateTimePicker = (time) => {
-    showTimePicker(false);
+  const updateStartTimePicker = (time) => {
+    showStartTimePicker(false);
     var pickedTime = moment(time).format("hh:mm A");
-    setTimePicker(pickedTime);
-    props.timeCallback(pickedTime);
+    setStartTimePicker(pickedTime);
+    props.startTimeCallback(pickedTime);
+  };
+
+  const updateEndTimePicker = (time) => {
+    showEndTimePicker(false);
+    var pickedTime = moment(time).format("hh:mm A");
+    setEndTimePicker(pickedTime);
+    props.endTimeCallback(pickedTime);
   };
 
   const dateView = (
@@ -58,13 +68,26 @@ const DateTime = (props) => {
     </View>
   );
 
-  const timeView = (
+  const startTimeView = (
     <View>
       <DateTimePicker
         headerTextIOS="Pick a time"
-        isVisible={isTimePickerVisible}
-        onConfirm={updateTimePicker}
-        onCancel={() => showTimePicker(false)}
+        isVisible={isStartTimePickerVisible}
+        onConfirm={updateStartTimePicker}
+        onCancel={() => showStartTimePicker(false)}
+        mode={"time"}
+        is24Hour={false}
+      />
+    </View>
+  );
+
+  const endTimeView = (
+    <View>
+      <DateTimePicker
+        headerTextIOS="Pick a time"
+        isVisible={isEndTimePickerVisible}
+        onConfirm={updateEndTimePicker}
+        onCancel={() => showEndTimePicker(false)}
         mode={"time"}
         is24Hour={false}
       />
@@ -80,19 +103,31 @@ const DateTime = (props) => {
             <TextInput
               style={styles.dateTimeTextBox}
               underlineColorAndroid="transparent"
-              value={item.name === "Date" ? chosenDate : chosenTime}
+              value={
+                item.name.includes("Date")
+                  ? chosenDate
+                  : item.name == "Start Time"
+                  ? chosenStartTime
+                  : chosenEndTime
+              }
               editable={false}
             />
             <TouchableOpacity
               style={styles.button}
               onPress={() => {
-                item.name === "Date"
+                item.name.includes("Date")
                   ? showDatePicker(true)
-                  : showTimePicker(true);
+                  : item.name == "Start Time"
+                  ? showStartTimePicker(true)
+                  : showEndTimePicker(true);
               }}
             >
               <Image source={item.image} style={styles.imageStyle} />
-              {item.name === "Time" ? timeView : dateView}
+              {item.name.includes("Date")
+                ? dateView
+                : item.name == "Start Time"
+                ? startTimeView
+                : endTimeView}
             </TouchableOpacity>
           </View>
         </View>
@@ -103,7 +138,7 @@ const DateTime = (props) => {
   if (!fontsLoaded) {
     return <AppLoading />;
   } else {
-    return <View>{dateTimeJSX}</View>;
+    return <View style={styles.container}>{dateTimeJSX}</View>;
   }
 };
 

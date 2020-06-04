@@ -76,6 +76,7 @@ export default function SelectModuleScreen({ route, navigation }) {
                       secondScreen: secondScreen,
                       firstScreen: firstScreen,
                       userID: userID,
+                      moduleCode: item.name,
                     })
                   }
                 >

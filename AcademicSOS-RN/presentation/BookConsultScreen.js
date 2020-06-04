@@ -26,7 +26,13 @@ export default function BookConsultScreen({ route, navigation }) {
     "Righteous-Regular": require("../assets/fonts/Righteous-Regular.ttf"),
   });
 
-  const { firstScreen, secondScreen, thirdScreen, userID } = route.params;
+  const {
+    firstScreen,
+    secondScreen,
+    thirdScreen,
+    userID,
+    moduleCode,
+  } = route.params;
   const navHistory = [
     { dest: firstScreen, alt_dest: "" },
     { dest: secondScreen, alt_dest: "Select Module" },
@@ -39,6 +45,7 @@ export default function BookConsultScreen({ route, navigation }) {
   const [extraScrollHeight, setScrollHeight] = useState(0);
   const [date, setDate] = useState("");
   const [startTime, setStartTime] = useState("");
+  const [endTime, setEndTime] = useState("");
   const [location, setLocation] = useState("");
   const [participants, setParticipants] = useState("");
   const [remarks, setRemarks] = useState("");
@@ -51,36 +58,49 @@ export default function BookConsultScreen({ route, navigation }) {
     setStartTime(time);
   };
 
+  const updateEndTime = (time) => {
+    setEndTime(time);
+  };
+
   const updateTutorModalChoice = (data) => {
     setTutorPicker(data);
     setModalVisible(!isModalVisible);
   };
 
-  //HARDCODE HERE
-  /*
-  1) transfer mod code from select module
-  2) add in endTime textBox
-  3) if possible, get currentDate&Time in DateTime.js
-  */
-  const modCode = "CS1231S"
-  const endTime = "12.00 PM"
-  var currentDate = moment(new Date()).format("DD-MMM-YY");
-  var currentTime = moment(new Date()).format("hh:mm A");
-
   const bookConsultation = () => {
-    BookConsultFB.addBooking(userID, modCode, chosenTutor, date, startTime, endTime, location, participants, remarks, "Pending", currentDate, currentTime);
+    var currentDate = moment(new Date()).format("DD-MMM-YY");
+    var currentTime = moment(new Date()).format("hh:mm:ss A");
+    BookConsultFB.addBooking(
+      userID,
+      moduleCode,
+      chosenTutor,
+      date,
+      startTime,
+      endTime,
+      location,
+      participants,
+      remarks,
+      "Pending",
+      currentDate,
+      currentTime
+    );
     alert("Successfully booked!");
-  }
+  };
   useEffect(() => {
-      var loadedTA = []
-      var getTutorialClassForStudent = BookConsultFB.getTutorialClass(userID, modCode);
-      getTutorialClassForStudent.then(tutorialClass => BookConsultFB.getTutorialClassTA(tutorialClass)).then( data => {
+    var loadedTA = [];
+    var getTutorialClassForStudent = BookConsultFB.getTutorialClass(
+      userID,
+      moduleCode
+    );
+    getTutorialClassForStudent
+      .then((tutorialClass) => BookConsultFB.getTutorialClassTA(tutorialClass))
+      .then((data) => {
         for (var i = 0; i < data.length; i++) {
-          loadedTA.push({ id: data[i]['id'], name: data[i]['name'] });
+          loadedTA.push({ id: data[i]["id"], name: data[i]["name"] });
         }
       });
-      setTutor(loadedTA);
-    }, []);
+    setTutor(loadedTA);
+  }, []);
 
   const tutorJSX = (
     <Modal
@@ -92,7 +112,7 @@ export default function BookConsultScreen({ route, navigation }) {
         <ScrollView>
           {tutor.map((item) => (
             <TouchableOpacity
-              key = {item.id}
+              key={item.id}
               style={styles.modalBtn}
               onPress={() => updateTutorModalChoice(item.name)}
             >
@@ -114,7 +134,7 @@ export default function BookConsultScreen({ route, navigation }) {
           onFocus={() => {
             setScrollHeight(50);
           }}
-          onChangeText = {(text) => setLocation(text)}
+          onChangeText={(text) => setLocation(text)}
         />
         <TouchableOpacity style={styles.button}>
           <Image
@@ -136,7 +156,7 @@ export default function BookConsultScreen({ route, navigation }) {
           maxLength={20}
           numberofLines={5}
           editable={false}
-          onChangeText = {(text) => setParticipants(text)}
+          onChangeText={(text) => setParticipants(text)}
         />
         <TouchableOpacity style={styles.button}>
           <Image
@@ -179,7 +199,13 @@ export default function BookConsultScreen({ route, navigation }) {
             />
           </TouchableOpacity>
         </View>
-        <DateTime dateCallback={updateDate} timeCallback={updateStartTime} />
+        <View style={styles.dateTimeContainer}>
+          <DateTime
+            dateCallback={updateDate}
+            startTimeCallback={updateStartTime}
+            endTimeCallback={updateEndTime}
+          />
+        </View>
         {locationJSX}
         {participantJSX}
         <Text style={styles.itemName}> Remarks:</Text>
@@ -193,10 +219,13 @@ export default function BookConsultScreen({ route, navigation }) {
             onFocus={() => {
               setScrollHeight(200);
             }}
-            onChangeText = {(text) => setRemarks(text)}
+            onChangeText={(text) => setRemarks(text)}
           />
         </View>
-        <TouchableOpacity style={styles.bookBtn} onPress = {() => bookConsultation()}>
+        <TouchableOpacity
+          style={styles.bookBtn}
+          onPress={() => bookConsultation()}
+        >
           <Text style={styles.bookBtnText}>Book</Text>
         </TouchableOpacity>
         {tutorJSX}
@@ -204,7 +233,6 @@ export default function BookConsultScreen({ route, navigation }) {
     );
   }
 }
-//{tutorJSX}
 
 const styles = StyleSheet.create({
   body: {
@@ -231,6 +259,9 @@ const styles = StyleSheet.create({
     width: wp("50%"),
     borderRadius: 5,
     margin: hp("2%"),
+  },
+  dateTimeContainer: {
+    marginTop: hp("-2%"),
   },
   dateTimeTextBox: {
     marginLeft: wp("7%"),
