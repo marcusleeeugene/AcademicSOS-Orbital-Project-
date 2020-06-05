@@ -8,7 +8,6 @@ import {
   View,
   Image,
   TouchableOpacity,
-  Platform,
 } from "react-native";
 import DateTimePicker from "react-native-modal-datetime-picker";
 import moment from "moment";
@@ -16,6 +15,9 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
+
+export var currentDate = moment(new Date()).format("DD-MMM-YY");
+export var currentTime = moment(new Date()).format("hh:mm:ss A");
 
 const DateTime = (props) => {
   let [fontsLoaded] = useFonts({

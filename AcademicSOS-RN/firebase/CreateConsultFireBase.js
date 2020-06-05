@@ -1,16 +1,16 @@
 import * as firebase from "firebase";
 import { database, role } from "./FireBaseConfig.js";
 
-const BookConsultFB = {
-  addBooking: function (
+const CreateConsultFB = {
+  addPublicBooking: function (
     creator,
     modCode,
-    ta,
     date,
     startTime,
     endTime,
     location,
-    participants,
+    consultType,
+    size,
     remarks,
     status,
     bookDate,
@@ -18,15 +18,45 @@ const BookConsultFB = {
   ) {
     database.ref(`modules/${modCode}/bookings`).push({
       creator: creator,
-      ta: ta,
       date: date,
       startTime: startTime,
       endTime: endTime,
       location: location,
-      participants: participants,
+      consultType: consultType,
+      size: size,
       remarks: remarks,
       status: status,
-      //Date and time of booking made
+      bookDate: bookDate,
+      bookTime: bookTime,
+    });
+  },
+
+  addPrivateBooking: function (
+    creator,
+    modCode,
+    date,
+    startTime,
+    endTime,
+    location,
+    consultType,
+    participants,
+    size,
+    remarks,
+    status,
+    bookDate,
+    bookTime
+  ) {
+    database.ref(`modules/${modCode}/bookings`).push({
+      creator: creator,
+      date: date,
+      startTime: startTime,
+      endTime: endTime,
+      location: location,
+      consultType: consultType,
+      participants,
+      size: size,
+      remarks: remarks,
+      status: status,
       bookDate: bookDate,
       bookTime: bookTime,
     });
@@ -41,14 +71,14 @@ const BookConsultFB = {
         return obj["tutorialClass"];
       });
   },
-  getTutorialClassTA: function (tutorialClass, modCode) {
+  getTutorialClassStudent: function (tutorialClass, modCode) {
     //Returns an array of TAs belonging to the tutorialClass
     return database
       .ref(`users`)
       .once("value")
       .then((snapshot) => snapshot.val())
       .then((obj) => {
-        var TA = [];
+        var student = [];
         for (var role in obj) {
           //Loop through Students & Professor branch
           for (var id in obj[role]) {
@@ -57,19 +87,17 @@ const BookConsultFB = {
               //If user is taking the module
               var tc = obj[role][id]["modules"][modCode]["tutorialClass"];
               var modRole = obj[role][id]["modules"][modCode]["role"];
-              if (tc === tutorialClass && modRole != "Student") {
-                //And user is in the tutorial class and is TA/Prof
+              if (tc === tutorialClass && modRole == "Student") {
+                //And user is in the tutorial class and is a student role
                 var name = obj[role][id]["name"];
-                TA.push({ id: id, name: name });
+                student.push({ id: id, name: name });
               }
             }
           }
         }
-        return TA;
+        return student;
       });
   },
 };
 
-console.log(BookConsultFB.getTutorialClass("e0415870", "CS1101S"));
-
-export default BookConsultFB;
+export default CreateConsultFB;

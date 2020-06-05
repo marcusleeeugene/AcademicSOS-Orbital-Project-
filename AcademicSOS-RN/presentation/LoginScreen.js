@@ -16,7 +16,7 @@ import {
 } from "react-native-responsive-screen";
 import * as firebase from "firebase";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-//import InputDataFB from "../firebase/InputDataFireBase.js";
+import InputDataFB from "../firebase/InputDataFireBase.js";
 
 const window = Dimensions.get("window");
 const screen = Dimensions.get("screen");

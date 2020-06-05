@@ -15,11 +15,10 @@ import {
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 import BreadCrumb from "../components/BreadCrumb";
-import DateTime from "../components/DateTime.js";
+import DateTime, { currentTime, currentDate } from "../components/DateTime.js";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import Modal from "react-native-modal";
 import BookConsultFB from "../firebase/BookConsultFireBase.js";
-import moment from "moment";
 
 export default function BookConsultScreen({ route, navigation }) {
   let [fontsLoaded] = useFonts({
@@ -69,8 +68,6 @@ export default function BookConsultScreen({ route, navigation }) {
   };
 
   const bookConsultation = () => {
-    var currentDate = moment(new Date()).format("DD-MMM-YY");
-    var currentTime = moment(new Date()).format("hh:mm:ss A");
     BookConsultFB.addBooking(
       userID,
       moduleCode,
@@ -85,7 +82,12 @@ export default function BookConsultScreen({ route, navigation }) {
       currentDate,
       currentTime
     );
-    alert("Successfully booked!");
+    alert("Successfully booked! Pls check your booking in Manage Bookings!");
+    navigation.navigate("Manage Bookings", {
+      secondScreen: "Manage Bookings",
+      firstScreen: "Home",
+      userID: userID,
+    });
   };
   useEffect(() => {
     var loadedTA = [];
@@ -93,13 +95,17 @@ export default function BookConsultScreen({ route, navigation }) {
       userID,
       moduleCode
     );
+
     getTutorialClassForStudent
-      .then((tutorialClass) => BookConsultFB.getTutorialClassTA(tutorialClass, moduleCode))
+      .then((tutorialClass) =>
+        BookConsultFB.getTutorialClassTA(tutorialClass, moduleCode)
+      )
       .then((data) => {
         for (var i = 0; i < data.length; i++) {
           loadedTA.push({ id: data[i]["id"], name: data[i]["name"] });
         }
       });
+
     setTutor(loadedTA);
   }, []);
 
