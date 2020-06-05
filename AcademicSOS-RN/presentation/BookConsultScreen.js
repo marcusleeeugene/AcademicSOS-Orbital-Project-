@@ -83,11 +83,7 @@ export default function BookConsultScreen({ route, navigation }) {
       currentTime
     );
     alert("Successfully booked! Pls check your booking in Manage Bookings!");
-    navigation.navigate("Manage Bookings", {
-      secondScreen: "Manage Bookings",
-      firstScreen: "Home",
-      userID: userID,
-    });
+    navigation.navigate("Home");
   };
   useEffect(() => {
     var loadedTA = [];

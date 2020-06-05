@@ -102,7 +102,7 @@ export default function HomeScreen({ route, navigation }) {
               <View style={[styles.optionContainer]}>
                 <TouchableOpacity
                   onPress={() =>
-                    item.key !== "Manage Bookings"
+                    item.key !== "Manage\n Bookings"
                       ? navigation.navigate("Select Module", {
                           secondScreen: item.upcomingScreen,
                           firstScreen: "Home",

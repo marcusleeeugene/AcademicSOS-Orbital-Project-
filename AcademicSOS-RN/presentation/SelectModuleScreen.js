@@ -7,6 +7,7 @@ import {
   Image,
   TextInput,
   TouchableOpacity,
+  ScrollView,
 } from "react-native";
 import { AppLoading } from "expo";
 import { FlatGrid } from "react-native-super-grid";
@@ -57,7 +58,7 @@ export default function SelectModuleScreen({ route, navigation }) {
     return <AppLoading />;
   } else {
     return (
-      <View>
+      <ScrollView>
         <BreadCrumb navHistory={navHistory} />
         <View style={styles.body}>
           <Text style={styles.title}> Select a module </Text>
@@ -86,7 +87,7 @@ export default function SelectModuleScreen({ route, navigation }) {
             )}
           />
         </View>
-      </View>
+      </ScrollView>
     );
   }
 }
