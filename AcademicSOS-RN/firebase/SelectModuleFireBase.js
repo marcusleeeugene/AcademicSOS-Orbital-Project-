@@ -1,19 +1,13 @@
 import * as firebase from 'firebase';
-import { database } from "./FireBaseConfig.js";
+import { database, role } from "./FireBaseConfig.js";
 
 const SelectModuleFB = {
   loadUserModules: function(id) { //returns a promise of array of modules taken by user
-    var role;
-    if (id.charAt(0) == "e" || id.charAt(0) == "E" ) {
-      role = "students";
-    } else {
-      role = "professors";
-    }
     var modules = [];
-    return database.ref(`users/${role}/${id}/modules/`).once('value')
+    return database.ref(`users/${role(id)}/${id}/modules/`).once('value')
       .then(snapshot => snapshot.val())
       .then(obj => {
-        for (each in obj) {
+        for (var each in obj) {
           modules.push(each);
         }
         return modules;
@@ -22,4 +16,3 @@ const SelectModuleFB = {
 }
 
 export default SelectModuleFB;
-//SelectModuleFB.loadUserModules("e0415870").then(data => console.log(data));

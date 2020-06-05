@@ -33,6 +33,7 @@ export default function BookConsultScreen({ route, navigation }) {
     userID,
     moduleCode,
   } = route.params;
+
   const navHistory = [
     { dest: firstScreen, alt_dest: "" },
     { dest: secondScreen, alt_dest: "Select Module" },
@@ -93,7 +94,7 @@ export default function BookConsultScreen({ route, navigation }) {
       moduleCode
     );
     getTutorialClassForStudent
-      .then((tutorialClass) => BookConsultFB.getTutorialClassTA(tutorialClass))
+      .then((tutorialClass) => BookConsultFB.getTutorialClassTA(tutorialClass, moduleCode))
       .then((data) => {
         for (var i = 0; i < data.length; i++) {
           loadedTA.push({ id: data[i]["id"], name: data[i]["name"] });

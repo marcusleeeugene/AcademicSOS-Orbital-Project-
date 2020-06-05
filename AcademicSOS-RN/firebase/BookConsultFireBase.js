@@ -1,5 +1,5 @@
 import * as firebase from 'firebase';
-import { database } from "./FireBaseConfig.js";
+import { database, role } from "./FireBaseConfig.js";
 
 const BookConsultFB = {
   addBooking: function(creator, modCode, ta, date, startTime, endTime, location, participants, remarks, status, bookDate, bookTime) {
@@ -19,30 +19,24 @@ const BookConsultFB = {
     });
   },
   getTutorialClass: function(id, modCode) { //Returns a promise of tutorial class
-    var role;
-    if (id.charAt(0) == "e" || id.charAt(0) == "E" ) {
-      role = "students";
-    } else {
-      role = "professors";
-    }
-    return database.ref(`users/${role}/${id}/modules/${modCode}`).once('value')
+    return database.ref(`users/${role(id)}/${id}/modules/${modCode}`).once('value')
       .then(snapshot => snapshot.val())
       .then(obj => {
           return obj["tutorialClass"];
       });
   },
-  getTutorialClassTA: function(tutorialClass) { //Returns an array of TAs belonging to the tutorialClass
+  getTutorialClassTA: function(tutorialClass, modCode) { //Returns an array of TAs belonging to the tutorialClass
     return database.ref(`users`).once('value')
       .then(snapshot => snapshot.val())
       .then(obj => {
         var TA = [];
-        for (var role in obj) {
-          for (var id in obj[role]) {
-            for (var mod in obj[role][id]["modules"]) {
-              var tc = obj[role][id]["modules"][mod]["tutorialClass"];
-              var name = obj[role][id]["name"];
-              var modRole = obj[role][id]["modules"][mod]["role"];
-              if (tc === tutorialClass && modRole != "Student") {
+        for (var role in obj) { //Loop through Students & Professor branch
+          for (var id in obj[role]) { //Loop through each user
+            if (modCode in obj[role][id]["modules"]) { //If user is taking the module
+              var tc = obj[role][id]["modules"][modCode]["tutorialClass"];
+              var modRole = obj[role][id]["modules"][modCode]["role"];
+              if (tc === tutorialClass && modRole != "Student") {  //And user is in the tutorial class and is TA/Prof
+                var name = obj[role][id]["name"];
                 TA.push({"id": id, "name": name})
               }
             }
