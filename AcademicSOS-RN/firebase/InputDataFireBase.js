@@ -40,27 +40,48 @@ const InputDataFB = {
 export default InputDataFB;
 
 //===================================
-//First time pump in dummy data here:
+//FIRST TIME PUMP IN DUMMY DATA HERE
 //===================================
 //import InputDataFB from "../firebase/InputDataFireBase.js";  (Paste this in a screen to run file)
 
-//Add accounts
+//===================================
+//ADD USERS
+//===================================
+//Create Students
 InputDataFB.createUserData('students', 'e0415870', 'password', 'Marcus Lee Eugene');
+InputDataFB.createUserData('students', 'e0407217', 'password', 'Tay Kai Xiang');
+//Create Profs
 InputDataFB.createUserData('professors', 'p0123456', 'password', 'Martin Henz');
+InputDataFB.createUserData('professors', 'p1234567', 'password', 'Aaron Tan');
+//Create TAs
+InputDataFB.createUserData('students', 'e0407217', 'password', 'Tay Kai Xiang');
 
-//Add modules
+//===================================
+//ADD MODULES
+//===================================
 InputDataFB.addModule('CS1231S', 'Discrete Structures');
-InputDataFB.addModule('CS1101S', 'Programming Methodology');
+InputDataFB.addModule('CS1101S', 'Programming Methodology I');
 InputDataFB.addModule('NM3221', 'Mobile Interaction Design');
 InputDataFB.addModule('MA1101R', 'Linear Algebra I');
-InputDataFB.addModule('ES1691', 'English Communication');
-InputDataFB.addModule('GEQ1918', 'GE: Environment and Sustainability');
+InputDataFB.addModule('ES1601', 'English Communication');
+InputDataFB.addModule('GEQ1917', 'GE: Environment and Sustainability');
+InputDataFB.addModule('MA1521', 'Calculus for Computing');
 
-//Add modules under student / professor
-InputDataFB.addModuleUnderProfessor('p0123456', 'CS1101S', 'Programming Methodology', 'Professor', 'C5', "");
+//Add modules under Student
+InputDataFB.addModuleUnderStudent('e0415870', 'CS1231S', 'Discrete Structures', 'Student', 'T12', 100);
+InputDataFB.addModuleUnderStudent('e0415870', 'CS1101S', 'Programming Methodology', 'Student', 'T16', 100);
+InputDataFB.addModuleUnderStudent('e0415870', 'NM3221', 'Mobile Interaction Design', 'Student', 'T19', 100);
+InputDataFB.addModuleUnderStudent('e0415870', 'MA1101R', 'Linear Algebra I', 'TA', 'T03', "");
+InputDataFB.addModuleUnderStudent('e0415870', 'ES1601', 'English Communication', 'Student', 'T13', 100);
+InputDataFB.addModuleUnderStudent('e0415870', 'GEQ1917', 'GE: Environment and Sustainability', 'Student', 'T11', 100);
+InputDataFB.addModuleUnderStudent('e0415870', 'MA1521', 'English Communication', 'TA', 'TA', "");
 
-InputDataFB.addModuleUnderStudent('e0415870', 'CS1231S', 'Programming Methodology', 'Student', 'C5', 100);
-InputDataFB.addModuleUnderStudent('e0415870', 'MA1101R', 'Linear Algebra I', 'TA', 'M4', "");
-InputDataFB.addModuleUnderStudent('e0415870', 'NM3221', 'Mobile Interaction Design', 'Student', 'N2', 100);
-InputDataFB.addModuleUnderStudent('e0415870', 'ES1103', 'English Communication', 'Student', 'E2', 100);
-InputDataFB.addModuleUnderStudent('e0415870', 'GEQ1917', 'GE: Environment and Sustainability', 'Student', 'G6', 100);
+InputDataFB.addModuleUnderStudent('e0407217', 'CS1231S', 'Discrete Structures', 'TA', 'T12', "");
+InputDataFB.addModuleUnderStudent('e0407217', 'CS1101S', 'Programming Methodology', 'Student', 'T16', 100);
+InputDataFB.addModuleUnderStudent('e0407217', 'NM3221', 'Mobile Interaction Design', 'Student', 'T12', 100);
+InputDataFB.addModuleUnderStudent('e0407217', 'MA1101R', 'Linear Algebra I', 'Student', 'T05', "");
+InputDataFB.addModuleUnderStudent('e0407217', 'ES1601', 'English Communication', 'Student', 'T03', 100);
+
+//Add modules under Professor
+InputDataFB.addModuleUnderProfessor('p0123456', 'CS1101S', 'Programming Methodology', 'Professor', 'T16', "");
+InputDataFB.addModuleUnderProfessor('p1234567', 'CS1231S', 'Programming Methodology', 'Professor', 'T12', "");
