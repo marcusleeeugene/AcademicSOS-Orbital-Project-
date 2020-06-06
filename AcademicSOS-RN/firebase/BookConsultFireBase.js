@@ -55,8 +55,32 @@ const BookConsultFB = {
         return TA;
       });
   },
-};
 
-console.log(BookConsultFB.getTutorialClass("e0415870", "CS1101S"));
+  getStudentsMod: function (modCode) {
+    //Returns an array of students taking the module
+    return database
+      .ref(`users`)
+      .once("value")
+      .then((snapshot) => snapshot.val())
+      .then((obj) => {
+        var students = [];
+        for (var role in obj) {
+          //Loop through Students & Professor branch
+          for (var id in obj[role]) {
+            //Loop through each user
+            if (modCode in obj[role][id]["modules"]) {
+              //If user is taking the module
+              var modRole = obj[role][id]["modules"][modCode]["role"];
+              if (modRole == "Student") {
+                var name = obj[role][id]["name"];
+                students.push({ id: id, name: name });
+              }
+            }
+          }
+        }
+        return students;
+      });
+  },
+};
 
 export default BookConsultFB;

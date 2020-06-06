@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useFonts } from "@use-expo/font";
 import { AppLoading } from "expo";
 import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, ScrollView } from "react-native";
@@ -8,6 +8,7 @@ import DateTime, { currentTime, currentDate } from "../components/DateTime.js";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import Modal from "react-native-modal";
 import BookConsultFB from "../firebase/BookConsultFireBase.js";
+import MultiSelect from "react-native-multiple-select";
 
 export default function BookConsultScreen({ route, navigation }) {
   let [fontsLoaded] = useFonts({
@@ -22,7 +23,7 @@ export default function BookConsultScreen({ route, navigation }) {
     { dest: thirdScreen, alt_dest: "" },
   ];
 
-  const [isModalVisible, setModalVisible] = useState(false);
+  const [isTutorModalVisible, setTutorModalVisible] = useState(false);
   const [tutor, setTutor] = useState([]);
   const [chosenTutor, setTutorPicker] = useState("");
   const [extraScrollHeight, setScrollHeight] = useState(0);
@@ -47,7 +48,15 @@ export default function BookConsultScreen({ route, navigation }) {
 
   const updateTutorModalChoice = (data) => {
     setTutorPicker(data);
-    setModalVisible(!isModalVisible);
+    setTutorModalVisible(!isTutorModalVisible);
+  };
+
+  const [isModalVisible, setModalVisible] = useState(false);
+  const [selectedItems, setItems] = useState([]);
+  const multiSelect = useRef(null);
+
+  const onSelectedItemsChange = (selectedItems) => {
+    setItems(selectedItems);
   };
 
   const bookConsultation = () => {
@@ -57,6 +66,7 @@ export default function BookConsultScreen({ route, navigation }) {
   };
   useEffect(() => {
     var loadedTA = [];
+    var loadedStudents = [];
     var getTutorialClassForStudent = BookConsultFB.getTutorialClass(userID, moduleCode);
 
     getTutorialClassForStudent
@@ -68,10 +78,20 @@ export default function BookConsultScreen({ route, navigation }) {
       });
 
     setTutor(loadedTA);
+
+    var getStudentsTakingMod = BookConsultFB.getStudentsMod(moduleCode);
+    getStudentsTakingMod.then((data) => {
+      for (var i = 0; i < data.length; i++) {
+        if (data[i]["id"] != userID) {
+          loadedStudents.push({ id: data[i]["id"], name: data[i]["name"] });
+        }
+      }
+    });
+    setParticipants(loadedStudents);
   }, []);
 
   const tutorJSX = (
-    <Modal isVisible={isModalVisible} onBackdropPress={() => setModalVisible(false)}>
+    <Modal isVisible={isTutorModalVisible} onBackdropPress={() => setTutorModalVisible(false)}>
       <View style={styles.modalView}>
         <Text style={styles.modalTitle}>Teaching Assistant:</Text>
         <ScrollView>
@@ -108,12 +128,55 @@ export default function BookConsultScreen({ route, navigation }) {
     <View>
       <Text style={styles.itemName}>{"Students involved:"}</Text>
       <View style={styles.textInput}>
-        <TextInput style={styles.textBox} underlineColorAndroid="transparent" maxLength={20} numberofLines={5} editable={false} onChangeText={(text) => setParticipants(text)} />
-        <TouchableOpacity style={styles.button}>
+        <TextInput style={styles.textBox} underlineColorAndroid="transparent" maxLength={20} numberofLines={5} editable={false} placeholder="Select students" />
+        <TouchableOpacity style={styles.button} onPress={() => setModalVisible(!isModalVisible)}>
           <Image source={require("../assets/images/student.png")} style={styles.imageStyle} />
         </TouchableOpacity>
       </View>
     </View>
+  );
+
+  const studentJSX = (
+    <Modal isVisible={isModalVisible} onBackdropPress={() => setModalVisible(false)}>
+      <TouchableOpacity
+        style={styles.modalBtn}
+        onPress={() => {
+          setModalVisible(!isModalVisible);
+        }}
+      >
+        <Text style={styles.modalBtnText}>Return to Main screen</Text>
+      </TouchableOpacity>
+
+      <View style={styles.studentModalView}>
+        <MultiSelect
+          hideTags
+          items={participants}
+          uniqueKey="id"
+          ref={multiSelect}
+          onSelectedItemsChange={onSelectedItemsChange}
+          selectedItems={selectedItems}
+          selectText="Select students"
+          searchInputPlaceholderText="Search Student..."
+          onChangeInput={(text) => console.log(text)}
+          altFontFamily="Righteous-Regular"
+          selectedItemFontFamily="Righteous-Regular"
+          fontFamily="Righteous-Regular"
+          tagRemoveIconColor="#FFF"
+          tagBorderColor="#FFF"
+          tagTextColor="#FFF"
+          selectedItemTextColor="#000"
+          selectedItemIconColor="#000"
+          itemTextColor="#000"
+          displayKey="name"
+          textColor="#000"
+          searchInputStyle={{ color: "#000" }}
+          hideSubmitButton={true}
+          styleTextDropdown={styles.textDropdown}
+          styleTextDropdownSelected={styles.textDropdownSelected}
+        />
+        <View>{multiSelect.current && multiSelect.current.getSelectedItemsExt(selectedItems)}</View>
+      </View>
+    </Modal>
   );
 
   if (!fontsLoaded) {
@@ -129,7 +192,7 @@ export default function BookConsultScreen({ route, navigation }) {
           <TouchableOpacity
             style={styles.button}
             onPress={() => {
-              setModalVisible(!isModalVisible);
+              setTutorModalVisible(!isTutorModalVisible);
             }}
           >
             <Image source={require("../assets/images/teachingassistant.png")} style={styles.imageStyle} />
@@ -158,6 +221,7 @@ export default function BookConsultScreen({ route, navigation }) {
           <Text style={styles.bookBtnText}>Book</Text>
         </TouchableOpacity>
         {tutorJSX}
+        {studentJSX}
       </KeyboardAwareScrollView>
     );
   }
@@ -261,6 +325,22 @@ const styles = StyleSheet.create({
     fontFamily: "Righteous-Regular",
     alignItems: "center",
     marginTop: "4%",
+  },
+  studentModalView: {
+    backgroundColor: "#003D7C",
+    flexDirection: "column",
+    height: hp("36%"),
+  },
+
+  dropDownMenu: {
+    backgroundColor: "#EF7C00",
+  },
+  textDropdown: {
+    marginLeft: wp("30%"),
+  },
+  textDropdownSelected: {
+    marginLeft: wp("20%"),
+    fontFamily: "Righteous-Regular",
   },
   modalView: {
     backgroundColor: "#CFD8DC",

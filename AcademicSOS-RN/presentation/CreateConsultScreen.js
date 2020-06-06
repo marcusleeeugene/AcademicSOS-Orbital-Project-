@@ -1,38 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useFonts } from "@use-expo/font";
 import { AppLoading } from "expo";
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  TextInput,
-  TouchableOpacity,
-  ScrollView,
-} from "react-native";
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from "react-native-responsive-screen";
+import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, ScrollView } from "react-native";
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen";
 import BreadCrumb from "../components/BreadCrumb";
 import RadioButton from "../components/RadioButton.js";
 import DateTime, { currentTime, currentDate } from "../components/DateTime.js";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import CreateConsultFB from "../firebase/CreateConsultFireBase.js";
 import Modal from "react-native-modal";
+import MultiSelect from "react-native-multiple-select";
 
 export default function CreateConsultScreen({ route, navigation }) {
   let [fontsLoaded] = useFonts({
     "Righteous-Regular": require("../assets/fonts/Righteous-Regular.ttf"),
   });
 
-  const {
-    firstScreen,
-    secondScreen,
-    thirdScreen,
-    userID,
-    moduleCode,
-  } = route.params;
+  const { firstScreen, secondScreen, thirdScreen, userID, moduleCode } = route.params;
 
   const navHistory = [
     { dest: firstScreen, alt_dest: "" },
@@ -48,8 +32,6 @@ export default function CreateConsultScreen({ route, navigation }) {
   const [location, setLocation] = useState("");
   const [remarks, setRemarks] = useState("");
   const [participants, setParticipants] = useState([]);
-  const [chosenParticipant, setParticipantPicker] = useState("");
-  //set as string but is actually array(planning to add a pop up modal to do list)
 
   const updateDate = (date) => {
     setDate(date);
@@ -77,60 +59,28 @@ export default function CreateConsultScreen({ route, navigation }) {
   ];
 
   const [isModalVisible, setModalVisible] = useState(false);
-
-  const updateStudentModalChoice = (data) => {
-    setParticipantPicker(data);
-    setModalVisible(!isModalVisible);
-  };
-
   const [extraScrollHeight, setScrollHeight] = useState(0);
+
+  const [selectedItems, setItems] = useState([]);
+  const multiSelect = useRef(null);
+
+  const onSelectedItemsChange = (selectedItems) => {
+    setItems(selectedItems);
+  };
 
   const createConsultation = () => {
     consultType == "Public"
-      ? CreateConsultFB.addPublicBooking(
-          userID,
-          moduleCode,
-          date,
-          startTime,
-          endTime,
-          location,
-          consultType,
-          size,
-          remarks,
-          "Pending",
-          currentDate,
-          currentTime
-        )
-      : CreateConsultFB.addPrivateBooking(
-          userID,
-          moduleCode,
-          date,
-          startTime,
-          endTime,
-          location,
-          consultType,
-          participants,
-          size,
-          remarks,
-          "Pending",
-          currentDate,
-          currentTime
-        );
+      ? CreateConsultFB.addPublicBooking(userID, moduleCode, date, startTime, endTime, location, consultType, size, remarks, "Pending", currentDate, currentTime)
+      : CreateConsultFB.addPrivateBooking(userID, moduleCode, date, startTime, endTime, location, consultType, participants, size, remarks, "Pending", currentDate, currentTime);
     alert("Successfully booked! Pls check your booking in Manage Bookings!");
     navigation.navigate("Home");
   };
 
   useEffect(() => {
     var loadedStudent = [];
-    var getTutorialClassForStudent = CreateConsultFB.getTutorialClass(
-      userID,
-      moduleCode
-    );
-    console.log("p0123456", "CS1101S");
+    var getTutorialClassForStudent = CreateConsultFB.getTutorialClass(userID, moduleCode);
     getTutorialClassForStudent
-      .then((tutorialClass) =>
-        CreateConsultFB.getTutorialClassStudent(tutorialClass, moduleCode)
-      )
+      .then((tutorialClass) => CreateConsultFB.getTutorialClassStudent(tutorialClass, moduleCode))
       .then((data) => {
         for (var i = 0; i < data.length; i++) {
           loadedStudent.push({ id: data[i]["id"], name: data[i]["name"] });
@@ -143,17 +93,9 @@ export default function CreateConsultScreen({ route, navigation }) {
     <View>
       <Text style={styles.itemName}>{"Location:"}</Text>
       <View style={styles.textInput}>
-        <TextInput
-          style={styles.textBox}
-          underlineColorAndroid="transparent"
-          onChangeText={(text) => setLocation(text)}
-          value={location}
-        />
+        <TextInput style={styles.textBox} underlineColorAndroid="transparent" onChangeText={(text) => setLocation(text)} value={location} />
         <TouchableOpacity style={styles.button}>
-          <Image
-            source={require("../assets/images/location.png")}
-            style={styles.imageStyle}
-          />
+          <Image source={require("../assets/images/location.png")} style={styles.imageStyle} />
         </TouchableOpacity>
       </View>
     </View>
@@ -169,22 +111,9 @@ export default function CreateConsultScreen({ route, navigation }) {
         <View>
           <Text style={styles.itemName}>{"Students involved:"}</Text>
           <View style={styles.textInput}>
-            <TextInput
-              style={styles.textBox}
-              underlineColorAndroid="transparent"
-              maxLength={20}
-              numberofLines={5}
-              editable={false}
-              value={chosenParticipant}
-            />
-            <TouchableOpacity
-              style={styles.button}
-              onPress={() => setModalVisible(!isModalVisible)}
-            >
-              <Image
-                source={require("../assets/images/student.png")}
-                style={styles.imageStyle}
-              />
+            <TextInput style={styles.textBox} underlineColorAndroid="transparent" maxLength={20} numberofLines={5} editable={false} placeholder="Select students" />
+            <TouchableOpacity style={styles.button} onPress={() => setModalVisible(!isModalVisible)}>
+              <Image source={require("../assets/images/student.png")} style={styles.imageStyle} />
             </TouchableOpacity>
           </View>
         </View>
@@ -193,23 +122,45 @@ export default function CreateConsultScreen({ route, navigation }) {
   );
 
   const studentJSX = (
-    <Modal
-      isVisible={isModalVisible}
-      onBackdropPress={() => setModalVisible(false)}
-    >
-      <View style={styles.modalView}>
-        <Text style={styles.modalTitle}>Students:</Text>
-        <ScrollView>
-          {participants.map((item) => (
-            <TouchableOpacity
-              key={item.id}
-              style={styles.modalBtn}
-              onPress={() => updateStudentModalChoice(item.name)}
-            >
-              <Text style={styles.modalBtnText}>{item.name}</Text>
-            </TouchableOpacity>
-          ))}
-        </ScrollView>
+    <Modal isVisible={isModalVisible} onBackdropPress={() => setModalVisible(false)}>
+      <TouchableOpacity
+        style={styles.modalBtn}
+        onPress={() => {
+          setModalVisible(!isModalVisible);
+          setSize(selectedItems.length);
+        }}
+      >
+        <Text style={styles.modalBtnText}>Return to Main screen</Text>
+      </TouchableOpacity>
+
+      <View style={styles.studentModalView}>
+        <MultiSelect
+          hideTags
+          items={participants}
+          uniqueKey="id"
+          ref={multiSelect}
+          onSelectedItemsChange={onSelectedItemsChange}
+          selectedItems={selectedItems}
+          selectText="Select students"
+          searchInputPlaceholderText="Search Student..."
+          onChangeInput={(text) => console.log(text)}
+          altFontFamily="Righteous-Regular"
+          selectedItemFontFamily="Righteous-Regular"
+          fontFamily="Righteous-Regular"
+          tagRemoveIconColor="#FFF"
+          tagBorderColor="#FFF"
+          tagTextColor="#FFF"
+          selectedItemTextColor="#000"
+          selectedItemIconColor="#000"
+          itemTextColor="#000"
+          displayKey="name"
+          textColor="#000"
+          searchInputStyle={{ color: "#000" }}
+          hideSubmitButton={true}
+          styleTextDropdown={styles.textDropdown}
+          styleTextDropdownSelected={styles.textDropdownSelected}
+        />
+        <View>{multiSelect.current && multiSelect.current.getSelectedItemsExt(selectedItems)}</View>
       </View>
     </Modal>
   );
@@ -217,13 +168,7 @@ export default function CreateConsultScreen({ route, navigation }) {
   const sizeJSX = (
     <View>
       <Text style={styles.itemName}> Size:</Text>
-      <TextInput
-        style={styles.sizeContainer}
-        maxLength={3}
-        keyboardType="numeric"
-        onChangeText={(text) => setSize(text)}
-        value={size}
-      />
+      <TextInput style={styles.sizeContainer} maxLength={3} keyboardType="numeric" onChangeText={(text) => setSize(text)} value={size} />
     </View>
   );
 
@@ -231,21 +176,12 @@ export default function CreateConsultScreen({ route, navigation }) {
     return <AppLoading />;
   } else {
     return (
-      <KeyboardAwareScrollView
-        enableOnAndroid={true}
-        contentContainerStyle={styles.body}
-        extraScrollHeight={extraScrollHeight}
-        resetScrollToCoords={{ x: 0, y: 0 }}
-      >
+      <KeyboardAwareScrollView enableOnAndroid={true} contentContainerStyle={styles.body} extraScrollHeight={extraScrollHeight} resetScrollToCoords={{ x: 0, y: 0 }}>
         <ScrollView>
           <BreadCrumb navHistory={navHistory} />
           <View style={styles.body}>
             <Text style={styles.title}> Fill in consultation details: </Text>
-            <DateTime
-              dateCallback={updateDate}
-              startTimeCallback={updateStartTime}
-              endTimeCallback={updateEndTime}
-            />
+            <DateTime dateCallback={updateDate} startTimeCallback={updateStartTime} endTimeCallback={updateEndTime} />
             {locationJSX}
             {typeJSX}
             {consultType == "Public" ? sizeJSX : null}
@@ -263,10 +199,7 @@ export default function CreateConsultScreen({ route, navigation }) {
                 value={remarks}
               />
             </View>
-            <TouchableOpacity
-              style={styles.createBtn}
-              onPress={() => createConsultation()}
-            >
+            <TouchableOpacity style={styles.createBtn} onPress={() => createConsultation()}>
               <Text style={styles.createBtnText}>Create</Text>
             </TouchableOpacity>
           </View>
@@ -349,6 +282,22 @@ const styles = StyleSheet.create({
     backgroundColor: "#CFD8DC",
     flexDirection: "column",
     height: hp("36%"),
+  },
+  studentModalView: {
+    backgroundColor: "#003D7C",
+    flexDirection: "column",
+    height: hp("36%"),
+  },
+
+  dropDownMenu: {
+    backgroundColor: "#EF7C00",
+  },
+  textDropdown: {
+    marginLeft: wp("30%"),
+  },
+  textDropdownSelected: {
+    marginLeft: wp("20%"),
+    fontFamily: "Righteous-Regular",
   },
   modalTitle: {
     textAlign: "center",
