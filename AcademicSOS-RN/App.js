@@ -1,4 +1,5 @@
 import React from "react";
+// import MultiSelectExample from "./MultiSelectExample.js";
 import Navigation from "./components/Navigation.js";
 //import LoginScreen from "./presentation/LoginScreen.js";
 // import SelectModuleScreen from "./presentation/SelectModuleScreen.js";
@@ -25,5 +26,7 @@ export default function App() {
     // <BookConsultScreen></BookConsultScreen>
     <Navigation></Navigation>
     // <DateTime></DateTime>
+
+    // <MultiSelectExample></MultiSelectExample>
   );
 }

@@ -2,10 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useFonts } from "@use-expo/font";
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import { AppLoading } from "expo";
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from "react-native-responsive-screen";
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen";
 import { FlatGrid } from "react-native-super-grid";
 import BreadCrumb from "../components/BreadCrumb";
 import HomeFB from "../firebase/HomeFireBase.js";
@@ -90,13 +87,7 @@ export default function HomeScreen({ route, navigation }) {
           <Text style={styles.title}>Welcome {userID} !</Text>
           <FlatGrid
             itemDimension={130}
-            items={
-              userType == "TA"
-                ? optionTA
-                : userType == "Professor"
-                ? optionProf
-                : optionStudent
-            }
+            items={userType == "TA" ? optionTA : userType == "Professor" ? optionProf : optionStudent}
             style={styles.gridView}
             renderItem={({ item }) => (
               <View style={[styles.optionContainer]}>

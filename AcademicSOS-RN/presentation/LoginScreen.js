@@ -1,19 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useFonts } from "@use-expo/font";
-import {
-  StyleSheet,
-  Text,
-  View,
-  Dimensions,
-  Image,
-  TextInput,
-  TouchableOpacity,
-} from "react-native";
+import { StyleSheet, Text, View, Dimensions, Image, TextInput, TouchableOpacity } from "react-native";
 import { AppLoading } from "expo";
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from "react-native-responsive-screen";
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen";
 import * as firebase from "firebase";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import InputDataFB from "../firebase/InputDataFireBase.js";
@@ -84,16 +73,9 @@ export default function LoginScreen({ navigation }) {
     return <AppLoading />;
   } else {
     return (
-      <KeyboardAwareScrollView
-        enableOnAndroid={true}
-        extraScrollHeight={extraScrollHeight}
-        contentContainerStyle={styles.container}
-      >
+      <KeyboardAwareScrollView enableOnAndroid={true} extraScrollHeight={extraScrollHeight} contentContainerStyle={styles.container}>
         <Text style={styles.AcademicSOS}> AcademicSOS </Text>
-        <Image
-          style={styles.nusLogo}
-          source={require("../assets/images/NUS_logo_Transparent.png")}
-        />
+        <Image style={styles.nusLogo} source={require("../assets/images/NUS_logo_Transparent.png")} />
         <View style={styles.loginBackground}>
           <Text style={styles.textInputTitle}> NUSNET ID: </Text>
           <TextInput
@@ -102,9 +84,7 @@ export default function LoginScreen({ navigation }) {
             placeholder={"NUSNET ID"}
             value={userID}
             onFocus={() => {
-              dimensions.screen.height > 700
-                ? setScrollHeight(250)
-                : setScrollHeight(150);
+              dimensions.screen.height > 700 ? setScrollHeight(250) : setScrollHeight(150);
             }}
           />
           <Text style={styles.textInputTitle}> Password: </Text>
@@ -116,15 +96,10 @@ export default function LoginScreen({ navigation }) {
             onChangeText={setPassword}
             value={password}
             onFocus={() => {
-              dimensions.screen.height > 700
-                ? setScrollHeight(250)
-                : setScrollHeight(150);
+              dimensions.screen.height > 700 ? setScrollHeight(250) : setScrollHeight(150);
             }}
           />
-          <TouchableOpacity
-            style={styles.loginBtn}
-            onPress={() => login(userID.toLowerCase(), password)}
-          >
+          <TouchableOpacity style={styles.loginBtn} onPress={() => login(userID.toLowerCase(), password)}>
             <Text style={styles.loginBtnText}> LOGIN </Text>
           </TouchableOpacity>
         </View>

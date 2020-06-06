@@ -2,10 +2,7 @@ import React from "react";
 import { useFonts } from "@use-expo/font";
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import { AppLoading } from "expo";
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from "react-native-responsive-screen";
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen";
 import { FlatGrid } from "react-native-super-grid";
 import BreadCrumb from "../components/BreadCrumb";
 
@@ -41,30 +38,12 @@ export default function ConsultDetailScreen() {
         <View style={styles.body}>
           <Text style={styles.title}> {consultationInfo.module} </Text>
           <View style={styles.consultationInfo}>
-            <Text style={styles.consultationInfoText}>
-              {" "}
-              TA: {consultationInfo.ta}{" "}
-            </Text>
-            <Text style={styles.consultationInfoText}>
-              {" "}
-              Type: {consultationInfo.type}{" "}
-            </Text>
-            <Text style={styles.consultationInfoText}>
-              {" "}
-              Location: {consultationInfo.location}{" "}
-            </Text>
-            <Text style={styles.consultationInfoText}>
-              {" "}
-              Date: {consultationInfo.date}{" "}
-            </Text>
-            <Text style={styles.consultationInfoText}>
-              {" "}
-              Time: {consultationInfo.time}{" "}
-            </Text>
-            <Text style={styles.consultationInfoText}>
-              {" "}
-              Agenda: {consultationInfo.agenda}{" "}
-            </Text>
+            <Text style={styles.consultationInfoText}> TA: {consultationInfo.ta} </Text>
+            <Text style={styles.consultationInfoText}> Type: {consultationInfo.type} </Text>
+            <Text style={styles.consultationInfoText}> Location: {consultationInfo.location} </Text>
+            <Text style={styles.consultationInfoText}> Date: {consultationInfo.date} </Text>
+            <Text style={styles.consultationInfoText}> Time: {consultationInfo.time} </Text>
+            <Text style={styles.consultationInfoText}> Agenda: {consultationInfo.agenda} </Text>
           </View>
           <View style={styles.options}>
             <TouchableOpacity style={styles.optionAccept}>

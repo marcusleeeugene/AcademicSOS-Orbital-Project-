@@ -1,20 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useFonts } from "@use-expo/font";
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  TextInput,
-  TouchableOpacity,
-  ScrollView,
-} from "react-native";
+import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, ScrollView } from "react-native";
 import { AppLoading } from "expo";
 import { FlatGrid } from "react-native-super-grid";
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from "react-native-responsive-screen";
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen";
 import BreadCrumb from "../components/BreadCrumb";
 import SelectModuleFB from "../firebase/SelectModuleFireBase.js";
 
@@ -34,18 +23,7 @@ export default function SelectModuleScreen({ route, navigation }) {
 
   useEffect(() => {
     var tempModules = [];
-    const colourCodes = [
-      "#90CAF9",
-      "#FFF59D",
-      "#A5D6A7",
-      "#FFAB91",
-      "#B39DDB",
-      "#80CBC4",
-      "#c5e1a5",
-      "#fff59d",
-      "#ffcc80",
-      "#bcaaa4",
-    ];
+    const colourCodes = ["#90CAF9", "#FFF59D", "#A5D6A7", "#FFAB91", "#B39DDB", "#80CBC4", "#c5e1a5", "#fff59d", "#ffcc80", "#bcaaa4"];
     SelectModuleFB.loadUserModules(userID).then((data) => {
       for (var i = 0; i < data.length; i++) {
         tempModules.push({ name: data[i], code: colourCodes[i] });
@@ -67,9 +45,7 @@ export default function SelectModuleScreen({ route, navigation }) {
             items={modules}
             style={styles.gridView}
             renderItem={({ item }) => (
-              <View
-                style={[styles.itemContainer, { backgroundColor: item.code }]}
-              >
+              <View style={[styles.itemContainer, { backgroundColor: item.code }]}>
                 <TouchableOpacity
                   onPress={() =>
                     navigation.navigate(secondScreen, {

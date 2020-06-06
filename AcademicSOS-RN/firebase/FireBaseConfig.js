@@ -1,4 +1,4 @@
-import * as firebase from 'firebase';
+import * as firebase from "firebase";
 
 // Initialize Firebase
 const FireBaseConfig = {
@@ -11,9 +11,10 @@ const FireBaseConfig = {
 let app = firebase.initializeApp(FireBaseConfig);
 export const database = app.database(); //Database Link
 
-export const role = (id) => { //Checks which role branch user belongs to (Student / Professor)
+export const role = (id) => {
+  //Checks which role branch user belongs to (Student / Professor)
   var userRole;
-  if (id.charAt(0) == "e" || id.charAt(0) == "E" ) {
+  if (id.charAt(0) == "e" || id.charAt(0) == "E") {
     userRole = "students";
   } else {
     userRole = "professors";

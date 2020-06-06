@@ -63,16 +63,10 @@ export default function Navigation() {
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Select Module" component={SelectModuleScreen} />
         <Stack.Screen name="Book" component={BookConsultScreen} />
-        <Stack.Screen
-          name="Public Consultation"
-          component={PublicConsultScreen}
-        />
+        <Stack.Screen name="Public Consultation" component={PublicConsultScreen} />
         <Stack.Screen name="Priority Points" component={PriorityPointScreen} />
         <Stack.Screen name="Manage Bookings" component={ManageBookingScreen} />
-        <Stack.Screen
-          name="Create Consultation"
-          component={CreateConsultScreen}
-        />
+        <Stack.Screen name="Create Consultation" component={CreateConsultScreen} />
         <Stack.Screen name="Consult Details" component={ConsultDetailScreen} />
       </Stack.Navigator>
     </NavigationContainer>

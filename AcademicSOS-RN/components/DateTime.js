@@ -1,20 +1,10 @@
 import React, { useState } from "react";
 import { useFonts } from "@use-expo/font";
 import { AppLoading } from "expo";
-import {
-  Text,
-  TextInput,
-  StyleSheet,
-  View,
-  Image,
-  TouchableOpacity,
-} from "react-native";
+import { Text, TextInput, StyleSheet, View, Image, TouchableOpacity } from "react-native";
 import DateTimePicker from "react-native-modal-datetime-picker";
 import moment from "moment";
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from "react-native-responsive-screen";
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen";
 
 export var currentDate = moment(new Date()).format("DD-MMM-YY");
 export var currentTime = moment(new Date()).format("hh:mm:ss A");
@@ -61,38 +51,19 @@ const DateTime = (props) => {
 
   const dateView = (
     <View>
-      <DateTimePicker
-        isVisible={isDatePickerVisible}
-        onConfirm={updateDatePicker}
-        onCancel={() => showDatePicker(false)}
-        mode={"date"}
-      />
+      <DateTimePicker isVisible={isDatePickerVisible} onConfirm={updateDatePicker} onCancel={() => showDatePicker(false)} mode={"date"} />
     </View>
   );
 
   const startTimeView = (
     <View>
-      <DateTimePicker
-        headerTextIOS="Pick a time"
-        isVisible={isStartTimePickerVisible}
-        onConfirm={updateStartTimePicker}
-        onCancel={() => showStartTimePicker(false)}
-        mode={"time"}
-        is24Hour={false}
-      />
+      <DateTimePicker headerTextIOS="Pick a time" isVisible={isStartTimePickerVisible} onConfirm={updateStartTimePicker} onCancel={() => showStartTimePicker(false)} mode={"time"} is24Hour={false} />
     </View>
   );
 
   const endTimeView = (
     <View>
-      <DateTimePicker
-        headerTextIOS="Pick a time"
-        isVisible={isEndTimePickerVisible}
-        onConfirm={updateEndTimePicker}
-        onCancel={() => showEndTimePicker(false)}
-        mode={"time"}
-        is24Hour={false}
-      />
+      <DateTimePicker headerTextIOS="Pick a time" isVisible={isEndTimePickerVisible} onConfirm={updateEndTimePicker} onCancel={() => showEndTimePicker(false)} mode={"time"} is24Hour={false} />
     </View>
   );
 
@@ -105,31 +76,17 @@ const DateTime = (props) => {
             <TextInput
               style={styles.dateTimeTextBox}
               underlineColorAndroid="transparent"
-              value={
-                item.name.includes("Date")
-                  ? chosenDate
-                  : item.name == "Start Time"
-                  ? chosenStartTime
-                  : chosenEndTime
-              }
+              value={item.name.includes("Date") ? chosenDate : item.name == "Start Time" ? chosenStartTime : chosenEndTime}
               editable={false}
             />
             <TouchableOpacity
               style={styles.button}
               onPress={() => {
-                item.name.includes("Date")
-                  ? showDatePicker(true)
-                  : item.name == "Start Time"
-                  ? showStartTimePicker(true)
-                  : showEndTimePicker(true);
+                item.name.includes("Date") ? showDatePicker(true) : item.name == "Start Time" ? showStartTimePicker(true) : showEndTimePicker(true);
               }}
             >
               <Image source={item.image} style={styles.imageStyle} />
-              {item.name.includes("Date")
-                ? dateView
-                : item.name == "Start Time"
-                ? startTimeView
-                : endTimeView}
+              {item.name.includes("Date") ? dateView : item.name == "Start Time" ? startTimeView : endTimeView}
             </TouchableOpacity>
           </View>
         </View>

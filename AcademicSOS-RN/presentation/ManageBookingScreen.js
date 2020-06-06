@@ -1,20 +1,8 @@
 import React, { useState } from "react";
 import { useFonts } from "@use-expo/font";
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  TextInput,
-  TouchableOpacity,
-  ScrollView,
-  Platform,
-} from "react-native";
+import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, ScrollView, Platform } from "react-native";
 import { AppLoading } from "expo";
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from "react-native-responsive-screen";
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen";
 import BreadCrumb from "../components/BreadCrumb";
 import Modal from "react-native-modal";
 
@@ -62,30 +50,18 @@ export default function ManageBookingScreen({ route, navigation }) {
   };
 
   const statusJSX = (
-    <Modal
-      isVisible={isStatusModalVisible}
-      onBackdropPress={() => setStatusModalVisible(false)}
-    >
+    <Modal isVisible={isStatusModalVisible} onBackdropPress={() => setStatusModalVisible(false)}>
       <View style={styles.modalView}>
         <Text style={styles.modalTitle}> Status: </Text>
-        <TouchableOpacity
-          style={styles.modalBtn}
-          onPress={() => updateModalChoice("Status#All Types")}
-        >
+        <TouchableOpacity style={styles.modalBtn} onPress={() => updateModalChoice("Status#All Types")}>
           <Text style={styles.modalBtnText}> All Types </Text>
         </TouchableOpacity>
 
-        <TouchableOpacity
-          style={styles.modalBtn}
-          onPress={() => updateModalChoice("Status#Confirmed")}
-        >
+        <TouchableOpacity style={styles.modalBtn} onPress={() => updateModalChoice("Status#Confirmed")}>
           <Text style={styles.modalBtnText}> Confirmed </Text>
         </TouchableOpacity>
 
-        <TouchableOpacity
-          style={styles.modalBtn}
-          onPress={() => updateModalChoice("Status#Pending")}
-        >
+        <TouchableOpacity style={styles.modalBtn} onPress={() => updateModalChoice("Status#Pending")}>
           <Text style={styles.modalBtnText}> Pending </Text>
         </TouchableOpacity>
       </View>
@@ -112,19 +88,12 @@ export default function ManageBookingScreen({ route, navigation }) {
     { key: "Exam 2" },
   ];
   const weekJSX = (
-    <Modal
-      isVisible={isWeekModalVisible}
-      onBackdropPress={() => setWeekModalVisible(false)}
-    >
+    <Modal isVisible={isWeekModalVisible} onBackdropPress={() => setWeekModalVisible(false)}>
       <View style={styles.modalView}>
         <Text style={styles.modalTitle}> Week: </Text>
         <ScrollView>
           {weeks.map((item) => (
-            <TouchableOpacity
-              key = {item.key}
-              style={styles.modalBtn}
-              onPress={() => updateModalChoice("Week#" + item.key)}
-            >
+            <TouchableOpacity key={item.key} style={styles.modalBtn} onPress={() => updateModalChoice("Week#" + item.key)}>
               <Text style={styles.modalBtnText}> {item.key} </Text>
             </TouchableOpacity>
           ))}
@@ -133,29 +102,14 @@ export default function ManageBookingScreen({ route, navigation }) {
     </Modal>
   );
 
-  const days = [
-    { key: "Monday" },
-    { key: "Tuesday" },
-    { key: "Wednesday" },
-    { key: "Thursday" },
-    { key: "Friday" },
-    { key: "Saturday" },
-    { key: "Sunday" },
-  ];
+  const days = [{ key: "Monday" }, { key: "Tuesday" }, { key: "Wednesday" }, { key: "Thursday" }, { key: "Friday" }, { key: "Saturday" }, { key: "Sunday" }];
   const dayJSX = (
-    <Modal
-      isVisible={isDayModalVisible}
-      onBackdropPress={() => setDayModalVisible(false)}
-    >
+    <Modal isVisible={isDayModalVisible} onBackdropPress={() => setDayModalVisible(false)}>
       <View style={styles.modalView}>
         <Text style={styles.modalTitle}> Day: </Text>
         <ScrollView>
           {days.map((item) => (
-            <TouchableOpacity
-              key = {item.key}
-              style={styles.modalBtn}
-              onPress={() => updateModalChoice("Day#" + item.key)}
-            >
+            <TouchableOpacity key={item.key} style={styles.modalBtn} onPress={() => updateModalChoice("Day#" + item.key)}>
               <Text style={styles.modalBtnText}> {item.key} </Text>
             </TouchableOpacity>
           ))}
@@ -206,29 +160,15 @@ export default function ManageBookingScreen({ route, navigation }) {
   const consultationsJSX = (
     <View>
       {consultations.map((item, index) => (
-        <View key = {"consultation" + index} style={styles.moduleRow}>
+        <View key={"consultation" + index} style={styles.moduleRow}>
           <View style={styles.dateTime}>
             <Text style={styles.dateTime_Text}> {item.date} </Text>
             <Text style={styles.dateTime_Text}> {item.time} </Text>
           </View>
-          <TouchableOpacity
-            style={[
-              styles.moduleContainer,
-              { backgroundColor: item.color },
-            ]}
-          >
-            <Text style={styles.consultationInfoMod}>
-              {" "}
-              {item.name}{" "}
-            </Text>
-            <Text style={styles.consultationInfo}>
-              {" "}
-              TA: {item.ta}{" "}
-            </Text>
-            <Text style={styles.consultationInfo}>
-              {" "}
-              Remarks: {item.remarks}{" "}
-            </Text>
+          <TouchableOpacity style={[styles.moduleContainer, { backgroundColor: item.color }]}>
+            <Text style={styles.consultationInfoMod}> {item.name} </Text>
+            <Text style={styles.consultationInfo}> TA: {item.ta} </Text>
+            <Text style={styles.consultationInfo}> Remarks: {item.remarks} </Text>
           </TouchableOpacity>
         </View>
       ))}
@@ -244,43 +184,22 @@ export default function ManageBookingScreen({ route, navigation }) {
         <View style={styles.body}>
           <Text style={styles.title}> Manage Bookings </Text>
           <View style={styles.filter}>
-            <TouchableOpacity
-              style={styles.filterBtn}
-              onPress={() => toggleModal("Status")}
-            >
+            <TouchableOpacity style={styles.filterBtn} onPress={() => toggleModal("Status")}>
               <Text style={styles.filter_text}>
                 {" "}
-                {status}{" "}
-                <Image
-                  style={styles.chevron_inv}
-                  source={require("../assets/images/chevron-inv.png")}
-                />
+                {status} <Image style={styles.chevron_inv} source={require("../assets/images/chevron-inv.png")} />
               </Text>
             </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.filterBtn}
-              onPress={() => toggleModal("Week")}
-            >
+            <TouchableOpacity style={styles.filterBtn} onPress={() => toggleModal("Week")}>
               <Text style={styles.filter_text}>
                 {" "}
-                {week}{" "}
-                <Image
-                  style={styles.chevron_inv}
-                  source={require("../assets/images/chevron-inv.png")}
-                />
+                {week} <Image style={styles.chevron_inv} source={require("../assets/images/chevron-inv.png")} />
               </Text>
             </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.filterBtn}
-              onPress={() => toggleModal("Day")}
-            >
+            <TouchableOpacity style={styles.filterBtn} onPress={() => toggleModal("Day")}>
               <Text style={styles.filter_text}>
                 {" "}
-                {day}{" "}
-                <Image
-                  style={styles.chevron_inv}
-                  source={require("../assets/images/chevron-inv.png")}
-                />
+                {day} <Image style={styles.chevron_inv} source={require("../assets/images/chevron-inv.png")} />
               </Text>
             </TouchableOpacity>
           </View>

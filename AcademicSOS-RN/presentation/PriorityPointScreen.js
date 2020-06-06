@@ -2,10 +2,7 @@ import React from "react";
 import { useFonts } from "@use-expo/font";
 import { StyleSheet, Text, View } from "react-native";
 import { AppLoading } from "expo";
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from "react-native-responsive-screen";
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen";
 import BreadCrumb from "../components/BreadCrumb.js";
 
 export default function PriorityPointsPresentation({ route, navigation }) {
@@ -34,9 +31,7 @@ export default function PriorityPointsPresentation({ route, navigation }) {
           </View>
           <Text style={styles.noteTitle}> Note: </Text>
           <Text style={styles.note}>
-            Priority points will be deducted if you failed to turn up within 15
-            mintues of your consultation slot. This will affect your
-            consultation request in the future.
+            Priority points will be deducted if you failed to turn up within 15 mintues of your consultation slot. This will affect your consultation request in the future.
           </Text>
         </View>
       </View>

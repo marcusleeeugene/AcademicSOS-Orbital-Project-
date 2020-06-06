@@ -1,19 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useFonts } from "@use-expo/font";
 import { AppLoading } from "expo";
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  TextInput,
-  TouchableOpacity,
-  ScrollView,
-} from "react-native";
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from "react-native-responsive-screen";
+import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, ScrollView } from "react-native";
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen";
 import BreadCrumb from "../components/BreadCrumb";
 import DateTime, { currentTime, currentDate } from "../components/DateTime.js";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
@@ -25,13 +14,7 @@ export default function BookConsultScreen({ route, navigation }) {
     "Righteous-Regular": require("../assets/fonts/Righteous-Regular.ttf"),
   });
 
-  const {
-    firstScreen,
-    secondScreen,
-    thirdScreen,
-    userID,
-    moduleCode,
-  } = route.params;
+  const { firstScreen, secondScreen, thirdScreen, userID, moduleCode } = route.params;
 
   const navHistory = [
     { dest: firstScreen, alt_dest: "" },
@@ -68,34 +51,16 @@ export default function BookConsultScreen({ route, navigation }) {
   };
 
   const bookConsultation = () => {
-    BookConsultFB.addBooking(
-      userID,
-      moduleCode,
-      chosenTutor,
-      date,
-      startTime,
-      endTime,
-      location,
-      participants,
-      remarks,
-      "Pending",
-      currentDate,
-      currentTime
-    );
+    BookConsultFB.addBooking(userID, moduleCode, chosenTutor, date, startTime, endTime, location, participants, remarks, "Pending", currentDate, currentTime);
     alert("Successfully booked! Pls check your booking in Manage Bookings!");
     navigation.navigate("Home");
   };
   useEffect(() => {
     var loadedTA = [];
-    var getTutorialClassForStudent = BookConsultFB.getTutorialClass(
-      userID,
-      moduleCode
-    );
+    var getTutorialClassForStudent = BookConsultFB.getTutorialClass(userID, moduleCode);
 
     getTutorialClassForStudent
-      .then((tutorialClass) =>
-        BookConsultFB.getTutorialClassTA(tutorialClass, moduleCode)
-      )
+      .then((tutorialClass) => BookConsultFB.getTutorialClassTA(tutorialClass, moduleCode))
       .then((data) => {
         for (var i = 0; i < data.length; i++) {
           loadedTA.push({ id: data[i]["id"], name: data[i]["name"] });
@@ -106,19 +71,12 @@ export default function BookConsultScreen({ route, navigation }) {
   }, []);
 
   const tutorJSX = (
-    <Modal
-      isVisible={isModalVisible}
-      onBackdropPress={() => setModalVisible(false)}
-    >
+    <Modal isVisible={isModalVisible} onBackdropPress={() => setModalVisible(false)}>
       <View style={styles.modalView}>
         <Text style={styles.modalTitle}>Teaching Assistant:</Text>
         <ScrollView>
           {tutor.map((item) => (
-            <TouchableOpacity
-              key={item.id}
-              style={styles.modalBtn}
-              onPress={() => updateTutorModalChoice(item.name)}
-            >
+            <TouchableOpacity key={item.id} style={styles.modalBtn} onPress={() => updateTutorModalChoice(item.name)}>
               <Text style={styles.modalBtnText}>{item.name}</Text>
             </TouchableOpacity>
           ))}
@@ -140,10 +98,7 @@ export default function BookConsultScreen({ route, navigation }) {
           onChangeText={(text) => setLocation(text)}
         />
         <TouchableOpacity style={styles.button}>
-          <Image
-            source={require("../assets/images/location.png")}
-            style={styles.imageStyle}
-          />
+          <Image source={require("../assets/images/location.png")} style={styles.imageStyle} />
         </TouchableOpacity>
       </View>
     </View>
@@ -153,19 +108,9 @@ export default function BookConsultScreen({ route, navigation }) {
     <View>
       <Text style={styles.itemName}>{"Students involved:"}</Text>
       <View style={styles.textInput}>
-        <TextInput
-          style={styles.textBox}
-          underlineColorAndroid="transparent"
-          maxLength={20}
-          numberofLines={5}
-          editable={false}
-          onChangeText={(text) => setParticipants(text)}
-        />
+        <TextInput style={styles.textBox} underlineColorAndroid="transparent" maxLength={20} numberofLines={5} editable={false} onChangeText={(text) => setParticipants(text)} />
         <TouchableOpacity style={styles.button}>
-          <Image
-            source={require("../assets/images/student.png")}
-            style={styles.imageStyle}
-          />
+          <Image source={require("../assets/images/student.png")} style={styles.imageStyle} />
         </TouchableOpacity>
       </View>
     </View>
@@ -175,39 +120,23 @@ export default function BookConsultScreen({ route, navigation }) {
     return <AppLoading />;
   } else {
     return (
-      <KeyboardAwareScrollView
-        contentContainerStyle={styles.body}
-        enableOnAndroid={true}
-        extraScrollHeight={extraScrollHeight}
-      >
+      <KeyboardAwareScrollView contentContainerStyle={styles.body} enableOnAndroid={true} extraScrollHeight={extraScrollHeight}>
         <BreadCrumb navHistory={navHistory} />
         <Text style={styles.title}> Fill in consultation details: </Text>
         <Text style={styles.itemName}>{"Teaching Assistant:"}</Text>
         <View style={styles.textInput}>
-          <TextInput
-            style={styles.textBox}
-            underlineColorAndroid="transparent"
-            editable={false}
-            value={chosenTutor}
-          />
+          <TextInput style={styles.textBox} underlineColorAndroid="transparent" editable={false} value={chosenTutor} />
           <TouchableOpacity
             style={styles.button}
             onPress={() => {
               setModalVisible(!isModalVisible);
             }}
           >
-            <Image
-              source={require("../assets/images/teachingassistant.png")}
-              style={styles.imageStyle}
-            />
+            <Image source={require("../assets/images/teachingassistant.png")} style={styles.imageStyle} />
           </TouchableOpacity>
         </View>
         <View style={styles.dateTimeContainer}>
-          <DateTime
-            dateCallback={updateDate}
-            startTimeCallback={updateStartTime}
-            endTimeCallback={updateEndTime}
-          />
+          <DateTime dateCallback={updateDate} startTimeCallback={updateStartTime} endTimeCallback={updateEndTime} />
         </View>
         {locationJSX}
         {participantJSX}
@@ -225,10 +154,7 @@ export default function BookConsultScreen({ route, navigation }) {
             onChangeText={(text) => setRemarks(text)}
           />
         </View>
-        <TouchableOpacity
-          style={styles.bookBtn}
-          onPress={() => bookConsultation()}
-        >
+        <TouchableOpacity style={styles.bookBtn} onPress={() => bookConsultation()}>
           <Text style={styles.bookBtnText}>Book</Text>
         </TouchableOpacity>
         {tutorJSX}
