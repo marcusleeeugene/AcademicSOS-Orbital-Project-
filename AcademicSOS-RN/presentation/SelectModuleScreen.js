@@ -18,7 +18,7 @@ export default function SelectModuleScreen({ route, navigation }) {
 
   const navHistory = [
     { dest: firstScreen, alt_dest: "" },
-    { dest: secondScreen, alt_dest: "" },
+    { dest: secondScreen, alt_dest: "Select Module" },
   ];
 
   useEffect(() => {

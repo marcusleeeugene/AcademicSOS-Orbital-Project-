@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import { useFonts } from "@use-expo/font";
 import { StyleSheet, Text, View, Image } from "react-native";
 import { AppLoading } from "expo";
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
-import { useNavigation, useNavigationState } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
 
 const BreadCrumb = (props) => {
   let [fontsLoaded] = useFonts({
@@ -22,7 +22,7 @@ const BreadCrumb = (props) => {
         <View key={item.dest} style={index != navHistory.length - 1 ? styles.textContainer : [styles.textContainer, styles.underline]}>
           <TouchableOpacity
             onPress={() => {
-              item.alt_dest == "" ? navigation.navigate(item.dest) : navigation.navigate(item.alt_dest);
+              index != navHistory.length - 1 && item.alt_dest == "" ? navigation.navigate(item.dest) : index != navHistory.length - 1 ? navigation.navigate(item.alt_dest) : null;
             }}
           >
             <Text style={styles.breadCrumbText}> {item.dest} </Text>
