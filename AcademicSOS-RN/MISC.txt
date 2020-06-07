@@ -6,6 +6,7 @@ https://momentjs.com/docs/ (Moment date time format)
 https://github.com/APSL/react-native-keyboard-aware-scroll-view (Keyboard Aware scroll view)
 https://docs.expo.io/guides/using-firebase/#firebase-sdk-setup (Firebase setup)
 https://reactnavigation.org/docs/getting-started (React navigation)
+https://github.com/toystars/react-native-multiple-select (Dynamic Search Multiple Select)
 
 
 1) npm install react-native-responsive-screen --save
@@ -22,3 +23,5 @@ https://reactnavigation.org/docs/getting-started (React navigation)
 10) npm install react-native-reanimated react-native-gesture-handler react-native-screens react-native-safe-area-context @react-native-community/masked-view
 
 11) npm install @react-navigation/stack
+
+12) npm install react-native-multiple-select --save

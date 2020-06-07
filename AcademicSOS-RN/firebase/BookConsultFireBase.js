@@ -56,6 +56,5 @@ const BookConsultFB = {
         return TA;
       });
   },
-};
 
 export default BookConsultFB;
