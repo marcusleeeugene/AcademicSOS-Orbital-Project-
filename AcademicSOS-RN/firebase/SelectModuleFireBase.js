@@ -12,7 +12,7 @@ const SelectModuleFB = {
       .then((obj) => {
         for (var each in obj) {
           var role = obj[each]["role"];
-          if ((screen === "Book" || screen === "Priority Points") && role === "Student") {
+          if ((screen === "Book" || screen === "Priority Points" || screen === "Public Consultation") && role === "Student") {
             //If screen is book consultation or priority points, add only modules where user are students
             modules.push(each);
           } else if (screen == "Create Consultation" && (role === "TA" || role === "Professor")) {
