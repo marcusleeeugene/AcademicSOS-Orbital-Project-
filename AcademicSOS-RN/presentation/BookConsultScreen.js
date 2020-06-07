@@ -331,10 +331,6 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     height: hp("36%"),
   },
-
-  dropDownMenu: {
-    backgroundColor: "#EF7C00",
-  },
   textDropdown: {
     marginLeft: wp("30%"),
   },
