@@ -1,21 +1,32 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useFonts } from "@use-expo/font";
 import { StyleSheet, Text, View } from "react-native";
 import { AppLoading } from "expo";
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen";
 import BreadCrumb from "../components/BreadCrumb.js";
+import PriorityPointFB from "../firebase/PriorityPointFireBase.js";
 
 export default function PriorityPointsPresentation({ route, navigation }) {
   let [fontsLoaded] = useFonts({
     "Righteous-Regular": require("../assets/fonts/Righteous-Regular.ttf"),
   });
 
-  const { firstScreen, secondScreen, thirdScreen, userID } = route.params;
+  const { firstScreen, secondScreen, thirdScreen, userID, moduleCode } = route.params;
   const navHistory = [
     { dest: firstScreen, alt_dest: "" },
     { dest: secondScreen, alt_dest: "Select Module" },
     { dest: thirdScreen, alt_dest: "" },
   ];
+
+  const [priorityPoint, setPriorityPoint] = useState("");
+
+  useEffect(() => {
+    var loadedPriorityPoint = "";
+    PriorityPointFB.getPriorityPointStudent(userID, moduleCode).then((data) => {
+      loadedPriorityPoint = data;
+      setPriorityPoint(loadedPriorityPoint);
+    });
+  });
 
   if (!fontsLoaded) {
     return <AppLoading />;
@@ -24,10 +35,10 @@ export default function PriorityPointsPresentation({ route, navigation }) {
       <View>
         <BreadCrumb navHistory={navHistory} />
         <View style={styles.body}>
-          <Text style={styles.title}> CS1101S </Text>
+          <Text style={styles.title}> {moduleCode}</Text>
           <View style={styles.SquareShapeView}>
             <Text style={styles.priorityTitle}> Points: </Text>
-            <Text style={styles.marks}> 90 / 100 </Text>
+            <Text style={styles.marks}> {priorityPoint} / 100 </Text>
           </View>
           <Text style={styles.noteTitle}> Note: </Text>
           <Text style={styles.note}>
