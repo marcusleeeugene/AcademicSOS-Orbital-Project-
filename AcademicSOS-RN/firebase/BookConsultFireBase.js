@@ -56,5 +56,32 @@ const BookConsultFB = {
         return TA;
       });
   },
+  getStudentsMod: function (modCode) {
+    //Returns an array of students taking the module
+    return database
+      .ref(`users`)
+      .once("value")
+      .then((snapshot) => snapshot.val())
+      .then((obj) => {
+        var students = [];
+        for (var role in obj) {
+          //Loop through Students & Professor branch
+          for (var id in obj[role]) {
+            //Loop through each user
+            var mod = obj[role][id]["modules"];
+            if (modCode in mod) {
+              //If user is taking the module
+              var modRole = mod[modCode]["role"];
+              if (modRole == "Student") {
+                var name = obj[role][id]["name"];
+                students.push({ id: id, name: name });
+              }
+            }
+          }
+        }
+        return students;
+      });
+  }
+}
 
 export default BookConsultFB;

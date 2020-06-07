@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useFonts } from "@use-expo/font";
 import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, ScrollView, Platform } from "react-native";
 import { AppLoading } from "expo";
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen";
 import BreadCrumb from "../components/BreadCrumb";
 import Modal from "react-native-modal";
+import moment from "moment";
 import ManageBookingFB from "../firebase/ManageBookingFireBase.js";
 
 export default function ManageBookingScreen({ route, navigation }) {
@@ -26,6 +27,8 @@ export default function ManageBookingScreen({ route, navigation }) {
   const [status, setStatus] = useState("All Status");
   const [week, setWeek] = useState("All Weeks");
   const [day, setDay] = useState("All Days");
+
+  const [consultations, setConsultations] = useState([]);
 
   const toggleModal = (type) => {
     if (type === "Status") {
@@ -49,6 +52,17 @@ export default function ManageBookingScreen({ route, navigation }) {
     }
     toggleModal(type);
   };
+
+  // useEffect(() => {
+  //   var tempConsultations = [];
+  //   const colourCodes = ["#90CAF9", "#FFF59D", "#A5D6A7", "#FFAB91", "#B39DDB", "#80CBC4", "#c5e1a5", "#fff59d", "#ffcc80", "#bcaaa4"];
+  //   ManageBookingFB.getUserBookings(userID, 'All Status', 'All Weeks', 'All Days').then((data)=> {
+  //     for (var i = 0; i < data.length; i++) {
+  //       tempConsultations.push({module: data[i].module, bookDate: data[i].bookDate, startTime: data[i].startTime, ta: data[i].ta, remarks: data[i].remarks, color: colourCodes[i]});
+  //     }
+  //     setConsultations(tempConsultations);
+  //   });
+  // }, []);
 
   const statusJSX = (
     <Modal isVisible={isStatusModalVisible} onBackdropPress={() => setStatusModalVisible(false)}>
@@ -119,55 +133,16 @@ export default function ManageBookingScreen({ route, navigation }) {
     </Modal>
   );
 
-  const consultations = [
-    {
-      name: "CS1101S",
-      ta: "John Tan",
-      remarks: "Recursion problems",
-      date: "21 - Jun - 20",
-      time: "11.00 AM",
-      color: "#90CAF9",
-      type: "approved",
-    },
-    {
-      name: "MA1101R",
-      ta: "Peter Lee",
-      remarks: "How to gaussian eliminate",
-      date: "21 - Jun - 20",
-      time: "11.00 AM",
-      color: "#A5D6A7",
-      type: "approved",
-    },
-    {
-      name: "ES1601",
-      ta: "Mary Koh",
-      remarks: "Verbs and adjectives",
-      date: "21 - Jun - 20",
-      time: "11.00 AM",
-      color: "#FFAB91",
-      type: "approved",
-    },
-    {
-      name: "NM3221",
-      ta: "Bob Tan",
-      remarks: "Verbs and adjectives",
-      date: "21 - Jun - 20",
-      time: "11.00 AM",
-      color: "#B39DDB",
-      type: "pending",
-    },
-  ];
-
   const consultationsJSX = (
     <View>
       {consultations.map((item, index) => (
         <View key={"consultation" + index} style={styles.moduleRow}>
           <View style={styles.dateTime}>
-            <Text style={styles.dateTime_Text}> {item.date} </Text>
-            <Text style={styles.dateTime_Text}> {item.time} </Text>
+            <Text style={styles.dateTime_Text}> {item.bookDate} </Text>
+            <Text style={styles.dateTime_Text}> {item.startTime} </Text>
           </View>
           <TouchableOpacity style={[styles.moduleContainer, { backgroundColor: item.color }]}>
-            <Text style={styles.consultationInfoMod}> {item.name} </Text>
+            <Text style={styles.consultationInfoMod}> {item.module} </Text>
             <Text style={styles.consultationInfo}> TA: {item.ta} </Text>
             <Text style={styles.consultationInfo}> Remarks: {item.remarks} </Text>
           </TouchableOpacity>
@@ -207,13 +182,12 @@ export default function ManageBookingScreen({ route, navigation }) {
           {statusJSX}
           {weekJSX}
           {dayJSX}
-          <ScrollView style={styles.moduleView}>{consultationsJSX}</ScrollView>
         </View>
       </View>
     );
   }
 }
-
+//<ScrollView style={styles.moduleView}>{consultationsJSX}</ScrollView> //line 184
 const styles = StyleSheet.create({
   body: {
     height: hp("100%"),

@@ -5,6 +5,7 @@ import { AppLoading } from "expo";
 import { FlatGrid } from "react-native-super-grid";
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen";
 import BreadCrumb from "../components/BreadCrumb";
+import { YellowBox } from 'react-native'
 import SelectModuleFB from "../firebase/SelectModuleFireBase.js";
 
 export default function SelectModuleScreen({ route, navigation }) {
@@ -12,6 +13,10 @@ export default function SelectModuleScreen({ route, navigation }) {
     "SonsieOne-Regular": require("../assets/fonts/SonsieOne-Regular.ttf"),
     "Righteous-Regular": require("../assets/fonts/Righteous-Regular.ttf"),
   });
+
+  YellowBox.ignoreWarnings([ //Ignores flatlist warning on rendering
+    'VirtualizedLists should never be nested', // TODO: Remove when fixed in future updates
+  ])
 
   const { firstScreen, secondScreen, userID } = route.params;
   const [modules, setModules] = useState([]);

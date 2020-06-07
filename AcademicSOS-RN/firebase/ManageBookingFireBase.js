@@ -1,8 +1,40 @@
 import * as firebase from "firebase";
 import { database, role } from "./FireBaseConfig.js";
+import moment from "moment";
+
+function orderBySubKey( input, key ) {
+  return Object.values( input ).map( value => value ).sort((a, b) => a - b);
+}
+//moment(b).format("hh:mm A") - moment(a).format("hh:mm A")
+
+function compareDate(a, b) {
+  const first = moment(a.bookDate, "DD-MMM-YY").format();
+  const second = moment(b.bookDate, "DD-MMM-YY").format();
+
+  let comparison = 0;
+  if (first > second) {
+    comparison = 1;
+  } else if (first < second) {
+    comparison = -1;
+  }
+  return comparison;
+}
+
+function compareTime(a, b) {//invalid date probs zzzz
+  const first = moment(a.startTime, 'hh:mm A').format();
+  const second = moment(b.startTime, 'hh:mm A').format();
+
+  let comparison = 0;
+  if (first > second) {
+    comparison = 1;
+  } else if (first < second) {
+    comparison = -1;
+  }
+  return comparison;
+}
+
 
 const ManageBookingFB = {
-
   getUserBookings: function (id, status, week, day) {
     return database.ref(`modules`)
       .once("value")
@@ -22,13 +54,14 @@ const ManageBookingFB = {
                 var startTime = individualBookings["startTime"];
                 var remarks = individualBookings["remarks"];
                 //var bookTime = individualBookings[bookTime] //for sorting later on base on priority queue
-                allUserBookings.push({module: modules, bookDate: bookDate, startTime: startTime, ta: ta, remarks: remarks});
+                allUserBookings.push({module: mod, bookDate: bookDate, startTime: startTime, ta: ta, remarks: remarks});
               }
             }
           }
         }
-      });
-      return allUserBookings;
+
+        return allUserBookings.sort(compareDate).sort(compareTime);;
+      })
   }
 };
 
