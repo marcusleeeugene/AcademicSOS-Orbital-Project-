@@ -5,6 +5,7 @@ import { AppLoading } from "expo";
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen";
 import BreadCrumb from "../components/BreadCrumb";
 import Modal from "react-native-modal";
+import ManageBookingFB from "../firebase/ManageBookingFireBase.js";
 
 export default function ManageBookingScreen({ route, navigation }) {
   let [fontsLoaded] = useFonts({

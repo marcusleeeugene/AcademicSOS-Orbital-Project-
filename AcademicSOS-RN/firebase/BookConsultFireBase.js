@@ -40,10 +40,11 @@ const BookConsultFB = {
           //Loop through Students & Professor branch
           for (var id in obj[role]) {
             //Loop through each user
-            if (modCode in obj[role][id]["modules"]) {
+            var mod = obj[role][id]["modules"]
+            if (modCode in mod) {
               //If user is taking the module
-              var tc = obj[role][id]["modules"][modCode]["tutorialClass"];
-              var modRole = obj[role][id]["modules"][modCode]["role"];
+              var tc = mod[modCode]["tutorialClass"];
+              var modRole = mod[modCode]["role"];
               if (tc === tutorialClass && modRole != "Student") {
                 //And user is in the tutorial class and is TA/Prof
                 var name = obj[role][id]["name"];
@@ -56,7 +57,5 @@ const BookConsultFB = {
       });
   },
 };
-
-console.log(BookConsultFB.getTutorialClass("e0415870", "CS1101S"));
 
 export default BookConsultFB;

@@ -24,7 +24,7 @@ export default function SelectModuleScreen({ route, navigation }) {
   useEffect(() => {
     var tempModules = [];
     const colourCodes = ["#90CAF9", "#FFF59D", "#A5D6A7", "#FFAB91", "#B39DDB", "#80CBC4", "#c5e1a5", "#fff59d", "#ffcc80", "#bcaaa4"];
-    SelectModuleFB.loadUserModules(userID).then((data) => {
+    SelectModuleFB.loadUserModules(userID, secondScreen).then((data) => {
       for (var i = 0; i < data.length; i++) {
         tempModules.push({ name: data[i], code: colourCodes[i] });
       }
