@@ -2,11 +2,6 @@ import * as firebase from "firebase";
 import { database, role } from "./FireBaseConfig.js";
 import moment from "moment";
 
-function orderBySubKey( input, key ) {
-  return Object.values( input ).map( value => value ).sort((a, b) => a - b);
-}
-//moment(b).format("hh:mm A") - moment(a).format("hh:mm A")
-
 function compareDate(a, b) {
   const first = moment(a.bookDate, "DD-MMM-YY").format();
   const second = moment(b.bookDate, "DD-MMM-YY").format();
@@ -20,7 +15,7 @@ function compareDate(a, b) {
   return comparison;
 }
 
-function compareTime(a, b) {//invalid date probs zzzz
+function compareTime(a, b) {
   const first = moment(a.startTime, 'hh:mm A').format();
   const second = moment(b.startTime, 'hh:mm A').format();
 
@@ -32,7 +27,6 @@ function compareTime(a, b) {//invalid date probs zzzz
   }
   return comparison;
 }
-
 
 const ManageBookingFB = {
   getUserBookings: function (id, status, week, day) {
@@ -59,12 +53,11 @@ const ManageBookingFB = {
             }
           }
         }
-
-        return allUserBookings.sort(compareDate).sort(compareTime);;
+        return allUserBookings.sort(compareDate).sort(compareTime);
+      }).then((data) => {
+          return data//.filter(status); //do filter here
       })
   }
 };
 
 export default ManageBookingFB;
-
-ManageBookingFB.getUserBookings("e0415870", 'All Status', 'All Weeks', 'All Days');

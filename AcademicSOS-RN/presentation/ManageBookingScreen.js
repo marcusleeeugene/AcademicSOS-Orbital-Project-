@@ -5,7 +5,6 @@ import { AppLoading } from "expo";
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen";
 import BreadCrumb from "../components/BreadCrumb";
 import Modal from "react-native-modal";
-import moment from "moment";
 import ManageBookingFB from "../firebase/ManageBookingFireBase.js";
 
 export default function ManageBookingScreen({ route, navigation }) {
@@ -53,23 +52,23 @@ export default function ManageBookingScreen({ route, navigation }) {
     toggleModal(type);
   };
 
-  // useEffect(() => {
-  //   var tempConsultations = [];
-  //   const colourCodes = ["#90CAF9", "#FFF59D", "#A5D6A7", "#FFAB91", "#B39DDB", "#80CBC4", "#c5e1a5", "#fff59d", "#ffcc80", "#bcaaa4"];
-  //   ManageBookingFB.getUserBookings(userID, 'All Status', 'All Weeks', 'All Days').then((data)=> {
-  //     for (var i = 0; i < data.length; i++) {
-  //       tempConsultations.push({module: data[i].module, bookDate: data[i].bookDate, startTime: data[i].startTime, ta: data[i].ta, remarks: data[i].remarks, color: colourCodes[i]});
-  //     }
-  //     setConsultations(tempConsultations);
-  //   });
-  // }, []);
+  useEffect(() => {
+    var tempConsultations = [];
+    const colourCodes = ["#90CAF9", "#FFF59D", "#A5D6A7", "#FFAB91", "#B39DDB", "#80CBC4", "#c5e1a5", "#fff59d", "#ffcc80", "#bcaaa4"];
+    ManageBookingFB.getUserBookings(userID, status, week, day).then((data)=> {
+      for (var i = 0; i < data.length; i++) {
+        tempConsultations.push({module: data[i].module, bookDate: data[i].bookDate, startTime: data[i].startTime, ta: data[i].ta, remarks: data[i].remarks, color: colourCodes[i]});
+      }
+      setConsultations(tempConsultations);
+    })
+  }, [status, week, day]);
 
   const statusJSX = (
     <Modal isVisible={isStatusModalVisible} onBackdropPress={() => setStatusModalVisible(false)}>
       <View style={styles.modalView}>
         <Text style={styles.modalTitle}> Status: </Text>
-        <TouchableOpacity style={styles.modalBtn} onPress={() => updateModalChoice("Status#All Types")}>
-          <Text style={styles.modalBtnText}> All Types </Text>
+        <TouchableOpacity style={styles.modalBtn} onPress={() => updateModalChoice("Status#All Status")}>
+          <Text style={styles.modalBtnText}> All Status </Text>
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.modalBtn} onPress={() => updateModalChoice("Status#Confirmed")}>
@@ -84,6 +83,7 @@ export default function ManageBookingScreen({ route, navigation }) {
   );
 
   const weeks = [
+    { key: "All Weeks" },
     { key: "Week 1" },
     { key: "Week 2" },
     { key: "Week 3" },
@@ -117,7 +117,7 @@ export default function ManageBookingScreen({ route, navigation }) {
     </Modal>
   );
 
-  const days = [{ key: "Monday" }, { key: "Tuesday" }, { key: "Wednesday" }, { key: "Thursday" }, { key: "Friday" }, { key: "Saturday" }, { key: "Sunday" }];
+  const days = [{key: "All Days"}, { key: "Monday" }, { key: "Tuesday" }, { key: "Wednesday" }, { key: "Thursday" }, { key: "Friday" }, { key: "Saturday" }, { key: "Sunday" }];
   const dayJSX = (
     <Modal isVisible={isDayModalVisible} onBackdropPress={() => setDayModalVisible(false)}>
       <View style={styles.modalView}>
@@ -182,12 +182,13 @@ export default function ManageBookingScreen({ route, navigation }) {
           {statusJSX}
           {weekJSX}
           {dayJSX}
+          <ScrollView style={styles.moduleView}>{consultationsJSX}</ScrollView>
         </View>
       </View>
     );
   }
 }
-//<ScrollView style={styles.moduleView}>{consultationsJSX}</ScrollView> //line 184
+
 const styles = StyleSheet.create({
   body: {
     height: hp("100%"),
