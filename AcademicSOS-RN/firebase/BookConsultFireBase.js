@@ -2,17 +2,18 @@ import * as firebase from "firebase";
 import { database, role } from "./FireBaseConfig.js";
 
 const BookConsultFB = {
-  addBooking: function (creator, modCode, ta, date, startTime, endTime, location, participants, remarks, status, bookDate, bookTime) {
+  addBooking: function (creator, modCode, ta, date, startTime, endTime, location, participants, agenda, status, bookDate, bookTime) {
     database.ref(`modules/${modCode}/bookings`).push({
       creator: creator,
       ta: ta,
-      date: date,
-      startTime: startTime,
-      endTime: endTime,
+      consultDate: date,
+      consultStartTime: startTime,
+      consultEndTime: endTime,
       location: location,
       participants: participants,
-      remarks: remarks,
-      status: status,
+      agenda: agenda,
+      consultStatus: status,
+      type: "private",
       //Date and time of booking made
       bookDate: bookDate,
       bookTime: bookTime,

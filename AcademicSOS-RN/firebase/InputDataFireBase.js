@@ -23,6 +23,11 @@ const InputDataFB = {
       name: modName,
     });
   },
+  addAcadYear: function (yearRange) {
+    database.ref(`modules/`).update({
+      acadYear: yearRange,
+    });
+  },
   addModuleUnderStudent: function (id, modCode, modName, role, tutorialClass, priorityPoint) {
     database.ref(`users/students/${id}/modules/${modCode}`).update({
       name: modName,
@@ -73,6 +78,11 @@ InputDataFB.addModule("GEQ1917", "GE: Environment and Sustainability");
 InputDataFB.addModule("MA1521", "Calculus for Computing");
 InputDataFB.addModule("CS2030", "Programming Methodology II");
 InputDataFB.addModule("GER1000", "Quantitative Reasoning: Asking Questions");
+
+//===================================
+//ADD ACADEMIC YEAR
+//===================================
+InputDataFB.addAcadYear("2019-2020");
 
 //Add modules under Student
 InputDataFB.addModuleUnderStudent("e0415870", "CS1231S", "Discrete Structures", "Student", "T12", 100);

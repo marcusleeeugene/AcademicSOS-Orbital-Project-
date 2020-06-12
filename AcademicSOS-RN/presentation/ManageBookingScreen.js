@@ -28,6 +28,7 @@ export default function ManageBookingScreen({ route, navigation }) {
   const [day, setDay] = useState("All Days");
 
   const [consultations, setConsultations] = useState([]);
+  const [weekList, setWeekList] = useState([]);
 
   const toggleModal = (type) => {
     if (type === "Status") {
@@ -53,13 +54,23 @@ export default function ManageBookingScreen({ route, navigation }) {
   };
 
   useEffect(() => {
+    //Generate list of consultation bookings
     var tempConsultations = [];
     const colourCodes = ["#90CAF9", "#FFF59D", "#A5D6A7", "#FFAB91", "#B39DDB", "#80CBC4", "#c5e1a5", "#fff59d", "#ffcc80", "#bcaaa4"];
     ManageBookingFB.getUserBookings(userID, status, week, day).then((data)=> {
       for (var i = 0; i < data.length; i++) {
-        tempConsultations.push({module: data[i].module, bookDate: data[i].bookDate, startTime: data[i].startTime, ta: data[i].ta, remarks: data[i].remarks, color: colourCodes[i]});
+        tempConsultations.push({module: data[i].module, ta: data[i].ta, type: data[i].type, location: data[i].location, consultDate: data[i].consultDate, consultStartTime: data[i].consultStartTime, consultEndTime: data[i].consultEndTime, agenda: data[i].agenda, participants: data[i].participants, consultStatus: data[i].consultStatus, color: colourCodes[i]});
       }
       setConsultations(tempConsultations);
+    })
+    //Generate list of academic weeks
+    var tempWeeks = [];
+    ManageBookingFB.getNumWeeks().then((data) => {
+      tempWeeks.push({week: 'All Weeks'});
+      for (var i = 0; i < data; i++) {
+        tempWeeks.push({week: `Week ${i}`});
+      }
+      setWeekList(tempWeeks);
     })
   }, [status, week, day]);
 
@@ -82,34 +93,14 @@ export default function ManageBookingScreen({ route, navigation }) {
     </Modal>
   );
 
-  const weeks = [
-    { key: "All Weeks" },
-    { key: "Week 1" },
-    { key: "Week 2" },
-    { key: "Week 3" },
-    { key: "Week 4" },
-    { key: "Week 5" },
-    { key: "Week 6" },
-    { key: "Reading 1" },
-    { key: "Week 7" },
-    { key: "Week 8" },
-    { key: "Week 9" },
-    { key: "Week 10" },
-    { key: "Week 11" },
-    { key: "Week 12" },
-    { key: "Week 13" },
-    { key: "Reading 2" },
-    { key: "Exam 1" },
-    { key: "Exam 2" },
-  ];
   const weekJSX = (
     <Modal isVisible={isWeekModalVisible} onBackdropPress={() => setWeekModalVisible(false)}>
       <View style={styles.modalView}>
         <Text style={styles.modalTitle}> Week: </Text>
         <ScrollView>
-          {weeks.map((item) => (
-            <TouchableOpacity key={item.key} style={styles.modalBtn} onPress={() => updateModalChoice("Week#" + item.key)}>
-              <Text style={styles.modalBtnText}> {item.key} </Text>
+          {weekList.map((item) => (
+            <TouchableOpacity key={item.key} style={styles.modalBtn} onPress={() => updateModalChoice("Week#" + item.week)}>
+              <Text style={styles.modalBtnText}> {item.week} </Text>
             </TouchableOpacity>
           ))}
         </ScrollView>
@@ -138,13 +129,19 @@ export default function ManageBookingScreen({ route, navigation }) {
       {consultations.map((item, index) => (
         <View key={"consultation" + index} style={styles.moduleRow}>
           <View style={styles.dateTime}>
-            <Text style={styles.dateTime_Text}> {item.bookDate} </Text>
-            <Text style={styles.dateTime_Text}> {item.startTime} </Text>
+            <Text style={styles.dateTime_Text}> {item.consultDate} </Text>
+            <Text style={styles.dateTime_Text}> {item.consultStartTime} </Text>
           </View>
           <TouchableOpacity style={[styles.moduleContainer, { backgroundColor: item.color }]}>
-            <Text style={styles.consultationInfoMod}> {item.module} </Text>
+            <Text style={styles.consultationInfoMod}>
+              {item.module}
+              {item.consultStatus === "Pending" ? ( //Show notification only if status is pending
+                <Image style={styles.notification} source={require("../assets/images/notification.png")} />
+              ) : null}
+            </Text>
             <Text style={styles.consultationInfo}> TA: {item.ta} </Text>
-            <Text style={styles.consultationInfo}> Remarks: {item.remarks} </Text>
+            <Text style={styles.consultationInfo}> Status: {item.consultStatus} </Text>
+            <Text style={styles.consultationInfo} numberOfLines={1}> Agenda: {item.agenda} </Text>
           </TouchableOpacity>
         </View>
       ))}
@@ -237,12 +234,13 @@ const styles = StyleSheet.create({
   moduleContainer: {
     borderRadius: hp("1.1%"),
     height: hp("10%"),
-    width: wp("100%"),
+    width: wp("70%"),
     backgroundColor: "#FFFFFF",
     marginBottom: "3%",
   },
   dateTime: {
     flexDirection: "column",
+    width: wp('33%'),
     marginTop: "3%",
   },
   dateTime_Text: {
@@ -255,10 +253,18 @@ const styles = StyleSheet.create({
   consultationInfoMod: {
     fontSize: hp("2%"),
     fontFamily: "Righteous-Regular",
+    paddingHorizontal: wp("2%"),
   },
   consultationInfo: {
     fontSize: hp("1.5%"),
     fontFamily: "Righteous-Regular",
+  },
+  notification: {
+    height: hp("2%"),
+    width: wp("7.5%"),
+    resizeMode: "contain",
+    alignItems: "center",
+    paddingHorizontal: wp("5%"),
   },
   modalView: {
     backgroundColor: "#CFD8DC",

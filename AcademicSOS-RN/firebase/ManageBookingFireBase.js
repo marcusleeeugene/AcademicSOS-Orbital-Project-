@@ -2,9 +2,9 @@ import * as firebase from "firebase";
 import { database, role } from "./FireBaseConfig.js";
 import moment from "moment";
 
-function compareDate(a, b) {
-  const first = moment(a.bookDate, "DD-MMM-YY").format();
-  const second = moment(b.bookDate, "DD-MMM-YY").format();
+function compareDateTime(a, b) {
+  const first = moment(a.date, "DD-MMM-YY hh:mm A").format();
+  const second = moment(b.date, "DD-MMM-YY hh:mm A").format();
 
   let comparison = 0;
   if (first > second) {
@@ -15,17 +15,20 @@ function compareDate(a, b) {
   return comparison;
 }
 
-function compareTime(a, b) {
-  const first = moment(a.startTime, 'hh:mm A').format();
-  const second = moment(b.startTime, 'hh:mm A').format();
-
-  let comparison = 0;
-  if (first > second) {
-    comparison = 1;
-  } else if (first < second) {
-    comparison = -1;
-  }
-  return comparison;
+function WeekRange() { // get acad year base on real time later on.
+  return fetch('https://api.nusmods.com/v2/2019-2020/modules/CS2040.json')
+    .then((result) => result.json())
+    .then((data) => {
+      var semData = data['semesterData'];
+      var weekRange;
+      for (var sem in semData) {
+        if ("start" in semData[sem]['timetable'][0]['weeks']) {
+          weekRange = semData[sem]['timetable'][0]['weeks']
+          break;
+        }
+      }
+      return weekRange;
+    });
 }
 
 const ManageBookingFB = {
@@ -35,8 +38,8 @@ const ManageBookingFB = {
       .then((snapshot) => snapshot.val())
       .then((obj) => {
         var allUserBookings = [];
-        for (var mod in obj) {
-          var modules = obj[mod];
+        for (var modCode in obj) {
+          var modules = obj[modCode];
           var bookings = modules["bookings"];
           if (bookings != undefined) {
             for (var userBookings in bookings) {
@@ -44,19 +47,36 @@ const ManageBookingFB = {
               var creator = individualBookings["creator"];
               var ta = individualBookings["ta"];
               if (creator === id || ta === id || (id in individualBookings["ta"])) {
-                var bookDate = individualBookings["bookDate"];
-                var startTime = individualBookings["startTime"];
-                var remarks = individualBookings["remarks"];
                 //var bookTime = individualBookings[bookTime] //for sorting later on base on priority queue
-                allUserBookings.push({module: mod, bookDate: bookDate, startTime: startTime, ta: ta, remarks: remarks});
+                var type = individualBookings["type"];
+                var location = individualBookings["location"];
+                var consultDate = individualBookings["consultDate"];
+                var consultStartTime = individualBookings["consultStartTime"];
+                var consultEndTime = individualBookings["consultEndTime"];
+                var agenda = individualBookings["agenda"];
+                var studentsInvolved = individualBookings["participants"];
+                var consultStatus = individualBookings["consultStatus"];
+                allUserBookings.push({module: modCode, ta: ta, type: type, location: location, consultDate: consultDate, consultStartTime: consultStartTime, consultEndTime: consultEndTime, agenda: agenda, participants: studentsInvolved, consultStatus: consultStatus});
               }
             }
           }
         }
-        return allUserBookings.sort(compareDate).sort(compareTime);
+        return allUserBookings.sort(compareDateTime);
       }).then((data) => {
-          return data//.filter(status); //do filter here
+          return data.filter(rsl => //Filter by status
+              rsl.status === status || status === "All Status"
+            ).filter(rsl => { //Filter by day
+              var bookDay = moment(rsl.date).format('dddd');
+              return bookDay === day || day === "All Days";
+            });
       })
+  },
+  getNumWeeks: function() {
+    return WeekRange().then((date) => {
+      var start = moment(date['start']);
+      var end = moment(date['end']);
+      return end.diff(start, 'weeks');
+    });
   }
 };
 
