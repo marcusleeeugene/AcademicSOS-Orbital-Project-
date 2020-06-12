@@ -59,7 +59,7 @@ export default function ManageBookingScreen({ route, navigation }) {
     const colourCodes = ["#90CAF9", "#FFF59D", "#A5D6A7", "#FFAB91", "#B39DDB", "#80CBC4", "#c5e1a5", "#fff59d", "#ffcc80", "#bcaaa4"];
     ManageBookingFB.getUserBookings(userID, status, week, day).then((data)=> {
       for (var i = 0; i < data.length; i++) {
-        tempConsultations.push({module: data[i].module, ta: data[i].ta, type: data[i].type, location: data[i].location, consultDate: data[i].consultDate, consultStartTime: data[i].consultStartTime, consultEndTime: data[i].consultEndTime, agenda: data[i].agenda, participants: data[i].participants, consultStatus: data[i].consultStatus, color: colourCodes[i]});
+        tempConsultations.push({bookingId: data[i].bookingId, module: data[i].module, ta: data[i].ta, type: data[i].type, location: data[i].location, consultDate: data[i].consultDate, consultStartTime: data[i].consultStartTime, consultEndTime: data[i].consultEndTime, agenda: data[i].agenda, participants: data[i].participants, consultStatus: data[i].consultStatus, color: colourCodes[i]});
       }
       setConsultations(tempConsultations);
     })

@@ -38,25 +38,26 @@ const ManageBookingFB = {
       .then((snapshot) => snapshot.val())
       .then((obj) => {
         var allUserBookings = [];
-        for (var modCode in obj) {
+        for (var modCode in obj) { //Loop through each module
           var modules = obj[modCode];
           var bookings = modules["bookings"];
           if (bookings != undefined) {
-            for (var userBookings in bookings) {
+            for (var userBookings in bookings) { //Loop through each booking
               var individualBookings = bookings[userBookings]
               var creator = individualBookings["creator"];
               var ta = individualBookings["ta"];
-              if (creator === id || ta === id || (id in individualBookings["ta"])) {
+              var studentsInvolved = individualBookings["participants"];
+              if (creator === id || ta === id || (id in studentsInvolved)) { //Check if user is involved in the consultation
                 //var bookTime = individualBookings[bookTime] //for sorting later on base on priority queue
+                var bookingId = Object.keys(bookings)[0];
                 var type = individualBookings["type"];
                 var location = individualBookings["location"];
                 var consultDate = individualBookings["consultDate"];
                 var consultStartTime = individualBookings["consultStartTime"];
                 var consultEndTime = individualBookings["consultEndTime"];
                 var agenda = individualBookings["agenda"];
-                var studentsInvolved = individualBookings["participants"];
                 var consultStatus = individualBookings["consultStatus"];
-                allUserBookings.push({module: modCode, ta: ta, type: type, location: location, consultDate: consultDate, consultStartTime: consultStartTime, consultEndTime: consultEndTime, agenda: agenda, participants: studentsInvolved, consultStatus: consultStatus});
+                allUserBookings.push({bookingId: bookingId, module: modCode, ta: ta, type: type, location: location, consultDate: consultDate, consultStartTime: consultStartTime, consultEndTime: consultEndTime, agenda: agenda, participants: studentsInvolved, consultStatus: consultStatus});
               }
             }
           }
