@@ -16,7 +16,7 @@ export default function CreateConsultScreen({ route, navigation }) {
     "Righteous-Regular": require("../assets/fonts/Righteous-Regular.ttf"),
   });
 
-  const { firstScreen, secondScreen, thirdScreen, userID, moduleCode } = route.params;
+  const { firstScreen, secondScreen, thirdScreen, userID, moduleCode, studentsInvolved, finalisedConsultType } = route.params;
 
   const navHistory = [
     { dest: firstScreen, alt_dest: "" },
@@ -31,7 +31,7 @@ export default function CreateConsultScreen({ route, navigation }) {
   const [consultType, setConsultType] = useState("");
   const [location, setLocation] = useState("");
   const [remarks, setRemarks] = useState("");
-  const [participants, setParticipants] = useState([]);
+  const [participants, setParticipants] = useState("");
 
   const updateDate = (date) => {
     setDate(date);
@@ -86,7 +86,13 @@ export default function CreateConsultScreen({ route, navigation }) {
           loadedStudent.push({ id: data[i]["id"], name: data[i]["name"] });
         }
       });
-    setParticipants(loadedStudent);
+    if (studentsInvolved != null) {
+      setParticipants(studentsInvolved);
+      setSize(studentsInvolved.length);
+      setConsultType("Private");
+    } else {
+      setParticipants(loadedStudent);
+    }
   }, []);
 
   const locationJSX = (
@@ -103,16 +109,25 @@ export default function CreateConsultScreen({ route, navigation }) {
 
   const typeJSX = (
     <View>
-      <Text style={styles.itemName}> Type:</Text>
       <View style={styles.typeContainer}>
-        <RadioButton type={type} parentCallback={updateConsultType} />
+        {finalisedConsultType == null ? (
+          <View>
+            <Text style={styles.itemName}> Type:</Text>
+            <RadioButton type={type} parentCallback={updateConsultType} />
+          </View>
+        ) : null}
       </View>
-      {consultType === "Private" ? (
+      {consultType === "Private" && studentsInvolved == null ? (
         <View>
           <Text style={styles.itemName}>{"Students involved:"}</Text>
           <View style={styles.textInput}>
-            <TextInput style={styles.textBox} underlineColorAndroid="transparent" maxLength={20} numberofLines={5} editable={false} placeholder="Select students" />
-            <TouchableOpacity style={styles.button} onPress={() => setModalVisible(!isModalVisible)}>
+            <TextInput style={styles.textBox} underlineColorAndroid="transparent" maxLength={20} numberofLines={5} editable={false} placeholder={"Select students"} />
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => {
+                setModalVisible(!isModalVisible);
+              }}
+            >
               <Image source={require("../assets/images/student.png")} style={styles.imageStyle} />
             </TouchableOpacity>
           </View>
