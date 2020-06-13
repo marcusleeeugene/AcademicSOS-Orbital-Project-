@@ -2,21 +2,37 @@ import * as firebase from "firebase";
 import { database, role } from "./FireBaseConfig.js";
 import moment from "moment";
 
-function compareDateTime(a, b) {
-  const first = moment(a.date, "DD-MMM-YY hh:mm A").format();
-  const second = moment(b.date, "DD-MMM-YY hh:mm A").format();
+function compareDate(a, b) {
+  const firstDate = moment(a.consultDate, "DD-MMM-YY hh:mm A").format();
+  const secondDate = moment(b.consultDate, "DD-MMM-YY hh:mm A").format();
+
+  const firstTime = moment(a.consultStartTime, "hh:mm A").format();
+  const secondTime = moment(b.consultStartTime, "hh:mm A").format();
 
   let comparison = 0;
-  if (first > second) {
+  if (firstDate > secondDate) {
     comparison = 1;
-  } else if (first < second) {
+  } else if (firstDate < secondDate) {
     comparison = -1;
   }
   return comparison;
 }
 
-function WeekRange() { // get acad year base on real time later on.
-  return fetch('https://api.nusmods.com/v2/2019-2020/modules/CS2040.json')
+function compareTime(a, b) {
+  const firstTime = moment(a.consultStartTime, "hh:mm A").format();
+  const secondTime = moment(b.consultStartTime, "hh:mm A").format();
+
+  let comparison = 0;
+  if (firstTime > secondTime) {
+    comparison = 1;
+  } else if (firstTime < secondTime) {
+    comparison = -1;
+  }
+  return comparison;
+}
+
+function WeekRange() { //get a promise for week range within acad year based on real time later on.
+  return fetch('https://api.nusmods.com/v2/2019-2020/modules/CS2040.json') //This part, to be made dynamic in future
     .then((result) => result.json())
     .then((data) => {
       var semData = data['semesterData'];
@@ -57,22 +73,28 @@ const ManageBookingFB = {
                 var consultEndTime = individualBookings["consultEndTime"];
                 var agenda = individualBookings["agenda"];
                 var consultStatus = individualBookings["consultStatus"];
-                allUserBookings.push({bookingId: bookingId, module: modCode, ta: ta, type: type, location: location, consultDate: consultDate, consultStartTime: consultStartTime, consultEndTime: consultEndTime, agenda: agenda, participants: studentsInvolved, consultStatus: consultStatus});
+                var weekRange = individualBookings["weekRange"];
+                allUserBookings.push({bookingId: bookingId, module: modCode, ta: ta, type: type, location: location, consultDate: consultDate, consultStartTime: consultStartTime, consultEndTime: consultEndTime, agenda: agenda, participants: studentsInvolved, consultStatus: consultStatus, weekRange});
               }
             }
           }
         }
-        return allUserBookings.sort(compareDateTime);
+        return allUserBookings.sort(compareDate).sort(compareTime);
       }).then((data) => {
-          return data.filter(rsl => //Filter by status
-              rsl.status === status || status === "All Status"
-            ).filter(rsl => { //Filter by day
-              var bookDay = moment(rsl.date).format('dddd');
-              return bookDay === day || day === "All Days";
-            });
+        return data.filter(rsl => //Filter by status
+            rsl.consultStatus === status || status === "All Status"
+          ).filter(rsl => { //Filter by week
+            var selectedWeek = week.split(" ")[1];
+            var startingWeek = moment(rsl.weekRange["start"]);
+            var selectedDate = moment(rsl.consultDate);
+            return selectedWeek == selectedDate.diff(startingWeek, 'weeks') || selectedWeek === "Weeks";
+          }).filter(rsl => { //Filter by day
+            var bookDay = moment(rsl.date).format('dddd');
+            return bookDay === day || day === "All Days";
+          });
       })
   },
-  getNumWeeks: function() {
+  getNumWeeks: function() { //returns a promise for the number of weeks of current academic semester
     return WeekRange().then((date) => {
       var start = moment(date['start']);
       var end = moment(date['end']);

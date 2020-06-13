@@ -1,8 +1,39 @@
 import * as firebase from "firebase";
 import { database, role } from "./FireBaseConfig.js";
 
+function WeekRange() { //get a promise for week range within acad year based on real time later on.
+  return fetch('https://api.nusmods.com/v2/2019-2020/modules/CS2040.json') //This part, to be made dynamic in future
+    .then((result) => result.json())
+    .then((data) => {
+      var semData = data['semesterData'];
+      var weekRange;
+      for (var sem in semData) {
+        if ("start" in semData[sem]['timetable'][0]['weeks']) {
+          weekRange = semData[sem]['timetable'][0]['weeks']
+          break;
+        }
+      }
+      return weekRange;
+    });
+}
+
 const BookConsultFB = {
-  addBooking: function (creator, modCode, ta, date, startTime, endTime, location, participants, agenda, status, bookDate, bookTime) {
+  getWeekRange: function() {
+    return fetch('https://api.nusmods.com/v2/2019-2020/modules/CS2040.json') //This part, to be made dynamic in future
+      .then((result) => result.json())
+      .then((data) => {
+        var semData = data['semesterData'];
+        var weekRange;
+        for (var sem in semData) {
+          if ("start" in semData[sem]['timetable'][0]['weeks']) {
+            weekRange = semData[sem]['timetable'][0]['weeks']
+            break;
+          }
+        }
+        return weekRange;
+      });
+  },
+  addBooking: function (creator, modCode, ta, date, startTime, endTime, location, participants, agenda, status, bookDate, bookTime, weekRange) {
     database.ref(`modules/${modCode}/bookings`).push({
       creator: creator,
       ta: ta,
@@ -17,6 +48,7 @@ const BookConsultFB = {
       //Date and time of booking made
       bookDate: bookDate,
       bookTime: bookTime,
+      weekRange: weekRange
     });
   },
   getTutorialClass: function (id, modCode) {
