@@ -8,7 +8,6 @@ import BookConsultScreen from "../presentation/BookConsultScreen.js";
 import PublicConsultScreen from "../presentation/PublicConsultScreen.js";
 import ManageBookingScreen from "../presentation/ManageBookingScreen.js";
 import CreateConsultScreen from "../presentation/CreateConsultScreen.js";
-import ConsultDetailScreen from "../presentation/ConsultDetailScreen.js";
 import SelectModuleScreen from "../presentation/SelectModuleScreen.js";
 import BreadCrumb from "../components/BreadCrumb";
 import PendingScreen from "../presentation/PendingScreen.js";
@@ -68,7 +67,6 @@ export default function Navigation() {
         <Stack.Screen name="Priority Points" component={PriorityPointScreen} />
         <Stack.Screen name="Manage Bookings" component={ManageBookingScreen} />
         <Stack.Screen name="Create Consultation" component={CreateConsultScreen} />
-        <Stack.Screen name="Consult Details" component={ConsultDetailScreen} />
         <Stack.Screen name="Pending" component={PendingScreen} />
       </Stack.Navigator>
     </NavigationContainer>

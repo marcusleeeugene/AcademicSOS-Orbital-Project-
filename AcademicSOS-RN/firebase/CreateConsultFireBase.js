@@ -2,7 +2,7 @@ import * as firebase from "firebase";
 import { database, role } from "./FireBaseConfig.js";
 
 const CreateConsultFB = {
-  addPublicBooking: function (creator, modCode, date, startTime, endTime, location, consultType, size, remarks, status, bookDate, bookTime) {
+  addPublicBooking: function (creator, modCode, date, startTime, endTime, location, consultType, size, agenda, status, bookDate, bookTime) {
     database.ref(`modules/${modCode}/bookings`).push({
       creator: creator,
       date: date,
@@ -11,14 +11,14 @@ const CreateConsultFB = {
       location: location,
       consultType: consultType,
       size: size,
-      remarks: remarks,
+      agenda: agenda,
       status: status,
       bookDate: bookDate,
       bookTime: bookTime,
     });
   },
 
-  addPrivateBooking: function (creator, modCode, date, startTime, endTime, location, consultType, participants, size, remarks, status, bookDate, bookTime) {
+  addPrivateBooking: function (creator, modCode, date, startTime, endTime, location, consultType, participants, size, agenda, status, bookDate, bookTime) {
     database.ref(`modules/${modCode}/bookings`).push({
       creator: creator,
       date: date,
@@ -26,9 +26,9 @@ const CreateConsultFB = {
       endTime: endTime,
       location: location,
       consultType: consultType,
-      participants,
+      participants: participants,
       size: size,
-      remarks: remarks,
+      agenda: agenda,
       status: status,
       bookDate: bookDate,
       bookTime: bookTime,

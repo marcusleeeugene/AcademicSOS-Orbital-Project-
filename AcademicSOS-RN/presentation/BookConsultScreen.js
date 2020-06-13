@@ -33,7 +33,7 @@ export default function BookConsultScreen({ route, navigation }) {
   const [endTime, setEndTime] = useState("");
   const [location, setLocation] = useState("");
   const [participants, setParticipants] = useState("");
-  const [remarks, setRemarks] = useState("");
+  const [agenda, setAgenda] = useState("");
 
   const updateDate = (date) => {
     setDate(date);
@@ -63,7 +63,7 @@ export default function BookConsultScreen({ route, navigation }) {
 
   const bookConsultation = () => {
     BookConsultFB.getWeekRange().then((weekRange) => {
-      BookConsultFB.addBooking(userID, moduleCode, { id: chosenTutorID, name: chosenTutor }, date, startTime, endTime, location, participants, remarks, "Pending", currentDate, currentTime, weekRange);
+      BookConsultFB.addBooking(userID, moduleCode, { id: chosenTutorID, name: chosenTutor }, date, startTime, endTime, location, participants, agenda, "Pending", currentDate, currentTime, weekRange);
     });
 
     alert("Successfully booked! Pls check your booking in Manage Bookings!");
@@ -208,7 +208,7 @@ export default function BookConsultScreen({ route, navigation }) {
         </View>
         {locationJSX}
         {participantJSX}
-        <Text style={styles.itemName}> Remarks:</Text>
+        <Text style={styles.itemName}> Agenda:</Text>
         <View>
           <TextInput
             multiline={true}
@@ -219,7 +219,7 @@ export default function BookConsultScreen({ route, navigation }) {
             onFocus={() => {
               setScrollHeight(200);
             }}
-            onChangeText={(text) => setRemarks(text)}
+            onChangeText={(text) => setAgenda(text)}
           />
         </View>
         <TouchableOpacity style={styles.bookBtn} onPress={() => bookConsultation()}>

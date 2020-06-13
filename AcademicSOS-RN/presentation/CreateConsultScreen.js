@@ -30,7 +30,7 @@ export default function CreateConsultScreen({ route, navigation }) {
   const [size, setSize] = useState("");
   const [consultType, setConsultType] = useState("");
   const [location, setLocation] = useState("");
-  const [remarks, setRemarks] = useState("");
+  const [agenda, setAgenda] = useState("");
   const [participants, setParticipants] = useState("");
 
   const updateDate = (date) => {
@@ -70,8 +70,8 @@ export default function CreateConsultScreen({ route, navigation }) {
 
   const createConsultation = () => {
     consultType == "Public"
-      ? CreateConsultFB.addPublicBooking(userID, moduleCode, date, startTime, endTime, location, consultType, size, remarks, "Pending", currentDate, currentTime)
-      : CreateConsultFB.addPrivateBooking(userID, moduleCode, date, startTime, endTime, location, consultType, participants, size, remarks, "Pending", currentDate, currentTime);
+      ? CreateConsultFB.addPublicBooking(userID, moduleCode, date, startTime, endTime, location, consultType, size, agenda, "Pending", currentDate, currentTime)
+      : CreateConsultFB.addPrivateBooking(userID, moduleCode, date, startTime, endTime, location, consultType, participants, size, agenda, "Pending", currentDate, currentTime);
     alert("Successfully booked! Pls check your booking in Manage Bookings!");
     navigation.navigate("Home");
   };
@@ -201,7 +201,7 @@ export default function CreateConsultScreen({ route, navigation }) {
             {typeJSX}
             {consultType == "Public" ? sizeJSX : null}
 
-            <Text style={styles.itemName}> Remarks:</Text>
+            <Text style={styles.itemName}> Agenda:</Text>
             <View>
               <TextInput
                 multiline={true}
@@ -210,8 +210,8 @@ export default function CreateConsultScreen({ route, navigation }) {
                 style={styles.remarkBox}
                 underlineColorAndroid="transparent"
                 onFocus={() => setScrollHeight(200)}
-                onChangeText={(text) => setRemarks(text)}
-                value={remarks}
+                onChangeText={(text) => setAgenda(text)}
+                value={agenda}
               />
             </View>
             <TouchableOpacity style={styles.createBtn} onPress={() => createConsultation()}>
