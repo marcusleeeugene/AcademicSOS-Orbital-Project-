@@ -25,6 +25,7 @@ function compareTime(a, b) {
   } else if (firstTime < secondTime) {
     comparison = -1;
   }
+  console.log(comparison);
   return comparison;
 }
 
@@ -107,7 +108,7 @@ const ManageBookingFB = {
             return selectedWeek == selectedDate.diff(startingWeek, "weeks") || selectedWeek === "Weeks";
           })
           .filter((rsl) => { //Filter by day
-            var bookDay = moment(rsl.consultDate).format("dddd");
+            var bookDay = moment(rsl.date).format("dddd");
             return bookDay === day || day === "All Days";
           });
       });
