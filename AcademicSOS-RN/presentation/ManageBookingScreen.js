@@ -154,7 +154,7 @@ export default function ManageBookingScreen({ route, navigation }) {
                 firstScreen: firstScreen,
                 userID: userID,
                 creator: item.creator,
-                bookingId: item.bookingId,
+                bookingId: item.bookingId[index],
                 module: item.module,
                 ta: item.ta,
                 type: item.type,
@@ -173,7 +173,7 @@ export default function ManageBookingScreen({ route, navigation }) {
                 <Image style={styles.notification} source={require("../assets/images/notification.png")} />
               ) : null}
             </Text>
-            <Text style={styles.consultationInfo}> TA: {item.ta} </Text>
+            <Text style={styles.consultationInfo}> TA: {item.ta["name"]} </Text>
             <Text style={styles.consultationInfo}> Status: {item.consultStatus} </Text>
             <Text style={styles.consultationInfo} numberOfLines={1}>
               {" "}

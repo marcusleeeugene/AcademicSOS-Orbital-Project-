@@ -26,6 +26,7 @@ export default function BookConsultScreen({ route, navigation }) {
   const [isTutorModalVisible, setTutorModalVisible] = useState(false);
   const [tutor, setTutor] = useState([]);
   const [chosenTutor, setTutorPicker] = useState("");
+  const [chosenTutorID, setTutorID] = useState("");
   const [extraScrollHeight, setScrollHeight] = useState(0);
   const [date, setDate] = useState("");
   const [startTime, setStartTime] = useState("");
@@ -46,8 +47,9 @@ export default function BookConsultScreen({ route, navigation }) {
     setEndTime(time);
   };
 
-  const updateTutorModalChoice = (data) => {
-    setTutorPicker(data);
+  const updateTutorModalChoice = (name, id) => {
+    setTutorPicker(name);
+    setTutorID(id);
     setTutorModalVisible(!isTutorModalVisible);
   };
 
@@ -60,8 +62,8 @@ export default function BookConsultScreen({ route, navigation }) {
   };
 
   const bookConsultation = () => {
-    BookConsultFB.getWeekRange().then((weekRange) =>{
-      BookConsultFB.addBooking(userID, moduleCode, chosenTutor, date, startTime, endTime, location, participants, remarks, "Pending", currentDate, currentTime, weekRange);
+    BookConsultFB.getWeekRange().then((weekRange) => {
+      BookConsultFB.addBooking(userID, moduleCode, { id: chosenTutorID, name: chosenTutor }, date, startTime, endTime, location, participants, remarks, "Pending", currentDate, currentTime, weekRange);
     });
 
     alert("Successfully booked! Pls check your booking in Manage Bookings!");
@@ -99,7 +101,7 @@ export default function BookConsultScreen({ route, navigation }) {
         <Text style={styles.modalTitle}>Teaching Assistant:</Text>
         <ScrollView>
           {tutor.map((item) => (
-            <TouchableOpacity key={item.id} style={styles.modalBtn} onPress={() => updateTutorModalChoice(item.name)}>
+            <TouchableOpacity key={item.id} style={styles.modalBtn} onPress={() => updateTutorModalChoice(item.name, item.id)}>
               <Text style={styles.modalBtnText}>{item.name}</Text>
             </TouchableOpacity>
           ))}

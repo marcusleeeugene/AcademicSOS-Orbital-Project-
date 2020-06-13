@@ -34,7 +34,7 @@ export default function PendingScreen({ route, navigation }) {
     PendingFB.acceptBooking(creator, bookingId, module, ta, type, location, consultDate, consultStartTime, consultEndTime, agenda, participants, "Confirmed");
     // PendingFB.addBooking(userID, moduleCode, chosenTutor, date, startTime, endTime, location, participants, remarks, "Pending", currentDate, currentTime);
     alert("Successfully updated booking status!");
-    navigation.navigate("Manage Bookings");
+    navigation.goBack();
   };
   // bookingId: data[i].bookingId,
   // module: data[i].module,
@@ -61,7 +61,7 @@ export default function PendingScreen({ route, navigation }) {
             <Image source={require("../assets/images/notification.png")} style={styles.imageStyle} />
           </View>
           <View style={styles.info}>
-            <Text style={styles.infoText}> TA: {ta}</Text>
+            <Text style={styles.infoText}> TA: {ta["name"]}</Text>
             <Text style={styles.infoText}> Type: {type}</Text>
             <Text style={styles.infoText}> Location: {location}</Text>
             <Text style={styles.infoText}>Date: {consultDate}</Text>

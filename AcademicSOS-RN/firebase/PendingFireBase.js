@@ -2,8 +2,8 @@ import * as firebase from "firebase";
 import { database, role } from "./FireBaseConfig.js";
 
 const PendingFB = {
-  acceptBooking(creator, bookingId, modCode, ta, type, location, consultDate, consultStartTime, consultEndTime, agenda, participants) {
-    database.ref(`modules/${modCode}/bookings`).child(bookingId).push({
+  acceptBooking(creator, bookingId, modCode, ta, type, location, consultDate, consultStartTime, consultEndTime, agenda, participants, status) {
+    database.ref(`modules/${modCode}/bookings`).child(bookingId).update({
       consultStatus: status,
       creator: creator,
       ta: ta,
