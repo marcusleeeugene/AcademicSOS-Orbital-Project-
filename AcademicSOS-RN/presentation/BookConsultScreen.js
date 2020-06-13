@@ -33,7 +33,7 @@ export default function BookConsultScreen({ route, navigation }) {
   const [endTime, setEndTime] = useState("");
   const [location, setLocation] = useState("");
   const [participants, setParticipants] = useState("");
-  const [remarks, setRemarks] = useState("");
+  const [agenda, setAgenda] = useState("");
 
   const updateDate = (date) => {
     setDate(date);
@@ -73,7 +73,7 @@ export default function BookConsultScreen({ route, navigation }) {
         location,
         participants,
         participants.length,
-        remarks,
+        agenda,
         "Pending",
         currentDate,
         currentTime,
@@ -223,7 +223,7 @@ export default function BookConsultScreen({ route, navigation }) {
         </View>
         {locationJSX}
         {participantJSX}
-        <Text style={styles.itemName}> Remarks:</Text>
+        <Text style={styles.itemName}> Agenda:</Text>
         <View>
           <TextInput
             multiline={true}
@@ -234,7 +234,7 @@ export default function BookConsultScreen({ route, navigation }) {
             onFocus={() => {
               setScrollHeight(200);
             }}
-            onChangeText={(text) => setRemarks(text)}
+            onChangeText={(text) => setAgenda(text)}
           />
         </View>
         <TouchableOpacity style={styles.bookBtn} onPress={() => bookConsultation()}>
