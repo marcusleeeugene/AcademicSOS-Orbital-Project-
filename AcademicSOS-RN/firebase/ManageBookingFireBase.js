@@ -74,12 +74,14 @@ const ManageBookingFB = {
                 var consultEndTime = individualBookings["consultEndTime"];
                 var agenda = individualBookings["agenda"];
                 var consultStatus = individualBookings["consultStatus"];
+                var size = individualBookings["size"];
                 var weekRange = individualBookings["weekRange"];
                 allUserBookings.push({
                   creator: creator,
                   bookingId: bookingId,
                   module: modCode,
                   ta: ta,
+                  size: size,
                   type: type,
                   location: location,
                   consultDate: consultDate,
