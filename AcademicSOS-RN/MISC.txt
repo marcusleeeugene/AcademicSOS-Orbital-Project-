@@ -7,7 +7,9 @@ https://github.com/APSL/react-native-keyboard-aware-scroll-view (Keyboard Aware 
 https://docs.expo.io/guides/using-firebase/#firebase-sdk-setup (Firebase setup)
 https://reactnavigation.org/docs/getting-started (React navigation)
 https://github.com/toystars/react-native-multiple-select (Dynamic Search Multiple Select)
-
+https://github.com/eddyoc/react-native-custom-qr-codes-expo (QR code generator)
+https://docs.expo.io/versions/latest/sdk/bar-code-scanner/ (expo barcode scanner)
+https://docs.expo.io/versions/latest/sdk/permissions/ (expo permissions)
 
 1) npm install react-native-responsive-screen --save
 2) npm i react-native-modal-datetime-picker @react-native-community/datetimepicker
@@ -25,3 +27,9 @@ https://github.com/toystars/react-native-multiple-select (Dynamic Search Multipl
 11) npm install @react-navigation/stack
 
 12) npm install react-native-multiple-select --save
+
+13) npm install react-native-custom-qr-codes-expo
+
+14) expo install expo-barcode-scanner
+
+15) expo install expo-permissions
