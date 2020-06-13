@@ -98,8 +98,10 @@ const ManageBookingFB = {
       })
       .then((data) => {
         return data
-          .filter((rsl) =>
-            rsl.consultStatus === status || status === "All Status" //Filter by status
+          .filter(
+            (
+              rsl //Filter by status
+            ) => rsl.consultStatus === status || status === "All Status"
           )
           .filter((rsl) => { //Filter by week
             var selectedWeek = week.split(" ")[1];

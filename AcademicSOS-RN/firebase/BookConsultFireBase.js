@@ -17,7 +17,7 @@ const BookConsultFB = {
         return weekRange;
       });
   },
-  addBooking: function (creator, modCode, ta, date, startTime, endTime, location, participants, agenda, status, bookDate, bookTime, weekRange) {
+  addBooking: function (creator, modCode, ta, date, startTime, endTime, location, participants, size, agenda, status, bookDate, bookTime, weekRange) {
     database.ref(`modules/${modCode}/bookings`).push({
       creator: creator,
       ta: ta,
@@ -27,6 +27,7 @@ const BookConsultFB = {
       location: location,
       participants: participants,
       agenda: agenda,
+      size: size,
       consultStatus: status,
       type: "Private",
       //Date and time of booking made

@@ -2,20 +2,19 @@ import * as firebase from "firebase";
 import { database, role } from "./FireBaseConfig.js";
 
 const PendingFB = {
-  acceptBooking(creator, bookingId, modCode, ta, type, location, consultDate, consultStartTime, consultEndTime, agenda, participants, status) {
-    database.ref(`modules/${modCode}/bookings`).child(bookingId).update({
+  acceptBooking(consultDetails, bookingId, status) {
+    database.ref(`modules/${consultDetails["module"]}/bookings`).child(bookingId).update({
       consultStatus: status,
-      creator: creator,
-      ta: ta,
-      type: type,
-      location: location,
-      consultDate: consultDate,
-      consultStartTime: consultStartTime,
-      consultEndTime: consultEndTime,
-      agenda: agenda,
-      participants: participants,
+      creator: consultDetails["creator"],
+      ta: consultDetails["ta"],
+      type: consultDetails["type"],
+      location: consultDetails["location"],
+      consultDate: consultDetails["consultDate"],
+      consultStartTime: consultDetails["consultStartTime"],
+      consultEndTime: consultDetails["consultEndTime"],
+      agenda: consultDetails["agenda"],
+      participants: consultDetails["participants"],
     });
   },
 };
-
 export default PendingFB;
