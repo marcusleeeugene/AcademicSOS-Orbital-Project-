@@ -18,15 +18,13 @@ function compareDate(a, b) {
 function compareTime(a, b) {
   const firstTime = moment(a.consultStartTime, "hh:mm A").format();
   const secondTime = moment(b.consultStartTime, "hh:mm A").format();
-  console.log(firstTime);
-  console.log(secondTime);
+
   let comparison = 0;
   if (firstTime > secondTime) {
     comparison = 1;
   } else if (firstTime < secondTime) {
     comparison = -1;
   }
-  console.log(comparison);
   return comparison;
 }
 
@@ -98,11 +96,9 @@ const ManageBookingFB = {
         return allUserBookings.sort(compareDate).sort(compareTime);
       })
       .then((data) => {
-        return data
-          .filter(
-            (
-              rsl //Filter by status
-            ) => rsl.consultStatus === status || status === "All Status"
+        return data//Filter by status
+          .filter((rsl) =>
+            rsl.consultStatus === status || status === "All Status"
           )
           .filter((rsl) => { //Filter by week
             var selectedWeek = week.split(" ")[1];
