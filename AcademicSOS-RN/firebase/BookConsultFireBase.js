@@ -1,32 +1,16 @@
 import * as firebase from "firebase";
 import { database, role } from "./FireBaseConfig.js";
 
-function WeekRange() { //get a promise for week range within acad year based on real time later on.
-  return fetch('https://api.nusmods.com/v2/2019-2020/modules/CS2040.json') //This part, to be made dynamic in future
-    .then((result) => result.json())
-    .then((data) => {
-      var semData = data['semesterData'];
-      var weekRange;
-      for (var sem in semData) {
-        if ("start" in semData[sem]['timetable'][0]['weeks']) {
-          weekRange = semData[sem]['timetable'][0]['weeks']
-          break;
-        }
-      }
-      return weekRange;
-    });
-}
-
 const BookConsultFB = {
-  getWeekRange: function() {
-    return fetch('https://api.nusmods.com/v2/2019-2020/modules/CS2040.json') //This part, to be made dynamic in future
+  getWeekRange: function () {
+    return fetch("https://api.nusmods.com/v2/2019-2020/modules/CS2040.json") //This part, to be made dynamic in future
       .then((result) => result.json())
       .then((data) => {
-        var semData = data['semesterData'];
+        var semData = data["semesterData"];
         var weekRange;
         for (var sem in semData) {
-          if ("start" in semData[sem]['timetable'][0]['weeks']) {
-            weekRange = semData[sem]['timetable'][0]['weeks']
+          if ("start" in semData[sem]["timetable"][0]["weeks"]) {
+            weekRange = semData[sem]["timetable"][0]["weeks"];
             break;
           }
         }
@@ -44,11 +28,11 @@ const BookConsultFB = {
       participants: participants,
       agenda: agenda,
       consultStatus: status,
-      type: "private",
+      type: "Private",
       //Date and time of booking made
       bookDate: bookDate,
       bookTime: bookTime,
-      weekRange: weekRange
+      weekRange: weekRange,
     });
   },
   getTutorialClass: function (id, modCode) {
@@ -73,7 +57,7 @@ const BookConsultFB = {
           //Loop through Students & Professor branch
           for (var id in obj[role]) {
             //Loop through each user
-            var mod = obj[role][id]["modules"]
+            var mod = obj[role][id]["modules"];
             if (modCode in mod) {
               //If user is taking the module
               var tc = mod[modCode]["tutorialClass"];
@@ -114,7 +98,7 @@ const BookConsultFB = {
         }
         return students;
       });
-  }
-}
+  },
+};
 
 export default BookConsultFB;

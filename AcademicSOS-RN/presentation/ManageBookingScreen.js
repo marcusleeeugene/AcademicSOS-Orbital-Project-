@@ -57,21 +57,35 @@ export default function ManageBookingScreen({ route, navigation }) {
     //Generate list of consultation bookings
     var tempConsultations = [];
     const colourCodes = ["#90CAF9", "#FFF59D", "#A5D6A7", "#FFAB91", "#B39DDB", "#80CBC4", "#c5e1a5", "#fff59d", "#ffcc80", "#bcaaa4"];
-    ManageBookingFB.getUserBookings(userID, status, week, day).then((data)=> {
+    ManageBookingFB.getUserBookings(userID, status, week, day).then((data) => {
       for (var i = 0; i < data.length; i++) {
-        tempConsultations.push({bookingId: data[i].bookingId, module: data[i].module, ta: data[i].ta, type: data[i].type, location: data[i].location, consultDate: data[i].consultDate, consultStartTime: data[i].consultStartTime, consultEndTime: data[i].consultEndTime, agenda: data[i].agenda, participants: data[i].participants, consultStatus: data[i].consultStatus, color: colourCodes[i]});
+        tempConsultations.push({
+          creator: data[i].creator,
+          bookingId: data[i].bookingId,
+          module: data[i].module,
+          ta: data[i].ta,
+          type: data[i].type,
+          location: data[i].location,
+          consultDate: data[i].consultDate,
+          consultStartTime: data[i].consultStartTime,
+          consultEndTime: data[i].consultEndTime,
+          agenda: data[i].agenda,
+          participants: data[i].participants,
+          consultStatus: data[i].consultStatus,
+          color: colourCodes[i],
+        });
       }
       setConsultations(tempConsultations);
-    })
+    });
     //Generate list of academic weeks
     var tempWeeks = [];
     ManageBookingFB.getNumWeeks().then((data) => {
-      tempWeeks.push({week: 'All Weeks'});
+      tempWeeks.push({ week: "All Weeks" });
       for (var i = 0; i < data; i++) {
-        tempWeeks.push({week: `Week ${i}`});
+        tempWeeks.push({ week: `Week ${i}` });
       }
       setWeekList(tempWeeks);
-    })
+    });
   }, [status, week, day]);
 
   const statusJSX = (
@@ -108,7 +122,7 @@ export default function ManageBookingScreen({ route, navigation }) {
     </Modal>
   );
 
-  const days = [{key: "All Days"}, { key: "Monday" }, { key: "Tuesday" }, { key: "Wednesday" }, { key: "Thursday" }, { key: "Friday" }, { key: "Saturday" }, { key: "Sunday" }];
+  const days = [{ key: "All Days" }, { key: "Monday" }, { key: "Tuesday" }, { key: "Wednesday" }, { key: "Thursday" }, { key: "Friday" }, { key: "Saturday" }, { key: "Sunday" }];
   const dayJSX = (
     <Modal isVisible={isDayModalVisible} onBackdropPress={() => setDayModalVisible(false)}>
       <View style={styles.modalView}>
@@ -132,7 +146,27 @@ export default function ManageBookingScreen({ route, navigation }) {
             <Text style={styles.dateTime_Text}> {item.consultDate} </Text>
             <Text style={styles.dateTime_Text}> {item.consultStartTime} </Text>
           </View>
-          <TouchableOpacity style={[styles.moduleContainer, { backgroundColor: item.color }]}>
+          <TouchableOpacity
+            style={[styles.moduleContainer, { backgroundColor: item.color }]}
+            onPress={() =>
+              navigation.navigate("Pending", {
+                secondScreen: secondScreen,
+                firstScreen: firstScreen,
+                userID: userID,
+                creator: item.creator,
+                bookingId: item.bookingId,
+                module: item.module,
+                ta: item.ta,
+                type: item.type,
+                location: item.location,
+                consultDate: item.consultDate,
+                consultStartTime: item.consultStartTime,
+                consultEndTime: item.consultEndTime,
+                agenda: item.agenda,
+                participants: item.participants,
+              })
+            }
+          >
             <Text style={styles.consultationInfoMod}>
               {item.module}
               {item.consultStatus === "Pending" ? ( //Show notification only if status is pending
@@ -141,7 +175,10 @@ export default function ManageBookingScreen({ route, navigation }) {
             </Text>
             <Text style={styles.consultationInfo}> TA: {item.ta} </Text>
             <Text style={styles.consultationInfo}> Status: {item.consultStatus} </Text>
-            <Text style={styles.consultationInfo} numberOfLines={1}> Agenda: {item.agenda} </Text>
+            <Text style={styles.consultationInfo} numberOfLines={1}>
+              {" "}
+              Agenda: {item.agenda}{" "}
+            </Text>
           </TouchableOpacity>
         </View>
       ))}
@@ -240,7 +277,7 @@ const styles = StyleSheet.create({
   },
   dateTime: {
     flexDirection: "column",
-    width: wp('33%'),
+    width: wp("33%"),
     marginTop: "3%",
   },
   dateTime_Text: {
