@@ -44,79 +44,73 @@ function WeekRange() { //get a promise for week range within acad year based on 
     });
 }
 
-/*
-.once("value")
-.then((snapshot) => snapshot.val())
-.then((obj) => {
-  var allUserBookings = [];
-  for (var modCode in obj) { //Loop through each module
-    var modules = obj[modCode];
-    var bookings = modules["bookings"];
-    if (bookings != undefined) {
-      for (var userBookings in bookings) { //Loop through each booking
-        var individualBookings = bookings[userBookings];
-        var creator = individualBookings["creator"];
-        var ta = individualBookings["ta"];
-        var studentsInvolved = individualBookings["participants"];
-        if (creator === id || ta["id"] === id || id in studentsInvolved) { //Check if user is involved in the consultation
-          //var bookTime = individualBookings[bookTime] //for sorting later on base on priority queue
-          var bookingId = Object.keys(bookings);
-          var type = individualBookings["type"];
-          var location = individualBookings["location"];
-          var consultDate = individualBookings["consultDate"];
-          var consultStartTime = individualBookings["consultStartTime"];
-          var consultEndTime = individualBookings["consultEndTime"];
-          var agenda = individualBookings["agenda"];
-          var consultStatus = individualBookings["consultStatus"];
-          var size = individualBookings["size"];
-          var weekRange = individualBookings["weekRange"];
-          allUserBookings.push({
-            creator: creator,
-            bookingId: bookingId,
-            module: modCode,
-            ta: ta,
-            size: size,
-            type: type,
-            location: location,
-            consultDate: consultDate,
-            consultStartTime: consultStartTime,
-            consultEndTime: consultEndTime,
-            agenda: agenda,
-            participants: studentsInvolved,
-            consultStatus: consultStatus,
-            weekRange: weekRange,
-          });
-        }
-      }
-    }
-  }
-  return allUserBookings.sort(compareDate).sort(compareTime);
-})
-.then((data) => {
-  return data
-    .filter((rsl) =>
-      rsl.consultStatus === status || status === "All Status" //Filter by status
-    )
-    .filter((rsl) => { //Filter by week
-      var selectedWeek = week.split(" ")[1];
-      var startingWeek = moment(rsl.weekRange["start"]);
-      var selectedDate = moment(rsl.consultDate);
-      return selectedWeek == selectedDate.diff(startingWeek, "weeks") || selectedWeek === "Weeks";
-    })
-    .filter((rsl) => { //Filter by day
-      var bookDay = moment(rsl.consultDate).format("dddd");
-      return bookDay === day || day === "All Days";
-    });
-});
-*/
-
 const ManageBookingFB = {
   getUserBookings: function (id, status, week, day) {
-    return database.ref(`modules`)
-      .on('value', function(snapshot) {
-        var obj = snapshop.val();
+    return database
+      .ref(`modules`)
+      .once("value")
+      .then((snapshot) => snapshot.val())
+      .then((obj) => {
+        var allUserBookings = [];
+        for (var modCode in obj) { //Loop through each module
+          var modules = obj[modCode];
+          var bookings = modules["bookings"];
+          if (bookings != undefined) {
+            for (var userBookings in bookings) { //Loop through each booking
+              var individualBookings = bookings[userBookings];
+              var creator = individualBookings["creator"];
+              var ta = individualBookings["ta"];
+              var studentsInvolved = individualBookings["participants"];
+              if (creator === id || ta["id"] === id || id in studentsInvolved) { //Check if user is involved in the consultation
+                //var bookTime = individualBookings[bookTime] //for sorting later on base on priority queue
+                var bookingId = Object.keys(bookings);
+                var type = individualBookings["type"];
+                var location = individualBookings["location"];
+                var consultDate = individualBookings["consultDate"];
+                var consultStartTime = individualBookings["consultStartTime"];
+                var consultEndTime = individualBookings["consultEndTime"];
+                var agenda = individualBookings["agenda"];
+                var consultStatus = individualBookings["consultStatus"];
+                var size = individualBookings["size"];
+                var weekRange = individualBookings["weekRange"];
+                allUserBookings.push({
+                  creator: creator,
+                  bookingId: bookingId,
+                  module: modCode,
+                  ta: ta,
+                  size: size,
+                  type: type,
+                  location: location,
+                  consultDate: consultDate,
+                  consultStartTime: consultStartTime,
+                  consultEndTime: consultEndTime,
+                  agenda: agenda,
+                  participants: studentsInvolved,
+                  consultStatus: consultStatus,
+                  weekRange: weekRange,
+                });
+              }
+            }
+          }
+        }
+        return allUserBookings.sort(compareDate).sort(compareTime);
+      })
+      .then((data) => {
+        return data
+          .filter((rsl) =>
+            rsl.consultStatus === status || status === "All Status" //Filter by status
+          )
+          .filter((rsl) => { //Filter by week
+            var selectedWeek = week.split(" ")[1];
+            var startingWeek = moment(rsl.weekRange["start"]);
+            var selectedDate = moment(rsl.consultDate);
+            return selectedWeek == selectedDate.diff(startingWeek, "weeks") || selectedWeek === "Weeks";
+          })
+          .filter((rsl) => { //Filter by day
+            var bookDay = moment(rsl.consultDate).format("dddd");
+            return bookDay === day || day === "All Days";
+          });
       });
-
   },
   getNumWeeks: function () { //returns a promise for the number of weeks of current academic semester
     return WeekRange().then((date) => {
