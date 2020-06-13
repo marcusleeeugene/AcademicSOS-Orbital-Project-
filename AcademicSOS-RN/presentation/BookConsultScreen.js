@@ -63,7 +63,22 @@ export default function BookConsultScreen({ route, navigation }) {
 
   const bookConsultation = () => {
     BookConsultFB.getWeekRange().then((weekRange) => {
-      BookConsultFB.addBooking(userID, moduleCode, { id: chosenTutorID, name: chosenTutor }, date, startTime, endTime, location, participants, remarks, "Pending", currentDate, currentTime, weekRange);
+      BookConsultFB.addBooking(
+        userID,
+        moduleCode,
+        { id: chosenTutorID, name: chosenTutor },
+        date,
+        startTime,
+        endTime,
+        location,
+        participants,
+        participants.length,
+        remarks,
+        "Pending",
+        currentDate,
+        currentTime,
+        weekRange
+      );
     });
 
     alert("Successfully booked! Pls check your booking in Manage Bookings!");

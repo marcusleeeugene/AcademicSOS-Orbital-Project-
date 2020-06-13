@@ -32,6 +32,7 @@ export default function CreateConsultScreen({ route, navigation }) {
   const [location, setLocation] = useState("");
   const [remarks, setRemarks] = useState("");
   const [participants, setParticipants] = useState("");
+  const [nameTA, setNameTA] = useState("");
 
   const updateDate = (date) => {
     setDate(date);
@@ -70,25 +71,74 @@ export default function CreateConsultScreen({ route, navigation }) {
 
   const createConsultation = () => {
     consultType == "Public"
-      ? CreateConsultFB.addPublicBooking(userID, moduleCode, date, startTime, endTime, location, consultType, size, remarks, "Pending", currentDate, currentTime)
-      : CreateConsultFB.addPrivateBooking(userID, moduleCode, date, startTime, endTime, location, consultType, participants, size, remarks, "Pending", currentDate, currentTime);
+      ? CreateConsultFB.getWeekRange().then((weekRange) => {
+          CreateConsultFB.addPublicBooking(
+            userID,
+            moduleCode,
+            date,
+            startTime,
+            endTime,
+            location,
+            consultType,
+            { id: userID, name: nameTA },
+            size,
+            remarks,
+            "Pending",
+            currentDate,
+            currentTime,
+            weekRange
+          );
+        })
+      : CreateConsultFB.getWeekRange().then((weekRange) => {
+          CreateConsultFB.addPrivateBooking(
+            userID,
+            moduleCode,
+            date,
+            startTime,
+            endTime,
+            location,
+            consultType,
+            { id: userID, name: nameTA },
+            participants,
+            size,
+            remarks,
+            "Pending",
+            currentDate,
+            currentTime,
+            weekRange
+          );
+        });
     alert("Successfully booked! Pls check your booking in Manage Bookings!");
     navigation.navigate("Home");
   };
 
+  // HomeFB.checkUserRole(userID).then((data) => {
+  //   if (data.includes("Professor")) {
+  //     tempUserType = "Professor";
+  //   } else if (data.includes("TA")) {
+  //     tempUserType = "TA";
+  //   }
+  //   setUserType(tempUserType);
+  // });
   useEffect(() => {
     var loadedStudent = [];
-    var getTutorialClassForStudent = CreateConsultFB.getTutorialClass(userID, moduleCode);
-    getTutorialClassForStudent
+    var loadedTA = "";
+    var getTutorialClass = CreateConsultFB.getTutorialClass(userID, moduleCode);
+    getTutorialClass
       .then((tutorialClass) => CreateConsultFB.getTutorialClassStudent(tutorialClass, moduleCode))
       .then((data) => {
         for (var i = 0; i < data.length; i++) {
           loadedStudent.push({ id: data[i]["id"], name: data[i]["name"] });
         }
       });
+
+    CreateConsultFB.checkUserName(userID).then((data) => {
+      loadedTA = data;
+      setNameTA(loadedTA);
+    });
     if (studentsInvolved != null) {
       setParticipants(studentsInvolved);
-      setSize(studentsInvolved.length);
+      setSize(studentsInvolved.length());
       setConsultType("Private");
     } else {
       setParticipants(loadedStudent);

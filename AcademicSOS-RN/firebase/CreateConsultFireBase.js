@@ -2,38 +2,70 @@ import * as firebase from "firebase";
 import { database, role } from "./FireBaseConfig.js";
 
 const CreateConsultFB = {
-  addPublicBooking: function (creator, modCode, date, startTime, endTime, location, consultType, size, remarks, status, bookDate, bookTime) {
+  getWeekRange: function () {
+    return fetch("https://api.nusmods.com/v2/2019-2020/modules/CS2040.json") //This part, to be made dynamic in future
+      .then((result) => result.json())
+      .then((data) => {
+        var semData = data["semesterData"];
+        var weekRange;
+        for (var sem in semData) {
+          if ("start" in semData[sem]["timetable"][0]["weeks"]) {
+            weekRange = semData[sem]["timetable"][0]["weeks"];
+            break;
+          }
+        }
+        return weekRange;
+      });
+  },
+
+  addPublicBooking: function (creator, modCode, date, startTime, endTime, location, consultType, TA, size, agenda, status, bookDate, bookTime, weekRange) {
     database.ref(`modules/${modCode}/bookings`).push({
       creator: creator,
-      date: date,
-      startTime: startTime,
-      endTime: endTime,
+      consultDate: date,
+      consultStartTime: startTime,
+      consultEndTime: endTime,
       location: location,
-      consultType: consultType,
+      type: consultType,
       size: size,
-      remarks: remarks,
-      status: status,
+      ta: TA,
+      agenda: agenda,
+      consultStatus: status,
       bookDate: bookDate,
       bookTime: bookTime,
+      weekRange: weekRange,
     });
   },
 
-  addPrivateBooking: function (creator, modCode, date, startTime, endTime, location, consultType, participants, size, remarks, status, bookDate, bookTime) {
+  addPrivateBooking: function (creator, modCode, date, startTime, endTime, location, consultType, TA, participants, size, agenda, status, bookDate, bookTime, weekRange) {
     database.ref(`modules/${modCode}/bookings`).push({
       creator: creator,
-      date: date,
-      startTime: startTime,
-      endTime: endTime,
+      consultDate: date,
+      consultStartTime: startTime,
+      consultEndTime: endTime,
       location: location,
-      consultType: consultType,
+      type: consultType,
+      ta: TA,
       participants,
       size: size,
-      remarks: remarks,
-      status: status,
+      agenda: agenda,
+      consultStatus: status,
       bookDate: bookDate,
       bookTime: bookTime,
+      weekRange: weekRange,
     });
   },
+
+  checkUserName: function (id) {
+    //returns a promise that consists of user name
+    return database
+      .ref(`users/${role(id)}/${id}`)
+      .once("value")
+      .then((snapshot) => snapshot.val())
+      .then((obj) => {
+        return obj["name"];
+      });
+  },
+
   getTutorialClass: function (id, modCode) {
     //Returns a promise of tutorial class
     return database
@@ -44,6 +76,7 @@ const CreateConsultFB = {
         return obj["tutorialClass"];
       });
   },
+
   getTutorialClassStudent: function (tutorialClass, modCode) {
     //Returns an array of TAs belonging to the tutorialClass
     return database

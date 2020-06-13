@@ -12,7 +12,7 @@ export default function PendingScreen({ route, navigation }) {
     "Righteous-Regular": require("../assets/fonts/Righteous-Regular.ttf"),
   });
 
-  const { firstScreen, secondScreen, userID, creator, bookingId, module, ta, type, location, consultDate, consultStartTime, consultEndTime, agenda, participants } = route.params;
+  const { firstScreen, secondScreen, userID, consultDetails, bookingId } = route.params;
 
   const navHistory = [
     { dest: firstScreen, alt_dest: "" },
@@ -30,8 +30,9 @@ export default function PendingScreen({ route, navigation }) {
     },
   ];
 
-  const acceptConsultation = (creator, bookingId, module, ta, type, location, consultDate, consultStartTime, consultEndTime, agenda, participants) => {
-    PendingFB.acceptBooking(creator, bookingId, module, ta, type, location, consultDate, consultStartTime, consultEndTime, agenda, participants, "Confirmed");
+  const acceptConsultation = (consultDetails) => {
+    console.log(bookingId);
+    PendingFB.acceptBooking(consultDetails, bookingId, "Confirmed");
     // PendingFB.addBooking(userID, moduleCode, chosenTutor, date, startTime, endTime, location, participants, remarks, "Pending", currentDate, currentTime);
     alert("Successfully updated booking status!");
     navigation.goBack();
@@ -57,18 +58,18 @@ export default function PendingScreen({ route, navigation }) {
         <BreadCrumb navHistory={navHistory} />
         <View style={styles.body}>
           <View style={styles.title}>
-            <Text style={styles.titleText}> {module}</Text>
+            <Text style={styles.titleText}> {consultDetails["module"]}</Text>
             <Image source={require("../assets/images/notification.png")} style={styles.imageStyle} />
           </View>
           <View style={styles.info}>
-            <Text style={styles.infoText}> TA: {ta["name"]}</Text>
-            <Text style={styles.infoText}> Type: {type}</Text>
-            <Text style={styles.infoText}> Location: {location}</Text>
-            <Text style={styles.infoText}>Date: {consultDate}</Text>
-            <Text style={styles.infoText}> Start Time: {consultStartTime}</Text>
-            <Text style={styles.infoText}> End Time: {consultEndTime}</Text>
+            <Text style={styles.infoText}> TA: {consultDetails.ta["name"]}</Text>
+            <Text style={styles.infoText}> Type: {consultDetails["type"]}</Text>
+            <Text style={styles.infoText}> Location: {consultDetails["location"]}</Text>
+            <Text style={styles.infoText}>Date: {consultDetails["consultDate"]}</Text>
+            <Text style={styles.infoText}> Start Time: {consultDetails["consultStartTime"]}</Text>
+            <Text style={styles.infoText}> End Time: {consultDetails["consultEndTime"]}</Text>
             <Text style={styles.agendaTitle}> Agenda: </Text>
-            <Text style={styles.infoText}>{agenda} </Text>
+            <Text style={styles.infoText}>{consultDetails["agenda"]} </Text>
           </View>
 
           <View style={styles.button}>
@@ -77,7 +78,7 @@ export default function PendingScreen({ route, navigation }) {
                 style={[styles.buttonOption, { backgroundColor: item.color }]}
                 onPress={() => {
                   item.name == "Accept"
-                    ? acceptConsultation(creator, bookingId, module, ta, type, location, consultDate, consultStartTime, consultEndTime, agenda, participants)
+                    ? acceptConsultation(consultDetails)
                     : Alert.alert(
                         "Reject Options",
                         "Do you want to suggest another consult slot to student?",
@@ -86,13 +87,13 @@ export default function PendingScreen({ route, navigation }) {
                             text: "Suggest",
                             onPress: () => {
                               navigation.navigate("Create Consultation", {
-                                thirdScreen: module,
+                                thirdScreen: consultDetails["module"],
                                 secondScreen: secondScreen,
                                 firstScreen: firstScreen,
                                 userID: userID,
-                                finalisedConsultType: type,
-                                studentsInvolved: participants,
-                                moduleCode: module,
+                                finalisedConsultType: consultDetails["type"],
+                                studentsInvolved: consultDetails["participants"],
+                                moduleCode: consultDetails["module"],
                               });
                             },
                           },
