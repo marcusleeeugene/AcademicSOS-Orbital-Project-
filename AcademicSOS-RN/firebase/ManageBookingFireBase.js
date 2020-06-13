@@ -16,7 +16,6 @@ function compareDate(a, b) {
 }
 
 function compareTime(a, b) {
-
   const firstTime = moment(a.consultStartTime, "hh:mm A").format();
   const secondTime = moment(b.consultStartTime, "hh:mm A").format();
   console.log(firstTime);
