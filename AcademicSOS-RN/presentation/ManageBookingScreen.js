@@ -149,15 +149,23 @@ export default function ManageBookingScreen({ route, navigation }) {
           </View>
           <TouchableOpacity
             style={[styles.moduleContainer, { backgroundColor: item.color }]}
-            onPress={() =>
-              navigation.navigate("Pending", {
-                secondScreen: secondScreen,
-                firstScreen: firstScreen,
-                userID: userID,
-                consultDetails: item,
-                bookingId: item.bookingId[index],
-              })
-            }
+            onPress={() => {
+              item.consultStatus === "Pending"
+                ? navigation.navigate("Pending", {
+                    secondScreen: secondScreen,
+                    firstScreen: firstScreen,
+                    userID: userID,
+                    consultDetails: item,
+                    bookingId: item.bookingId[index],
+                  })
+                : navigation.navigate("Confirmed", {
+                    secondScreen: secondScreen,
+                    firstScreen: firstScreen,
+                    userID: userID,
+                    consultDetails: item,
+                    bookingId: item.bookingId[index],
+                  });
+            }}
           >
             <Text style={styles.consultationInfoMod}>
               {item.module}

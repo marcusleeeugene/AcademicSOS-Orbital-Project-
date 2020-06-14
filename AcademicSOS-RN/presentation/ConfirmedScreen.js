@@ -1,18 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { useFonts } from "@use-expo/font";
-import { StyleSheet, Text, View, Image, Alert } from "react-native";
+import { StyleSheet, Text, View, Image, Alert, TextInput } from "react-native";
 import { AppLoading } from "expo";
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen";
 import BreadCrumb from "../components/BreadCrumb.js";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import PendingFB from "../firebase/PendingFireBase.js";
+import HomeFB from "../firebase/HomeFireBase.js";
+import { QRCode } from "react-native-custom-qr-codes-expo";
 
-export default function PendingScreen({ route, navigation }) {
+export default function ConfirmedScreen({ route, navigation }) {
   let [fontsLoaded] = useFonts({
     "Righteous-Regular": require("../assets/fonts/Righteous-Regular.ttf"),
   });
 
   const { firstScreen, secondScreen, userID, consultDetails, bookingId } = route.params;
+  const [userType, setUserType] = useState("");
+  const [qrCode, setQRCode] = useState("https://www.qrcode-monkey.com/cs2030/12345");
 
   const navHistory = [
     { dest: firstScreen, alt_dest: "" },
@@ -21,21 +24,65 @@ export default function PendingScreen({ route, navigation }) {
 
   const options = [
     {
-      name: "Accept",
-      color: "#B2FF59",
+      name: "Scan Attendance",
+      color: "#80DEEA",
     },
     {
-      name: "Reject",
+      name: "Cancel Booking",
       color: "#FF5252",
     },
   ];
 
-  const acceptConsultation = (consultDetails) => {
-    console.log(consultDetails);
-    PendingFB.acceptBooking(consultDetails, bookingId, "Confirmed");
-    alert("Successfully updated booking status!");
-    navigation.goBack();
+  const scanAttendance = () => {
+    navigation.navigate("Scan");
   };
+
+  useEffect(() => {
+    var tempUserType = "Student";
+    HomeFB.checkUserRole(userID).then((data) => {
+      if (data.includes("Professor")) {
+        tempUserType = "Professor";
+      } else if (data.includes("TA")) {
+        tempUserType = "TA";
+      }
+      setUserType(tempUserType);
+    });
+  });
+
+  const studentJSX = (
+    <View style={styles.button}>
+      {options.map((item) => (
+        <TouchableOpacity
+          style={[styles.buttonOption, { backgroundColor: item.color }]}
+          onPress={() => {
+            item.name === "Scan Attendance"
+              ? scanAttendance()
+              : Alert.alert(
+                  "Cancel Options",
+                  "Do you really want to cancel your booking?",
+                  [
+                    {
+                      text: "Proceed to cancel",
+                      onPress: () => {
+                        null;
+                      },
+                    },
+                    {
+                      text: "I will think again",
+                      onPress: () => console.log("Cancel Pressed"),
+                      style: "cancel",
+                    },
+                  ],
+                  { cancelable: false }
+                );
+          }}
+        >
+          <Text style={styles.option}>{item.name}</Text>
+          {console.log(item.name)}
+        </TouchableOpacity>
+      ))}
+    </View>
+  );
 
   if (!fontsLoaded) {
     return <AppLoading />;
@@ -44,10 +91,7 @@ export default function PendingScreen({ route, navigation }) {
       <View>
         <BreadCrumb navHistory={navHistory} />
         <View style={styles.body}>
-          <View style={styles.title}>
-            <Text style={styles.titleText}> {consultDetails["module"]}</Text>
-            <Image source={require("../assets/images/notification.png")} style={styles.imageStyle} />
-          </View>
+          <Text style={styles.titleText}> {consultDetails["module"]}</Text>
           <View style={styles.info}>
             <Text style={styles.infoText}> TA: {consultDetails.ta["name"]}</Text>
             <Text style={styles.infoText}> Type: {consultDetails["type"]}</Text>
@@ -59,46 +103,13 @@ export default function PendingScreen({ route, navigation }) {
             <Text style={styles.infoText}>{consultDetails["agenda"]} </Text>
           </View>
 
-          <View style={styles.button}>
-            {options.map((item) => (
-              <TouchableOpacity
-                style={[styles.buttonOption, { backgroundColor: item.color }]}
-                onPress={() => {
-                  item.name == "Accept"
-                    ? acceptConsultation(consultDetails)
-                    : Alert.alert(
-                        "Reject Options",
-                        "Do you want to suggest another consult slot to student?",
-                        [
-                          {
-                            text: "Suggest",
-                            onPress: () => {
-                              navigation.navigate("Create Consultation", {
-                                thirdScreen: consultDetails["module"],
-                                secondScreen: secondScreen,
-                                firstScreen: firstScreen,
-                                userID: userID,
-                                finalisedConsultType: consultDetails["type"],
-                                studentsInvolved: consultDetails["participants"],
-                                moduleCode: consultDetails["module"],
-                              });
-                            },
-                          },
-                          {
-                            text: "Cancel",
-                            onPress: () => console.log("Cancel Pressed"),
-                            style: "cancel",
-                          },
-                          { text: "Reject", onPress: () => console.log("OK Rejected") },
-                        ],
-                        { cancelable: false }
-                      );
-                }}
-              >
-                <Text style={styles.option}>{item.name}</Text>
-              </TouchableOpacity>
-            ))}
-          </View>
+          {userType !== "Student" ? (
+            <View style={styles.container}>
+              <QRCode content={qrCode} size={200} />
+            </View>
+          ) : (
+            studentJSX
+          )}
         </View>
       </View>
     );
@@ -110,10 +121,6 @@ const styles = StyleSheet.create({
     height: hp("100%"),
     width: wp("100%"),
     backgroundColor: "#003D7C",
-    alignItems: "center",
-  },
-  title: {
-    flexDirection: "row",
     alignItems: "center",
   },
   titleText: {
@@ -129,7 +136,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   info: {
-    marginTop: hp("5%"),
+    marginTop: hp("3%"),
   },
   infoText: {
     fontSize: hp("2.5%"),
@@ -155,10 +162,18 @@ const styles = StyleSheet.create({
     borderRadius: hp("1.1%"),
   },
   option: {
-    marginTop: hp("5.5%"),
-    fontSize: hp("4%"),
+    marginTop: hp("4%"),
+    fontSize: hp("3%"),
     textAlign: "center",
     fontFamily: "Righteous-Regular",
     color: "#000000",
+  },
+  container: {
+    marginTop: hp("4%"),
+    flex: 0.5,
+    alignItems: "center",
+    justifyContent: "center",
+    marginLeft: wp("2%"),
+    backgroundColor: "white",
   },
 });
