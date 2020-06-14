@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useFonts } from "@use-expo/font";
-import { StyleSheet, Text, View, Image, Alert, TextInput } from "react-native";
+import { StyleSheet, Dimensions, Text, View, Alert } from "react-native";
 import { AppLoading } from "expo";
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen";
 import BreadCrumb from "../components/BreadCrumb.js";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import HomeFB from "../firebase/HomeFireBase.js";
+import ConfirmedFB from "../firebase/ConfirmedFireBase.js";
 import { QRCode } from "react-native-custom-qr-codes-expo";
+
+const window = Dimensions.get("window");
+const screen = Dimensions.get("screen");
 
 export default function ConfirmedScreen({ route, navigation }) {
   let [fontsLoaded] = useFonts({
@@ -15,12 +18,18 @@ export default function ConfirmedScreen({ route, navigation }) {
 
   const { firstScreen, secondScreen, userID, consultDetails, bookingId } = route.params;
   const [userType, setUserType] = useState("");
-  const [qrCode, setQRCode] = useState("https://www.qrcode-monkey.com/cs2030/12345");
+  const [consultSize, setConsultSize] = useState("");
+  const [qrCode, setQRCode] = useState("https://www.academicSOS.com/" + consultDetails["module"] + "/" + bookingId);
 
   const navHistory = [
     { dest: firstScreen, alt_dest: "" },
     { dest: secondScreen, alt_dest: "" },
   ];
+
+  const [dimensions, setDimensions] = useState({ window, screen });
+  const onChange = ({ window, screen }) => {
+    setDimensions({ window, screen });
+  };
 
   const options = [
     {
@@ -38,15 +47,17 @@ export default function ConfirmedScreen({ route, navigation }) {
   };
 
   useEffect(() => {
-    var tempUserType = "Student";
-    HomeFB.checkUserRole(userID).then((data) => {
-      if (data.includes("Professor")) {
-        tempUserType = "Professor";
-      } else if (data.includes("TA")) {
-        tempUserType = "TA";
-      }
-      setUserType(tempUserType);
+    ConfirmedFB.getModRole(userID, consultDetails["module"]).then((data) => {
+      setUserType(data);
     });
+    ConfirmedFB.getConsultSize(bookingId, consultDetails["module"]).then((data) => {
+      setConsultSize(data);
+    });
+
+    Dimensions.addEventListener("change", onChange);
+    return () => {
+      Dimensions.removeEventListener("change", onChange);
+    };
   });
 
   const studentJSX = (
@@ -78,7 +89,6 @@ export default function ConfirmedScreen({ route, navigation }) {
           }}
         >
           <Text style={styles.option}>{item.name}</Text>
-          {console.log(item.name)}
         </TouchableOpacity>
       ))}
     </View>
@@ -102,10 +112,16 @@ export default function ConfirmedScreen({ route, navigation }) {
             <Text style={styles.agendaTitle}> Agenda: </Text>
             <Text style={styles.infoText}>{consultDetails["agenda"]} </Text>
           </View>
-
+          {console.log(qrCode)}
           {userType !== "Student" ? (
-            <View style={styles.container}>
-              <QRCode content={qrCode} size={200} />
+            <View>
+              <View style={styles.container}>
+                <QRCode content={qrCode} size={dimensions.screen.height > 700 ? 250 : 200} />
+              </View>
+              <View>
+                <Text style={styles.size}> Class Size: </Text>
+                <Text style={styles.infoText}> 1 / {consultSize}</Text>
+              </View>
             </View>
           ) : (
             studentJSX
@@ -145,7 +161,7 @@ const styles = StyleSheet.create({
     color: "#FFFFFF",
   },
   agendaTitle: {
-    marginTop: hp("5%"),
+    marginTop: hp("3%"),
     fontSize: hp("2.5%"),
     textAlign: "center",
     fontFamily: "Righteous-Regular",
@@ -169,11 +185,19 @@ const styles = StyleSheet.create({
     color: "#000000",
   },
   container: {
-    marginTop: hp("4%"),
-    flex: 0.5,
+    marginTop: hp("3%"),
+    flex: 0.6,
     alignItems: "center",
     justifyContent: "center",
     marginLeft: wp("2%"),
     backgroundColor: "white",
+  },
+
+  size: {
+    marginTop: hp("2.5%"),
+    fontSize: hp("2.5%"),
+    textAlign: "center",
+    fontFamily: "Righteous-Regular",
+    color: "#FFFFFF",
   },
 });
