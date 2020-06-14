@@ -42,15 +42,13 @@ const RadioButton = (props) => {
 
 const styles = StyleSheet.create({
   buttonContainer: {
-    marginTop: 5,
     flexDirection: "row",
-    justifyContent: "space-between",
     alignItems: "center",
-    marginLeft: 20,
+    justifyContent: "center",
+    paddingLeft: wp("18%"),
   },
   circle: {
     backgroundColor: "white",
-    marginHorizontal: 2,
     height: 20,
     width: 20,
     borderRadius: 10,
@@ -66,11 +64,11 @@ const styles = StyleSheet.create({
     backgroundColor: "black",
   },
   text: {
-    marginHorizontal: 8,
-    marginVertical: 10,
+    paddingHorizontal: wp("2%"),
+    paddingVertical: hp("1%"),
     color: "white",
     fontFamily: "Righteous-Regular",
-    fontSize: hp("2%"),
+    fontSize: hp("2.3%"),
   },
 });
 
