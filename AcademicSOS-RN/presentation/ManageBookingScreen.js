@@ -159,6 +159,7 @@ export default function ManageBookingScreen({ route, navigation }) {
             onPress={() => {
               item.consultStatus === "Pending"
                 ? navigation.navigate("Pending", {
+                    thirdScreen: item.module,
                     secondScreen: secondScreen,
                     firstScreen: firstScreen,
                     userID: userID,
@@ -166,6 +167,7 @@ export default function ManageBookingScreen({ route, navigation }) {
                     bookingId: item.bookingId[index],
                   })
                 : navigation.navigate("Confirmed", {
+                    thirdScreen: item.module,
                     secondScreen: secondScreen,
                     firstScreen: firstScreen,
                     userID: userID,

@@ -12,11 +12,12 @@ export default function PendingScreen({ route, navigation }) {
     "Righteous-Regular": require("../assets/fonts/Righteous-Regular.ttf"),
   });
 
-  const { firstScreen, secondScreen, userID, consultDetails, bookingId } = route.params;
+  const { firstScreen, secondScreen, thirdScreen, userID, consultDetails, bookingId } = route.params;
 
   const navHistory = [
     { dest: firstScreen, alt_dest: "" },
-    { dest: secondScreen, alt_dest: "" },
+    { dest: secondScreen, alt_dest: "Manage Bookings" },
+    { dest: thirdScreen, alt_dest: "" },
   ];
 
   const options = [
@@ -93,8 +94,9 @@ export default function PendingScreen({ route, navigation }) {
           </View>
 
           <View style={styles.button}>
-            {options.map((item) => (
+            {options.map((item, index) => (
               <TouchableOpacity
+                key = {index}
                 style={[styles.buttonOption, { backgroundColor: item.color }]}
                 onPress={() => {
                   item.name == "Accept" ? acceptConsultation(consultDetails) : rejectOption();
@@ -161,7 +163,7 @@ const styles = StyleSheet.create({
   },
   option: {
     marginTop: hp("5.5%"),
-    fontSize: hp("4%"),
+    fontSize: hp("2.5%"),
     textAlign: "center",
     fontFamily: "Righteous-Regular",
     color: "#000000",

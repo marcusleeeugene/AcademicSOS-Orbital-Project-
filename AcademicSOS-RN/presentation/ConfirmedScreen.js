@@ -21,14 +21,15 @@ export default function ConfirmedScreen({ route, navigation }) {
     setDimensions({ window, screen });
   };
 
-  const { firstScreen, secondScreen, userID, consultDetails, bookingId } = route.params;
+  const { firstScreen, secondScreen, thirdScreen, userID, consultDetails, bookingId } = route.params;
   const [userType, setUserType] = useState("");
   const [consultSize, setConsultSize] = useState("");
   const qrCode = "https://www.academicSOS.com/" + consultDetails["module"] + "/" + bookingId;
 
   const navHistory = [
     { dest: firstScreen, alt_dest: "" },
-    { dest: secondScreen, alt_dest: "" },
+    { dest: secondScreen, alt_dest: "Manage Bookings" },
+    { dest: thirdScreen, alt_dest: "" },
   ];
 
   const options = [
@@ -182,7 +183,7 @@ const styles = StyleSheet.create({
   },
   option: {
     marginTop: hp("4%"),
-    fontSize: hp("3%"),
+    fontSize: hp("2.5%"),
     textAlign: "center",
     fontFamily: "Righteous-Regular",
     color: "#000000",

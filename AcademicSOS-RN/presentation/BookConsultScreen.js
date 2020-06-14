@@ -32,7 +32,7 @@ export default function BookConsultScreen({ route, navigation }) {
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
   const [location, setLocation] = useState("");
-  const [participants, setParticipants] = useState("");
+  const [participants, setParticipants] = useState([]);
   const [agenda, setAgenda] = useState("");
 
   const updateDate = (date) => {
