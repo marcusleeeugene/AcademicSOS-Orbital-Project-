@@ -16,20 +16,20 @@ export default function ConfirmedScreen({ route, navigation }) {
     "Righteous-Regular": require("../assets/fonts/Righteous-Regular.ttf"),
   });
 
+  const [dimensions, setDimensions] = useState({ window, screen });
+  const onChange = ({ window, screen }) => {
+    setDimensions({ window, screen });
+  };
+
   const { firstScreen, secondScreen, userID, consultDetails, bookingId } = route.params;
   const [userType, setUserType] = useState("");
   const [consultSize, setConsultSize] = useState("");
-  const [qrCode, setQRCode] = useState("https://www.academicSOS.com/" + consultDetails["module"] + "/" + bookingId);
+  const qrCode = "https://www.academicSOS.com/" + consultDetails["module"] + "/" + bookingId;
 
   const navHistory = [
     { dest: firstScreen, alt_dest: "" },
     { dest: secondScreen, alt_dest: "" },
   ];
-
-  const [dimensions, setDimensions] = useState({ window, screen });
-  const onChange = ({ window, screen }) => {
-    setDimensions({ window, screen });
-  };
 
   const options = [
     {
@@ -43,7 +43,9 @@ export default function ConfirmedScreen({ route, navigation }) {
   ];
 
   const scanAttendance = () => {
-    navigation.navigate("Scan");
+    navigation.navigate("Scan", {
+      qrCode: qrCode,
+    });
   };
 
   useEffect(() => {
@@ -75,7 +77,7 @@ export default function ConfirmedScreen({ route, navigation }) {
                     {
                       text: "Proceed to cancel",
                       onPress: () => {
-                        null;
+                        null; //put in cancel booking and minus priority points!!!
                       },
                     },
                     {
@@ -91,6 +93,18 @@ export default function ConfirmedScreen({ route, navigation }) {
           <Text style={styles.option}>{item.name}</Text>
         </TouchableOpacity>
       ))}
+    </View>
+  );
+
+  const taJSX = (
+    <View>
+      <View style={styles.container}>
+        <QRCode content={qrCode} size={dimensions.screen.height > 700 ? 250 : 200} />
+      </View>
+      <View>
+        <Text style={styles.size}> Class Size: </Text>
+        <Text style={styles.infoText}> 1 / {consultSize}</Text>
+      </View>
     </View>
   );
 
@@ -112,25 +126,14 @@ export default function ConfirmedScreen({ route, navigation }) {
             <Text style={styles.agendaTitle}> Agenda: </Text>
             <Text style={styles.infoText}>{consultDetails["agenda"]} </Text>
           </View>
-          {console.log(qrCode)}
-          {userType !== "Student" ? (
-            <View>
-              <View style={styles.container}>
-                <QRCode content={qrCode} size={dimensions.screen.height > 700 ? 250 : 200} />
-              </View>
-              <View>
-                <Text style={styles.size}> Class Size: </Text>
-                <Text style={styles.infoText}> 1 / {consultSize}</Text>
-              </View>
-            </View>
-          ) : (
-            studentJSX
-          )}
+          {userType !== "Student" ? taJSX : studentJSX}
         </View>
       </View>
     );
   }
 }
+
+// line 106: need to dynamically update number of students who scanned the consult QR code
 
 const styles = StyleSheet.create({
   body: {
@@ -173,7 +176,7 @@ const styles = StyleSheet.create({
   buttonOption: {
     marginTop: hp("5%"),
     marginLeft: wp("5%"),
-    width: wp("30%"),
+    width: wp("35%"),
     height: hp("16%"),
     borderRadius: hp("1.1%"),
   },

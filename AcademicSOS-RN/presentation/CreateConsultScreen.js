@@ -16,7 +16,7 @@ export default function CreateConsultScreen({ route, navigation }) {
     "Righteous-Regular": require("../assets/fonts/Righteous-Regular.ttf"),
   });
 
-  const { firstScreen, secondScreen, thirdScreen, userID, moduleCode, studentsInvolved, finalisedConsultType } = route.params;
+  const { firstScreen, secondScreen, thirdScreen, userID, bookingId, moduleCode, studentsInvolved, finalisedConsultType } = route.params;
 
   const navHistory = [
     { dest: firstScreen, alt_dest: "" },
@@ -30,7 +30,7 @@ export default function CreateConsultScreen({ route, navigation }) {
   const [size, setSize] = useState("");
   const [consultType, setConsultType] = useState("");
   const [location, setLocation] = useState("");
-  const [remarks, setRemarks] = useState("");
+  const [agenda, setAgenda] = useState("");
   const [participants, setParticipants] = useState("");
   const [nameTA, setNameTA] = useState("");
 
@@ -82,7 +82,7 @@ export default function CreateConsultScreen({ route, navigation }) {
             consultType,
             { id: userID, name: nameTA },
             size,
-            remarks,
+            agenda,
             "Pending",
             currentDate,
             currentTime,
@@ -101,7 +101,7 @@ export default function CreateConsultScreen({ route, navigation }) {
             { id: userID, name: nameTA },
             participants,
             size,
-            remarks,
+            agenda,
             "Pending",
             currentDate,
             currentTime,
@@ -109,17 +109,43 @@ export default function CreateConsultScreen({ route, navigation }) {
           );
         });
     alert("Successfully booked! Pls check your booking in Manage Bookings!");
-    navigation.navigate("Home");
+    navigation.navigate("Manage Bookings", {
+      secondScreen: "Manage Bookings",
+      firstScreen: firstScreen,
+      userID: userID,
+    });
   };
 
-  // HomeFB.checkUserRole(userID).then((data) => {
-  //   if (data.includes("Professor")) {
-  //     tempUserType = "Professor";
-  //   } else if (data.includes("TA")) {
-  //     tempUserType = "TA";
-  //   }
-  //   setUserType(tempUserType);
-  // });
+  const updateConsultation = () => {
+    CreateConsultFB.getWeekRange().then((weekRange) => {
+      CreateConsultFB.updateBooking(
+        userID,
+        bookingId,
+        moduleCode,
+        date,
+        startTime,
+        endTime,
+        location,
+        finalisedConsultType,
+        { id: userID, name: nameTA },
+        studentsInvolved,
+        size,
+        agenda,
+        "Pending",
+        currentDate,
+        currentTime,
+        weekRange
+      );
+    });
+
+    alert("Successfully updated booking!");
+    navigation.navigate("Manage Bookings", {
+      secondScreen: "Manage Bookings",
+      firstScreen: firstScreen,
+      userID: userID,
+    });
+  };
+
   useEffect(() => {
     var loadedStudent = [];
     var loadedTA = "";
@@ -136,9 +162,10 @@ export default function CreateConsultScreen({ route, navigation }) {
       loadedTA = data;
       setNameTA(loadedTA);
     });
+
     if (studentsInvolved != null) {
       setParticipants(studentsInvolved);
-      setSize(studentsInvolved.length());
+      setSize(studentsInvolved.length);
       setConsultType("Private");
     } else {
       setParticipants(loadedStudent);
@@ -251,20 +278,20 @@ export default function CreateConsultScreen({ route, navigation }) {
             {typeJSX}
             {consultType == "Public" ? sizeJSX : null}
 
-            <Text style={styles.itemName}> Remarks:</Text>
+            <Text style={styles.itemName}> Agenda: </Text>
             <View>
               <TextInput
                 multiline={true}
                 maxLength={200}
                 numberofLines={5}
-                style={styles.remarkBox}
+                style={styles.agendaBox}
                 underlineColorAndroid="transparent"
                 onFocus={() => setScrollHeight(200)}
-                onChangeText={(text) => setRemarks(text)}
-                value={remarks}
+                onChangeText={(text) => setAgenda(text)}
+                value={agenda}
               />
             </View>
-            <TouchableOpacity style={styles.createBtn} onPress={() => createConsultation()}>
+            <TouchableOpacity style={styles.createBtn} onPress={() => (studentsInvolved == null ? createConsultation() : updateConsultation())}>
               <Text style={styles.createBtnText}>Create</Text>
             </TouchableOpacity>
           </View>
@@ -394,7 +421,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: hp("2%"),
   },
-  remarkBox: {
+  agendaBox: {
     marginTop: hp("2%"),
     marginLeft: wp("15%"),
     borderColor: "black",

@@ -55,6 +55,25 @@ const CreateConsultFB = {
     });
   },
 
+  updateBooking: function (creator, bookingId, modCode, date, startTime, endTime, location, consultType, TA, participants, size, agenda, status, bookDate, bookTime, weekRange) {
+    database.ref(`modules/${modCode}/bookings`).child(bookingId).update({
+      creator: creator,
+      consultDate: date,
+      consultStartTime: startTime,
+      consultEndTime: endTime,
+      location: location,
+      type: consultType,
+      ta: TA,
+      participants: participants,
+      size: size,
+      agenda: agenda,
+      consultStatus: status,
+      bookDate: bookDate,
+      bookTime: bookTime,
+      weekRange: weekRange,
+    });
+  },
+
   checkUserName: function (id) {
     //returns a promise that consists of user name
     return database

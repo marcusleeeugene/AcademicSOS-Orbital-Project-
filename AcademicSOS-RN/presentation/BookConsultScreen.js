@@ -61,6 +61,7 @@ export default function BookConsultScreen({ route, navigation }) {
     setItems(selectedItems);
   };
 
+  //consult size = participants.length + 1 (because need include student who create too!!!)
   const bookConsultation = () => {
     BookConsultFB.getWeekRange().then((weekRange) => {
       BookConsultFB.addBooking(
@@ -72,7 +73,7 @@ export default function BookConsultScreen({ route, navigation }) {
         endTime,
         location,
         participants,
-        participants.length,
+        participants.length + 1,
         agenda,
         "Pending",
         currentDate,

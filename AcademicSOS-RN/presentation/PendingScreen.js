@@ -31,10 +31,43 @@ export default function PendingScreen({ route, navigation }) {
   ];
 
   const acceptConsultation = (consultDetails) => {
-    console.log(consultDetails);
+    {
+      console.log(bookingId);
+    }
     PendingFB.acceptBooking(consultDetails, bookingId, "Confirmed");
     alert("Successfully updated booking status!");
     navigation.goBack();
+  };
+
+  const rejectOption = () => {
+    Alert.alert(
+      "Reject Options",
+      "Do you want to suggest another consult slot to student?",
+      [
+        {
+          text: "Suggest",
+          onPress: () => {
+            navigation.navigate("Create Consultation", {
+              thirdScreen: consultDetails["module"],
+              secondScreen: secondScreen,
+              firstScreen: firstScreen,
+              userID: userID,
+              finalisedConsultType: consultDetails["type"],
+              studentsInvolved: consultDetails["participants"],
+              moduleCode: consultDetails["module"],
+              bookingId: bookingId,
+            });
+          },
+        },
+        {
+          text: "Cancel",
+          onPress: () => console.log("Cancel Pressed"),
+          style: "cancel",
+        },
+        { text: "Reject", onPress: () => console.log("OK Rejected") },
+      ],
+      { cancelable: false }
+    );
   };
 
   if (!fontsLoaded) {
@@ -64,35 +97,7 @@ export default function PendingScreen({ route, navigation }) {
               <TouchableOpacity
                 style={[styles.buttonOption, { backgroundColor: item.color }]}
                 onPress={() => {
-                  item.name == "Accept"
-                    ? acceptConsultation(consultDetails)
-                    : Alert.alert(
-                        "Reject Options",
-                        "Do you want to suggest another consult slot to student?",
-                        [
-                          {
-                            text: "Suggest",
-                            onPress: () => {
-                              navigation.navigate("Create Consultation", {
-                                thirdScreen: consultDetails["module"],
-                                secondScreen: secondScreen,
-                                firstScreen: firstScreen,
-                                userID: userID,
-                                finalisedConsultType: consultDetails["type"],
-                                studentsInvolved: consultDetails["participants"],
-                                moduleCode: consultDetails["module"],
-                              });
-                            },
-                          },
-                          {
-                            text: "Cancel",
-                            onPress: () => console.log("Cancel Pressed"),
-                            style: "cancel",
-                          },
-                          { text: "Reject", onPress: () => console.log("OK Rejected") },
-                        ],
-                        { cancelable: false }
-                      );
+                  item.name == "Accept" ? acceptConsultation(consultDetails) : rejectOption();
                 }}
               >
                 <Text style={styles.option}>{item.name}</Text>
