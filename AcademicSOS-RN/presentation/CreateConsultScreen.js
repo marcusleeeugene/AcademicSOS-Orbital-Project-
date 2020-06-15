@@ -93,6 +93,7 @@ export default function CreateConsultScreen({ route, navigation }) {
           );
         })
       : CreateConsultFB.getWeekRange().then((weekRange) => {
+          console.log(selectedItems);
           CreateConsultFB.addPrivateBooking(
             userID,
             moduleCode,
@@ -102,7 +103,7 @@ export default function CreateConsultScreen({ route, navigation }) {
             location,
             consultType,
             { id: userID, name: nameTA },
-            selectedItems,
+            { id: selectedItems, name: null },
             agenda,
             "Pending",
             currentDate,
@@ -167,9 +168,6 @@ export default function CreateConsultScreen({ route, navigation }) {
       setNameTA(loadedTA);
     });
 
-    {
-      console.log(studentsInvolved);
-    }
     if (secondScreen == "Manage Bookings") {
       setParticipants(studentsInvolved);
       setSize(studentsInvolved.length);
