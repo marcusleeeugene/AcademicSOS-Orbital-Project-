@@ -32,9 +32,11 @@ export default function BookConsultScreen({ route, navigation }) {
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
   const [location, setLocation] = useState("");
-  const [participants, setParticipants] = useState([]);
   const [agenda, setAgenda] = useState("");
-  const [userName, setUserName] = useState("");
+  const [userName, setUserName] = useState(""); // consists of name of current student user account
+  const [studentList, setStudentList] = useState([]); // load in all students taking the same module dynamically(can be friends from other classes)
+  const [selectedItems, setItems] = useState([]); // selected Students subject to remove or added dynamically
+  const [selectedStudents, setSelectedStudents] = useState([]); // create a copy of the selected students
 
   const updateDate = (date) => {
     setDate(date);
@@ -55,15 +57,26 @@ export default function BookConsultScreen({ route, navigation }) {
   };
 
   const [isModalVisible, setModalVisible] = useState(false);
-  const [selectedItems, setItems] = useState([]);
+
   const multiSelect = useRef(null);
 
   const onSelectedItemsChange = (selectedItems) => {
     setItems(selectedItems);
+    var uniqueStudentArray = [...new Set()];
+    if (selectedItems != undefined || selectedItems.length !== 0) {
+      // array empty or does not exist
+      for (var i = 0; i < selectedItems.length; i++) {
+        var selectedStudentID = selectedItems[i];
+        CreateConsultFB.checkUserName(selectedStudentID).then((data) => {
+          uniqueStudentArray.push({ id: selectedStudentID, name: data });
+        });
+      }
+    }
+    setSelectedStudents(uniqueStudentArray);
   };
 
-  //consult size = participants.length + 1 (because need include student who create too!!!)
   const bookConsultation = () => {
+    var allStudents = selectedStudents.concat({ id: userID, name: userName }); //all students included in consult(including current student who initiate booking)
     BookConsultFB.getWeekRange().then((weekRange) => {
       BookConsultFB.addBooking(
         userID,
@@ -73,7 +86,8 @@ export default function BookConsultScreen({ route, navigation }) {
         startTime,
         endTime,
         location,
-        selectedItems.concat({ id: userID, name: userName }),
+        allStudents,
+        allStudents.length,
         agenda,
         "Pending",
         currentDate,
@@ -112,7 +126,8 @@ export default function BookConsultScreen({ route, navigation }) {
     BookConsultFB.checkUserName(userID).then((data) => {
       setUserName(data);
     });
-    setParticipants(loadedStudents);
+
+    setStudentList(loadedStudents);
   }, []);
 
   const tutorJSX = (
@@ -175,7 +190,7 @@ export default function BookConsultScreen({ route, navigation }) {
       <View style={styles.studentModalView}>
         <MultiSelect
           hideTags
-          items={participants}
+          items={studentList}
           uniqueKey="id"
           ref={multiSelect}
           onSelectedItemsChange={onSelectedItemsChange}
@@ -234,7 +249,7 @@ export default function BookConsultScreen({ route, navigation }) {
             multiline={true}
             maxLength={200}
             numberofLines={5}
-            style={styles.remarkBox}
+            style={styles.agendaBox}
             underlineColorAndroid="transparent"
             onFocus={() => {
               setScrollHeight(200);
@@ -321,12 +336,12 @@ const styles = StyleSheet.create({
     resizeMode: "contain",
     alignItems: "center",
   },
-  remarkBox: {
+  agendaBox: {
     marginTop: "3%",
     marginLeft: "15%",
     flexDirection: "row",
     borderColor: "black",
-    fontSize: hp("1.5%"),
+    fontSize: hp("5%"),
     marginBottom: "5%",
     height: hp("8.5%"),
     width: wp("68%"),

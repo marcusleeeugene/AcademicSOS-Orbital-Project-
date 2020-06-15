@@ -12,6 +12,7 @@ const BookConsultFB = {
         return obj["name"];
       });
   },
+
   getWeekRange: function () {
     return fetch("https://api.nusmods.com/v2/2019-2020/modules/CS2040.json") //This part, to be made dynamic in future
       .then((result) => result.json())
@@ -27,7 +28,7 @@ const BookConsultFB = {
         return weekRange;
       });
   },
-  addBooking: function (creator, modCode, ta, date, startTime, endTime, location, participants, agenda, status, bookDate, bookTime, weekRange) {
+  addBooking: function (creator, modCode, ta, date, startTime, endTime, location, participants, size, agenda, status, bookDate, bookTime, weekRange) {
     database.ref(`modules/${modCode}/bookings`).push({
       creator: creator,
       ta: ta,
@@ -37,7 +38,7 @@ const BookConsultFB = {
       location: location,
       participants: participants,
       agenda: agenda,
-      size: participants.length,
+      size: size,
       consultStatus: status,
       type: "Private",
       //Date and time of booking made

@@ -10,7 +10,6 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 import CreateConsultFB from "../firebase/CreateConsultFireBase.js";
 import Modal from "react-native-modal";
 import MultiSelect from "react-native-multiple-select";
-import { useNavigationState } from "@react-navigation/native";
 
 export default function CreateConsultScreen({ route, navigation }) {
   let [fontsLoaded] = useFonts({
@@ -32,9 +31,11 @@ export default function CreateConsultScreen({ route, navigation }) {
   const [consultType, setConsultType] = useState("");
   const [location, setLocation] = useState("");
   const [agenda, setAgenda] = useState("");
-  const [participants, setParticipants] = useState([]);
-  const [nameTA, setNameTA] = useState("");
-  const [studentList, setStudentList] = useState([]);
+  const [participants, setParticipants] = useState([]); //participants (for public use and suggest use)
+  const [userName, setUserName] = useState(""); // consists of name of current student user account
+  const [studentList, setStudentList] = useState([]); // load in all students taking the same module dynamically(can be friends from other classes)
+  const [selectedItems, setItems] = useState([]); // selected Students subject to remove or added dynamically
+  const [selectedStudents, setSelectedStudents] = useState([]); // create a copy of the selected students
 
   const updateDate = (date) => {
     setDate(date);
@@ -64,12 +65,22 @@ export default function CreateConsultScreen({ route, navigation }) {
   const [isModalVisible, setModalVisible] = useState(false);
   const [extraScrollHeight, setScrollHeight] = useState(0);
 
-  const [selectedItems, setItems] = useState([]);
   const multiSelect = useRef(null);
 
   const onSelectedItemsChange = (selectedItems) => {
     setItems(selectedItems);
-  };
+    var uniqueStudentArray = [...new Set()];
+    if (selectedItems != undefined || selectedItems.length !== 0) {
+      // array empty or does not exist
+      for (var i = 0; i < selectedItems.length; i++) {
+        var selectedStudentID = selectedItems[i];
+        CreateConsultFB.checkUserName(selectedStudentID).then((data) => {
+          uniqueStudentArray.push({ id: selectedStudentID, name: data });
+        });
+      }
+    }
+    setSelectedStudents(uniqueStudentArray);
+  }; // generate array of students involved in consultation
 
   const createConsultation = () => {
     consultType == "Public"
@@ -82,7 +93,7 @@ export default function CreateConsultScreen({ route, navigation }) {
             endTime,
             location,
             consultType,
-            { id: userID, name: nameTA },
+            { id: userID, name: userName },
             participants,
             size,
             agenda,
@@ -93,7 +104,6 @@ export default function CreateConsultScreen({ route, navigation }) {
           );
         })
       : CreateConsultFB.getWeekRange().then((weekRange) => {
-          console.log(selectedItems);
           CreateConsultFB.addPrivateBooking(
             userID,
             moduleCode,
@@ -102,8 +112,9 @@ export default function CreateConsultScreen({ route, navigation }) {
             endTime,
             location,
             consultType,
-            { id: userID, name: nameTA },
-            { id: selectedItems, name: null },
+            { id: userID, name: userName },
+            selectedStudents,
+            selectedStudents.length,
             agenda,
             "Pending",
             currentDate,
@@ -130,7 +141,7 @@ export default function CreateConsultScreen({ route, navigation }) {
         endTime,
         location,
         finalisedConsultType,
-        { id: userID, name: nameTA },
+        { id: userID, name: userName },
         participants,
         size,
         agenda,
@@ -140,8 +151,6 @@ export default function CreateConsultScreen({ route, navigation }) {
         weekRange
       );
     });
-
-    setParticipants([]);
 
     alert("Successfully updated booking!");
     navigation.navigate("Manage Bookings", {
@@ -153,7 +162,6 @@ export default function CreateConsultScreen({ route, navigation }) {
 
   useEffect(() => {
     var loadedStudent = [];
-    var loadedTA = "";
     var getTutorialClass = CreateConsultFB.getTutorialClass(userID, moduleCode);
     getTutorialClass
       .then((tutorialClass) => CreateConsultFB.getTutorialClassStudent(tutorialClass, moduleCode))
@@ -164,11 +172,10 @@ export default function CreateConsultScreen({ route, navigation }) {
       });
 
     CreateConsultFB.checkUserName(userID).then((data) => {
-      loadedTA = data;
-      setNameTA(loadedTA);
+      setUserName(data);
     });
 
-    if (secondScreen == "Manage Bookings") {
+    if (secondScreen === "Manage Bookings") {
       setParticipants(studentsInvolved);
       setSize(studentsInvolved.length);
       setConsultType("Private");
