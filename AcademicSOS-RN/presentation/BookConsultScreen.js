@@ -34,6 +34,7 @@ export default function BookConsultScreen({ route, navigation }) {
   const [location, setLocation] = useState("");
   const [participants, setParticipants] = useState([]);
   const [agenda, setAgenda] = useState("");
+  const [userName, setUserName] = useState("");
 
   const updateDate = (date) => {
     setDate(date);
@@ -72,8 +73,7 @@ export default function BookConsultScreen({ route, navigation }) {
         startTime,
         endTime,
         location,
-        participants,
-        participants.length + 1,
+        selectedItems.concat({ id: userID, name: userName }),
         agenda,
         "Pending",
         currentDate,
@@ -107,6 +107,10 @@ export default function BookConsultScreen({ route, navigation }) {
           loadedStudents.push({ id: data[i]["id"], name: data[i]["name"] });
         }
       }
+    });
+
+    BookConsultFB.checkUserName(userID).then((data) => {
+      setUserName(data);
     });
     setParticipants(loadedStudents);
   }, []);
