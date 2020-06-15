@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useFonts } from "@use-expo/font";
-import { StyleSheet, Dimensions, Text, View, Alert } from "react-native";
+import { StyleSheet, Dimensions, Text, View, Alert, FlatList, ScrollView } from "react-native";
 import { AppLoading } from "expo";
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen";
 import BreadCrumb from "../components/BreadCrumb.js";
@@ -113,7 +113,7 @@ export default function ConfirmedScreen({ route, navigation }) {
     return <AppLoading />;
   } else {
     return (
-      <View>
+      <ScrollView>
         <BreadCrumb navHistory={navHistory} />
         <View style={styles.body}>
           <Text style={styles.titleText}> {consultDetails["module"]}</Text>
@@ -124,12 +124,15 @@ export default function ConfirmedScreen({ route, navigation }) {
             <Text style={styles.infoText}>Date: {consultDetails["consultDate"]}</Text>
             <Text style={styles.infoText}> Start Time: {consultDetails["consultStartTime"]}</Text>
             <Text style={styles.infoText}> End Time: {consultDetails["consultEndTime"]}</Text>
-            <Text style={styles.agendaTitle}> Agenda: </Text>
+
+            <Text style={styles.secondTitle}> Students: </Text>
+            <FlatList data={consultDetails.participants} renderItem={({ item }) => <Text style={styles.infoText}>{item.name}</Text>} style={styles.flatList} />
+            <Text style={styles.secondTitle}> Agenda: </Text>
             <Text style={styles.infoText}>{consultDetails["agenda"]} </Text>
           </View>
           {userType !== "Student" ? taJSX : studentJSX}
         </View>
-      </View>
+      </ScrollView>
     );
   }
 }
@@ -164,7 +167,7 @@ const styles = StyleSheet.create({
     fontFamily: "Righteous-Regular",
     color: "#FFFFFF",
   },
-  agendaTitle: {
+  secondTitle: {
     marginTop: hp("3%"),
     fontSize: hp("2.5%"),
     textAlign: "center",
@@ -196,7 +199,6 @@ const styles = StyleSheet.create({
     marginLeft: wp("2%"),
     backgroundColor: "white",
   },
-
   size: {
     marginTop: hp("2.5%"),
     fontSize: hp("2.5%"),
@@ -204,4 +206,5 @@ const styles = StyleSheet.create({
     fontFamily: "Righteous-Regular",
     color: "#FFFFFF",
   },
+  flatList: { flexGrow: 0 },
 });

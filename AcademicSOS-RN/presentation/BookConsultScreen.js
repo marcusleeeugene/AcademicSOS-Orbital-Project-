@@ -67,7 +67,7 @@ export default function BookConsultScreen({ route, navigation }) {
       // array empty or does not exist
       for (var i = 0; i < selectedItems.length; i++) {
         var selectedStudentID = selectedItems[i];
-        CreateConsultFB.checkUserName(selectedStudentID).then((data) => {
+        BookConsultFB.checkUserName(selectedStudentID).then((data) => {
           uniqueStudentArray.push({ id: selectedStudentID, name: data });
         });
       }
@@ -341,7 +341,7 @@ const styles = StyleSheet.create({
     marginLeft: "15%",
     flexDirection: "row",
     borderColor: "black",
-    fontSize: hp("5%"),
+    fontSize: hp("2%"),
     marginBottom: "5%",
     height: hp("8.5%"),
     width: wp("68%"),

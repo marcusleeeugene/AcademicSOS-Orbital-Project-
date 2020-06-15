@@ -3,7 +3,7 @@ import { database, role } from "./FireBaseConfig.js";
 
 const ConfirmedFB = {
   getModRole: function (id, modCode) {
-    //Returns a promise of priority point for student in the module
+    //Returns a promise of module role for user in the module
     return database
       .ref(`users/${role(id)}/${id}/modules/${modCode}`)
       .once("value")
@@ -14,7 +14,7 @@ const ConfirmedFB = {
   },
 
   getConsultSize: function (bookingId, modCode) {
-    //Returns a promise of priority point for student in the module
+    //Returns a promise of consult size
     return database
       .ref(`modules/${modCode}/bookings/${bookingId}`)
       .once("value")

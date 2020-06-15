@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useFonts } from "@use-expo/font";
-import { StyleSheet, Text, View, Image, Alert } from "react-native";
+import { StyleSheet, Text, View, Image, Alert, FlatList } from "react-native";
 import { AppLoading } from "expo";
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen";
 import BreadCrumb from "../components/BreadCrumb.js";
@@ -20,6 +20,7 @@ export default function PendingScreen({ route, navigation }) {
     { dest: thirdScreen, alt_dest: "" },
   ];
 
+  const [userType, setUserType] = useState("");
   const options = [
     {
       name: "Accept",
@@ -31,10 +32,20 @@ export default function PendingScreen({ route, navigation }) {
     },
   ];
 
-  const acceptConsultation = (consultDetails) => {
+  const creatorOptions = [
     {
-      console.log(bookingId);
-    }
+      name: "Cancel",
+      color: "#FF5252",
+    },
+  ];
+
+  useEffect(() => {
+    PendingFB.getModRole(userID, consultDetails["module"]).then((data) => {
+      setUserType(data);
+    });
+  });
+
+  const acceptConsultation = (consultDetails) => {
     PendingFB.acceptBooking(consultDetails, bookingId, "Confirmed");
     alert("Successfully updated booking status!");
     navigation.goBack();
@@ -65,11 +76,80 @@ export default function PendingScreen({ route, navigation }) {
           onPress: () => console.log("Cancel Pressed"),
           style: "cancel",
         },
-        { text: "Reject", onPress: () => console.log("OK Rejected") },
+        { text: "Reject", onPress: () => console.log("OK Rejected") }, // input the next action after reject
       ],
       { cancelable: false }
     );
   };
+  const rejectStudentOption = () => {
+    Alert.alert(
+      "Reject Options",
+      "Do you want to reject this suggested consultation?",
+      [
+        {
+          text: "Cancel",
+          onPress: () => console.log("Cancel Pressed"),
+          style: "cancel",
+        },
+        { text: "Reject", onPress: () => console.log("OK Rejected") }, // input the next action after reject
+      ],
+      { cancelable: false }
+    );
+  };
+
+  const cancelCreatorOption = () => {
+    Alert.alert(
+      "Cancel Options",
+      "Do you want to cancel this consultation?",
+      [
+        {
+          text: "Yes",
+          onPress: () => {
+            alert("Cancelled!!!"); // input the next action after cancellation
+          },
+        },
+        { text: "No", onPress: () => console.log("OK Rejected") },
+        {
+          text: "Cancel",
+          onPress: () => console.log("Cancel Pressed"),
+          style: "cancel",
+        },
+      ],
+      { cancelable: false }
+    );
+  };
+
+  const nonCreatorJSX = (
+    <View style={styles.button}>
+      {options.map((item, index) => (
+        <TouchableOpacity
+          key={index}
+          style={[styles.buttonOption, { backgroundColor: item.color }]}
+          onPress={() => {
+            item.name == "Accept" ? acceptConsultation(consultDetails) : userType != "Student" ? rejectOption() : rejectStudentOption();
+          }}
+        >
+          <Text style={styles.option}>{item.name}</Text>
+        </TouchableOpacity>
+      ))}
+    </View>
+  );
+
+  const creatorJSX = (
+    <View style={styles.button}>
+      {creatorOptions.map((item, index) => (
+        <TouchableOpacity
+          key={index}
+          style={[styles.creatorButtonOption, { backgroundColor: item.color }]}
+          onPress={() => {
+            cancelCreatorOption();
+          }}
+        >
+          <Text style={styles.option}>{item.name}</Text>
+        </TouchableOpacity>
+      ))}
+    </View>
+  );
 
   if (!fontsLoaded) {
     return <AppLoading />;
@@ -89,22 +169,13 @@ export default function PendingScreen({ route, navigation }) {
             <Text style={styles.infoText}>Date: {consultDetails["consultDate"]}</Text>
             <Text style={styles.infoText}> Start Time: {consultDetails["consultStartTime"]}</Text>
             <Text style={styles.infoText}> End Time: {consultDetails["consultEndTime"]}</Text>
-            <Text style={styles.agendaTitle}> Agenda: </Text>
-            <Text style={styles.infoText}>{consultDetails["agenda"]} </Text>
-          </View>
+            <Text style={styles.secondTitle}> Students: </Text>
+            <FlatList data={consultDetails.participants} renderItem={({ item }) => <Text style={styles.infoText}>{item.name}</Text>} style={styles.flatList} />
 
-          <View style={styles.button}>
-            {options.map((item, index) => (
-              <TouchableOpacity
-                key = {index}
-                style={[styles.buttonOption, { backgroundColor: item.color }]}
-                onPress={() => {
-                  item.name == "Accept" ? acceptConsultation(consultDetails) : rejectOption();
-                }}
-              >
-                <Text style={styles.option}>{item.name}</Text>
-              </TouchableOpacity>
-            ))}
+            <Text style={styles.secondTitle}> Agenda: </Text>
+            <Text style={styles.infoText}>{consultDetails["agenda"]} </Text>
+
+            {consultDetails["creator"] === userID ? creatorJSX : nonCreatorJSX}
           </View>
         </View>
       </View>
@@ -137,6 +208,7 @@ const styles = StyleSheet.create({
   },
   info: {
     marginTop: hp("5%"),
+    alignItems: "center",
   },
   infoText: {
     fontSize: hp("2.5%"),
@@ -144,7 +216,7 @@ const styles = StyleSheet.create({
     fontFamily: "Righteous-Regular",
     color: "#FFFFFF",
   },
-  agendaTitle: {
+  secondTitle: {
     marginTop: hp("5%"),
     fontSize: hp("2.5%"),
     textAlign: "center",
@@ -158,7 +230,13 @@ const styles = StyleSheet.create({
     marginTop: hp("5%"),
     marginLeft: wp("5%"),
     width: wp("30%"),
-    height: hp("16%"),
+    height: hp("13%"),
+    borderRadius: hp("1.1%"),
+  },
+  creatorButtonOption: {
+    marginTop: hp("5%"),
+    width: wp("30%"),
+    height: hp("13%"),
     borderRadius: hp("1.1%"),
   },
   option: {
@@ -168,4 +246,5 @@ const styles = StyleSheet.create({
     fontFamily: "Righteous-Regular",
     color: "#000000",
   },
+  flatList: { flexGrow: 0 },
 });
