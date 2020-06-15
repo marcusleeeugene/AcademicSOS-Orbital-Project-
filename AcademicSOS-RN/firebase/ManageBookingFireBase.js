@@ -31,7 +31,7 @@ function WeekRange() { //get a promise for week range within acad year based on 
     });
 }
 
-function checkStudentInvolved(id, participants) {
+function checkStudentIsParticipant(id, participants) {
   for (var i = 0; i < participants.length; i++) {
     if (id === participants[0]["id"]) {
       return true;
@@ -57,7 +57,7 @@ const ManageBookingFB = {
               var creator = individualBookings["creator"];
               var ta = individualBookings["ta"];
               var studentsInvolved = individualBookings["participants"]; //create consult not adding in participants
-              if (creator === id || ta["id"] === id || checkStudentInvolved(id, studentsInvolved)) { //Check if user is involved in the consultation
+              if (creator === id || ta["id"] === id || checkStudentIsParticipant(id, studentsInvolved)) { //Check if user is involved in the consultation
                 //var bookTime = individualBookings[bookTime] //for sorting later on base on priority queue
                 var bookingId = Object.keys(bookings);
                 var type = individualBookings["type"];
