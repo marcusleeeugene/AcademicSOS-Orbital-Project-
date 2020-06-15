@@ -10,6 +10,7 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 import CreateConsultFB from "../firebase/CreateConsultFireBase.js";
 import Modal from "react-native-modal";
 import MultiSelect from "react-native-multiple-select";
+import { useNavigationState } from "@react-navigation/native";
 
 export default function CreateConsultScreen({ route, navigation }) {
   let [fontsLoaded] = useFonts({
@@ -33,6 +34,7 @@ export default function CreateConsultScreen({ route, navigation }) {
   const [agenda, setAgenda] = useState("");
   const [participants, setParticipants] = useState([]);
   const [nameTA, setNameTA] = useState("");
+  const [studentList, setStudentList] = useState([]);
 
   const updateDate = (date) => {
     setDate(date);
@@ -81,6 +83,7 @@ export default function CreateConsultScreen({ route, navigation }) {
             location,
             consultType,
             { id: userID, name: nameTA },
+            participants,
             size,
             agenda,
             "Pending",
@@ -99,7 +102,7 @@ export default function CreateConsultScreen({ route, navigation }) {
             location,
             consultType,
             { id: userID, name: nameTA },
-            participants,
+            studentList,
             size,
             agenda,
             "Pending",
@@ -128,7 +131,7 @@ export default function CreateConsultScreen({ route, navigation }) {
         location,
         finalisedConsultType,
         { id: userID, name: nameTA },
-        studentsInvolved,
+        participants,
         size,
         agenda,
         "Pending",
@@ -137,6 +140,8 @@ export default function CreateConsultScreen({ route, navigation }) {
         weekRange
       );
     });
+
+    setParticipants([]);
 
     alert("Successfully updated booking!");
     navigation.navigate("Manage Bookings", {
@@ -163,12 +168,15 @@ export default function CreateConsultScreen({ route, navigation }) {
       setNameTA(loadedTA);
     });
 
-    if (studentsInvolved != null) {
+    {
+      console.log(studentsInvolved);
+    }
+    if (secondScreen == "Manage Bookings") {
       setParticipants(studentsInvolved);
       setSize(studentsInvolved.length);
       setConsultType("Private");
     } else {
-      setParticipants(loadedStudent);
+      setStudentList(loadedStudent);
     }
   }, []);
 
@@ -228,7 +236,7 @@ export default function CreateConsultScreen({ route, navigation }) {
       <View style={styles.studentModalView}>
         <MultiSelect
           hideTags
-          items={participants}
+          items={studentList}
           uniqueKey="id"
           ref={multiSelect}
           onSelectedItemsChange={onSelectedItemsChange}
@@ -291,7 +299,7 @@ export default function CreateConsultScreen({ route, navigation }) {
                 value={agenda}
               />
             </View>
-            <TouchableOpacity style={styles.createBtn} onPress={() => (studentsInvolved == null ? createConsultation() : updateConsultation())}>
+            <TouchableOpacity style={styles.createBtn} onPress={() => (secondScreen !== "Manage Bookings" ? createConsultation() : updateConsultation())}>
               <Text style={styles.createBtnText}>Create</Text>
             </TouchableOpacity>
           </View>
