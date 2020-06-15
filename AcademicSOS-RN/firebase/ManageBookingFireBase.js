@@ -2,22 +2,9 @@ import * as firebase from "firebase";
 import { database, role } from "./FireBaseConfig.js";
 import moment from "moment";
 
-function compareDate(a, b) {
-  const firstDate = moment(a.consultDate, "DD-MMM-YY").format();
-  const secondDate = moment(b.consultDate, "DD-MMM-YY").format();
-
-  let comparison = 0;
-  if (firstDate > secondDate) {
-    comparison = 1;
-  } else if (firstDate < secondDate) {
-    comparison = -1;
-  }
-  return comparison;
-}
-
-function compareTime(a, b) {
-  const firstTime = moment(a.consultStartTime, "hh:mm A").format();
-  const secondTime = moment(b.consultStartTime, "hh:mm A").format();
+function compareDateTime(a, b) {
+  const firstTime = moment(a.consultDate + " " + a.consultStartTime, "DD-MMM-YY hh:mm A").format();
+  const secondTime = moment(b.consultDate + " " + b.consultStartTime, "DD-MMM-YY hh:mm A").format();
 
   let comparison = 0;
   if (firstTime > secondTime) {
@@ -60,7 +47,7 @@ const ManageBookingFB = {
               var individualBookings = bookings[userBookings];
               var creator = individualBookings["creator"];
               var ta = individualBookings["ta"];
-              var studentsInvolved = individualBookings["participants"];
+              var studentsInvolved = individualBookings["participants"]; //create consult not adding in participants
               if (creator === id || ta["id"] === id || id in studentsInvolved) { //Check if user is involved in the consultation
                 //var bookTime = individualBookings[bookTime] //for sorting later on base on priority queue
                 var bookingId = Object.keys(bookings);
@@ -93,7 +80,7 @@ const ManageBookingFB = {
             }
           }
         }
-        return allUserBookings.sort(compareDate).sort(compareTime);
+        return allUserBookings.sort(compareDateTime);
       })
       .then((data) => {
         return data//Filter by status
@@ -107,7 +94,7 @@ const ManageBookingFB = {
             return selectedWeek == selectedDate.diff(startingWeek, "weeks") || selectedWeek === "Weeks";
           })
           .filter((rsl) => { //Filter by day
-            var bookDay = moment(rsl.date).format("dddd");
+            var bookDay = moment(rsl.consultDate).format("dddd");
             return bookDay === day || day === "All Days";
           });
       });
