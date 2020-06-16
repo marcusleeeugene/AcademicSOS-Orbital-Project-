@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useFonts } from "@use-expo/font";
 import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, ScrollView, Platform } from "react-native";
 import { AppLoading } from "expo";
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen";
 import BreadCrumb from "../components/BreadCrumb";
 import Modal from "react-native-modal";
+import PublicConsultFB from "../firebase/PublicConsultFireBase.js";
 
 export default function PublicConsultScreen({ route, navigation }) {
   let [fontsLoaded] = useFonts({
@@ -12,24 +13,24 @@ export default function PublicConsultScreen({ route, navigation }) {
     "Righteous-Regular": require("../assets/fonts/Righteous-Regular.ttf"),
   });
 
-  const { firstScreen, secondScreen, thirdScreen, userID } = route.params;
+  const { firstScreen, secondScreen, thirdScreen, userID, moduleCode } = route.params;
   const navHistory = [
     { dest: firstScreen, alt_dest: "" },
     { dest: secondScreen, alt_dest: "Select Module" },
-    { dest: thirdScreen, alt_dest: "" },
+    { dest: thirdScreen, alt_dest: "" }
   ];
-  const [isStatusModalVisible, setStatusModalVisible] = useState(false);
+
   const [isWeekModalVisible, setWeekModalVisible] = useState(false);
   const [isDayModalVisible, setDayModalVisible] = useState(false);
 
-  const [status, setStatus] = useState("All Status");
   const [week, setWeek] = useState("All Weeks");
   const [day, setDay] = useState("All Days");
 
+  const [consultations, setConsultations] = useState([]);
+  const [weekList, setWeekList] = useState([]);
+
   const toggleModal = (type) => {
-    if (type === "Status") {
-      setStatusModalVisible(!isStatusModalVisible);
-    } else if (type === "Week") {
+    if (type === "Week") {
       setWeekModalVisible(!isWeekModalVisible);
     } else if (type === "Day") {
       setDayModalVisible(!isDayModalVisible);
@@ -37,12 +38,9 @@ export default function PublicConsultScreen({ route, navigation }) {
   };
 
   const updateModalChoice = (data) => {
-    console.log(data);
     var type = data.split("#")[0];
     var val = data.split("#")[1];
-    if (type === "Status") {
-      setStatus(val);
-    } else if (type === "Week") {
+    if (type === "Week") {
       setWeek(val);
     } else if (type === "Day") {
       setDay(val);
@@ -50,52 +48,58 @@ export default function PublicConsultScreen({ route, navigation }) {
     toggleModal(type);
   };
 
-  const statusJSX = (
-    <Modal isVisible={isStatusModalVisible} onBackdropPress={() => setStatusModalVisible(false)}>
-      <View style={styles.modalView}>
-        <Text style={styles.modalTitle}> Status: </Text>
-        <TouchableOpacity style={styles.modalBtn} onPress={() => updateModalChoice("Status#All Types")}>
-          <Text style={styles.modalBtnText}> All Types </Text>
-        </TouchableOpacity>
+  const activateGetUserBookings = () => { //Loads user bookings onto the screen
+    //Generate list of consultation bookings
+    var tempConsultations = [];
+    const colourCodes = ["#90CAF9", "#FFF59D", "#A5D6A7", "#FFAB91", "#B39DDB", "#80CBC4", "#c5e1a5", "#fff59d", "#ffcc80", "#bcaaa4"];
+    PublicConsultFB.getPublicConsultation(moduleCode, week, day).then((data) => {
+      for (var i = 0; i < data.length; i++) {
+        tempConsultations.push({
+          creator: data[i].creator,
+          bookingId: data[i].bookingId,
+          module: data[i].module,
+          ta: data[i].ta,
+          type: data[i].type,
+          location: data[i].location,
+          consultDate: data[i].consultDate,
+          consultStartTime: data[i].consultStartTime,
+          consultEndTime: data[i].consultEndTime,
+          agenda: data[i].agenda,
+          participants: data[i].participants,
+          size: data[i].size,
+          consultStatus: data[i].consultStatus,
+          color: colourCodes[i],
+        });
+      }
+      setConsultations(tempConsultations);
+    });
+    //Generate list of academic weeks
+    var tempWeeks = [];
+    PublicConsultFB.getNumWeeks().then((data) => {
+      tempWeeks.push({ week: "All Weeks" });
+      for (var i = 0; i < data; i++) {
+        tempWeeks.push({ week: `Week ${i}` });
+      }
+      setWeekList(tempWeeks);
+    });
+  }
 
-        <TouchableOpacity style={styles.modalBtn} onPress={() => updateModalChoice("Status#Confirmed")}>
-          <Text style={styles.modalBtnText}> Confirmed </Text>
-        </TouchableOpacity>
+  useEffect(() => {
+    navigation.addListener('focus', () => { //To force re-render current screen once navigating back from pending screen.
+     activateGetUserBookings();
+    });
+    activateGetUserBookings(); //Runs whenever there is a filter change by the user
+  }, [week, day]);
 
-        <TouchableOpacity style={styles.modalBtn} onPress={() => updateModalChoice("Status#Pending")}>
-          <Text style={styles.modalBtnText}> Pending </Text>
-        </TouchableOpacity>
-      </View>
-    </Modal>
-  );
 
-  const weeks = [
-    { key: "Week 1" },
-    { key: "Week 2" },
-    { key: "Week 3" },
-    { key: "Week 4" },
-    { key: "Week 5" },
-    { key: "Week 6" },
-    { key: "Reading 1" },
-    { key: "Week 7" },
-    { key: "Week 8" },
-    { key: "Week 9" },
-    { key: "Week 10" },
-    { key: "Week 11" },
-    { key: "Week 12" },
-    { key: "Week 13" },
-    { key: "Reading 2" },
-    { key: "Exam 1" },
-    { key: "Exam 2" },
-  ];
   const weekJSX = (
     <Modal isVisible={isWeekModalVisible} onBackdropPress={() => setWeekModalVisible(false)}>
       <View style={styles.modalView}>
         <Text style={styles.modalTitle}> Week: </Text>
         <ScrollView>
-          {weeks.map((item) => (
-            <TouchableOpacity key={item.key} style={styles.modalBtn} onPress={() => updateModalChoice("Week#" + item.key)}>
-              <Text style={styles.modalBtnText}> {item.key} </Text>
+          {weekList.map((item) => (
+            <TouchableOpacity key={item.key} style={styles.modalBtn} onPress={() => updateModalChoice("Week#" + item.week)}>
+              <Text style={styles.modalBtnText}> {item.week} </Text>
             </TouchableOpacity>
           ))}
         </ScrollView>
@@ -103,7 +107,7 @@ export default function PublicConsultScreen({ route, navigation }) {
     </Modal>
   );
 
-  const days = [{ key: "Monday" }, { key: "Tuesday" }, { key: "Wednesday" }, { key: "Thursday" }, { key: "Friday" }, { key: "Saturday" }, { key: "Sunday" }];
+  const days = [{ key: "All Days" }, { key: "Monday" }, { key: "Tuesday" }, { key: "Wednesday" }, { key: "Thursday" }, { key: "Friday" }, { key: "Saturday" }, { key: "Sunday" }];
   const dayJSX = (
     <Modal isVisible={isDayModalVisible} onBackdropPress={() => setDayModalVisible(false)}>
       <View style={styles.modalView}>
@@ -119,57 +123,48 @@ export default function PublicConsultScreen({ route, navigation }) {
     </Modal>
   );
 
-  const consultations = [
-    {
-      name: "CS1101S",
-      ta: "John Tan",
-      remarks: "Recursion problems",
-      date: "21 - Jun - 20",
-      time: "11.00 AM",
-      color: "#90CAF9",
-      type: "approved",
-    },
-    {
-      name: "MA1101R",
-      ta: "Peter Lee",
-      remarks: "How to gaussian eliminate",
-      date: "21 - Jun - 20",
-      time: "11.00 AM",
-      color: "#A5D6A7",
-      type: "approved",
-    },
-    {
-      name: "ES1601",
-      ta: "Mary Koh",
-      remarks: "Verbs and adjectives",
-      date: "21 - Jun - 20",
-      time: "11.00 AM",
-      color: "#FFAB91",
-      type: "approved",
-    },
-    {
-      name: "NM3221",
-      ta: "Bob Tan",
-      remarks: "Verbs and adjectives",
-      date: "21 - Jun - 20",
-      time: "11.00 AM",
-      color: "#B39DDB",
-      type: "pending",
-    },
-  ];
-
   const consultationsJSX = (
     <View>
       {consultations.map((item, index) => (
         <View key={"consultation" + index} style={styles.moduleRow}>
           <View style={styles.dateTime}>
-            <Text style={styles.dateTime_Text}> {item.date} </Text>
-            <Text style={styles.dateTime_Text}> {item.time} </Text>
+            <Text style={styles.dateTime_Text}> {item.consultDate} </Text>
+            <Text style={styles.dateTime_Text}> {item.consultStartTime} </Text>
           </View>
-          <TouchableOpacity style={[styles.moduleContainer, { backgroundColor: item.color }]}>
-            <Text style={styles.consultationInfoMod}> {item.name} </Text>
-            <Text style={styles.consultationInfo}> TA: {item.ta} </Text>
-            <Text style={styles.consultationInfo}> Remarks: {item.remarks} </Text>
+          <TouchableOpacity
+            style={[styles.moduleContainer, { backgroundColor: item.color }]}
+            onPress={() => {
+              item.consultStatus === "Pending"
+                ? navigation.navigate("Pending", {
+                    thirdScreen: item.module,
+                    secondScreen: secondScreen,
+                    firstScreen: firstScreen,
+                    userID: userID,
+                    consultDetails: item,
+                    bookingId: item.bookingId[index],
+                  })
+                : navigation.navigate("Confirmed", {
+                    thirdScreen: item.module,
+                    secondScreen: secondScreen,
+                    firstScreen: firstScreen,
+                    userID: userID,
+                    consultDetails: item,
+                    bookingId: item.bookingId[index],
+                  });
+            }}
+          >
+            <Text style={styles.consultationInfoMod}>
+              {item.module}
+              {item.consultStatus === "Pending" ? ( //Show notification only if status is pending
+                <Image style={styles.notification} source={require("../assets/images/notification.png")} />
+              ) : null}
+            </Text>
+            <Text style={styles.consultationInfo}> TA: {item.ta["name"]} </Text>
+            <Text style={styles.consultationInfo}> Status: {item.consultStatus} </Text>
+            <Text style={styles.consultationInfo} numberOfLines={1}>
+              {" "}
+              Agenda: {item.agenda}{" "}
+            </Text>
           </TouchableOpacity>
         </View>
       ))}
@@ -185,12 +180,6 @@ export default function PublicConsultScreen({ route, navigation }) {
         <View style={styles.body}>
           <Text style={styles.title}> Public Consultation </Text>
           <View style={styles.filter}>
-            <TouchableOpacity style={styles.filterBtn} onPress={() => toggleModal("Status")}>
-              <Text style={styles.filter_text}>
-                {" "}
-                {status} <Image style={styles.chevron_inv} source={require("../assets/images/chevron-inv.png")} />
-              </Text>
-            </TouchableOpacity>
             <TouchableOpacity style={styles.filterBtn} onPress={() => toggleModal("Week")}>
               <Text style={styles.filter_text}>
                 {" "}
@@ -204,7 +193,6 @@ export default function PublicConsultScreen({ route, navigation }) {
               </Text>
             </TouchableOpacity>
           </View>
-          {statusJSX}
           {weekJSX}
           {dayJSX}
           <ScrollView style={styles.moduleView}>{consultationsJSX}</ScrollView>
@@ -229,7 +217,7 @@ const styles = StyleSheet.create({
   filter: {
     flexDirection: "row",
     justifyContent: "space-between",
-    paddingHorizontal: wp("6%"),
+    paddingHorizontal: wp("20%"),
     marginTop: "5%",
   },
   filterBtn: {
@@ -262,12 +250,13 @@ const styles = StyleSheet.create({
   moduleContainer: {
     borderRadius: hp("1.1%"),
     height: hp("10%"),
-    width: wp("100%"),
+    width: wp("70%"),
     backgroundColor: "#FFFFFF",
     marginBottom: "3%",
   },
   dateTime: {
     flexDirection: "column",
+    width: wp("33%"),
     marginTop: "3%",
   },
   dateTime_Text: {
@@ -280,13 +269,18 @@ const styles = StyleSheet.create({
   consultationInfoMod: {
     fontSize: hp("2%"),
     fontFamily: "Righteous-Regular",
+    paddingHorizontal: wp("2%"),
   },
   consultationInfo: {
     fontSize: hp("1.5%"),
     fontFamily: "Righteous-Regular",
   },
-  modal: {
-    justifyContent: "center",
+  notification: {
+    height: hp("2%"),
+    width: wp("7.5%"),
+    resizeMode: "contain",
+    alignItems: "center",
+    paddingHorizontal: wp("5%"),
   },
   modalView: {
     backgroundColor: "#CFD8DC",
