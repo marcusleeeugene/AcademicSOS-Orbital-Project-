@@ -13,6 +13,7 @@ export default function PendingScreen({ route, navigation }) {
   });
 
   const { firstScreen, secondScreen, thirdScreen, fourthScreen, userID, consultDetails, bookingId } = route.params;
+
   const navHistory = [
     { dest: firstScreen, alt_dest: "" },
     secondScreen == "Public Consultation" ? { dest: secondScreen, alt_dest: "Select Module" } : { dest: secondScreen, alt_dest: "Manage Bookings" },

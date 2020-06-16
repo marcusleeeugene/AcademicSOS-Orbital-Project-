@@ -14,7 +14,6 @@ export default function PublicConsultScreen({ route, navigation }) {
   });
 
   const { firstScreen, secondScreen, thirdScreen, userID, moduleCode } = route.params;
-  console.log(secondScreen);
 
   const navHistory = [
     { dest: firstScreen, alt_dest: "" },
@@ -138,7 +137,7 @@ export default function PublicConsultScreen({ route, navigation }) {
             onPress={() => {
               item.consultStatus === "Pending"
                 ? navigation.navigate("Pending", {
-                    fourthScreen: "Details",
+                    fourthScreen: "Info",
                     thirdScreen: item.module,
                     secondScreen: secondScreen,
                     firstScreen: firstScreen,
@@ -147,7 +146,7 @@ export default function PublicConsultScreen({ route, navigation }) {
                     bookingId: item.bookingId[index],
                   })
                 : navigation.navigate("Confirmed", {
-                    fourthScreen: "Details",
+                    fourthScreen: "Info",
                     thirdScreen: item.module,
                     secondScreen: secondScreen,
                     firstScreen: firstScreen,
