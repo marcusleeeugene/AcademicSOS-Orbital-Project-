@@ -21,16 +21,17 @@ export default function ConfirmedScreen({ route, navigation }) {
     setDimensions({ window, screen });
   };
 
-  const { firstScreen, secondScreen, thirdScreen, userID, consultDetails, bookingId } = route.params;
   const [userType, setUserType] = useState("");
   const [consultSize, setConsultSize] = useState("");
   const qrCode = "https://www.academicSOS.com/" + consultDetails["module"] + "/" + bookingId;
 
+  const { firstScreen, secondScreen, thirdScreen, fourthScreen, userID, consultDetails, bookingId } = route.params;
   const navHistory = [
     { dest: firstScreen, alt_dest: "" },
-    { dest: secondScreen, alt_dest: "Manage Bookings" },
-    { dest: thirdScreen, alt_dest: "" },
-  ];
+    secondScreen == "Public Consultation" ? { dest: secondScreen, alt_dest: "Select Module" } : { dest: secondScreen, alt_dest: "Manage Bookings" },
+    secondScreen == "Public Consultation" ? { dest: thirdScreen, alt_dest: "Public Consultation" } : { dest: thirdScreen, alt_dest: "" },
+    fourthScreen != undefined ? {dest:fourthScreen, alt_dest: ""} : null,
+  ].filter((item) => item != null);
 
   const options = [
     {
@@ -67,6 +68,7 @@ export default function ConfirmedScreen({ route, navigation }) {
     <View style={styles.button}>
       {options.map((item) => (
         <TouchableOpacity
+          key = { item.name }
           style={[styles.buttonOption, { backgroundColor: item.color }]}
           onPress={() => {
             item.name === "Scan Attendance"
@@ -124,7 +126,6 @@ export default function ConfirmedScreen({ route, navigation }) {
             <Text style={styles.infoText}>Date: {consultDetails["consultDate"]}</Text>
             <Text style={styles.infoText}> Start Time: {consultDetails["consultStartTime"]}</Text>
             <Text style={styles.infoText}> End Time: {consultDetails["consultEndTime"]}</Text>
-
             <Text style={styles.secondTitle}> Students: </Text>
             <FlatList data={consultDetails.participants} renderItem={({ item }) => <Text style={styles.infoText}>{item.name}</Text>} style={styles.flatList} />
             <Text style={styles.secondTitle}> Agenda: </Text>
