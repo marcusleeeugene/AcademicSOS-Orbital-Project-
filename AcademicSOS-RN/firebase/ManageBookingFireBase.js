@@ -3,8 +3,8 @@ import { database, role } from "./FireBaseConfig.js";
 import moment from "moment";
 
 function compareDateTime(a, b) {
-  const firstTime = moment(a.consultDate + " " + a.consultStartTime, "DD-MMM-YY hh:mm A").format();
-  const secondTime = moment(b.consultDate + " " + b.consultStartTime, "DD-MMM-YY hh:mm A").format();
+  const firstTime = moment(a.consultDate + " " + a.consultStartTime, ["DD-MMM-YY hh:mm A"]).format();
+  const secondTime = moment(b.consultDate + " " + b.consultStartTime, ["DD-MMM-YY hh:mm A"]).format();
 
   let comparison = 0;
   if (firstTime > secondTime) {
@@ -56,35 +56,56 @@ const ManageBookingFB = {
               var individualBookings = bookings[userBookings];
               var creator = individualBookings["creator"];
               var ta = individualBookings["ta"];
-              var studentsInvolved = individualBookings["participants"]; //create consult not adding in participants
-              if (creator === id || ta["id"] === id || checkStudentIsParticipant(id, studentsInvolved)) { //Check if user is involved in the consultation
-                //var bookTime = individualBookings[bookTime] //for sorting later on base on priority queue
-                var bookingId = Object.keys(bookings);
-                var type = individualBookings["type"];
-                var location = individualBookings["location"];
-                var consultDate = individualBookings["consultDate"];
-                var consultStartTime = individualBookings["consultStartTime"];
-                var consultEndTime = individualBookings["consultEndTime"];
-                var agenda = individualBookings["agenda"];
-                var consultStatus = individualBookings["consultStatus"];
-                var size = individualBookings["size"];
-                var weekRange = individualBookings["weekRange"];
-                allUserBookings.push({
-                  creator: creator,
-                  bookingId: bookingId,
-                  module: modCode,
-                  ta: ta,
-                  size: size,
-                  type: type,
-                  location: location,
-                  consultDate: consultDate,
-                  consultStartTime: consultStartTime,
-                  consultEndTime: consultEndTime,
-                  agenda: agenda,
-                  participants: studentsInvolved,
-                  consultStatus: consultStatus,
-                  weekRange: weekRange,
-                });
+              var bookingId = Object.keys(bookings);
+              var type = individualBookings["type"];
+              var location = individualBookings["location"];
+              var consultDate = individualBookings["consultDate"];
+              var consultStartTime = individualBookings["consultStartTime"];
+              var consultEndTime = individualBookings["consultEndTime"];
+              var agenda = individualBookings["agenda"];
+              var consultStatus = individualBookings["consultStatus"];
+              var size = individualBookings["size"];
+              var weekRange = individualBookings["weekRange"];
+              if (individualBookings["participants"] == undefined) {
+                if (creator === id || ta["id"] === id) { //Check if user is involved in the consultation (No checkStudentIsParticipant as it is public consult)
+                  //var bookTime = individualBookings[bookTime] //for sorting later on base on priority queue
+                  allUserBookings.push({
+                    creator: creator,
+                    bookingId: bookingId,
+                    module: modCode,
+                    ta: ta,
+                    size: size,
+                    type: type,
+                    location: location,
+                    consultDate: consultDate,
+                    consultStartTime: consultStartTime,
+                    consultEndTime: consultEndTime,
+                    agenda: agenda,
+                    participants: " ",
+                    consultStatus: consultStatus,
+                    weekRange: weekRange,
+                  });
+                }
+              } else {
+                var studentsInvolved = individualBookings["participants"]; //create consult not adding in participants
+                if (creator === id || ta["id"] === id || checkStudentIsParticipant(id, studentsInvolved)) { //Check if user is involved in the consultation
+                  allUserBookings.push({
+                    creator: creator,
+                    bookingId: bookingId,
+                    module: modCode,
+                    ta: ta,
+                    size: size,
+                    type: type,
+                    location: location,
+                    consultDate: consultDate,
+                    consultStartTime: consultStartTime,
+                    consultEndTime: consultEndTime,
+                    agenda: agenda,
+                    participants: studentsInvolved,
+                    consultStatus: consultStatus,
+                    weekRange: weekRange,
+                  });
+                }
               }
             }
           }

@@ -3,8 +3,8 @@ import { database, role } from "./FireBaseConfig.js";
 import moment from "moment";
 
 function compareDateTime(a, b) {
-  const firstTime = moment(a.consultDate + " " + a.consultStartTime, "DD-MMM-YY hh:mm A").format();
-  const secondTime = moment(b.consultDate + " " + b.consultStartTime, "DD-MMM-YY hh:mm A").format();
+  const firstTime = moment(a.consultDate + " " + a.consultStartTime, ["DD-MMM-YY hh:mm A"]).format();
+  const secondTime = moment(b.consultDate + " " + b.consultStartTime, ["DD-MMM-YY hh:mm A"]).format();
 
   let comparison = 0;
   if (firstTime > secondTime) {
