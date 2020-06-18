@@ -18,7 +18,7 @@ export default function PendingScreen({ route, navigation }) {
     { dest: firstScreen, alt_dest: "" },
     secondScreen == "Public Consultation" ? { dest: secondScreen, alt_dest: "Select Module" } : { dest: secondScreen, alt_dest: "Manage Bookings" },
     secondScreen == "Public Consultation" ? { dest: thirdScreen, alt_dest: "Public Consultation" } : { dest: thirdScreen, alt_dest: "" },
-    fourthScreen != undefined ? {dest:fourthScreen, alt_dest: ""} : null,
+    fourthScreen != undefined ? { dest: fourthScreen, alt_dest: "" } : null,
   ].filter((item) => item != null);
 
   const [userType, setUserType] = useState("");
@@ -47,6 +47,9 @@ export default function PendingScreen({ route, navigation }) {
   });
 
   const acceptConsultation = (consultDetails) => {
+    {
+      console.log(bookingId);
+    }
     PendingFB.acceptBooking(consultDetails, bookingId, "Confirmed");
     alert("Successfully updated booking status!");
     navigation.goBack();

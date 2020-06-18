@@ -18,7 +18,7 @@ export default function PublicConsultScreen({ route, navigation }) {
   const navHistory = [
     { dest: firstScreen, alt_dest: "" },
     { dest: secondScreen, alt_dest: "Select Module" },
-    { dest: thirdScreen, alt_dest: "" }
+    { dest: thirdScreen, alt_dest: "" },
   ];
 
   const [isWeekModalVisible, setWeekModalVisible] = useState(false);
@@ -49,7 +49,8 @@ export default function PublicConsultScreen({ route, navigation }) {
     toggleModal(type);
   };
 
-  const activateGetUserBookings = () => { //Loads user bookings onto the screen
+  const activateGetUserBookings = () => {
+    //Loads user bookings onto the screen
     //Generate list of consultation bookings
     var tempConsultations = [];
     const colourCodes = ["#90CAF9", "#FFF59D", "#A5D6A7", "#FFAB91", "#B39DDB", "#80CBC4", "#c5e1a5", "#fff59d", "#ffcc80", "#bcaaa4"];
@@ -70,6 +71,8 @@ export default function PublicConsultScreen({ route, navigation }) {
           size: data[i].size,
           consultStatus: data[i].consultStatus,
           color: colourCodes[i],
+          bookDate: data[i].bookDate,
+          bookTime: data[i].bookTime,
         });
       }
       setConsultations(tempConsultations);
@@ -83,15 +86,15 @@ export default function PublicConsultScreen({ route, navigation }) {
       }
       setWeekList(tempWeeks);
     });
-  }
+  };
 
   useEffect(() => {
-    navigation.addListener('focus', () => { //To force re-render current screen once navigating back from pending screen.
-     activateGetUserBookings();
+    navigation.addListener("focus", () => {
+      //To force re-render current screen once navigating back from pending screen.
+      activateGetUserBookings();
     });
     activateGetUserBookings(); //Runs whenever there is a filter change by the user
   }, [week, day]);
-
 
   const weekJSX = (
     <Modal isVisible={isWeekModalVisible} onBackdropPress={() => setWeekModalVisible(false)}>

@@ -15,7 +15,8 @@ function compareDateTime(a, b) {
   return comparison;
 }
 
-function WeekRange() { //get a promise for week range within acad year based on real time later on.
+function WeekRange() {
+  //get a promise for week range within acad year based on real time later on.
   return fetch("https://api.nusmods.com/v2/2019-2020/modules/CS2040.json") //This part, to be made dynamic in future
     .then((result) => result.json())
     .then((data) => {
@@ -29,15 +30,6 @@ function WeekRange() { //get a promise for week range within acad year based on 
       }
       return weekRange;
     });
-}
-
-function checkStudentIsParticipant(id, participants) {
-  for (var i = 0; i < participants.length; i++) {
-    if (id === participants[0]["id"]) {
-      return true;
-    }
-  }
-  return false;
 }
 
 const PublicConsultFB = {
@@ -64,6 +56,8 @@ const PublicConsultFB = {
             var consultStatus = individualBookings["consultStatus"];
             var size = individualBookings["size"];
             var weekRange = individualBookings["weekRange"];
+            var bookDate = individualBookings["bookDate"];
+            var bookTime = individualBookings["bookTime"];
             allPublicBookings.push({
               creator: creator,
               bookingId: bookingId,
@@ -79,26 +73,31 @@ const PublicConsultFB = {
               participants: studentsInvolved,
               consultStatus: consultStatus,
               weekRange: weekRange,
+              bookDate: bookDate,
+              bookTime: bookTime,
             });
           }
         }
         return allPublicBookings.sort(compareDateTime);
       })
       .then((data) => {
-        return data//Filter by status
-          .filter((rsl) => { //Filter by week
+        return data //Filter by status
+          .filter((rsl) => {
+            //Filter by week
             var selectedWeek = week.split(" ")[1];
             var startingWeek = moment(rsl.weekRange["start"]);
             var selectedDate = moment(rsl.consultDate);
             return selectedWeek == selectedDate.diff(startingWeek, "weeks") || selectedWeek === "Weeks";
           })
-          .filter((rsl) => { //Filter by day
+          .filter((rsl) => {
+            //Filter by day
             var bookDay = moment(rsl.consultDate).format("dddd");
             return bookDay === day || day === "All Days";
           });
       });
   },
-  getNumWeeks: function () { //returns a promise for the number of weeks of current academic semester
+  getNumWeeks: function () {
+    //returns a promise for the number of weeks of current academic semester
     return WeekRange().then((date) => {
       var start = moment(date["start"]);
       var end = moment(date["end"]);

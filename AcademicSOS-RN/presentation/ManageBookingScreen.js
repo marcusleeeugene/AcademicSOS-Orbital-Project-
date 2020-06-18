@@ -53,7 +53,8 @@ export default function ManageBookingScreen({ route, navigation }) {
     toggleModal(type);
   };
 
-  const activateGetUserBookings = () => { //Loads user bookings onto the screen
+  const activateGetUserBookings = () => {
+    //Loads user bookings onto the screen
     //Generate list of consultation bookings
     var tempConsultations = [];
     const colourCodes = ["#90CAF9", "#FFF59D", "#A5D6A7", "#FFAB91", "#B39DDB", "#80CBC4", "#c5e1a5", "#fff59d", "#ffcc80", "#bcaaa4"];
@@ -73,6 +74,9 @@ export default function ManageBookingScreen({ route, navigation }) {
           participants: data[i].participants,
           size: data[i].size,
           consultStatus: data[i].consultStatus,
+          bookDate: data[i].bookDate,
+          bookTime: data[i].bookTime,
+          weekRange: data[i].weekRange,
           color: colourCodes[i],
         });
       }
@@ -87,11 +91,12 @@ export default function ManageBookingScreen({ route, navigation }) {
       }
       setWeekList(tempWeeks);
     });
-  }
+  };
 
   useEffect(() => {
-    navigation.addListener('focus', () => { //To force re-render current screen once navigating back from pending screen.
-     activateGetUserBookings();
+    navigation.addListener("focus", () => {
+      //To force re-render current screen once navigating back from pending screen.
+      activateGetUserBookings();
     });
     activateGetUserBookings(); //Runs whenever there is a filter change by the user
   }, [status, week, day]);

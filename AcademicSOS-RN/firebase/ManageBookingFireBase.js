@@ -15,7 +15,8 @@ function compareDateTime(a, b) {
   return comparison;
 }
 
-function WeekRange() { //get a promise for week range within acad year based on real time later on.
+function WeekRange() {
+  //get a promise for week range within acad year based on real time later on.
   return fetch("https://api.nusmods.com/v2/2019-2020/modules/CS2040.json") //This part, to be made dynamic in future
     .then((result) => result.json())
     .then((data) => {
@@ -48,11 +49,13 @@ const ManageBookingFB = {
       .then((snapshot) => snapshot.val())
       .then((obj) => {
         var allUserBookings = [];
-        for (var modCode in obj) { //Loop through each module
+        for (var modCode in obj) {
+          //Loop through each module
           var modules = obj[modCode];
           var bookings = modules["bookings"];
           if (bookings != undefined) {
-            for (var userBookings in bookings) { //Loop through each booking
+            for (var userBookings in bookings) {
+              //Loop through each booking
               var individualBookings = bookings[userBookings];
               var creator = individualBookings["creator"];
               var ta = individualBookings["ta"];
@@ -66,8 +69,11 @@ const ManageBookingFB = {
               var consultStatus = individualBookings["consultStatus"];
               var size = individualBookings["size"];
               var weekRange = individualBookings["weekRange"];
+              var bookDate = individualBookings["bookDate"];
+              var bookTime = individualBookings["bookTime"];
               if (individualBookings["participants"] == undefined) {
-                if (creator === id || ta["id"] === id) { //Check if user is involved in the consultation (No checkStudentIsParticipant as it is public consult)
+                if (creator === id || ta["id"] === id) {
+                  //Check if user is involved in the consultation (No checkStudentIsParticipant as it is public consult)
                   //var bookTime = individualBookings[bookTime] //for sorting later on base on priority queue
                   allUserBookings.push({
                     creator: creator,
@@ -84,11 +90,14 @@ const ManageBookingFB = {
                     participants: " ",
                     consultStatus: consultStatus,
                     weekRange: weekRange,
+                    bookDate: bookDate,
+                    bookTime: bookTime,
                   });
                 }
               } else {
                 var studentsInvolved = individualBookings["participants"]; //create consult not adding in participants
-                if (creator === id || ta["id"] === id || checkStudentIsParticipant(id, studentsInvolved)) { //Check if user is involved in the consultation
+                if (creator === id || ta["id"] === id || checkStudentIsParticipant(id, studentsInvolved)) {
+                  //Check if user is involved in the consultation
                   allUserBookings.push({
                     creator: creator,
                     bookingId: bookingId,
@@ -104,6 +113,8 @@ const ManageBookingFB = {
                     participants: studentsInvolved,
                     consultStatus: consultStatus,
                     weekRange: weekRange,
+                    bookDate: bookDate,
+                    bookTime: bookTime,
                   });
                 }
               }
@@ -113,23 +124,24 @@ const ManageBookingFB = {
         return allUserBookings.sort(compareDateTime);
       })
       .then((data) => {
-        return data//Filter by status
-          .filter((rsl) =>
-            rsl.consultStatus === status || status === "All Status"
-          )
-          .filter((rsl) => { //Filter by week
+        return data //Filter by status
+          .filter((rsl) => rsl.consultStatus === status || status === "All Status")
+          .filter((rsl) => {
+            //Filter by week
             var selectedWeek = week.split(" ")[1];
             var startingWeek = moment(rsl.weekRange["start"]);
             var selectedDate = moment(rsl.consultDate);
             return selectedWeek == selectedDate.diff(startingWeek, "weeks") || selectedWeek === "Weeks";
           })
-          .filter((rsl) => { //Filter by day
+          .filter((rsl) => {
+            //Filter by day
             var bookDay = moment(rsl.consultDate).format("dddd");
             return bookDay === day || day === "All Days";
           });
       });
   },
-  getNumWeeks: function () { //returns a promise for the number of weeks of current academic semester
+  getNumWeeks: function () {
+    //returns a promise for the number of weeks of current academic semester
     return WeekRange().then((date) => {
       var start = moment(date["start"]);
       var end = moment(date["end"]);
