@@ -94,7 +94,6 @@ export default function CreateConsultScreen({ route, navigation }) {
             location,
             consultType,
             { id: userID, name: userName },
-            participants,
             size,
             agenda,
             "Pending",

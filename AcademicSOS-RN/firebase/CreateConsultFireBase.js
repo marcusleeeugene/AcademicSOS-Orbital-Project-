@@ -18,7 +18,7 @@ const CreateConsultFB = {
       });
   },
 
-  addPublicBooking: function (creator, modCode, date, startTime, endTime, location, consultType, TA, participants, size, agenda, status, bookDate, bookTime, weekRange) {
+  addPublicBooking: function (creator, modCode, date, startTime, endTime, location, consultType, TA, size, agenda, status, bookDate, bookTime, weekRange) {
     database.ref(`modules/${modCode}/bookings`).push({
       creator: creator,
       consultDate: date,
@@ -28,7 +28,7 @@ const CreateConsultFB = {
       type: consultType,
       size: size,
       ta: TA,
-      participants: participants,
+      participants: " ",
       agenda: agenda,
       consultStatus: status,
       bookDate: bookDate,
