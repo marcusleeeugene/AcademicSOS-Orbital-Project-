@@ -96,7 +96,7 @@ export default function CreateConsultScreen({ route, navigation }) {
             { id: userID, name: userName },
             size,
             agenda,
-            "Pending",
+            "Open",
             currentDate,
             currentTime,
             weekRange

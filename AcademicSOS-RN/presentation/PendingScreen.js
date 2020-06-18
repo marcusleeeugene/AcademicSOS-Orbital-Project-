@@ -47,7 +47,17 @@ export default function PendingScreen({ route, navigation }) {
   });
 
   const acceptConsultation = (consultDetails) => {
-    PendingFB.acceptBooking(consultDetails, bookingId, "Confirmed");
+    PendingFB.checkUserName(userID).then((name) => {
+      if (consultDetails.participants == " ") {
+        consultDetails.participants = [];
+      }
+      consultDetails.participants.push({id: userID, name: name});
+      if (consultDetails.participants.length != consultDetails.size) {
+        PendingFB.acceptBooking(userID, name, consultDetails, bookingId, "Pending");
+      } else if (consultDetails.participants.length == consultDetails.size || consultDetails.type == "Private"){
+        PendingFB.acceptBooking(userID, name, consultDetails, bookingId, "Confirmed");
+      }
+    })
     alert("Successfully updated booking status!");
     navigation.goBack();
   };

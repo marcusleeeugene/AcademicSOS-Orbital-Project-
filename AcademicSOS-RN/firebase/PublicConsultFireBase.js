@@ -43,9 +43,10 @@ const PublicConsultFB = {
         for (var bookings in obj) {
           var individualBookings = obj[bookings];
           var type = individualBookings["type"];
-          if (type == "Public") {
+          var consultStatus = individualBookings["consultStatus"];
+          if (type == "Public" && consultStatus != "Confirmed") {
             var creator = individualBookings["creator"];
-            var bookingId = Object.keys(bookings);
+            var bookingId = bookings;
             var ta = individualBookings["ta"];
             var location = individualBookings["location"];
             var consultDate = individualBookings["consultDate"];
@@ -53,7 +54,6 @@ const PublicConsultFB = {
             var consultEndTime = individualBookings["consultEndTime"];
             var agenda = individualBookings["agenda"];
             var studentsInvolved = individualBookings["participants"];
-            var consultStatus = individualBookings["consultStatus"];
             var size = individualBookings["size"];
             var weekRange = individualBookings["weekRange"];
             var bookDate = individualBookings["bookDate"];

@@ -21,11 +21,11 @@ export default function ConfirmedScreen({ route, navigation }) {
     setDimensions({ window, screen });
   };
 
+  const { firstScreen, secondScreen, thirdScreen, fourthScreen, userID, consultDetails, bookingId } = route.params;
+
   const [userType, setUserType] = useState("");
   const [consultSize, setConsultSize] = useState("");
   const qrCode = "https://www.academicSOS.com/" + consultDetails["module"] + "/" + bookingId;
-
-  const { firstScreen, secondScreen, thirdScreen, fourthScreen, userID, consultDetails, bookingId } = route.params;
 
   const navHistory = [
     { dest: firstScreen, alt_dest: "" },

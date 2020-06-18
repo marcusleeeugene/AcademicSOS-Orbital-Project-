@@ -12,7 +12,6 @@ const BookConsultFB = {
         return obj["name"];
       });
   },
-
   getWeekRange: function () {
     return fetch("https://api.nusmods.com/v2/2019-2020/modules/CS2040.json") //This part, to be made dynamic in future
       .then((result) => result.json())

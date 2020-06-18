@@ -76,7 +76,7 @@ export default function PublicConsultScreen({ route, navigation }) {
           color: colourCodes[i]
         });
       }
-      setConsultations(tempConsultations);
+      setConsultations(tempConsultations)
     });
     //Generate list of academic weeks
     var tempWeeks = [];
@@ -139,7 +139,7 @@ export default function PublicConsultScreen({ route, navigation }) {
           <TouchableOpacity
             style={[styles.moduleContainer, { backgroundColor: item.color }]}
             onPress={() => {
-              item.consultStatus === "Pending"
+              item.consultStatus === "Pending" || item.consultStatus == "Open"
                 ? navigation.navigate("Pending", {
                     fourthScreen: "Info",
                     thirdScreen: item.module,
@@ -147,7 +147,7 @@ export default function PublicConsultScreen({ route, navigation }) {
                     firstScreen: firstScreen,
                     userID: userID,
                     consultDetails: item,
-                    bookingId: item.bookingId[index],
+                    bookingId: item.bookingId,
                   })
                 : navigation.navigate("Confirmed", {
                     fourthScreen: "Info",
@@ -156,7 +156,7 @@ export default function PublicConsultScreen({ route, navigation }) {
                     firstScreen: firstScreen,
                     userID: userID,
                     consultDetails: item,
-                    bookingId: item.bookingId[index],
+                    bookingId: item.bookingId,
                   });
             }}
           >
