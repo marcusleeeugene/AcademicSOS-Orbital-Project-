@@ -162,7 +162,7 @@ export default function ManageBookingScreen({ route, navigation }) {
           <TouchableOpacity
             style={[styles.moduleContainer, { backgroundColor: item.color }]}
             onPress={() => {
-              item.consultStatus === "Pending"
+              item.consultStatus === "Pending" && item.type != "Public"
                 ? navigation.navigate("Pending", {
                     thirdScreen: item.module,
                     secondScreen: secondScreen,

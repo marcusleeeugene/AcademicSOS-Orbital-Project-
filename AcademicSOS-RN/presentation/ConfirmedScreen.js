@@ -81,7 +81,15 @@ export default function ConfirmedScreen({ route, navigation }) {
                     {
                       text: "Proceed to cancel",
                       onPress: () => {
-                        null; //put in cancel booking and minus priority points!!!
+                        console.log(bookingId);
+                        var filteredConsultDetails = consultDetails.participants.filter((user) => user.id != userID);
+                        if (filteredConsultDetails.length != 0) {
+                          consultDetails.participants = filteredConsultDetails;
+                        } else {
+                          consultDetails.participants = " ";
+                        }
+                        ConfirmedFB.cancelBooking(consultDetails, bookingId, "Pending");
+                        navigation.goBack();
                       },
                     },
                     {
