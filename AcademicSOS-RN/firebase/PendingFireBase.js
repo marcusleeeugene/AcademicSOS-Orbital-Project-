@@ -3,9 +3,7 @@ import { database, role } from "./FireBaseConfig.js";
 
 const PendingFB = {
   acceptBooking(consultDetails, bookingId, status) {
-    {
-      console.log(consultDetails["bookDate"]);
-    }
+    console.log(bookingId);
     database.ref(`modules/${consultDetails["module"]}/bookings`).child(bookingId).update({
       consultStatus: status,
       creator: consultDetails["creator"],

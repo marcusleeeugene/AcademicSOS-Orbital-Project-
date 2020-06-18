@@ -47,9 +47,6 @@ export default function PendingScreen({ route, navigation }) {
   });
 
   const acceptConsultation = (consultDetails) => {
-    {
-      console.log(bookingId);
-    }
     PendingFB.acceptBooking(consultDetails, bookingId, "Confirmed");
     alert("Successfully updated booking status!");
     navigation.goBack();

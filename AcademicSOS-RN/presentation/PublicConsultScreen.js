@@ -70,9 +70,10 @@ export default function PublicConsultScreen({ route, navigation }) {
           participants: data[i].participants,
           size: data[i].size,
           consultStatus: data[i].consultStatus,
-          color: colourCodes[i],
           bookDate: data[i].bookDate,
           bookTime: data[i].bookTime,
+          weekRange: data[i].weekRange,
+          color: colourCodes[i]
         });
       }
       setConsultations(tempConsultations);
