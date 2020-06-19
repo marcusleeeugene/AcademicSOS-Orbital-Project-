@@ -32,7 +32,7 @@ export default function CreateConsultScreen({ route, navigation }) {
   const [location, setLocation] = useState("");
   const [agenda, setAgenda] = useState("");
   const [participants, setParticipants] = useState([]); //participants (for public use and suggest use)
-  const [userData, setUserData] = useState(""); // consists of id and name of current student user account
+  const [userName, setUserName] = useState(""); // consists of id and name of current student user account
   const [studentList, setStudentList] = useState([]); // load in all students taking the same module dynamically(can be friends from other classes)
   const [selectedItems, setItems] = useState([]); // selected Students subject to remove or added dynamically
   const [selectedStudents, setSelectedStudents] = useState([]); // create a copy of the selected students
@@ -85,7 +85,22 @@ export default function CreateConsultScreen({ route, navigation }) {
   const createConsultation = () => {
     consultType == "Public"
       ? CreateConsultFB.getWeekRange().then((weekRange) => {
-          CreateConsultFB.addPublicBooking(userID, moduleCode, date, startTime, endTime, location, consultType, userData, size, agenda, "Pending", currentDate, currentTime, weekRange);
+          CreateConsultFB.addPublicBooking(
+            userID,
+            moduleCode,
+            date,
+            startTime,
+            endTime,
+            location,
+            consultType,
+            { id: userID, name: userName },
+            size,
+            agenda,
+            "Pending",
+            currentDate,
+            currentTime,
+            weekRange
+          );
         })
       : CreateConsultFB.getWeekRange().then((weekRange) => {
           CreateConsultFB.addPrivateBooking(
@@ -96,7 +111,7 @@ export default function CreateConsultScreen({ route, navigation }) {
             endTime,
             location,
             consultType,
-            userData,
+            { id: userID, name: userName },
             selectedStudents,
             selectedStudents.length,
             agenda,
@@ -125,7 +140,7 @@ export default function CreateConsultScreen({ route, navigation }) {
         endTime,
         location,
         finalisedConsultType,
-        userData,
+        { id: userID, name: userName },
         participants,
         size,
         agenda,
@@ -155,8 +170,8 @@ export default function CreateConsultScreen({ route, navigation }) {
         }
       });
 
-    CreateConsultFB.checkUserData(userID).then((data) => {
-      setUserData(data);
+    CreateConsultFB.checkUserName(userID).then((data) => {
+      setUserName(data);
     });
 
     if (secondScreen === "Manage Bookings") {

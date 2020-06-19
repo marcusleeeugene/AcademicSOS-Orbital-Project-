@@ -92,6 +92,16 @@ const CreateConsultFB = {
       });
   },
 
+  checkUserName: function (id) {
+    return database
+      .ref(`users/${role(id)}/${id}`)
+      .once("value")
+      .then((snapshot) => snapshot.val())
+      .then((obj) => {
+        return obj["name"];
+      });
+  },
+
   getTutorialClass: function (id, modCode) {
     //Returns a promise of tutorial class
     return database
