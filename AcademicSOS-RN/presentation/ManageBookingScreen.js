@@ -164,16 +164,18 @@ export default function ManageBookingScreen({ route, navigation }) {
             onPress={() => {
               ManageBookingFB.getModRole(userID, item.module).then((rsl) => {
                 if (rsl != "Student") {
-                  return null;
+                  return null; //u do this part
                 } else {
-                  navigation.navigate("Student Pending", {
-                    thirdScreen: item.module,
-                    secondScreen: secondScreen,
-                    firstScreen: firstScreen,
-                    userID: userID,
-                    consultDetails: item,
-                    bookingId: item.bookingId[index],
-                  })
+                  if (consultDetails.consultStatus == "Pending") {
+                    navigation.navigate("Student Pending", {
+                      thirdScreen: item.module,
+                      secondScreen: secondScreen,
+                      firstScreen: firstScreen,
+                      userID: userID,
+                      consultDetails: item,
+                      bookingId: item.bookingId[index],
+                    })
+                  } //Else go to confirmed student
                 }
               })
             }}
