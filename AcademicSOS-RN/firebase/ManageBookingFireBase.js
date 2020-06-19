@@ -42,6 +42,16 @@ function checkStudentIsParticipant(id, participants) {
 }
 
 const ManageBookingFB = {
+  getModRole: function (id, modCode) {
+    //Returns a promise of module role for user in the module
+    return database
+      .ref(`users/${role(id)}/${id}/modules/${modCode}`)
+      .once("value")
+      .then((snapshot) => snapshot.val())
+      .then((obj) => {
+        return obj["role"];
+      });
+  },
   getUserBookings: function (id, status, week, day) {
     return database
       .ref(`modules`)

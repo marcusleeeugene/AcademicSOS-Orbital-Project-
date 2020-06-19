@@ -11,6 +11,9 @@ import CreateConsultScreen from "../presentation/CreateConsultScreen.js";
 import SelectModuleScreen from "../presentation/SelectModuleScreen.js";
 import PendingScreen from "../presentation/PendingScreen.js";
 import ConfirmedScreen from "../presentation/ConfirmedScreen.js";
+
+import StudentPendingScreen from "../presentation/StudentPendingScreen.js";
+
 import ScanScreen from "../presentation/ScanScreen.js";
 
 const Stack = createStackNavigator();
@@ -33,6 +36,9 @@ export default function Navigation() {
         <Stack.Screen name="Create Consultation" component={CreateConsultScreen} />
         <Stack.Screen name="Pending" component={PendingScreen} />
         <Stack.Screen name="Confirmed" component={ConfirmedScreen} />
+
+        <Stack.Screen name="Student Pending" component={StudentPendingScreen} />
+
         <Stack.Screen name="Scan" component={ScanScreen} />
       </Stack.Navigator>
     </NavigationContainer>

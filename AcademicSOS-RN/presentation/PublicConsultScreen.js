@@ -139,25 +139,26 @@ export default function PublicConsultScreen({ route, navigation }) {
           <TouchableOpacity
             style={[styles.moduleContainer, { backgroundColor: item.color }]}
             onPress={() => {
-              item.consultStatus === "Pending" || item.consultStatus == "Open"
-                ? navigation.navigate("Pending", {
-                    fourthScreen: "Info",
-                    thirdScreen: item.module,
-                    secondScreen: secondScreen,
-                    firstScreen: firstScreen,
-                    userID: userID,
-                    consultDetails: item,
-                    bookingId: item.bookingId,
-                  })
-                : navigation.navigate("Confirmed", {
-                    fourthScreen: "Info",
-                    thirdScreen: item.module,
-                    secondScreen: secondScreen,
-                    firstScreen: firstScreen,
-                    userID: userID,
-                    consultDetails: item,
-                    bookingId: item.bookingId,
-                  });
+              // item.consultStatus === "Pending" || item.consultStatus == "Open"
+              //   ? navigation.navigate("Pending", {
+              //       fourthScreen: "Info",
+              //       thirdScreen: item.module,
+              //       secondScreen: secondScreen,
+              //       firstScreen: firstScreen,
+              //       userID: userID,
+              //       consultDetails: item,
+              //       bookingId: item.bookingId,
+              //     })
+              //   : navigation.navigate("Confirmed", {
+              //       fourthScreen: "Info",
+              //       thirdScreen: item.module,
+              //       secondScreen: secondScreen,
+              //       firstScreen: firstScreen,
+              //       userID: userID,
+              //       consultDetails: item,
+              //       bookingId: item.bookingId,
+              //     });
+              null;
             }}
           >
             <Text style={styles.consultationInfoMod}>

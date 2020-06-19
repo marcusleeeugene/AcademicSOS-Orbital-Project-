@@ -38,9 +38,6 @@ const CreateConsultFB = {
   },
 
   addPrivateBooking: function (creator, modCode, date, startTime, endTime, location, consultType, TA, participants, size, agenda, status, bookDate, bookTime, weekRange) {
-    {
-      console.log(TA);
-    }
     database.ref(`modules/${modCode}/bookings`).push({
       creator: creator,
       consultDate: date,
@@ -87,7 +84,7 @@ const CreateConsultFB = {
       .then((obj) => {
         var user = [];
         var name = obj["name"];
-        user.push({ id: id, name: name });
+        user.push({ id: id, name: name, altStatus: "Pending" });
         return user;
       });
   },

@@ -5,9 +5,9 @@ import { AppLoading } from "expo";
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen";
 import BreadCrumb from "../components/BreadCrumb.js";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import PendingFB from "../firebase/PendingFireBase.js";
+import StudentPendingFB from "../firebase/StudentPendingFireBase.js";
 
-export default function PendingScreen({ route, navigation }) {
+export default function StudentPendingScreen({ route, navigation }) {
   let [fontsLoaded] = useFonts({
     "Righteous-Regular": require("../assets/fonts/Righteous-Regular.ttf"),
   });
@@ -41,57 +41,27 @@ export default function PendingScreen({ route, navigation }) {
   ];
 
   useEffect(() => {
-    PendingFB.getModRole(userID, consultDetails["module"]).then((data) => {
+    StudentPendingFB.getModRole(userID, consultDetails["module"]).then((data) => {
       setUserType(data);
     });
   });
 
   const acceptConsultation = (consultDetails) => {
-    PendingFB.checkUserName(userID).then((name) => {
+    StudentPendingFB.checkUserName(userID).then((name) => {
       if (consultDetails.participants == " ") {
         consultDetails.participants = [];
       }
       consultDetails.participants.push({id: userID, name: name, altStatus: "Pending"});
       if (consultDetails.participants.length != consultDetails.size) {
-        PendingFB.acceptBooking(userID, name, consultDetails, bookingId, "Pending");
+        StudentPendingFB.acceptBooking(userID, name, consultDetails, bookingId, "Pending");
       } else if (consultDetails.participants.length == consultDetails.size || consultDetails.type == "Private"){
-        PendingFB.acceptBooking(userID, name, consultDetails, bookingId, "Confirmed");
+        StudentPendingFB.acceptBooking(userID, name, consultDetails, bookingId, "Confirmed");
       }
     })
     alert("Successfully updated booking status!");
     navigation.goBack();
   };
 
-  const rejectOption = () => {
-    Alert.alert(
-      "Reject Options",
-      "Do you want to suggest another consult slot to student?",
-      [
-        {
-          text: "Suggest",
-          onPress: () => {
-            navigation.navigate("Create Consultation", {
-              thirdScreen: consultDetails["module"],
-              secondScreen: secondScreen,
-              firstScreen: firstScreen,
-              userID: userID,
-              finalisedConsultType: consultDetails["type"],
-              studentsInvolved: consultDetails["participants"],
-              moduleCode: consultDetails["module"],
-              bookingId: bookingId,
-            });
-          },
-        },
-        {
-          text: "Cancel",
-          onPress: () => console.log("Cancel Pressed"),
-          style: "cancel",
-        },
-        { text: "Reject", onPress: () => console.log("OK Rejected") }, // input the next action after reject
-      ],
-      { cancelable: false }
-    );
-  };
   const rejectStudentOption = () => {
     Alert.alert(
       "Reject Options",
@@ -99,10 +69,19 @@ export default function PendingScreen({ route, navigation }) {
       [
         {
           text: "Cancel",
-          onPress: () => console.log("Cancel Pressed"),
+          onPress: () => null,
           style: "cancel",
         },
-        { text: "Reject", onPress: () => console.log("OK Rejected") }, // input the next action after reject
+        { text: "Reject", onPress: () => {
+          var filteredConsultParticipants = consultDetails.participants.filter((user) => user.id != userID);
+          if (filteredConsultParticipants.length != 0) {
+            consultDetails.participants = filteredConsultParticipants;
+          } else {
+            consultDetails.participants = " ";
+          }
+          StudentPendingFB.rejectBooking(consultDetails, bookingId, consultDetails.participants)
+          navigation.goBack();
+        } },
       ],
       { cancelable: false }
     );
@@ -116,15 +95,12 @@ export default function PendingScreen({ route, navigation }) {
         {
           text: "Yes",
           onPress: () => {
+            StudentPendingFB.cancelBooking(consultDetails, bookingId);
             alert("Cancelled!!!"); // input the next action after cancellation
+            navigation.goBack();
           },
         },
-        { text: "No", onPress: () => console.log("OK Rejected") },
-        {
-          text: "Cancel",
-          onPress: () => console.log("Cancel Pressed"),
-          style: "cancel",
-        },
+        { text: "No", onPress: () => null },
       ],
       { cancelable: false }
     );

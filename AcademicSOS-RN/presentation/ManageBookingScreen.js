@@ -162,8 +162,11 @@ export default function ManageBookingScreen({ route, navigation }) {
           <TouchableOpacity
             style={[styles.moduleContainer, { backgroundColor: item.color }]}
             onPress={() => {
-              item.consultStatus === "Pending" && item.type != "Public"
-                ? navigation.navigate("Pending", {
+              ManageBookingFB.getModRole(userID, item.module).then((rsl) => {
+                if (rsl != "Student") {
+                  return null;
+                } else {
+                  navigation.navigate("Student Pending", {
                     thirdScreen: item.module,
                     secondScreen: secondScreen,
                     firstScreen: firstScreen,
@@ -171,14 +174,8 @@ export default function ManageBookingScreen({ route, navigation }) {
                     consultDetails: item,
                     bookingId: item.bookingId[index],
                   })
-                : navigation.navigate("Confirmed", {
-                    thirdScreen: item.module,
-                    secondScreen: secondScreen,
-                    firstScreen: firstScreen,
-                    userID: userID,
-                    consultDetails: item,
-                    bookingId: item.bookingId[index],
-                  });
+                }
+              })
             }}
           >
             <Text style={styles.consultationInfoMod}>
