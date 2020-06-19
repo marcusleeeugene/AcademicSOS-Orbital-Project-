@@ -2,16 +2,20 @@ import * as firebase from "firebase";
 import { database, role } from "./FireBaseConfig.js";
 
 const BookConsultFB = {
-  checkUserName: function (id) {
-    //returns a promise that consists of user name
+  checkUserData: function (id) {
+    //returns a promise that consists of user name and user id
     return database
       .ref(`users/${role(id)}/${id}`)
       .once("value")
       .then((snapshot) => snapshot.val())
       .then((obj) => {
-        return obj["name"];
+        var user = [];
+        var name = obj["name"];
+        user.push({ id: id, name: name });
+        return user;
       });
   },
+
   getWeekRange: function () {
     return fetch("https://api.nusmods.com/v2/2019-2020/modules/CS2040.json") //This part, to be made dynamic in future
       .then((result) => result.json())

@@ -38,6 +38,9 @@ const CreateConsultFB = {
   },
 
   addPrivateBooking: function (creator, modCode, date, startTime, endTime, location, consultType, TA, participants, size, agenda, status, bookDate, bookTime, weekRange) {
+    {
+      console.log(TA);
+    }
     database.ref(`modules/${modCode}/bookings`).push({
       creator: creator,
       consultDate: date,
@@ -75,14 +78,17 @@ const CreateConsultFB = {
     });
   },
 
-  checkUserName: function (id) {
-    //returns a promise that consists of user name
+  checkUserData: function (id) {
+    //returns a promise that consists of user name and user id
     return database
       .ref(`users/${role(id)}/${id}`)
       .once("value")
       .then((snapshot) => snapshot.val())
       .then((obj) => {
-        return obj["name"];
+        var user = [];
+        var name = obj["name"];
+        user.push({ id: id, name: name });
+        return user;
       });
   },
 

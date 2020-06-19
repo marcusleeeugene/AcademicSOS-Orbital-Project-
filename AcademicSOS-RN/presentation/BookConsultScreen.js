@@ -33,7 +33,7 @@ export default function BookConsultScreen({ route, navigation }) {
   const [endTime, setEndTime] = useState("");
   const [location, setLocation] = useState("");
   const [agenda, setAgenda] = useState("");
-  const [userName, setUserName] = useState(""); // consists of name of current student user account
+  const [userData, setUserData] = useState(""); // consists of id and name of current student user account
   const [studentList, setStudentList] = useState([]); // load in all students taking the same module dynamically(can be friends from other classes)
   const [selectedItems, setItems] = useState([]); // selected Students subject to remove or added dynamically
   const [selectedStudents, setSelectedStudents] = useState([]); // create a copy of the selected students
@@ -62,21 +62,21 @@ export default function BookConsultScreen({ route, navigation }) {
 
   const onSelectedItemsChange = (selectedItems) => {
     setItems(selectedItems);
-    var uniqueStudentArray = [...new Set()];
-    if (selectedItems != undefined || selectedItems.length !== 0) {
+    var chosenStudents = [];
+    if (selectedItems.length !== 0) {
       // array empty or does not exist
       for (var i = 0; i < selectedItems.length; i++) {
         var selectedStudentID = selectedItems[i];
-        BookConsultFB.checkUserName(selectedStudentID).then((data) => {
-          uniqueStudentArray.push({ id: selectedStudentID, name: data });
+        BookConsultFB.checkUserData(selectedStudentID).then((data) => {
+          chosenStudents.push(data);
+          setSelectedStudents(chosenStudents.flatMap((x) => x)); // generate array of students involved in consultation
         });
       }
     }
-    setSelectedStudents(uniqueStudentArray);
   };
 
   const bookConsultation = () => {
-    var allStudents = selectedStudents.concat({ id: userID, name: userName }); //all students included in consult(including current student who initiate booking)
+    var allStudents = selectedStudents.concat(userData); //all students included in consult(including current student who initiate booking)
     BookConsultFB.getWeekRange().then((weekRange) => {
       BookConsultFB.addBooking(
         userID,
@@ -122,9 +122,8 @@ export default function BookConsultScreen({ route, navigation }) {
         }
       }
     });
-
-    BookConsultFB.checkUserName(userID).then((data) => {
-      setUserName(data);
+    BookConsultFB.checkUserData(userID).then((data) => {
+      setUserData(data);
     });
 
     setStudentList(loadedStudents);
