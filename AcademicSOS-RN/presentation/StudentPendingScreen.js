@@ -22,6 +22,8 @@ export default function StudentPendingScreen({ route, navigation }) {
   ].filter((item) => item != null);
 
   const [userType, setUserType] = useState("");
+  const [altStatus, setAltStatus] = useState("");
+
   const options = [
     {
       name: "Accept",
@@ -44,20 +46,27 @@ export default function StudentPendingScreen({ route, navigation }) {
     StudentPendingFB.getModRole(userID, consultDetails["module"]).then((data) => {
       setUserType(data);
     });
+    StudentPendingFB.getAltStatus(userID, consultDetails.module, bookingId).then((data) => {
+      setAltStatus(data);
+    })
   });
 
+  const removeParticipant = () => {
+    var filteredConsultParticipants = consultDetails.participants.filter((user) => user.id != userID);
+    if (filteredConsultParticipants.length != 0) {
+      consultDetails.participants = filteredConsultParticipants;
+    } else {
+      consultDetails.participants = " ";
+    }
+  }
+
   const acceptConsultation = (consultDetails) => {
-    StudentPendingFB.checkUserName(userID).then((name) => {
-      if (consultDetails.participants == " ") {
-        consultDetails.participants = [];
-      }
-      consultDetails.participants.push({id: userID, name: name, altStatus: "Pending"});
-      if (consultDetails.participants.length != consultDetails.size) {
-        StudentPendingFB.acceptBooking(userID, name, consultDetails, bookingId, "Pending");
-      } else if (consultDetails.participants.length == consultDetails.size || consultDetails.type == "Private"){
-        StudentPendingFB.acceptBooking(userID, name, consultDetails, bookingId, "Confirmed");
+    consultDetails.participants.map((user) => {
+      if (user["id"] == userID) {
+        user["altStatus"] = "Accepted";
       }
     })
+    StudentPendingFB.acceptBooking(consultDetails, bookingId, consultDetails["participants"]);
     alert("Successfully updated booking status!");
     navigation.goBack();
   };
@@ -73,12 +82,7 @@ export default function StudentPendingScreen({ route, navigation }) {
           style: "cancel",
         },
         { text: "Reject", onPress: () => {
-          var filteredConsultParticipants = consultDetails.participants.filter((user) => user.id != userID);
-          if (filteredConsultParticipants.length != 0) {
-            consultDetails.participants = filteredConsultParticipants;
-          } else {
-            consultDetails.participants = " ";
-          }
+          removeParticipant();
           StudentPendingFB.rejectBooking(consultDetails, bookingId, consultDetails.participants)
           navigation.goBack();
         } },
@@ -95,8 +99,13 @@ export default function StudentPendingScreen({ route, navigation }) {
         {
           text: "Yes",
           onPress: () => {
-            StudentPendingFB.cancelBooking(consultDetails, bookingId);
-            alert("Cancelled!!!"); // input the next action after cancellation
+            if (consultDetails["creator"] == userID) {
+              StudentPendingFB.cancelBooking(consultDetails, bookingId);
+            } else {
+              removeParticipant();
+              StudentPendingFB.rejectBooking(consultDetails, bookingId, consultDetails.participants);
+            }
+            alert("Cancelled!!!");
             navigation.goBack();
           },
         },
@@ -113,7 +122,11 @@ export default function StudentPendingScreen({ route, navigation }) {
           key={index}
           style={[styles.buttonOption, { backgroundColor: item.color }]}
           onPress={() => {
-            item.name == "Accept" ? acceptConsultation(consultDetails) : userType != "Student" ? rejectOption() : rejectStudentOption();
+            item.name == "Accept"
+              ? acceptConsultation(consultDetails)
+              : userType != "Student"
+                ? rejectOption()
+                : rejectStudentOption();
           }}
         >
           <Text style={styles.option}>{item.name}</Text>
@@ -161,8 +174,9 @@ export default function StudentPendingScreen({ route, navigation }) {
 
             <Text style={styles.secondTitle}> Agenda: </Text>
             <Text style={styles.infoText}>{consultDetails["agenda"]} </Text>
-
-            {consultDetails["creator"] === userID ? creatorJSX : nonCreatorJSX}
+            {consultDetails["creator"] === userID || (consultDetails["consultStatus"] == "Pending" && altStatus == "Accepted")
+              ? creatorJSX : nonCreatorJSX
+            }
           </View>
         </View>
       </View>

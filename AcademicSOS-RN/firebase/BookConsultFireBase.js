@@ -11,7 +11,7 @@ const BookConsultFB = {
       .then((obj) => {
         var user = [];
         var name = obj["name"];
-        user.push({ id: id, name: name, altStatus: "Pending"});
+        user.push({ id: id, name: name, altStatus: "Accepted"});
         return user;
       });
   },
