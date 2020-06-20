@@ -32,7 +32,7 @@ export default function TAPendingScreen({ route, navigation }) {
     },
   ];
 
-  const creatorOptions = [
+  const creatorPublicOptions = [
     {
       name: "Confirm Consult",
       color: "#80DEEA",
@@ -40,6 +40,13 @@ export default function TAPendingScreen({ route, navigation }) {
 
     {
       name: "Cancel Consult",
+      color: "#FF5252",
+    },
+  ];
+
+  const creatorPrivateOptions = [
+    {
+      name: "Cancel",
       color: "#FF5252",
     },
   ];
@@ -121,17 +128,29 @@ export default function TAPendingScreen({ route, navigation }) {
 
   const creatorJSX = (
     <View style={styles.button}>
-      {creatorOptions.map((item, index) => (
-        <TouchableOpacity
-          key={index}
-          style={[styles.creatorButtonOption, { backgroundColor: item.color }]}
-          onPress={() => {
-            item.name == "Confirm Consult" ? confirmConsult() : cancelCreatorOption();
-          }}
-        >
-          <Text style={styles.option}>{item.name}</Text>
-        </TouchableOpacity>
-      ))}
+      {consultDetails.type == "Public"
+        ? creatorPublicOptions.map((item, index) => (
+            <TouchableOpacity
+              key={index}
+              style={[styles.creatorButtonOption, { backgroundColor: item.color }]}
+              onPress={() => {
+                item.name == "Confirm Consult" ? confirmConsult() : cancelCreatorOption();
+              }}
+            >
+              <Text style={styles.option}>{item.name}</Text>
+            </TouchableOpacity>
+          ))
+        : creatorPrivateOptions.map((item, index) => (
+            <TouchableOpacity
+              key={index}
+              style={[styles.creatorButtonOption, { backgroundColor: item.color }]}
+              onPress={() => {
+                cancelCreatorOption();
+              }}
+            >
+              <Text style={styles.option}>{item.name}</Text>
+            </TouchableOpacity>
+          ))}
     </View>
   );
 

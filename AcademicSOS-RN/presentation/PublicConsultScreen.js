@@ -73,10 +73,10 @@ export default function PublicConsultScreen({ route, navigation }) {
           bookDate: data[i].bookDate,
           bookTime: data[i].bookTime,
           weekRange: data[i].weekRange,
-          color: colourCodes[i]
+          color: colourCodes[i],
         });
       }
-      setConsultations(tempConsultations)
+      setConsultations(tempConsultations);
     });
     //Generate list of academic weeks
     var tempWeeks = [];
@@ -139,25 +139,25 @@ export default function PublicConsultScreen({ route, navigation }) {
           <TouchableOpacity
             style={[styles.moduleContainer, { backgroundColor: item.color }]}
             onPress={() => {
-              // item.consultStatus === "Pending" || item.consultStatus == "Open"
-              //   ? navigation.navigate("Pending", {
-              //       fourthScreen: "Info",
-              //       thirdScreen: item.module,
-              //       secondScreen: secondScreen,
-              //       firstScreen: firstScreen,
-              //       userID: userID,
-              //       consultDetails: item,
-              //       bookingId: item.bookingId,
-              //     })
-              //   : navigation.navigate("Confirmed", {
-              //       fourthScreen: "Info",
-              //       thirdScreen: item.module,
-              //       secondScreen: secondScreen,
-              //       firstScreen: firstScreen,
-              //       userID: userID,
-              //       consultDetails: item,
-              //       bookingId: item.bookingId,
-              //     });
+              item.consultStatus === "Pending"
+                ? navigation.navigate("Pending", {
+                    fourthScreen: "Info",
+                    thirdScreen: item.module,
+                    secondScreen: secondScreen,
+                    firstScreen: firstScreen,
+                    userID: userID,
+                    consultDetails: item,
+                    bookingId: item.bookingId,
+                  })
+                : navigation.navigate("Confirmed", {
+                    fourthScreen: "Info",
+                    thirdScreen: item.module,
+                    secondScreen: secondScreen,
+                    firstScreen: firstScreen,
+                    userID: userID,
+                    consultDetails: item,
+                    bookingId: item.bookingId,
+                  });
               null;
             }}
           >
