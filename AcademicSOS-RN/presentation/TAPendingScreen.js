@@ -5,9 +5,9 @@ import { AppLoading } from "expo";
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen";
 import BreadCrumb from "../components/BreadCrumb.js";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import StudentPendingFB from "../firebase/StudentPendingFireBase.js";
+import TAPendingFB from "../firebase/TAPendingFireBase.js";
 
-export default function StudentPendingScreen({ route, navigation }) {
+export default function TAPendingScreen({ route, navigation }) {
   let [fontsLoaded] = useFonts({
     "Righteous-Regular": require("../assets/fonts/Righteous-Regular.ttf"),
   });
@@ -20,9 +20,6 @@ export default function StudentPendingScreen({ route, navigation }) {
     secondScreen == "Public Consultation" ? { dest: thirdScreen, alt_dest: "Public Consultation" } : { dest: thirdScreen, alt_dest: "" },
     fourthScreen != undefined ? { dest: fourthScreen, alt_dest: "" } : null,
   ].filter((item) => item != null);
-
-  const [userType, setUserType] = useState("");
-  const [altStatus, setAltStatus] = useState("");
 
   const options = [
     {
@@ -37,58 +34,53 @@ export default function StudentPendingScreen({ route, navigation }) {
 
   const creatorOptions = [
     {
-      name: "Cancel",
+      name: "Confirm Consult",
+      color: "#80DEEA",
+    },
+
+    {
+      name: "Cancel Consult",
       color: "#FF5252",
     },
   ];
 
-  useEffect(() => {
-    StudentPendingFB.getModRole(userID, consultDetails["module"]).then((data) => {
-      setUserType(data);
-    });
-    StudentPendingFB.getAltStatus(userID, consultDetails.module, bookingId).then((data) => {
-      setAltStatus(data);
-    });
-  });
-
-  const removeParticipant = () => {
-    var filteredConsultParticipants = consultDetails.participants.filter((user) => user.id != userID);
-    if (filteredConsultParticipants.length != 0) {
-      consultDetails.participants = filteredConsultParticipants;
-    } else {
-      consultDetails.participants = " ";
-    }
-  };
-
-  const acceptConsultation = (consultDetails) => {
-    consultDetails.participants.map((user) => {
-      if (user["id"] == userID) {
-        user["altStatus"] = "Accepted";
-      }
-    });
-    StudentPendingFB.acceptBooking(consultDetails, bookingId, consultDetails["participants"]);
+  const confirmConsult = () => {
+    TAPendingFB.updateBooking(consultDetails, bookingId, "Confirmed");
     alert("Successfully updated booking status!");
     navigation.goBack();
   };
 
-  const rejectStudentOption = () => {
+  const removeConsult = () => {
+    TAPendingFB.removeBooking(consultDetails, bookingId);
+    navigation.goBack();
+  };
+
+  const rejectOption = () => {
     Alert.alert(
       "Reject Options",
-      "Do you want to reject this suggested consultation?",
+      "Do you want to suggest another consult slot to student?",
       [
+        {
+          text: "Suggest",
+          onPress: () => {
+            navigation.navigate("Create Consultation", {
+              thirdScreen: consultDetails["module"],
+              secondScreen: secondScreen,
+              firstScreen: firstScreen,
+              userID: userID,
+              finalisedConsultType: consultDetails["type"],
+              studentsInvolved: consultDetails["participants"],
+              moduleCode: consultDetails["module"],
+              bookingId: bookingId,
+            });
+          },
+        },
         {
           text: "Cancel",
           onPress: () => null,
           style: "cancel",
         },
-        {
-          text: "Reject",
-          onPress: () => {
-            removeParticipant();
-            StudentPendingFB.rejectBooking(consultDetails, bookingId, consultDetails.participants);
-            navigation.goBack();
-          },
-        },
+        { text: "Reject", onPress: () => removeConsult() },
       ],
       { cancelable: false }
     );
@@ -102,14 +94,7 @@ export default function StudentPendingScreen({ route, navigation }) {
         {
           text: "Yes",
           onPress: () => {
-            if (consultDetails["creator"] == userID) {
-              StudentPendingFB.cancelBooking(consultDetails, bookingId);
-            } else {
-              removeParticipant();
-              StudentPendingFB.rejectBooking(consultDetails, bookingId, consultDetails.participants);
-            }
-            alert("Cancelled!!!");
-            navigation.goBack();
+            removeConsult();
           },
         },
         { text: "No", onPress: () => null },
@@ -125,7 +110,7 @@ export default function StudentPendingScreen({ route, navigation }) {
           key={index}
           style={[styles.buttonOption, { backgroundColor: item.color }]}
           onPress={() => {
-            item.name == "Accept" ? acceptConsultation(consultDetails) : userType != "Student" ? rejectOption() : rejectStudentOption();
+            item.name == "Accept" ? confirmConsult() : rejectOption();
           }}
         >
           <Text style={styles.option}>{item.name}</Text>
@@ -141,7 +126,7 @@ export default function StudentPendingScreen({ route, navigation }) {
           key={index}
           style={[styles.creatorButtonOption, { backgroundColor: item.color }]}
           onPress={() => {
-            cancelCreatorOption();
+            item.name == "Confirm Consult" ? confirmConsult() : cancelCreatorOption();
           }}
         >
           <Text style={styles.option}>{item.name}</Text>
@@ -173,7 +158,8 @@ export default function StudentPendingScreen({ route, navigation }) {
 
             <Text style={styles.secondTitle}> Agenda: </Text>
             <Text style={styles.infoText}>{consultDetails["agenda"]} </Text>
-            {consultDetails["creator"] === userID || (consultDetails["consultStatus"] == "Pending" && altStatus == "Accepted") ? creatorJSX : nonCreatorJSX}
+
+            {consultDetails["creator"] === userID ? creatorJSX : nonCreatorJSX}
           </View>
         </View>
       </View>
@@ -233,12 +219,13 @@ const styles = StyleSheet.create({
   },
   creatorButtonOption: {
     marginTop: hp("5%"),
+    marginLeft: wp("5%"),
     width: wp("30%"),
     height: hp("13%"),
     borderRadius: hp("1.1%"),
   },
   option: {
-    marginTop: hp("5.5%"),
+    marginTop: hp("4%"),
     fontSize: hp("2.5%"),
     textAlign: "center",
     fontFamily: "Righteous-Regular",

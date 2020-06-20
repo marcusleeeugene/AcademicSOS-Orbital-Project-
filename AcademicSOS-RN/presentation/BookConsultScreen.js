@@ -67,7 +67,7 @@ export default function BookConsultScreen({ route, navigation }) {
       // array empty or does not exist
       for (var i = 0; i < selectedItems.length; i++) {
         var selectedStudentID = selectedItems[i];
-        BookConsultFB.checkUserData(selectedStudentID).then((data) => {
+        BookConsultFB.checkStudentData(selectedStudentID).then((data) => {
           chosenStudents.push(data);
           setSelectedStudents(chosenStudents.flatMap((x) => x)); // generate array of students involved in consultation
         });
@@ -122,7 +122,7 @@ export default function BookConsultScreen({ route, navigation }) {
         }
       }
     });
-    BookConsultFB.checkUserData(userID).then((data) => {
+    BookConsultFB.checkCreatorData(userID).then((data) => {
       setUserData(data);
     });
 

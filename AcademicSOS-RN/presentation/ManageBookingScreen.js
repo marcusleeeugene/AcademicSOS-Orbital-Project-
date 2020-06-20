@@ -164,9 +164,27 @@ export default function ManageBookingScreen({ route, navigation }) {
             onPress={() => {
               ManageBookingFB.getModRole(userID, item.module).then((rsl) => {
                 if (rsl != "Student") {
-                  return null; //u do this part
+                  if (item.consultStatus == "Pending") {
+                    navigation.navigate("TA Pending", {
+                      thirdScreen: item.module,
+                      secondScreen: secondScreen,
+                      firstScreen: firstScreen,
+                      userID: userID,
+                      consultDetails: item,
+                      bookingId: item.bookingId[index],
+                    });
+                  } else {
+                    navigation.navigate("Confirmed", {
+                      thirdScreen: item.module,
+                      secondScreen: secondScreen,
+                      firstScreen: firstScreen,
+                      userID: userID,
+                      consultDetails: item,
+                      bookingId: item.bookingId[index],
+                    });
+                  }
                 } else {
-                  if (consultDetails.consultStatus == "Pending") {
+                  if (item.consultStatus == "Pending") {
                     navigation.navigate("Student Pending", {
                       thirdScreen: item.module,
                       secondScreen: secondScreen,
@@ -174,10 +192,19 @@ export default function ManageBookingScreen({ route, navigation }) {
                       userID: userID,
                       consultDetails: item,
                       bookingId: item.bookingId[index],
-                    })
-                  } //Else go to confirmed student
+                    });
+                  } else {
+                    navigation.navigate("Confirmed", {
+                      thirdScreen: item.module,
+                      secondScreen: secondScreen,
+                      firstScreen: firstScreen,
+                      userID: userID,
+                      consultDetails: item,
+                      bookingId: item.bookingId[index],
+                    });
+                  }
                 }
-              })
+              });
             }}
           >
             <Text style={styles.consultationInfoMod}>

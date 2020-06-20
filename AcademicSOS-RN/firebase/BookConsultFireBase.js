@@ -2,7 +2,7 @@ import * as firebase from "firebase";
 import { database, role } from "./FireBaseConfig.js";
 
 const BookConsultFB = {
-  checkUserData: function (id) {
+  checkStudentData: function (id) {
     //returns a promise that consists of user name and user id
     return database
       .ref(`users/${role(id)}/${id}`)
@@ -11,7 +11,21 @@ const BookConsultFB = {
       .then((obj) => {
         var user = [];
         var name = obj["name"];
-        user.push({ id: id, name: name, altStatus: "Accepted"});
+        user.push({ id: id, name: name, altStatus: "Pending" });
+        return user;
+      });
+  },
+
+  checkCreatorData: function (id) {
+    //returns a promise that consists of user name and user id
+    return database
+      .ref(`users/${role(id)}/${id}`)
+      .once("value")
+      .then((snapshot) => snapshot.val())
+      .then((obj) => {
+        var user = [];
+        var name = obj["name"];
+        user.push({ id: id, name: name, altStatus: "Accepted" });
         return user;
       });
   },
