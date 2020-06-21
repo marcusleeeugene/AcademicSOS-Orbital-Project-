@@ -280,8 +280,8 @@ export default function CreateConsultScreen({ route, navigation }) {
   } else {
     return (
       <KeyboardAwareScrollView enableOnAndroid={true} contentContainerStyle={styles.body} extraScrollHeight={extraScrollHeight} resetScrollToCoords={{ x: 0, y: 0 }}>
+        <BreadCrumb navHistory={navHistory} />
         <ScrollView>
-          <BreadCrumb navHistory={navHistory} />
           <View style={styles.body}>
             <Text style={styles.title}> Fill in consultation details: </Text>
             <DateTime dateCallback={updateDate} startTimeCallback={updateStartTime} endTimeCallback={updateEndTime} />

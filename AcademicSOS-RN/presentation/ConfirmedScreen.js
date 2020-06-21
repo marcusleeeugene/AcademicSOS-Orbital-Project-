@@ -26,6 +26,7 @@ export default function ConfirmedScreen({ route, navigation }) {
   const [userType, setUserType] = useState("");
   const [consultSize, setConsultSize] = useState("");
   const qrCode = "https://www.academicSOS.com/" + consultDetails["module"] + "/" + bookingId;
+  const [numAttendees, setNumAttendees] = useState(0);
 
   const navHistory = [
     { dest: firstScreen, alt_dest: "" },
@@ -47,6 +48,9 @@ export default function ConfirmedScreen({ route, navigation }) {
 
   const scanAttendance = () => {
     navigation.navigate("Scan", {
+      userID: userID,
+      bookingId: bookingId,
+      consultDetails: consultDetails,
       qrCode: qrCode,
     });
   };
@@ -58,12 +62,16 @@ export default function ConfirmedScreen({ route, navigation }) {
     ConfirmedFB.getConsultSize(bookingId, consultDetails["module"]).then((data) => {
       setConsultSize(data);
     });
+    ConfirmedFB.checkAttendance(userID, consultDetails.module, bookingId).then((rsl) => {
+      setNumAttendees(rsl);
+    })
 
     Dimensions.addEventListener("change", onChange);
     return () => {
       Dimensions.removeEventListener("change", onChange);
     };
-  });
+
+  }, [numAttendees]);
 
   const studentJSX = (
     <View style={styles.button}>
@@ -81,14 +89,21 @@ export default function ConfirmedScreen({ route, navigation }) {
                     {
                       text: "Proceed to cancel",
                       onPress: () => {
-                        console.log(bookingId);
-                        var filteredConsultDetails = consultDetails.participants.filter((user) => user.id != userID);
-                        if (filteredConsultDetails.length != 0) {
-                          consultDetails.participants = filteredConsultDetails;
+                        if (consultDetails.creator == userID || consultDetails.ta.id == userID) { //If user is a creator or ta
+                          ConfirmedFB.cancelBooking(consultDetails, bookingId);
                         } else {
-                          consultDetails.participants = " ";
+                          var filteredConsultDetails = consultDetails.participants.filter((user) => user.id != userID);
+                          if (filteredConsultDetails.length != 0) {
+                            consultDetails.participants = filteredConsultDetails;
+                          } else {
+                            consultDetails.participants = " ";
+                          }
+                          if (consultDetails.type == "Public") {
+                            ConfirmedFB.NonCreatorCancelBooking(consultDetails, bookingId, "Pending");
+                          } else {
+                            ConfirmedFB.NonCreatorCancelBooking(consultDetails, bookingId, consultDetails.consultStatus);
+                          }
                         }
-                        ConfirmedFB.cancelBooking(consultDetails, bookingId, "Pending");
                         navigation.goBack();
                       },
                     },
@@ -115,7 +130,7 @@ export default function ConfirmedScreen({ route, navigation }) {
       </View>
       <View>
         <Text style={styles.size}> Class Size: </Text>
-        <Text style={styles.infoText}> 1 / {consultSize}</Text>
+        <Text style={styles.attendeesText}> {numAttendees} / {consultSize}</Text>
       </View>
     </View>
   );
@@ -124,25 +139,27 @@ export default function ConfirmedScreen({ route, navigation }) {
     return <AppLoading />;
   } else {
     return (
-      <ScrollView>
+      <View>
         <BreadCrumb navHistory={navHistory} />
-        <View style={styles.body}>
-          <Text style={styles.titleText}> {consultDetails["module"]}</Text>
-          <View style={styles.info}>
-            <Text style={styles.infoText}> TA: {consultDetails.ta["name"]}</Text>
-            <Text style={styles.infoText}> Type: {consultDetails["type"]}</Text>
-            <Text style={styles.infoText}> Location: {consultDetails["location"]}</Text>
-            <Text style={styles.infoText}>Date: {consultDetails["consultDate"]}</Text>
-            <Text style={styles.infoText}> Start Time: {consultDetails["consultStartTime"]}</Text>
-            <Text style={styles.infoText}> End Time: {consultDetails["consultEndTime"]}</Text>
-            <Text style={styles.secondTitle}> Students: </Text>
-            <FlatList data={consultDetails.participants} renderItem={({ item }) => <Text style={styles.infoText}>{item.name}</Text>} style={styles.flatList} />
-            <Text style={styles.secondTitle}> Agenda: </Text>
-            <Text style={styles.infoText}>{consultDetails["agenda"]} </Text>
+        <ScrollView>
+          <View style={styles.body}>
+            <Text style={styles.titleText}> {consultDetails["module"]}</Text>
+            <View style={styles.info}>
+              <Text style={styles.infoText}> TA: {consultDetails.ta["name"]}</Text>
+              <Text style={styles.infoText}> Type: {consultDetails["type"]}</Text>
+              <Text style={styles.infoText}> Location: {consultDetails["location"]}</Text>
+              <Text style={styles.infoText}>Date: {consultDetails["consultDate"]}</Text>
+              <Text style={styles.infoText}> Start Time: {consultDetails["consultStartTime"]}</Text>
+              <Text style={styles.infoText}> End Time: {consultDetails["consultEndTime"]}</Text>
+              <Text style={styles.secondTitle}> Students: </Text>
+              <FlatList data={consultDetails.participants} renderItem={({ item }) => <Text style={styles.infoText}>{item.name}</Text>} style={styles.flatList} />
+              <Text style={styles.secondTitle}> Agenda: </Text>
+              <Text style={styles.infoText}>{consultDetails["agenda"]} </Text>
+            </View>
+            {userType !== "Student" ? taJSX : studentJSX}
           </View>
-          {userType !== "Student" ? taJSX : studentJSX}
-        </View>
-      </ScrollView>
+        </ScrollView>
+      </View>
     );
   }
 }
@@ -176,6 +193,13 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontFamily: "Righteous-Regular",
     color: "#FFFFFF",
+  },
+  attendeesText: {
+    fontSize: hp("2.5%"),
+    textAlign: "center",
+    fontFamily: "Righteous-Regular",
+    color: "#FFFFFF",
+    marginBottom: "25%"
   },
   secondTitle: {
     marginTop: hp("3%"),

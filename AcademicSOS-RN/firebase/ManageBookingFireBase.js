@@ -41,6 +41,15 @@ function checkStudentIsParticipant(id, participants) {
   return false;
 }
 
+function checkAllAltStatus(participants) { //return true if all altStatus is accepted and consultStatus confirmed
+  for (var user in participants) {
+    if (participants[user].altStatus != "Accepted") {
+      return false;
+    }
+  }
+  return true;
+}
+
 const ManageBookingFB = {
   getModRole: function (id, modCode) {
     //Returns a promise of module role for user in the module
@@ -81,7 +90,7 @@ const ManageBookingFB = {
               var weekRange = individualBookings["weekRange"];
               var bookDate = individualBookings["bookDate"];
               var bookTime = individualBookings["bookTime"];
-              if (individualBookings["participants"] == undefined) {
+              if (individualBookings["participants"] == " ") {
                 if (creator === id || ta["id"] === id) {
                   //Check if user is involved in the consultation (No checkStudentIsParticipant as it is public consult)
                   //var bookTime = individualBookings[bookTime] //for sorting later on base on priority queue
@@ -106,7 +115,7 @@ const ManageBookingFB = {
                 }
               } else {
                 var studentsInvolved = individualBookings["participants"]; //create consult not adding in participants
-                if (creator === id || ta["id"] === id || checkStudentIsParticipant(id, studentsInvolved)) {
+                if (creator === id || (ta["id"] === id && checkAllAltStatus(studentsInvolved)) || checkStudentIsParticipant(id, studentsInvolved)) {
                   //Check if user is involved in the consultation
                   allUserBookings.push({
                     creator: creator,

@@ -84,7 +84,7 @@ const CreateConsultFB = {
       .then((obj) => {
         var user = [];
         var name = obj["name"];
-        user.push({ id: id, name: name, altStatus: "Pending" });
+        user.push({ id: id, name: name, altStatus: "Pending", attending: false});
         return user;
       });
   },

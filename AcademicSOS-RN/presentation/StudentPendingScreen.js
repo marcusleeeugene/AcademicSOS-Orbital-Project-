@@ -67,7 +67,7 @@ export default function StudentPendingScreen({ route, navigation }) {
       }
       StudentPendingFB.checkUserName(userID)
         .then((name) => {
-          consultDetails.participants.push({ id: userID, name: name, altStatus: "Accepted" });
+          consultDetails.participants.push({ id: userID, name: name, altStatus: "Accepted", attending: false });
         })
         .then((rsl) => {
           if (consultDetails.participants.length == consultDetails.size) {
