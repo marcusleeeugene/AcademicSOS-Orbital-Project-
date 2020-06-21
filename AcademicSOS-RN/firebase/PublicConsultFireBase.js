@@ -54,7 +54,8 @@ const PublicConsultFB = {
           var type = individualBookings["type"];
           var participants = individualBookings["participants"];
           var consultStatus = individualBookings["consultStatus"];
-          if (type == "Public" && (participants == " " || getAltStatus(userId, modCode, bookings, obj) === "Pending")) {
+          var size = individualBookings["size"];
+          if (type == "Public" && (participants == " " || participants.length != size || getAltStatus(userId, modCode, bookings, obj) === "Pending")) {
             var creator = individualBookings["creator"];
             var bookingId = bookings;
             var ta = individualBookings["ta"];
@@ -64,7 +65,6 @@ const PublicConsultFB = {
             var consultEndTime = individualBookings["consultEndTime"];
             var agenda = individualBookings["agenda"];
             var studentsInvolved = individualBookings["participants"];
-            var size = individualBookings["size"];
             var weekRange = individualBookings["weekRange"];
             var bookDate = individualBookings["bookDate"];
             var bookTime = individualBookings["bookTime"];

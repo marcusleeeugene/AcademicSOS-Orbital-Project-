@@ -34,7 +34,7 @@ function WeekRange() {
 
 function checkStudentIsParticipant(id, participants) {
   for (var i = 0; i < participants.length; i++) {
-    if (id === participants[0]["id"]) {
+    if (id === participants[i]["id"]) {
       return true;
     }
   }

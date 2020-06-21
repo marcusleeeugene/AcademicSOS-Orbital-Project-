@@ -65,11 +65,16 @@ export default function StudentPendingScreen({ route, navigation }) {
       if (consultDetails.participants == " ") {
         consultDetails.participants = [];
       }
-      StudentPendingFB.checkUserName(userID).then((name) => {
-        consultDetails.participants.push({ id: userID, name: name, altStatus: "Accepted" });
-      }).then((rsl) => {
-        StudentPendingFB.acceptBooking(consultDetails, bookingId, consultDetails.participants)
-      });
+      StudentPendingFB.checkUserName(userID)
+        .then((name) => {
+          consultDetails.participants.push({ id: userID, name: name, altStatus: "Accepted" });
+        })
+        .then((rsl) => {
+          if (consultDetails.participants.length == consultDetails.size) {
+            consultDetails.consultStatus = "Confirmed";
+          }
+          StudentPendingFB.acceptBooking(consultDetails, bookingId, consultDetails.participants);
+        });
     } else {
       consultDetails.participants.map((user) => {
         if (user["id"] == userID) {
