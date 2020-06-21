@@ -28,7 +28,7 @@ export default function ScanScreen({ route, navigation }) {
       }
       ScanFB.updateAttendance(consultDetails, bookingId);
       navigation.navigate("Home");
-      alert(`Valid QR Code with link ${data} has been scanned!`);
+      alert(`Your attendance has been recorded!`);
     } else {
       alert("Invalid Consult QR Code!!!");
     }
