@@ -32,7 +32,7 @@ export default function ConfirmedScreen({ route, navigation }) {
     { dest: firstScreen, alt_dest: "" },
     secondScreen == "Public Consultation" ? { dest: secondScreen, alt_dest: "Select Module" } : { dest: secondScreen, alt_dest: "Manage Bookings" },
     secondScreen == "Public Consultation" ? { dest: thirdScreen, alt_dest: "Public Consultation" } : { dest: thirdScreen, alt_dest: "" },
-    fourthScreen != undefined ? {dest:fourthScreen, alt_dest: ""} : null,
+    fourthScreen != undefined ? { dest: fourthScreen, alt_dest: "" } : null,
   ].filter((item) => item != null);
 
   const options = [
@@ -64,20 +64,19 @@ export default function ConfirmedScreen({ route, navigation }) {
     });
     ConfirmedFB.checkAttendance(userID, consultDetails.module, bookingId).then((rsl) => {
       setNumAttendees(rsl);
-    })
+    });
 
     Dimensions.addEventListener("change", onChange);
     return () => {
       Dimensions.removeEventListener("change", onChange);
     };
-
   }, [numAttendees]);
 
   const studentJSX = (
     <View style={styles.button}>
       {options.map((item) => (
         <TouchableOpacity
-          key = { item.name }
+          key={item.name}
           style={[styles.buttonOption, { backgroundColor: item.color }]}
           onPress={() => {
             item.name === "Scan Attendance"
@@ -89,7 +88,8 @@ export default function ConfirmedScreen({ route, navigation }) {
                     {
                       text: "Proceed to cancel",
                       onPress: () => {
-                        if (consultDetails.creator == userID || consultDetails.ta.id == userID) { //If user is a creator or ta
+                        if (consultDetails.creator == userID || consultDetails.ta.id == userID) {
+                          //If user is a creator or ta
                           ConfirmedFB.cancelBooking(consultDetails, bookingId);
                         } else {
                           var filteredConsultDetails = consultDetails.participants.filter((user) => user.id != userID);
@@ -130,7 +130,10 @@ export default function ConfirmedScreen({ route, navigation }) {
       </View>
       <View>
         <Text style={styles.size}> Class Size: </Text>
-        <Text style={styles.attendeesText}> {numAttendees} / {consultSize}</Text>
+        <Text style={styles.attendeesText}>
+          {" "}
+          {numAttendees} / {consultSize}
+        </Text>
       </View>
     </View>
   );
@@ -199,7 +202,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontFamily: "Righteous-Regular",
     color: "#FFFFFF",
-    marginBottom: "25%"
+    marginBottom: "25%",
   },
   secondTitle: {
     marginTop: hp("3%"),

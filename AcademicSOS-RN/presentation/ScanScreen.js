@@ -7,7 +7,7 @@ export default function ScanScreen({ route, navigation }) {
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(false);
   const [valid, setValid] = useState(false);
-  const { qrCode, userID, bookingId, consultDetails} = route.params;
+  const { qrCode, userID, bookingId, consultDetails } = route.params;
 
   useEffect(() => {
     (async () => {
@@ -22,15 +22,13 @@ export default function ScanScreen({ route, navigation }) {
       setScanned(true);
 
       for (var user in consultDetails.participants) {
-        if (userID == user.id) {
-          user.attending = true;
-          console.log(user.attending);
+        if (userID == consultDetails.participants[user].id) {
+          consultDetails.participants[user].attending = true;
         }
       }
-      ScanFB.updateAttendance(consultDetails, bookingId).then((rsl) =>{
-        navigation.navigate("Home"); //go back Home screen, need to disable confirmed slot(onPress becomes null) in Manage Bookings
-        alert(`Valid QR Code with link ${data} has been scanned!`);
-      });
+      ScanFB.updateAttendance(consultDetails, bookingId);
+      navigation.navigate("Home");
+      alert(`Valid QR Code with link ${data} has been scanned!`);
     } else {
       alert("Invalid Consult QR Code!!!");
     }
