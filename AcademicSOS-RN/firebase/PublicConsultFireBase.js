@@ -32,8 +32,17 @@ function WeekRange() {
     });
 }
 
+function getAltStatus(id, modCode, bookingId, obj) {
+  var participants = obj[bookingId]["participants"];
+  for (var user in participants) {
+    if (id == participants[user]["id"]) {
+      return participants[user]["altStatus"];
+    }
+  }
+}
+
 const PublicConsultFB = {
-  getPublicConsultation: function (modCode, week, day) {
+  getPublicConsultation: function (userId, modCode, week, day) {
     return database
       .ref(`modules/${modCode}/bookings`)
       .once("value")
@@ -43,8 +52,9 @@ const PublicConsultFB = {
         for (var bookings in obj) {
           var individualBookings = obj[bookings];
           var type = individualBookings["type"];
+          var participants = individualBookings["participants"];
           var consultStatus = individualBookings["consultStatus"];
-          if (type == "Public" && consultStatus != "Confirmed") {
+          if (type == "Public" && (participants == " " || getAltStatus(userId, modCode, bookings, obj) === "Pending")) {
             var creator = individualBookings["creator"];
             var bookingId = bookings;
             var ta = individualBookings["ta"];

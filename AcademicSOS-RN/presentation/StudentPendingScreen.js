@@ -67,6 +67,8 @@ export default function StudentPendingScreen({ route, navigation }) {
       }
       StudentPendingFB.checkUserName(userID).then((name) => {
         consultDetails.participants.push({ id: userID, name: name, altStatus: "Accepted" });
+      }).then((rsl) => {
+        StudentPendingFB.acceptBooking(consultDetails, bookingId, consultDetails.participants)
       });
     } else {
       consultDetails.participants.map((user) => {
@@ -74,8 +76,8 @@ export default function StudentPendingScreen({ route, navigation }) {
           user["altStatus"] = "Accepted";
         }
       });
+      StudentPendingFB.acceptBooking(consultDetails, bookingId, consultDetails.participants);
     }
-    StudentPendingFB.acceptBooking(consultDetails, bookingId, consultDetails["participants"]);
     alert("Successfully updated booking status!");
     navigation.goBack();
   };
