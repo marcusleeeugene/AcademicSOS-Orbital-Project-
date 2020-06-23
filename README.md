@@ -5,7 +5,7 @@ AcademicSOS is a cross-platform mobile application that allows NUS students, pro
 The application allows all consultation matters to be done solely on the application, without requiring the need to email or message professors and teaching assistants. This will help in reducing email spams to professors’s inboxes and also increase the monitoring rate.
 
 <p align="center">
-   <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/Poster/AcademicSOS-V2.0.png"  height="500">
+   <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/Poster/AcademicSOS-V2.0.png"  height="650">
 </p>
 
 ### Site Map
@@ -26,14 +26,14 @@ The application allows all consultation matters to be done solely on the applica
 1. Introduction
 2. User Flow
 3. Features
-   - 3.1. Login
-   - 3.2. Book a consultation
-   - 3.3. Create a consultation
-   - 3.4. Manage Bookings
-   - 3.5. Public Consultation 
-   - 3.6. Priority Points System
-   - 3.7. Attendance Scanning with QR Code
-   - 3.8. Notification Reminder
+    3.1. Login
+    3.2. Book a consultation
+    3.3. Create a consultation
+    3.4. Manage Bookings
+    3.5. Public Consultation 
+    3.6. Priority Points System
+    3.7. Attendance Scanning with QR Code
+    3.8. Notification Reminder
 4. Installation of AcademicSOS
 5. Using AcademicSOS
 
@@ -44,6 +44,12 @@ The application allows all consultation matters to be done solely on the applica
 
 ### 2. User Flow
 Depending on the user access, each user will have different sets of options available to them.
+
+<p align="center">
+   <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/DocImages/Student.png"  height="300">
+   <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/DocImages/Teaching Assistant.png"  height="300">
+   <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/DocImages/Professors.png"  height="300">
+</p>
 
 
 ### 3. Features
