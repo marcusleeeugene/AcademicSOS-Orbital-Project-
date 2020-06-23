@@ -26,15 +26,9 @@ The application allows all consultation matters to be done solely on the applica
 USER GUIDE PAGE
 
 # USER GUIDE
-3. Features
-  3.1 Login
-  3.2 Book a consultation
-	3.3 Create a consultation
-	3.4 Manage Bookings
-	3.5 Public Consultation 
-	3.6 Priority Points System
-    3.7 Attendance Scanning with QR Code
-    3.8 Notification Reminder
+1. First list item
+   - 1.2 First nested list item
+   - 1.3 Second nested list item
 
 ### Content
 1. Introduction
