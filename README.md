@@ -26,7 +26,10 @@ The application allows all consultation matters to be done solely on the applica
 USER GUIDE PAGE
 
 # USER GUIDE
-
+1.  Features
+      1.1 Login
+      1.2 Book a consultation
+      1.3 Automatic Escaping for Special Characters
 ### Content
 1. Introduction
 2. User Flow
