@@ -26,14 +26,14 @@ The application allows all consultation matters to be done solely on the applica
 1. Introduction
 2. User Flow
 3. Features
-    3.1. Login
-    3.2. Book a consultation
-    3.3. Create a consultation
-    3.4. Manage Bookings
-    3.5. Public Consultation 
-    3.6. Priority Points System
-    3.7. Attendance Scanning with QR Code
-    3.8. Notification Reminder
+   1.   Login
+   2.   Book a consultation
+   3.   Create a consultation
+   4.   Manage Bookings
+   5.   Public Consultation 
+   6.   Priority Points System
+   7.   Attendance Scanning with QR Code
+   8.  Notification Reminder
 4. Installation of AcademicSOS
 5. Using AcademicSOS
 
