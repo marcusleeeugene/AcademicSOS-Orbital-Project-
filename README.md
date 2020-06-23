@@ -5,7 +5,7 @@ AcademicSOS is a cross-platform mobile application that allows NUS students, pro
 The application allows all consultation matters to be done solely on the application, without requiring the need to email or message professors and teaching assistants. This will help in reducing email spams to professors’s inboxes and also increase the monitoring rate.
 
 <p align="center">
-   <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/Poster/AcademicSOS-V2.0.png"  height="500">
+   <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/Poster/AcademicSOS-V2.0.png"  height="650">
 </p>
 
 ### Site Map
@@ -44,6 +44,12 @@ The application allows all consultation matters to be done solely on the applica
 
 ### 2. User Flow
 Depending on the user access, each user will have different sets of options available to them.
+
+<p align="center">
+   <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/DocImages/Student.png"  height="300">
+   <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/DocImages/Teaching Assistant.png"  height="300">
+   <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/DocImages/Professors.png"  height="300">
+</p>
 
 
 ### 3. Features
