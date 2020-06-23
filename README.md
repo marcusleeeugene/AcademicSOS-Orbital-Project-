@@ -62,6 +62,7 @@ Users just have to login using their NUS account using their NETID and password 
 
 
 The following are available users for this application:
+
 (Professor Martin Henz, CS1101S TA)
 Id: p0123456
 Pw: password
@@ -80,11 +81,13 @@ Pw: password
 
 
 ##### 3.2 Book a consultation
+
 Students of a module can book a consultation only to their respective TAs from their tutorial group or Professors. Students are allowed to only book minimally one week in advance, selecting the intended booking date and time, indicating the location in the textbox (virtual meeting place like Zoom or physical location) as well as the people involved in the consultation. If the user prefers one-to-one consultation with the Teaching Assistant/Professor, it is not required to fill in the students involved section. With a dynamic search function, it allows the user to add fellow peers who are taking the same module to join in as group consultation. In the remarks textbox, students are encouraged to put in the topic or scope of the problem for discussion which allows Professors or TAs to better prepare beforehand.
 
 <INSERT BOOK CONSULTATION IMG/ Video>
 
 ##### 3.3 Create a consultation
+
 Professors/Teaching Assistants (TAs) of a module can create a consultation slot to meet students in their respective tutorial group in the event that there is a need for project review and feedback for certain students for instance. Similarly, it is recommended to create the consultation slot minimally one week in advance, selecting the intended booking date and time, indicating the location in the textbox (virtual meeting place like Zoom or physical location) as well as the people involved in the consultation. With a dynamic search function, it allows the user to add students in the same tutorial class to join in as group or individual one-to-one consultation. In the remarks textbox, it is recommended to fill in the agenda of the meeting so that the students will know the purpose of the meeting.
 
 <INSERT CREATE CONSULTATION IMG>
@@ -93,6 +96,7 @@ Professors/Teaching Assistants (TAs) of a module can create a consultation slot 
 
 
 ##### 3.4 Manage Bookings
+
 Manage bookings are made available to all users to allow them to look at their consultations that are pending or approved. In this screen, the user can filter by Status (pending or confirmed), academic week and day. The consultations are all sorted in ascending order by date then by time.
 
 <INSERT MANAGE BOOKINGS GIF>
@@ -128,18 +132,20 @@ Below is an illustration of the various actions/scenarios that can happen when d
 
 
 
-
 ##### 3.6 Priority Points System
+
 Priority points get deducted if the student does not turn up for an approved consultation on the day itself. This will affect their future consultation requests and will rank their request at the bottom when showing up in the pending section of their TA’s Manage Booking screen, in the case where another student has booked the consultation on the same date and time.
 <INSERT PRIORITY POINTS IMG>
 
 ##### 3.7 Attendance Scanning with QR Code
+
 If the user is a student, in the manage booking screen, when the user clicks into the consultation during the consultation slot, their screen will open the camera application to scan for a QR provided by the TA/Professor.
 
 On the TA/Professor side, when they click into the consultation slot, it generates a QR code attendance for their students to scan.
 <INSERT ATTENDANCE IMG>
 
 ##### 3.8 Notification Reminder
+
 Closer to the day of the consultation, a notification will be sent out to notify users of their upcoming consultations.
 <INSERT NOTIFICATION IMG>
 
