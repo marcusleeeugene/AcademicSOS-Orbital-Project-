@@ -185,8 +185,7 @@ export default function StudentPendingScreen({ route, navigation }) {
             <Text style={styles.infoText}> Start Time: {consultDetails["consultStartTime"]}</Text>
             <Text style={styles.infoText}> End Time: {consultDetails["consultEndTime"]}</Text>
             <Text style={styles.secondTitle}> Students: </Text>
-            <FlatList data={consultDetails.participants} renderItem={({ item }) => <Text style={styles.infoText}>{item.name}</Text>} style={styles.flatList} />
-
+            <FlatList data={consultDetails.participants} renderItem={({ item }) => <Text style={styles.infoText}>{item.name}</Text>} style={styles.flatList} keyExtractor={(item, index) => index.toString()}/>
             <Text style={styles.secondTitle}> Agenda: </Text>
             <Text style={styles.infoText}>{consultDetails["agenda"]} </Text>
             {consultDetails["creator"] === userID || (consultDetails["consultStatus"] == "Pending" && altStatus == "Accepted") ? creatorJSX : nonCreatorJSX}

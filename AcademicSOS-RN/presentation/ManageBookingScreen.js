@@ -171,7 +171,7 @@ export default function ManageBookingScreen({ route, navigation }) {
                       firstScreen: firstScreen,
                       userID: userID,
                       consultDetails: item,
-                      bookingId: item.bookingId[index],
+                      bookingId: item.bookingId,
                     });
                   } else {
                     navigation.navigate("Confirmed", {
@@ -180,7 +180,7 @@ export default function ManageBookingScreen({ route, navigation }) {
                       firstScreen: firstScreen,
                       userID: userID,
                       consultDetails: item,
-                      bookingId: item.bookingId[index],
+                      bookingId: item.bookingId,
                     });
                   }
                 } else {
@@ -191,7 +191,7 @@ export default function ManageBookingScreen({ route, navigation }) {
                       firstScreen: firstScreen,
                       userID: userID,
                       consultDetails: item,
-                      bookingId: item.bookingId[index],
+                      bookingId: item.bookingId,
                     });
                   } else {
                     navigation.navigate("Confirmed", {
@@ -200,7 +200,7 @@ export default function ManageBookingScreen({ route, navigation }) {
                       firstScreen: firstScreen,
                       userID: userID,
                       consultDetails: item,
-                      bookingId: item.bookingId[index],
+                      bookingId: item.bookingId,
                     });
                   }
                 }

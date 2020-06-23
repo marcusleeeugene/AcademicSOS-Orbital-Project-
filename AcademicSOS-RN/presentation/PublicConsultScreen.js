@@ -137,6 +137,7 @@ export default function PublicConsultScreen({ route, navigation }) {
             <Text style={styles.dateTime_Text}> {item.consultStartTime} </Text>
           </View>
           <TouchableOpacity
+            key = {"consultBtn" + index}
             style={[styles.moduleContainer, { backgroundColor: item.color }]}
             onPress={() => {
                 navigation.navigate("Student Pending", {

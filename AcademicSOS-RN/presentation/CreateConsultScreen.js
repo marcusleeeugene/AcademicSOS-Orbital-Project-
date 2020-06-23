@@ -122,11 +122,7 @@ export default function CreateConsultScreen({ route, navigation }) {
           );
         });
     alert("Successfully booked! Pls check your booking in Manage Bookings!");
-    navigation.navigate("Manage Bookings", {
-      secondScreen: "Manage Bookings",
-      firstScreen: firstScreen,
-      userID: userID,
-    });
+    navigation.navigate("Home");
   };
 
   const updateConsultation = () => {
@@ -152,11 +148,7 @@ export default function CreateConsultScreen({ route, navigation }) {
     });
 
     alert("Successfully updated booking!");
-    navigation.navigate("Manage Bookings", {
-      secondScreen: "Manage Bookings",
-      firstScreen: firstScreen,
-      userID: userID,
-    });
+    navigation.navigate("Home");
   };
 
   useEffect(() => {
