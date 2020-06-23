@@ -26,10 +26,7 @@ The application allows all consultation matters to be done solely on the applica
 USER GUIDE PAGE
 
 # USER GUIDE
-1.  Features
-      1.1 Login
-      1.2 Book a consultation
-      1.3 Automatic Escaping for Special Characters
+
 ### Content
 1. Introduction
 2. User Flow
@@ -119,10 +116,10 @@ Below is an illustration of the various actions/scenarios that can happen when d
 <INSERT PUBLIC CONSULTATION IMG>
 
 With the create consult function, a teaching assistant (creator of consultation slot) has the option to create a public consultation slot depending on their availability and indicating the size of the consultation. Upon the creation of the public consultation, the consultation slot will be shown on the public consultation details screen for all students taking the module.
-Do note that the public consultation slot will disappear from the student screen after the student accepted or rejected the consultation. If the student accepted the consultation, the consultation slot will be moved to Manage Bookings automatically. Once the number of students who accepted the public consultation slot matches the size of the consult, the consultation status will automatically be changed to confirmed and reflected on the Manage Booking screen for all the users involved. If the size of the public consult slot is not met, the TA has the right to start the consultation. 
+***Do note that the public consultation slot will disappear from the student screen after the student accepted or rejected the consultation. If the student accepted the consultation, the consultation slot will be moved to Manage Bookings automatically. Once the number of students who accepted the public consultation slot matches the size of the consult, the consultation status will automatically be changed to confirmed and reflected on the Manage Booking screen for all the users involved. If the size of the public consult slot is not met, the TA has the right to start the consultation. ***
 
 Alternatively, the teaching assistant can create a private consultation slot where students from the same tutorial group can be added into the consultation easily. Upon the creation of the private consultation, the consultation slot will be shown on the Manage Bookings section for the users involved. 
-Do note that the consultation slot will only appear on the TA’s Manage Bookings section after all the other student participants have accepted/rejected the consultation slot.
+***Do note that the consultation slot will only appear on the TA’s Manage Bookings section after all the other student participants have accepted/rejected the consultation slot.***
 
 Below is an illustration of the various actions/scenarios that can happen when different buttons are clicked inside public consultation and manage bookings.
 
