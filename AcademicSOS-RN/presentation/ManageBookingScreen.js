@@ -338,10 +338,8 @@ const styles = StyleSheet.create({
   },
   notification: {
     height: hp("2%"),
-    width: wp("7.5%"),
+    width: wp("4%"),
     resizeMode: "contain",
-    alignItems: "center",
-    paddingHorizontal: wp("5%"),
   },
   modalView: {
     backgroundColor: "#CFD8DC",
