@@ -36,7 +36,7 @@
             <li><a href="#notificationFeature"> Notification Reminder </a></li>
          </ol>
       </li>
-      <li><a href="installation">  Installation of AcademicSOS  </a></li>
+      <li><a href="#installation">  Installation of AcademicSOS  </a></li>
    </ol>
 
 <h3 id="introduction" align="center"> 1. Introduction </h3>
