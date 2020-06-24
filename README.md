@@ -82,6 +82,7 @@ Id: e0123456
 
 Pw: password
 
+<br><br>
 <p align="center">
    <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/DocVideos/Login%20Video.gif"  height="500">
 </p>
@@ -89,15 +90,15 @@ Pw: password
 <h4 id="bookConsultFeature"> 3ii. Book a consultation </h4>
 Students of a module can book a consultation only to their respective TAs from their tutorial group or Professors. Students are allowed to pick the TA from their tutorial slot, selecting the intended booking date and time, indicating the location in the textbox (virtual meeting place like Zoom or physical location) as well as the people involved in the consultation. If the user prefers one-to-one consultation with the Teaching Assistant/Professor, it is not required to fill in the students involved section. With a dynamic search function, it allows the user to add fellow peers who are taking the same module to join in as group consultation. Before the submission of the consultation slot, there is the flexibility for the student to add or remove students participants.  In the agenda textbox, students are encouraged to put in the topic or scope of the problem for discussion which allows Professors or TAs to better prepare beforehand. It is also possible to attach a Google Slides link with screenshots of the questions that the students want to ask in the textbox too.
 
-<br>
+<br><br>
 <p align="center">
    <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/DocVideos/BookConsult%20Video.gif"  height="500">
 </p>
 
-<h4 id="createConsultFeature"> 3ii. Create a consultation </h4>
+<h4 id="createConsultFeature"> 3iii. Create a consultation </h4>
 Professors/Teaching Assistants (TAs) of a module can create a consultation slot to meet students in their respective tutorial group in the event that there is a need for project review and feedback for certain students for instance. Similarly, it is recommended to create the consultation slot minimally one week in advance, selecting the intended booking date and time, indicating the location in the textbox (virtual meeting place like Zoom or physical location) as well as the people involved in the consultation. With a dynamic search function, it allows the user to add students in the same tutorial class to join in as group or individual one-to-one consultation. In the agenda textbox, it is recommended to fill in the purpose of the meeting so that the students will know beforehand.
 
-<br>
+<br><br>
 <p align="center">
    <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/DocVideos/CreateConsult%20Video.gif"  height="500">
 </p>
@@ -113,16 +114,12 @@ With book consult function, a student (creator of consultation slot) creates a p
 
 Below is an illustration of the various actions/scenarios that can happen when different buttons are clicked inside the consultation slot of Manage Bookings by different groups of users.
 
-
-<br>
+<br><br>
 <p align="center">
    <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/DocVideos/ManageBooking%20Video.gif"  height="500">
 </p>
 
-
-#### 3.5 Public consultation 
-<INSERT PUBLIC CONSULTATION IMG>
-
+<h4 id="publicConsultFeature"> 3v. Public Consultation </h4>
 With the create consult function, a teaching assistant (creator of consultation slot) has the option to create a public consultation slot depending on his/her availability and indicating the size of the consultation. Upon the creation of the public consultation, the consultation slot will be shown on the public consultation details screen for all students taking the module.
 
 **Do note that the public consultation slot will disappear from the student screen after the student accepted or rejected the consultation. If the student accepted the consultation, the consultation slot will be moved to Manage Bookings automatically. Once the number of students who accepted the public consultation slot matches the size of the consult, the consultation status will automatically be changed to confirmed and reflected on the Manage Booking screen for all the users involved. If the size of the public consult slot is not met, the TA has the right to start the consultation.**
@@ -133,20 +130,27 @@ Alternatively, the teaching assistant can create a private consultation slot whe
 
 Below is an illustration of the various actions/scenarios that can happen when different buttons are clicked inside public consultation and manage bookings.
 
+<br><br>
 <p align="center">
-   <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/DocImages/CreateConsult%20Logic.png"  height="400">
+   <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/DocVideos/PublicConsult%20Video.gif"  height="500">
 </p>
 
-
-#### 3.6 Priority Points System
+<h4 id="priorityFeature"> 3vi. Priority Points System (Incomplete) </h4>
 Priority points get deducted if the student does not turn up for an approved consultation on the day itself. This will affect their future consultation requests and will rank their request at the bottom when showing up in the pending section of their TA’s Manage Booking screen, in the case where another student has booked the consultation on the same date and time.
-<INSERT PRIORITY POINTS IMG>
 
 #### 3.7 Attendance Scanning with QR Code
+
+<h4 id="attendanceFeature"> 3vii. Attendance Scanning with QR Code </h4>
 If the user is a student, in the Manage Booking screen, when the user clicks into the consultation during the consultation slot and select the scan attendance on option, the camera application will be opened to scan for the correct QR code displayed on the Manage Booking screen of the TA/Professor.
 
 On the TA/Professor side, when they click into the consultation slot, it generates a unique QR code attendance for their students to scan based on the booking ID.
-<INSERT ATTENDANCE IMG>
+
+<br><br>
+<p align="center">
+   <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/DocVideos/QRCodeTA%20Video.gif"  height="500">
+   <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/DocVideos/QRCodeStudent%20Video.gif"  height="500">
+</p>
+
 
 #### 3.8 Notification Reminder
 Closer to the day of the consultation, a notification will be sent out to notify users of their upcoming consultations.
