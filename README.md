@@ -24,9 +24,25 @@
       <li> Ideation, designing and prototyping of UI/UX of mobile application </li>
       <li> Application of functional stateless components into project and understanding the benefits of the usage of functional components as compared to class components </li>
       <li> Understanding Component Lifecycle (Using UseEffect in functional component) </li>
-      <li> Responsive application design for different platforms (Ios and Android) and different phone screen sizes </li>
+      <li> Responsive application design for different platforms (ios and Android) and different phone screen sizes </li>
       <li> Constructing test cases and conducting tests to handle possible problems that can be encountered by the users </li>
       <li> Structuring of database model </li>
       <li> Importance of planning out logic of program for various user roles </li>
       <li> Integrating external APIs into the project </li>
    </ul>
+
+   <h2 id="aboutUs" align="center"> About Us </h2>
+     <p>
+       As of July 2020, Marcus Lee Eugene and Tay Kai Xiang are Year 1 Computer Science students.
+     </p>
+     <p>
+       Marcus plans to specialize in Software Engineering and work on Mobile Applications development in the future.
+     </p>
+     <p>
+       Kai Xiang is interested in Machine Learning, Cloud Computing and Software Engineering fields.
+     </p>
+     <p><b> LinkedIn Contact: </b></p>
+     <ul>
+        <li><a href="www.linkedin.com/in/marcus-lee-eugene-7a4006114"> Marcus's LinkedIn </a></li>
+        <li><a href="www.linkedin.com/in/kai-xiang-tay"> Kai Xiang's LinkedIn </a></li>
+     </ul>
