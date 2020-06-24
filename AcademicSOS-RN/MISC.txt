@@ -19,19 +19,11 @@ https://docs.expo.io/versions/latest/sdk/permissions/ (expo permissions)
 6) npm i react-native-keyboard-aware-scroll-view --save
 7) expo install firebase
 8) npm install react-native-app-auth
-
 9) npm install @react-navigation/native
-
 10) npm install react-native-reanimated react-native-gesture-handler react-native-screens react-native-safe-area-context @react-native-community/masked-view
-
 11) npm install @react-navigation/stack
-
 12) npm install react-native-multiple-select --save
-
 13) expo install react-native-custom-qr-codes-expo
-
 14) expo install expo-barcode-scanner
-
 15) expo install expo-permissions
-
 16) expo install react-native-webview
