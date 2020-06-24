@@ -28,8 +28,10 @@ https://docs.expo.io/versions/latest/sdk/permissions/ (expo permissions)
 
 12) npm install react-native-multiple-select --save
 
-13) npm install react-native-custom-qr-codes-expo
+13) expo install react-native-custom-qr-codes-expo
 
 14) expo install expo-barcode-scanner
 
 15) expo install expo-permissions
+
+16) expo install react-native-webview
