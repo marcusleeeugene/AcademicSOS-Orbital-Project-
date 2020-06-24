@@ -5,7 +5,6 @@
     <li><a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/Docs/DEVELOPERGUIDE.md"> Developer Guide </a> - Developers guide and application architecture </li>
     <li><a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project#learningOutcomes"> Learning Outcomes </a></li>
     <li><a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project#aboutUs"> About Us </a></li>
-    <li><a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project#contactUs"> Contact Us </a></li>
  </ul>
  <br>
    <h2 id="userGuide" align="center"> User Guide </h2>

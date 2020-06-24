@@ -16,7 +16,6 @@
       <li><a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/Docs/DEVELOPERGUIDE.md"> Developer Guide </a> - Developers guide and application architecture </li>
       <li><a href="#learningOutcomes"> Learning Outcomes </a></li>
       <li><a href="#aboutUs"> About Us </a></li>
-      <li><a href="#contactUs"> Contact Us </a></li>
    </ul>
 
    <h2 id="learningOutcomes" align="center"> Learning Outcomes </h2>
