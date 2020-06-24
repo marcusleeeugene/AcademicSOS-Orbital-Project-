@@ -141,6 +141,10 @@
     Manage bookings are made available to all users to allow them to look at their consultations that are pending or approved. In this screen,
     the user can filter by Status (pending or confirmed), academic week and day. The consultations are all sorted in ascending order by date then by time.
   </p>
+  <br><br>
+  <p align="center">
+     <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/DocVideos/ManageBooking%20Video.gif"  height="500">
+  </p>
   <p>
     By clicking into a consultation, it will bring the user to the next page which shows into detail all the information of the selected consultation
     including the students involved in the consultation. Depending on the user role in the module, whoever is the creator of the consultation slot,
@@ -164,10 +168,6 @@
   <p align="center">
      <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/DocImages/Book%20Consult%20Logic.png"  height="650">
   </p>
-  <br><br>
-  <p align="center">
-     <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/DocVideos/ManageBooking%20Video.gif"  height="500">
-  </p>
 
 <h4 id="publicConsultFeature"> 3v. Public Consultation </h4>
   <p>
@@ -183,6 +183,10 @@
       reflected on the Manage Booking screen for all the users involved. If the size of the public consult slot is not met, the TA has the right to
       start the consultation.
     </b>
+  </p>
+  <br><br>
+  <p align="center">
+     <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/DocVideos/PublicConsult%20Video.gif"  height="500">
   </p>
   <p>
     Alternatively, the teaching assistant can create a private consultation slot where students from the same tutorial group can be added into the
@@ -202,10 +206,6 @@
   <p align="center">
      <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/DocImages/CreateConsult%20Logic.png"  height="650">
   </p>
-<br><br>
-<p align="center">
-   <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/DocVideos/PublicConsult%20Video.gif"  height="500">
-</p>
 
 <h4 id="priorityFeature"> 3vi. Priority Points System (To be completed) </h4>
   <p>
