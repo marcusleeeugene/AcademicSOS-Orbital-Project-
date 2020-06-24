@@ -58,6 +58,7 @@ Users just have to login using their NUS account using their NETID and password 
 
 
 The following are available users for this application:
+
 (Professor Martin Henz, CS1101S TA)
 Id: p0123456
 Pw: password
@@ -78,14 +79,20 @@ Pw: password
 #### 3.2 Book a consultation
 Students of a module can book a consultation only to their respective TAs from their tutorial group or Professors. Students are allowed to only book minimally one week in advance, selecting the intended booking date and time, indicating the location in the textbox (virtual meeting place like Zoom or physical location) as well as the people involved in the consultation. If the user prefers one-to-one consultation with the Teaching Assistant/Professor, it is not required to fill in the students involved section. With a dynamic search function, it allows the user to add fellow peers who are taking the same module to join in as group consultation. In the remarks textbox, students are encouraged to put in the topic or scope of the problem for discussion which allows Professors or TAs to better prepare beforehand.
 
-<INSERT BOOK CONSULTATION IMG/ Video>
+<p align="center">
+   <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/DocImages/Book%20Consult.png"  height="300">
+</p>
+
+<INSERT BOOK CONSULTATION Video>
 
 #### 3.3 Create a consultation
 Professors/Teaching Assistants (TAs) of a module can create a consultation slot to meet students in their respective tutorial group in the event that there is a need for project review and feedback for certain students for instance. Similarly, it is recommended to create the consultation slot minimally one week in advance, selecting the intended booking date and time, indicating the location in the textbox (virtual meeting place like Zoom or physical location) as well as the people involved in the consultation. With a dynamic search function, it allows the user to add students in the same tutorial class to join in as group or individual one-to-one consultation. In the remarks textbox, it is recommended to fill in the agenda of the meeting so that the students will know the purpose of the meeting.
 
-<INSERT CREATE CONSULTATION IMG>
+<p align="center">
+   <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/DocImages/Create%20Consult.png"  height="300">
+</p>
 
-
+<INSERT CREATE CONSULTATION Video>
 
 
 #### 3.4 Manage Bookings
@@ -100,13 +107,11 @@ Do note that the consultation slot will only appear on the TA’s Manage Booking
 
 Below is an illustration of the various actions/scenarios that can happen when different buttons are clicked inside the consultation slot of Manage Bookings by different groups of users.
 
-
+<p align="center">
+   <img src=https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/DocImages/Book%20Consult%20Logic.png height="400">
+</p>
 
 <INSERT MANAGE BOOKINGS IMG>
-
-
-
-
 
 
 #### 3.5 Public consultation 
@@ -122,7 +127,9 @@ Alternatively, the teaching assistant can create a private consultation slot whe
 
 Below is an illustration of the various actions/scenarios that can happen when different buttons are clicked inside public consultation and manage bookings.
 
-
+<p align="center">
+   <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/DocImages/CreateConsult%20Logic.png"  height="400">
+</p>
 
 
 #### 3.6 Priority Points System
