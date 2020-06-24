@@ -36,7 +36,7 @@
             <li><a href="#notificationFeature"> Notification Reminder </a></li>
          </ol>
       </li>
-      <li><a href="installation">  Installation of AcademicSOS  </a></li>
+      <li><a href="#installation">  Installation of AcademicSOS  </a></li>
    </ol>
 
 <h3 id="introduction" align="center"> 1. Introduction </h3>
@@ -229,7 +229,6 @@
      <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/DocVideos/QRCodeTA%20Video.gif"  height="500">
      <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/DocVideos/QRCodeStudent%20Video.gif"  height="500">
   </p>
-
 
 <h4 id="notificationFeature"> 3viii. Notification Reminder (To be completed) </h4>
   <p>
