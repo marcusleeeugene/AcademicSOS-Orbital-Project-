@@ -1,4 +1,4 @@
-# AcademicSOS React Native Mobile Application (Orbital)
+<h1 align="center"> AcademicSOS React Native Mobile Application (Orbital) </h1>
 
 AcademicSOS is a cross-platform mobile application that allows NUS students, professors and teaching assistants to easily book, create and keep track of consultations. 
 
@@ -8,16 +8,16 @@ The application allows all consultation matters to be done solely on the applica
    <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/Poster/AcademicSOS-V2.0.png"  height="650">
 </p>
 
-## Site Map
+<h2 align="center"> Site Map </h2>
 * <a href="userGuide"> User Guide </a> - Step-by-step guide to learn about app functionality and usage
 * <a href="developerGuide"> Developer Guide </a> - Developers guide and application architecture
 * <a href="learningOutcomes"> Learning Outcomes </a>
 * <a href="aboutUs"> About Us </a>
 * <a href="contactUs"> Contact Us </a>
 
-<p id = "userGuide" align="center">
-   ### User Guide
-</p>
+
+<h3 id="userGuide" align="center"> User Guide </h3>
+
 ## Content
 1. Introduction
 2. User Flow
