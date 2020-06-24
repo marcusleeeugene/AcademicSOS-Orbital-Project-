@@ -37,11 +37,11 @@ export default function ConfirmedScreen({ route, navigation }) {
 
   const options = [
     {
-      name: "Scan Attendance",
+      name: "Scan\n Attendance",
       color: "#80DEEA",
     },
     {
-      name: "Cancel Booking",
+      name: "Cancel\n Booking",
       color: "#FF5252",
     },
   ];
@@ -79,7 +79,7 @@ export default function ConfirmedScreen({ route, navigation }) {
           key={item.name}
           style={[styles.buttonOption, { backgroundColor: item.color }]}
           onPress={() => {
-            item.name === "Scan Attendance"
+            item.name === "Scan\n Attendance"
               ? scanAttendance()
               : Alert.alert(
                   "Cancel Options",
