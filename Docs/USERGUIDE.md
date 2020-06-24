@@ -224,3 +224,7 @@
   </p>
 
 <h4 id="installation"> 4. Installation of AcademicSOS </h4>
+  <p><b> For Android Users: </b></p>
+  <a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS.apk"> Download .apk file</a>
+  <p><b> For ios Users: </b></p>
+  <a> Coming Soon </a>
