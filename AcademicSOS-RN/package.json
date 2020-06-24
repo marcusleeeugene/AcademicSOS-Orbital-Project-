@@ -45,10 +45,10 @@
     "react-native-screens": "^2.2.0",
     "react-native-select-two": "^1.1.0",
     "react-native-super-grid": "^3.2.0",
-    "react-native-svg": "^12.1.0",
+    "react-native-svg": "11.0.1",
     "react-native-vector-icons": "^6.6.0",
     "react-native-web": "~0.11.7",
-    "react-native-webview": "^10.2.3",
+    "react-native-webview": "8.1.1",
     "react-navigation": "^4.3.9",
     "react-navigation-stack": "^2.5.1"
   },
