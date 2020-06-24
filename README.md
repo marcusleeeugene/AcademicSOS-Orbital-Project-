@@ -1,55 +1,62 @@
 <h1 align="center"> AcademicSOS React Native Mobile Application (Orbital) </h1>
-
-AcademicSOS is a cross-platform mobile application that allows NUS students, professors and teaching assistants to easily book, create and keep track of consultations. 
-
-The application allows all consultation matters to be done solely on the application, without requiring the need to email or message professors and teaching assistants. This will help in reducing email spams to professors’s inboxes and also increase the monitoring rate.
-
-<p align="center">
-   <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/Poster/AcademicSOS-V2.0.png"  height="650">
-</p>
+   <p>
+      AcademicSOS is a cross-platform mobile application that allows NUS students, professors and teaching assistants to easily book, create and keep track of consultations. 
+   </p>
+   <p>
+      The application allows all consultation matters to be done solely on the application, without requiring the need to email or message professors and teaching assistants. This will help in reducing email spams to professors’s inboxes and also increase the monitoring rate.
+   </p>
+   <br>
+   <p align="center">
+      <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/Poster/AcademicSOS-V2.0.png"  height="650">
+   </p>
 
 <h1 align="center"> Site Map </h2>
-<ul>
-   <li><a href="#userGuide"> User Guide </a> - Step-by-step guide to learn about app functionality and usage </li>
-   <li><a href="#developerGuide"> Developer Guide </a> - Developers guide and application architecture </li>
-   <li><a href="#learningOutcomes"> Learning Outcomes </a></li>
-   <li><a href="#aboutUs"> About Us </a></li>
-   <li><a href="#contactUs"> Contact Us </a></li>
-</ul>
-
-<h2 id="userGuide" align="center"> User Guide </h3>
-<ol>
-   <li><a href="#introduction"> Introduction </a></li> 
-   <li><a href="#userFlow"> User Flow </a></li> 
-   <li>  
-      <a href="#features"> Features </a>
-      <ol>
-         <li><a href="#loginFeature"> Login </a></li>
-         <li><a href="#bookConsultFeature"> Book a consultation </a></li>
-         <li><a href="#createConsultFeature"> Create a consultation </a></li>
-         <li><a href="#manageBookingsFeature"> Manage Bookings </a></li>
-         <li><a href="#publicConsultFeature"> Public Consultation </a></li>
-         <li><a href="#priorityFeature"> Priority Points System </a></li>
-         <li><a href="#attendanceFeature"> Attendance Scanning with QR Code </a></li>
-         <li><a href="#notificationFeature"> Notification Reminder </a></li>
-      </ol>
-   </li> 
-   <li><a href="">  Installation of AcademicSOS  </a></li>
-</ol>
+   <ul>
+      <li><a href="#userGuide"> User Guide </a> - Step-by-step guide to learn about app functionality and usage </li>
+      <li><a href="#developerGuide"> Developer Guide </a> - Developers guide and application architecture </li>
+      <li><a href="#learningOutcomes"> Learning Outcomes </a></li>
+      <li><a href="#aboutUs"> About Us </a></li>
+      <li><a href="#contactUs"> Contact Us </a></li>
+   </ul>
+   <br>
+   <h2 id="userGuide" align="center"> User Guide </h3>
+   <ol>
+      <li><a href="#introduction"> Introduction </a></li> 
+      <li><a href="#userFlow"> User Flow </a></li> 
+      <li>  
+         <a href="#features"> Features </a>
+         <ol>
+            <li><a href="#loginFeature"> Login </a></li>
+            <li><a href="#bookConsultFeature"> Book a consultation </a></li>
+            <li><a href="#createConsultFeature"> Create a consultation </a></li>
+            <li><a href="#manageBookingsFeature"> Manage Bookings </a></li>
+            <li><a href="#publicConsultFeature"> Public Consultation </a></li>
+            <li><a href="#priorityFeature"> Priority Points System </a></li>
+            <li><a href="#attendanceFeature"> Attendance Scanning with QR Code </a></li>
+            <li><a href="#notificationFeature"> Notification Reminder </a></li>
+         </ol>
+      </li> 
+      <li><a href="">  Installation of AcademicSOS  </a></li>
+   </ol>
 
 <h3 id="introduction" align="center"> 1. Introduction </h3>
-AcademicSOS is a cross-platform mobile application that allows NUS students, professors and teaching assistants to easily book, create and keep track of consultations. 
-
-The application allows all consultation matters to be done solely on the application, without requiring the need to email or message professors and teaching assistants. This will help in reducing email spams to professors’s inboxes and also increase the monitoring rate.
+   <p>
+      AcademicSOS is a cross-platform mobile application that allows NUS students, professors and teaching assistants to easily book, create and keep track of consultations. 
+   </p>
+   <p>
+      The application allows all consultation matters to be done solely on the application, without requiring the need to email or message professors and teaching assistants. This will help in reducing email spams to professors’s inboxes and also increase the monitoring rate.
+   </p>
 
 <h3 id="userFlow" align="center"> 2. User Flow </h3>
-Depending on the user access, each user will have different sets of options available to them.
-
-<p align="center">
-   <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/DocImages/Student.png"  height="300">
-   <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/DocImages/Teaching Assistant.png"  height="300">
-   <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/DocImages/Professors.png"  height="300">
-</p>
+   <p>
+      Depending on the user access, each user will have different sets of options available to them.
+   </p>
+   <br>
+   <p align="center">
+      <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/DocImages/Student.png"  height="300">
+      <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/DocImages/Teaching Assistant.png"  height="300">
+      <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/DocImages/Professors.png"  height="300">
+   </p>
 
 <h3 id="features" align="center"> 3. Features </h3>
 <h4 id="loginFeature"> 3i. Login </h4>
