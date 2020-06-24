@@ -8,7 +8,7 @@ The application allows all consultation matters to be done solely on the applica
    <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/Poster/AcademicSOS-V2.0.png"  height="650">
 </p>
 
-<h2 align="center"> Site Map </h2>
+<h1 align="center"> Site Map </h2>
 <ul>
    <li><a href="#userGuide"> User Guide </a> - Step-by-step guide to learn about app functionality and usage </li>
    <li><a href="#developerGuide"> Developer Guide </a> - Developers guide and application architecture </li>
@@ -17,7 +17,7 @@ The application allows all consultation matters to be done solely on the applica
    <li><a href="#contactUs"> Contact Us </a></li>
 </ul>
 
-<h3 id="userGuide" align="center"> User Guide </h3>
+<h2 id="userGuide" align="center"> User Guide </h3>
 <ol>
    <li><a href=""> Introduction </a></li> 
    <li><a href=""> User Flow </a></li> 
