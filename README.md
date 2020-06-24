@@ -57,25 +57,25 @@ Users just have to login using their NUS account using their NUSNETID and passwo
 <br><br>
 
 The following are available users for this application:
-<br>
+<br><br>
 (Professor Martin Henz, CS1101S TA)
 
 Id: p0123456
 
 Pw: password
-<br>
+<br><br>
 (Marcus Lee Eugene, Student for certain mods & TA of MA1101R)
 
 Id: e0415870	
 
 Pw: password
-<br>
+<br><br>
 (Tay Kai Xiang, Student for certain mods & TA of CS1231S)
 
 Id: e0407217	
 
 Pw: password
-<br>
+<br><br>
 (Mike Tan, Student for all modules being taken by him)
 
 Id: e0123456
