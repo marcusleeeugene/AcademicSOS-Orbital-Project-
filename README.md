@@ -1,6 +1,6 @@
 <h1 align="center"> AcademicSOS React Native Mobile Application (Orbital) </h1>
    <p>
-      AcademicSOS is a cross-platform mobile application that allows NUS students, professors and teaching assistants to easily book, create and keep track of consultations. 
+      AcademicSOS is a cross-platform mobile application that allows NUS students, professors and teaching assistants to easily book, create and keep track of consultations.
    </p>
    <p>
       The application allows all consultation matters to be done solely on the application, without requiring the need to email or message professors and teaching assistants. This will help in reducing email spams to professors’s inboxes and also increase the monitoring rate.
@@ -10,7 +10,7 @@
       <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/Poster/AcademicSOS-V2.0.png"  height="650">
    </p>
 
-<h1 align="center"> Site Map </h2>
+<h1 align="center"> Site Map </h1>
    <ul>
       <li><a href="#userGuide"> User Guide </a> - Step-by-step guide to learn about app functionality and usage </li>
       <li><a href="#developerGuide"> Developer Guide </a> - Developers guide and application architecture </li>
@@ -19,11 +19,11 @@
       <li><a href="#contactUs"> Contact Us </a></li>
    </ul>
    <br>
-   <h2 id="userGuide" align="center"> User Guide </h3>
+   <h2 id="userGuide" align="center"> User Guide </h2>
    <ol>
-      <li><a href="#introduction"> Introduction </a></li> 
-      <li><a href="#userFlow"> User Flow </a></li> 
-      <li>  
+      <li><a href="#introduction"> Introduction </a></li>
+      <li><a href="#userFlow"> User Flow </a></li>
+      <li>
          <a href="#features"> Features </a>
          <ol>
             <li><a href="#loginFeature"> Login </a></li>
@@ -35,13 +35,13 @@
             <li><a href="#attendanceFeature"> Attendance Scanning with QR Code </a></li>
             <li><a href="#notificationFeature"> Notification Reminder </a></li>
          </ol>
-      </li> 
+      </li>
       <li><a href="">  Installation of AcademicSOS  </a></li>
    </ol>
 
 <h3 id="introduction" align="center"> 1. Introduction </h3>
    <p>
-      AcademicSOS is a cross-platform mobile application that allows NUS students, professors and teaching assistants to easily book, create and keep track of consultations. 
+      AcademicSOS is a cross-platform mobile application that allows NUS students, professors and teaching assistants to easily book, create and keep track of consultations.
    </p>
    <p>
       The application allows all consultation matters to be done solely on the application, without requiring the need to email or message professors and teaching assistants. This will help in reducing email spams to professors’s inboxes and also increase the monitoring rate.
@@ -60,44 +60,48 @@
 
 <h3 id="features" align="center"> 3. Features </h3>
 <h4 id="loginFeature"> 3i. Login </h4>
-Users just have to login using their NUS account using their NUSNETID and password and firebase authentication will check for account legitimacy before logging in. For the project, due to delays in getting approval for the LumiNUS API, we decided to manually create our users. 
-<br><br>
-
-The following are available users for this application:
-<br><br>
-(Professor Martin Henz, CS1101S TA)
-
-Id: p0123456
-
-Pw: password
-<br><br><br>
-(Marcus Lee Eugene, Student for certain mods & TA of MA1101R)
-
-Id: e0415870	
-
-Pw: password
-<br><br><br>
-(Tay Kai Xiang, Student for certain mods & TA of CS1231S)
-
-Id: e0407217	
-
-Pw: password
-<br><br><br>
-(Mike Tan, Student for all modules being taken by him)
-
-Id: e0123456
-
-Pw: password
-
-<br>
-<p align="center">
-   <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/DocVideos/Login%20Video.gif"  height="500">
-</p>
+  <p>
+    Users just have to login using their NUS account using their NUSNETID and password and firebase authentication will check for account legitimacy before logging in. For the project, due to delays in getting approval for the LumiNUS API, we decided to manually create our users.
+  </p>
+  <p> The following are available users for this application: </p>
+  <br><br>
+  <p>
+    (Professor Martin Henz, CS1101S TA)
+    <br>
+    Id: p0123456
+    <br>
+    Pw: password
+  </p>
+  <p>
+    (Marcus Lee Eugene, Student for certain mods & TA of MA1101R)
+    <br>
+    Id: e0415870
+    <br>
+    Pw: password
+  </p>
+  <p>
+    (Tay Kai Xiang, Student for certain mods & TA of CS1231S)
+    <br>
+    Id: e0407217
+    <br>
+    Pw: password
+  </p>
+  <p>
+    (Mike Tan, Student for all modules being taken by him)
+    <br>
+    Id: e0123456
+    <br>
+    Pw: password
+  </p>
+  <br><br>
+  <p align="center">
+     <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/DocVideos/Login%20Video.gif"  height="500">
+  </p>
 
 <h4 id="bookConsultFeature"> 3ii. Book a consultation </h4>
 Students of a module can book a consultation only to their respective TAs from their tutorial group or Professors. Students are allowed to pick the TA from their tutorial slot, selecting the intended booking date and time, indicating the location in the textbox (virtual meeting place like Zoom or physical location) as well as the people involved in the consultation. If the user prefers one-to-one consultation with the Teaching Assistant/Professor, it is not required to fill in the students involved section. With a dynamic search function, it allows the user to add fellow peers who are taking the same module to join in as group consultation. Before the submission of the consultation slot, there is the flexibility for the student to add or remove students participants.  In the agenda textbox, students are encouraged to put in the topic or scope of the problem for discussion which allows Professors or TAs to better prepare beforehand. It is also possible to attach a Google Slides link with screenshots of the questions that the students want to ask in the textbox too.
 
-<br>
+<br><br>
 <p align="center">
    <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/DocVideos/BookConsult%20Video.gif"  height="500">
 </p>
@@ -105,7 +109,7 @@ Students of a module can book a consultation only to their respective TAs from t
 <h4 id="createConsultFeature"> 3iii. Create a consultation </h4>
 Professors/Teaching Assistants (TAs) of a module can create a consultation slot to meet students in their respective tutorial group in the event that there is a need for project review and feedback for certain students for instance. Similarly, it is recommended to create the consultation slot minimally one week in advance, selecting the intended booking date and time, indicating the location in the textbox (virtual meeting place like Zoom or physical location) as well as the people involved in the consultation. With a dynamic search function, it allows the user to add students in the same tutorial class to join in as group or individual one-to-one consultation. In the agenda textbox, it is recommended to fill in the purpose of the meeting so that the students will know beforehand.
 
-<br>
+<br><br>
 <p align="center">
    <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/DocVideos/CreateConsult%20Video.gif"  height="500">
 </p>
@@ -113,15 +117,15 @@ Professors/Teaching Assistants (TAs) of a module can create a consultation slot 
 <h4 id="manageBookingsFeature"> 3iv. Manage Bookings </h4>
 Manage bookings are made available to all users to allow them to look at their consultations that are pending or approved. In this screen, the user can filter by Status (pending or confirmed), academic week and day. The consultations are all sorted in ascending order by date then by time.
 
-By clicking into a consultation, it will bring the user to the next page which shows into detail all the information of the selected consultation including the students involved in the consultation. Depending on the user role in the module, whoever is the creator of the consultation slot, actions allowed to be performed will vary for each individual. 
+By clicking into a consultation, it will bring the user to the next page which shows into detail all the information of the selected consultation including the students involved in the consultation. Depending on the user role in the module, whoever is the creator of the consultation slot, actions allowed to be performed will vary for each individual.
 
-With book consult function, a student (creator of consultation slot) creates a private consultation slot where fellow friends who are taking the same module can be added into the consultation easily. Upon the creation of the consultation, the consultation slot will be displayed on the Manage Bookings section for the users involved. 
+With book consult function, a student (creator of consultation slot) creates a private consultation slot where fellow friends who are taking the same module can be added into the consultation easily. Upon the creation of the consultation, the consultation slot will be displayed on the Manage Bookings section for the users involved.
 
 **Do note that the consultation slot will only appear on the TA’s Manage Bookings section after all the other student participants have accepted/rejected the consultation slot.**
 
 Below is an illustration of the various actions/scenarios that can happen when different buttons are clicked inside the consultation slot of Manage Bookings by different groups of users.
 
-<br>
+<br><br>
 <p align="center">
    <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/DocVideos/ManageBooking%20Video.gif"  height="500">
 </p>
@@ -131,13 +135,13 @@ With the create consult function, a teaching assistant (creator of consultation 
 
 **Do note that the public consultation slot will disappear from the student screen after the student accepted or rejected the consultation. If the student accepted the consultation, the consultation slot will be moved to Manage Bookings automatically. Once the number of students who accepted the public consultation slot matches the size of the consult, the consultation status will automatically be changed to confirmed and reflected on the Manage Booking screen for all the users involved. If the size of the public consult slot is not met, the TA has the right to start the consultation.**
 
-Alternatively, the teaching assistant can create a private consultation slot where students from the same tutorial group can be added into the consultation easily. Upon the creation of the private consultation, the consultation slot will be shown on the Manage Bookings section for the users involved. 
+Alternatively, the teaching assistant can create a private consultation slot where students from the same tutorial group can be added into the consultation easily. Upon the creation of the private consultation, the consultation slot will be shown on the Manage Bookings section for the users involved.
 
 **Do note that the consultation slot will only appear on the TA’s Manage Bookings section after all the other student participants have accepted/rejected the consultation slot.**
 
 Below is an illustration of the various actions/scenarios that can happen when different buttons are clicked inside public consultation and manage bookings.
 
-<br>
+<br><br>
 <p align="center">
    <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/DocVideos/PublicConsult%20Video.gif"  height="500">
 </p>
@@ -150,10 +154,10 @@ If the user is a student, in the Manage Booking screen, when the user clicks int
 
 On the TA/Professor side, when they click into the consultation slot, it generates a unique QR code attendance for their students to scan based on the booking ID.
 
-<br>
+<br><br>
 <p align="center">
    <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/DocVideos/QRCodeTA%20Video.gif"  height="500">
-   
+
    <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/DocVideos/QRCodeStudent%20Video.gif"  height="500">
 </p>
 
