@@ -231,5 +231,5 @@
   <p>
     <b> For ios Users: </b>
     Unfortunately, a paid developer account is required. Install the app by cloning the repo following the steps
-    <a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/Docs/DEVELOPERGUIDE.md"> here </a>.
+    <a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/Docs/DEVELOPERGUIDE.md/#settingUp"> here </a>.
   </p>
