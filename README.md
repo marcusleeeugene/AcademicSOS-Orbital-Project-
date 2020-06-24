@@ -166,7 +166,7 @@
     Bookings by different groups of users.
   </p>
   <p align="center">
-     <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/DocImages/Book%20Consult%20Logic.png"  height="650">
+     <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/DocImages/Book%20Consult%20Logic.png"  height="300">
   </p>
 
 <h4 id="publicConsultFeature"> 3v. Public Consultation </h4>
@@ -204,7 +204,7 @@
     and manage bookings.
   <p>
   <p align="center">
-     <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/DocImages/CreateConsult%20Logic.png"  height="650">
+     <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/DocImages/CreateConsult%20Logic.png"  height="300">
   </p>
 
 <h4 id="priorityFeature"> 3vi. Priority Points System (To be completed) </h4>
