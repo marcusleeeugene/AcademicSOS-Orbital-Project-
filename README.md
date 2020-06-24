@@ -141,10 +141,6 @@
     Manage bookings are made available to all users to allow them to look at their consultations that are pending or approved. In this screen,
     the user can filter by Status (pending or confirmed), academic week and day. The consultations are all sorted in ascending order by date then by time.
   </p>
-  <br><br>
-  <p align="center">
-     <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/DocVideos/ManageBooking%20Video.gif"  height="500">
-  </p>
   <p>
     By clicking into a consultation, it will bring the user to the next page which shows into detail all the information of the selected consultation
     including the students involved in the consultation. Depending on the user role in the module, whoever is the creator of the consultation slot,
@@ -160,6 +156,10 @@
       Do note that the consultation slot will only appear on the TA’s Manage Bookings section after all the other student participants have accepted/
       rejected the consultation slot.
     </b>
+  </p>
+  <br><br>
+  <p align="center">
+     <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/DocVideos/ManageBooking%20Video.gif"  height="500">
   </p>
   <p>
     Below is an illustration of the various actions/scenarios that can happen when different buttons are clicked inside the consultation slot of Manage
