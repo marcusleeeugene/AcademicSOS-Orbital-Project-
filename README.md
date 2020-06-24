@@ -64,7 +64,7 @@
     Users just have to login using their NUS account using their NUSNETID and password and firebase authentication will check for account legitimacy before logging in. For the project, due to delays in getting approval for the LumiNUS API, we decided to manually create our users.
   </p>
   <p> The following are available users for this application: </p>
-  <br><br>
+  <br>
   <p>
     (Professor Martin Henz, CS1101S TA)
     <br>
