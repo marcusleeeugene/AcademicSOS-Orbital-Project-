@@ -228,8 +228,8 @@
     <b> For Android Users: </b>
     <a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS.apk"> Download .apk file</a>
   </p>
-
   <p>
     <b> For ios Users: </b>
-    <a> Coming Soon </a>
+    Unfortunately, a paid developer account is required. Install the app by cloning the repo following the steps
+    <a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/Docs/DEVELOPERGUIDE.md"> here </a>.
   </p>
