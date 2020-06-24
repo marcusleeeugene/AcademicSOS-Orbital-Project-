@@ -86,24 +86,19 @@ Pw: password
    <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/DocVideos/Login%20Video.gif"  height="500">
 </p>
 
-#### 3.2 Book a consultation
+<h4 id="bookConsultFeature"> 3ii. Book a consultation </h4>
 Students of a module can book a consultation only to their respective TAs from their tutorial group or Professors. Students are allowed to pick the TA from their tutorial slot, selecting the intended booking date and time, indicating the location in the textbox (virtual meeting place like Zoom or physical location) as well as the people involved in the consultation. If the user prefers one-to-one consultation with the Teaching Assistant/Professor, it is not required to fill in the students involved section. With a dynamic search function, it allows the user to add fellow peers who are taking the same module to join in as group consultation. Before the submission of the consultation slot, there is the flexibility for the student to add or remove students participants.  In the agenda textbox, students are encouraged to put in the topic or scope of the problem for discussion which allows Professors or TAs to better prepare beforehand. It is also possible to attach a Google Slides link with screenshots of the questions that the students want to ask in the textbox too.
 
 <p align="center">
-   <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/DocImages/Book%20Consult.png"  height="300">
+   <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/DocVideos/BookConsult%20Video.gif"  height="500">
 </p>
 
-<INSERT BOOK CONSULTATION Video>
-
-#### 3.3 Create a consultation
+<h4 id="createConsultFeature"> 3ii. Create a consultation </h4>
 Professors/Teaching Assistants (TAs) of a module can create a consultation slot to meet students in their respective tutorial group in the event that there is a need for project review and feedback for certain students for instance. Similarly, it is recommended to create the consultation slot minimally one week in advance, selecting the intended booking date and time, indicating the location in the textbox (virtual meeting place like Zoom or physical location) as well as the people involved in the consultation. With a dynamic search function, it allows the user to add students in the same tutorial class to join in as group or individual one-to-one consultation. In the agenda textbox, it is recommended to fill in the purpose of the meeting so that the students will know beforehand.
 
 <p align="center">
-   <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/DocImages/Create%20Consult.png"  height="300">
+   <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/DocVideos/CreateConsult%20Video.gif"  height="500">
 </p>
-
-<INSERT CREATE CONSULTATION Video>
-
 
 #### 3.4 Manage Bookings
 Manage bookings are made available to all users to allow them to look at their consultations that are pending or approved. In this screen, the user can filter by Status (pending or confirmed), academic week and day. The consultations are all sorted in ascending order by date then by time.
