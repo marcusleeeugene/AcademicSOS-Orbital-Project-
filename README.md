@@ -15,14 +15,24 @@ The application allows all consultation matters to be done solely on the applica
 * <a href="aboutUs"> About Us </a>
 * <a href="contactUs"> Contact Us </a>
 
-
 <h3 id="userGuide" align="center"> User Guide </h3>
+<ol>
+   <a href=""> <li>  Introduction </li> </a>
+   <a href=""> <li>  User Flow </li> </a>
+   <li>  
+      <a href=""> Features </a>
+      <ol>
+         <li> test </li>
+         <li> test </li>
+         <li> test </li>
+      </ol>
+   </li> 
+   <a href=""> <li>  Installation of AcademicSOS </li> </a>
+</ol>
 
-## Content
-1. Introduction
-2. User Flow
-3. Features
-   1.   Login
+
+
+   <a href=""> 1.   Login </a>
    2.   Book a consultation
    3.   Create a consultation
    4.   Manage Bookings
@@ -30,8 +40,7 @@ The application allows all consultation matters to be done solely on the applica
    6.   Priority Points System
    7.   Attendance Scanning with QR Code
    8.  Notification Reminder
-4. Installation of AcademicSOS
-5. Using AcademicSOS
+
 
 ### 1. Introduction
 AcademicSOS is a cross-platform mobile application that allows NUS students, professors and teaching assistants to easily book, create and keep track of consultations. 
