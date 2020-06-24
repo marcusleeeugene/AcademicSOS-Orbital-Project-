@@ -51,6 +51,12 @@
      <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/Docs/DocImages/simulator.png"  height="500">
   </p>
 
+  <h3 id="design" align="center"> 2. Design </h3>
+
+  <h3 id="implementation" align="center"> 3. Implementation </h3>
+
+  <h3 id="userTest" align="center"> 4. User Test </h3>
+
   <h3 id="acknowledgement" align="center"> 5. Acknowledgement </h3>
     <p>
       <b> The following are the list of libraries we used in our application: </b>
