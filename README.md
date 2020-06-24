@@ -152,10 +152,10 @@
     same module can be added into the consultation easily. Upon the creation of the consultation, the consultation slot will be displayed on the Manage
     Bookings section for the users involved.
   </p>
-  <p>
+  
   **Do note that the consultation slot will only appear on the TA’s Manage Bookings section after all the other student participants have accepted/rejected
   the consultation slot.**
-  </p>
+  
   <p>
   Below is an illustration of the various actions/scenarios that can happen when different buttons are clicked inside the consultation slot of Manage
   Bookings by different groups of users.
