@@ -214,8 +214,8 @@
   </p>
   <br><br>
   <p align="center">
-     <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/DocVideos/QRCodeTA%20Video.gif"  height="500">
-     <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/DocVideos/QRCodeStudent%20Video.gif"  height="500">
+     <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/Docs/DocVideos/QRCodeTA%20Video.gif"  height="500">
+     <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/Docs/DocVideos/QRCodeStudent%20Video.gif"  height="500">
   </p>
 
 <h4 id="notificationFeature"> 3viii. Notification Reminder (To be completed) </h4>
