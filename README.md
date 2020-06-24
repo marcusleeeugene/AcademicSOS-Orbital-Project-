@@ -19,7 +19,7 @@
       <li><a href="#contactUs"> Contact Us </a></li>
    </ul>
 
-   <h2 id="learningOutcomes" align="center"> User Guide </h2>
+   <h2 id="learningOutcomes" align="center"> Learning Outcomes </h2>
    <ul>
       <li> Ideation, designing and prototyping of UI/UX of mobile application </li>
       <li> Application of functional stateless components into project and understanding the benefits of the usage of functional components as compared to class components </li>
