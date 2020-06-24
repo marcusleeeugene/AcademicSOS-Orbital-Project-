@@ -43,6 +43,6 @@
      </p>
      <p><b> LinkedIn Contact: </b></p>
      <ul>
-        <li><a href="www.linkedin.com/in/marcus-lee-eugene-7a4006114"> Marcus's LinkedIn </a></li>
-        <li><a href="www.linkedin.com/in/kai-xiang-tay"> Kai Xiang's LinkedIn </a></li>
+        <li><a href="https://www.linkedin.com/in/marcus-lee-eugene-7a4006114"> Marcus's LinkedIn </a></li>
+        <li><a href="https://www.linkedin.com/in/kai-xiang-tay"> Kai Xiang's LinkedIn </a></li>
      </ul>
