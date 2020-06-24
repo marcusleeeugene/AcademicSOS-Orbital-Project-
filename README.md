@@ -157,16 +157,16 @@
       rejected the consultation slot.
     </b>
   </p>
+  <br><br>
+  <p align="center">
+     <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/DocVideos/ManageBooking%20Video.gif"  height="500">
+  </p>
   <p>
     Below is an illustration of the various actions/scenarios that can happen when different buttons are clicked inside the consultation slot of Manage
     Bookings by different groups of users.
   </p>
   <p align="center">
-     <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/DocImages/Book%20Consult%20Logic.png"  height="650">
-  </p>
-  <br><br>
-  <p align="center">
-     <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/DocVideos/ManageBooking%20Video.gif"  height="500">
+     <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/DocImages/Book%20Consult%20Logic.png"  height="300">
   </p>
 
 <h4 id="publicConsultFeature"> 3v. Public Consultation </h4>
@@ -184,6 +184,10 @@
       start the consultation.
     </b>
   </p>
+  <br><br>
+  <p align="center">
+     <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/DocVideos/PublicConsult%20Video.gif"  height="500">
+  </p>
   <p>
     Alternatively, the teaching assistant can create a private consultation slot where students from the same tutorial group can be added into the
     consultation easily. Upon the creation of the private consultation, the consultation slot will be shown on the Manage Bookings section for the
@@ -200,12 +204,8 @@
     and manage bookings.
   <p>
   <p align="center">
-     <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/DocImages/CreateConsult%20Logic.png"  height="650">
+     <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/DocImages/CreateConsult%20Logic.png"  height="300">
   </p>
-<br><br>
-<p align="center">
-   <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/DocVideos/PublicConsult%20Video.gif"  height="500">
-</p>
 
 <h4 id="priorityFeature"> 3vi. Priority Points System (To be completed) </h4>
   <p>
