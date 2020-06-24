@@ -37,12 +37,12 @@ The application allows all consultation matters to be done solely on the applica
    <li><a href="">  Installation of AcademicSOS  </a></li>
 </ol>
 
-<h3 id="introduction"> 1. Introduction </h3>
+<h3 id="introduction" align="center"> 1. Introduction </h3>
 AcademicSOS is a cross-platform mobile application that allows NUS students, professors and teaching assistants to easily book, create and keep track of consultations. 
 
 The application allows all consultation matters to be done solely on the application, without requiring the need to email or message professors and teaching assistants. This will help in reducing email spams to professors’s inboxes and also increase the monitoring rate.
 
-<h3 id="userFlow"> 2. User Flow </h3>
+<h3 id="userFlow" align="center"> 2. User Flow </h3>
 Depending on the user access, each user will have different sets of options available to them.
 
 <p align="center">
@@ -51,37 +51,36 @@ Depending on the user access, each user will have different sets of options avai
    <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/DocImages/Professors.png"  height="300">
 </p>
 
-<h3 id="features"> 3. Features </h3>
+<h3 id="features" align="center"> 3. Features </h3>
 <h4 id="loginFeature"> 3i. Login </h4>
 Users just have to login using their NUS account using their NUSNETID and password and firebase authentication will check for account legitimacy before logging in. For the project, due to delays in getting approval for the LumiNUS API, we decided to manually create our users. 
-
+<br><br>
 
 The following are available users for this application:
-
+<br>
 (Professor Martin Henz, CS1101S TA)
 
 Id: p0123456
 
 Pw: password
-
+<br>
 (Marcus Lee Eugene, Student for certain mods & TA of MA1101R)
 
 Id: e0415870	
 
 Pw: password
-
+<br>
 (Tay Kai Xiang, Student for certain mods & TA of CS1231S)
 
 Id: e0407217	
 
 Pw: password
-
+<br>
 (Mike Tan, Student for all modules being taken by him)
 
 Id: e0123456
 
 Pw: password
-
 
 #### 3.2 Book a consultation
 Students of a module can book a consultation only to their respective TAs from their tutorial group or Professors. Students are allowed to pick the TA from their tutorial slot, selecting the intended booking date and time, indicating the location in the textbox (virtual meeting place like Zoom or physical location) as well as the people involved in the consultation. If the user prefers one-to-one consultation with the Teaching Assistant/Professor, it is not required to fill in the students involved section. With a dynamic search function, it allows the user to add fellow peers who are taking the same module to join in as group consultation. Before the submission of the consultation slot, there is the flexibility for the student to add or remove students participants.  In the agenda textbox, students are encouraged to put in the topic or scope of the problem for discussion which allows Professors or TAs to better prepare beforehand. It is also possible to attach a Google Slides link with screenshots of the questions that the students want to ask in the textbox too.
