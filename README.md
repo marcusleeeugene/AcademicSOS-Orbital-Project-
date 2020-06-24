@@ -36,7 +36,7 @@
             <li><a href="#notificationFeature"> Notification Reminder </a></li>
          </ol>
       </li>
-      <li><a href="">  Installation of AcademicSOS  </a></li>
+      <li><a href="installation">  Installation of AcademicSOS  </a></li>
    </ol>
 
 <h3 id="introduction" align="center"> 1. Introduction </h3>
@@ -152,10 +152,12 @@
     same module can be added into the consultation easily. Upon the creation of the consultation, the consultation slot will be displayed on the Manage
     Bookings section for the users involved.
   </p>
-  
-  **Do note that the consultation slot will only appear on the TA’s Manage Bookings section after all the other student participants have accepted/rejected
-  the consultation slot.**
-  
+  <p>
+    <b>
+      Do note that the consultation slot will only appear on the TA’s Manage Bookings section after all the other student participants have accepted/rejected
+      the consultation slot.
+    </b>
+  </p>
   <p>
   Below is an illustration of the various actions/scenarios that can happen when different buttons are clicked inside the consultation slot of Manage
   Bookings by different groups of users.
@@ -166,37 +168,67 @@
   </p>
 
 <h4 id="publicConsultFeature"> 3v. Public Consultation </h4>
-With the create consult function, a teaching assistant (creator of consultation slot) has the option to create a public consultation slot depending on his/her availability and indicating the size of the consultation. Upon the creation of the public consultation, the consultation slot will be shown on the public consultation details screen for all students taking the module.
-
-**Do note that the public consultation slot will disappear from the student screen after the student accepted or rejected the consultation. If the student accepted the consultation, the consultation slot will be moved to Manage Bookings automatically. Once the number of students who accepted the public consultation slot matches the size of the consult, the consultation status will automatically be changed to confirmed and reflected on the Manage Booking screen for all the users involved. If the size of the public consult slot is not met, the TA has the right to start the consultation.**
-
-Alternatively, the teaching assistant can create a private consultation slot where students from the same tutorial group can be added into the consultation easily. Upon the creation of the private consultation, the consultation slot will be shown on the Manage Bookings section for the users involved.
-
-**Do note that the consultation slot will only appear on the TA’s Manage Bookings section after all the other student participants have accepted/rejected the consultation slot.**
-
-Below is an illustration of the various actions/scenarios that can happen when different buttons are clicked inside public consultation and manage bookings.
-
+  <p>
+    With the create consult function, a teaching assistant (creator of consultation slot) has the option to create a public consultation slot
+    depending on his/her availability and indicating the size of the consultation. Upon the creation of the public consultation, the consultation
+    slot will be shown on the public consultation details screen for all students taking the module.
+  </p>
+  <p>
+    <b>
+      Do note that the public consultation slot will disappear from the student screen after the student accepted or rejected the consultation.
+      If the student accepted the consultation, the consultation slot will be moved to Manage Bookings automatically. Once the number of students
+      who accepted the public consultation slot matches the size of the consult, the consultation status will automatically be changed to confirmed and
+      reflected on the Manage Booking screen for all the users involved. If the size of the public consult slot is not met, the TA has the right to
+      start the consultation.
+    </b>
+  </p>
+  <p>
+    Alternatively, the teaching assistant can create a private consultation slot where students from the same tutorial group can be added into the
+    consultation easily. Upon the creation of the private consultation, the consultation slot will be shown on the Manage Bookings section for the
+    users involved.
+  </p>
+  <p>
+    <b>
+      Do note that the consultation slot will only appear on the TA’s Manage Bookings section after all the other student participants have
+      accepted/rejected the consultation slot.
+    </b>
+  </p>
+  <p>
+    Below is an illustration of the various actions/scenarios that can happen when different buttons are clicked inside public consultation
+    and manage bookings.
+  <p>
 <br><br>
 <p align="center">
    <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/DocVideos/PublicConsult%20Video.gif"  height="500">
 </p>
 
 <h4 id="priorityFeature"> 3vi. Priority Points System (To be completed) </h4>
-Priority points get deducted if the student does not turn up for an approved consultation on the day itself. This will affect their future consultation requests and will rank their request at the bottom when showing up in the pending section of their TA’s Manage Booking screen, in the case where another student has booked the consultation on the same date and time.
+  <p>
+  Priority points get deducted if the student does not turn up for an approved consultation on the day itself. This will affect their future
+  consultation requests and will rank their request at the bottom when showing up in the pending section of their TA’s Manage Booking screen,
+  in the case where another student has booked the consultation on the same date and time.
+  </p>
 
 <h4 id="attendanceFeature"> 3vii. Attendance Scanning with QR Code </h4>
-If the user is a student, in the Manage Booking screen, when the user clicks into the consultation during the consultation slot and select the scan attendance on option, the camera application will be opened to scan for the correct QR code displayed on the Manage Booking screen of the TA/Professor.
+  <p>
+    If the user is a student, in the Manage Booking screen, when the user clicks into the consultation during the consultation slot
+    and select the scan attendance on option, the camera application will be opened to scan for the correct QR code displayed on the Manage
+    Booking screen of the TA/Professor.
+  </p>
+  <p>
+    On the TA/Professor side, when they click into the consultation slot, it generates a unique QR code attendance for their students to
+    scan based on the booking ID.
+  </p>
+  <br><br>
+  <p align="center">
+     <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/DocVideos/QRCodeTA%20Video.gif"  height="500">
 
-On the TA/Professor side, when they click into the consultation slot, it generates a unique QR code attendance for their students to scan based on the booking ID.
+     <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/DocVideos/QRCodeStudent%20Video.gif"  height="500">
+  </p>
 
-<br><br>
-<p align="center">
-   <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/DocVideos/QRCodeTA%20Video.gif"  height="500">
+<h4 id="notificationFeature"> 3viii. Notification Reminder (To be completed) </h4>
+  <p>
+    Closer to the day of the consultation, a notification will be sent out to notify users of their upcoming consultations.
+  </p>
 
-   <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/DocVideos/QRCodeStudent%20Video.gif"  height="500">
-</p>
-
-<h4 id="notificationFeature"> 3vii. Notification Reminder (To be completed) </h4>
-Closer to the day of the consultation, a notification will be sent out to notify users of their upcoming consultations.
-
-### 4. Installation of AcademicSOS
+<h4 id="installation"> 3viii. Installation of AcademicSOS </h4>
