@@ -23,19 +23,18 @@ The application allows all consultation matters to be done solely on the applica
 [Contact Us]:  <http://daringfireball.net>
 
 ### Content
-1. Introduction
-2. User Flow
-3. Features
-   1.   Login
-   2.   Book a consultation
-   3.   Create a consultation
-   4.   Manage Bookings
-   5.   Public Consultation 
-   6.   Priority Points System
-   7.   Attendance Scanning with QR Code
-   8.  Notification Reminder
-4. Installation of AcademicSOS
-5. Using AcademicSOS
+1. <a href="#introduction"> Introduction </a>
+2. <a href="#userFlow"> User Flow </a>
+3. <a href="#featuresFeature"> Features </a>
+   1.  <a href="#loginFeature"> Login </a>
+   2.  <a href="#bookConsultFeature"> Book a consultation </a>
+   3.  <a href="#createConsultFeature"> Create a consultation </a>
+   4.  <a href="#manageBookingsFeature"> Manage Bookings </a>
+   5.  <a href="#publicConsultFeature"> Public Consultation </a>
+   6.  <a href="#priorityFeature"> Priority Points System </a>
+   7.  <a href="#attendanceFeature"> Attendance Scanning with QR Code </a>
+   8.  <a href="#notificationFeature"> Notification Reminder </a>
+4. <a href="#installation"> Installation of AcademicSOS </a>
 
 ### 1. Introduction
 AcademicSOS is a cross-platform mobile application that allows NUS students, professors and teaching assistants to easily book, create and keep track of consultations. 
@@ -56,7 +55,6 @@ Depending on the user access, each user will have different sets of options avai
 #### 3.1 Login
 Users just have to login using their NUS account using their NETID and password and firebase authentication will check for account legitimacy before logging in. For the project, due to delays in getting approval for the LumiNUS API, we decided to manually create our users. 
 
-
 The following are available users for this application:
 
 (Professor Martin Henz, CS1101S TA)
@@ -75,6 +73,9 @@ Pw: password
 Id: e0123456
 Pw: password
 
+<p align="center">
+   <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/DocVideos/BookConsult%20Video.gif"  height="300">
+</p>
 
 #### 3.2 Book a consultation
 Students of a module can book a consultation only to their respective TAs from their tutorial group or Professors. Students are allowed to only book minimally one week in advance, selecting the intended booking date and time, indicating the location in the textbox (virtual meeting place like Zoom or physical location) as well as the people involved in the consultation. If the user prefers one-to-one consultation with the Teaching Assistant/Professor, it is not required to fill in the students involved section. With a dynamic search function, it allows the user to add fellow peers who are taking the same module to join in as group consultation. In the remarks textbox, students are encouraged to put in the topic or scope of the problem for discussion which allows Professors or TAs to better prepare beforehand.
