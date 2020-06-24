@@ -9,38 +9,31 @@ The application allows all consultation matters to be done solely on the applica
 </p>
 
 <h2 align="center"> Site Map </h2>
-* <a href="userGuide"> User Guide </a> - Step-by-step guide to learn about app functionality and usage
-* <a href="developerGuide"> Developer Guide </a> - Developers guide and application architecture
-* <a href="learningOutcomes"> Learning Outcomes </a>
-* <a href="aboutUs"> About Us </a>
-* <a href="contactUs"> Contact Us </a>
+* <a href="#userGuide"> User Guide </a> - Step-by-step guide to learn about app functionality and usage
+* <a href="#developerGuide"> Developer Guide </a> - Developers guide and application architecture
+* <a href="#learningOutcomes"> Learning Outcomes </a>
+* <a href="#aboutUs"> About Us </a>
+* <a href="#contactUs"> Contact Us </a>
 
 <h3 id="userGuide" align="center"> User Guide </h3>
 <ol>
-   <a href=""> <li>  Introduction </li> </a>
-   <a href=""> <li>  User Flow </li> </a>
+   <li><a href=""> Introduction </a></li> 
+   <li><a href=""> User Flow </a></li> 
    <li>  
       <a href=""> Features </a>
       <ol>
-         <li> test </li>
-         <li> test </li>
-         <li> test </li>
+         <li><a href=""> Login </a></li>
+         <li><a href=""> Book a consultation </a></li>
+         <li><a href=""> Create a consultation </a></li>
+         <li><a href=""> Manage Bookings </a></li>
+         <li><a href=""> Public Consultation </a></li>
+         <li><a href=""> Priority Points System </a></li>
+         <li><a href=""> Attendance Scanning with QR Code </a></li>
+         <li><a href=""> Notification Reminder </a></li>
       </ol>
    </li> 
    <a href=""> <li>  Installation of AcademicSOS </li> </a>
 </ol>
-
-
-
-   <a href=""> 1.   Login </a>
-   2.   Book a consultation
-   3.   Create a consultation
-   4.   Manage Bookings
-   5.   Public Consultation 
-   6.   Priority Points System
-   7.   Attendance Scanning with QR Code
-   8.  Notification Reminder
-
 
 ### 1. Introduction
 AcademicSOS is a cross-platform mobile application that allows NUS students, professors and teaching assistants to easily book, create and keep track of consultations. 
