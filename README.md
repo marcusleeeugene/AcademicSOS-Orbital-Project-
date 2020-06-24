@@ -63,8 +63,7 @@
   <p>
     Users just have to login using their NUS account using their NUSNETID and password and firebase authentication will check for account legitimacy before logging in. For the project, due to delays in getting approval for the LumiNUS API, we decided to manually create our users.
   </p>
-  <p> The following are available users for this application: </p>
-  <br>
+  <p><b> The following are available users for this application: </b></p>
   <p>
     (Professor Martin Henz, CS1101S TA)
     <br>
@@ -154,13 +153,16 @@
   </p>
   <p>
     <b>
-      Do note that the consultation slot will only appear on the TA’s Manage Bookings section after all the other student participants have accepted/rejected
-      the consultation slot.
+      Do note that the consultation slot will only appear on the TA’s Manage Bookings section after all the other student participants have accepted/
+      rejected the consultation slot.
     </b>
   </p>
   <p>
-  Below is an illustration of the various actions/scenarios that can happen when different buttons are clicked inside the consultation slot of Manage
-  Bookings by different groups of users.
+    Below is an illustration of the various actions/scenarios that can happen when different buttons are clicked inside the consultation slot of Manage
+    Bookings by different groups of users.
+  </p>
+  <p align="center">
+     <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/DocImages/Book%20Consult%20Logic.png"  height="650">
   </p>
   <br><br>
   <p align="center">
@@ -197,6 +199,9 @@
     Below is an illustration of the various actions/scenarios that can happen when different buttons are clicked inside public consultation
     and manage bookings.
   <p>
+  <p align="center">
+     <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/DocImages/CreateConsult%20Logic.png"  height="650">
+  </p>
 <br><br>
 <p align="center">
    <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/DocVideos/PublicConsult%20Video.gif"  height="500">
@@ -230,4 +235,4 @@
     Closer to the day of the consultation, a notification will be sent out to notify users of their upcoming consultations.
   </p>
 
-<h4 id="installation"> 3viii. Installation of AcademicSOS </h4>
+<h4 id="installation"> 4. Installation of AcademicSOS </h4>
