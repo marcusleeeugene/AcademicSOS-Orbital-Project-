@@ -8,21 +8,17 @@ The application allows all consultation matters to be done solely on the applica
    <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/Poster/AcademicSOS-V2.0.png"  height="650">
 </p>
 
-### Site Map
-* [User Guide] - Step-by-step guide to learn about app functionality and usage
-* [Developer Guide] - Developers guide and application architecture
-* [Learning Outcomes]
-* [About Us]
-* [Contact Us]
+## Site Map
+* <a href="userGuide"> User Guide </a> - Step-by-step guide to learn about app functionality and usage
+* <a href="developerGuide"> Developer Guide </a> - Developers guide and application architecture
+* <a href="learningOutcomes"> Learning Outcomes </a>
+* <a href="aboutUs"> About Us </a>
+* <a href="contactUs"> Contact Us </a>
 
-### Acknowledgements
-[User Guide]: <http://daringfireball.net>
-[Developer Guide]:  <http://daringfireball.net>
-[Learning Outcomes]:  <http://daringfireball.net>
-[About Us]:  <http://daringfireball.net>
-[Contact Us]:  <http://daringfireball.net>
-
-### Content
+<p id = "userGuide" align="center">
+   ### User Guide
+</p>
+## Content
 1. Introduction
 2. User Flow
 3. Features
