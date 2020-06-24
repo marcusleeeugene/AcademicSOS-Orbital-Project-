@@ -9,11 +9,13 @@ The application allows all consultation matters to be done solely on the applica
 </p>
 
 <h2 align="center"> Site Map </h2>
-* <a href="#userGuide"> User Guide </a> - Step-by-step guide to learn about app functionality and usage
-* <a href="#developerGuide"> Developer Guide </a> - Developers guide and application architecture
-* <a href="#learningOutcomes"> Learning Outcomes </a>
-* <a href="#aboutUs"> About Us </a>
-* <a href="#contactUs"> Contact Us </a>
+<ul>
+   <li><a href="#userGuide"> User Guide </a> - Step-by-step guide to learn about app functionality and usage </li>
+   <li><a href="#developerGuide"> Developer Guide </a> - Developers guide and application architecture </li>
+   <li><a href="#learningOutcomes"> Learning Outcomes </a></li>
+   <li><a href="#aboutUs"> About Us </a></li>
+   <li><a href="#contactUs"> Contact Us </a></li>
+</ul>
 
 <h3 id="userGuide" align="center"> User Guide </h3>
 <ol>
