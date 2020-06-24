@@ -230,6 +230,7 @@
      <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/DocVideos/QRCodeStudent%20Video.gif"  height="500">
   </p>
 
+
 <h4 id="notificationFeature"> 3viii. Notification Reminder (To be completed) </h4>
   <p>
     Closer to the day of the consultation, a notification will be sent out to notify users of their upcoming consultations.
