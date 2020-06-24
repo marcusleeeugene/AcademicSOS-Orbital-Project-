@@ -26,24 +26,7 @@
       <li> Change directory into the AcademicSOS directory you just cloned, using “cd AcademicSOS-RN”  </li>
       <li> Install the following required library dependencies in the terminal: </li>
     </ol>
-    ```bash
-    npm install react-native-responsive-screen --save
-    npm i react-native-modal-datetime-picker @react-native-community/datetimepicker
-    npm install react-native-super-grid
-    npm i react-native-modal
-    npm install moment
-    npm i react-native-keyboard-aware-scroll-view --save
-    expo install firebase
-    npm install react-native-app-auth
-    npm install @react-navigation/native
-    npm install react-native-reanimated react-native-gesture-handler react-native-screens react-native-safe-area-context @react-native-community/masked-view
-    npm install @react-navigation/stack
-    npm install react-native-multiple-select --save
-    expo install react-native-custom-qr-codes-expo
-    expo install expo-barcode-scanner
-    expo install expo-permissions
-    expo install react-native-webview
-    ```
+    `hello this is a test`
   <p> 5. Finally, run “expo start” to start the application </p>
   <p> 6. Run the application on a simulator of your choice as shown below </p>
   <p align="center">
