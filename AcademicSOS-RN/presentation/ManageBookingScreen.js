@@ -340,6 +340,7 @@ const styles = StyleSheet.create({
     height: hp("2%"),
     width: wp("4%"),
     resizeMode: "contain",
+    paddingLeft: wp("10%"),
   },
   modalView: {
     backgroundColor: "#CFD8DC",
