@@ -23,19 +23,18 @@ The application allows all consultation matters to be done solely on the applica
 [Contact Us]:  <http://daringfireball.net>
 
 ### Content
-1. Introduction
-2. User Flow
-3. Features
-   1.   Login
-   2.   Book a consultation
-   3.   Create a consultation
-   4.   Manage Bookings
-   5.   Public Consultation 
-   6.   Priority Points System
-   7.   Attendance Scanning with QR Code
-   8.  Notification Reminder
-4. Installation of AcademicSOS
-5. Using AcademicSOS
+1. <a href="#introduction"> Introduction </a>
+2. <a href="#userFlow"> User Flow </a>
+3. <a href="#featuresFeature"> Features </a>
+   1.  <a href="#loginFeature"> Login </a>
+   2.  <a href="#bookConsultFeature"> Book a consultation </a>
+   3.  <a href="#createConsultFeature"> Create a consultation </a>
+   4.  <a href="#manageBookingsFeature"> Manage Bookings </a>
+   5.  <a href="#publicConsultFeature"> Public Consultation </a>
+   6.  <a href="#priorityFeature"> Priority Points System </a>
+   7.  <a href="#attendanceFeature"> Attendance Scanning with QR Code </a>
+   8.  <a href="#notificationFeature"> Notification Reminder </a>
+4. <a href="#installation"> Installation of AcademicSOS </a>
 
 ### 1. Introduction
 AcademicSOS is a cross-platform mobile application that allows NUS students, professors and teaching assistants to easily book, create and keep track of consultations. 
@@ -54,8 +53,7 @@ Depending on the user access, each user will have different sets of options avai
 
 ### 3. Features
 #### 3.1 Login
-Users just have to login using their NUS account using their NUSNETID and password and firebase authentication will check for account legitimacy before logging in. For the project, due to delays in getting approval for the LumiNUS API, we decided to manually create our users. 
-
+Users just have to login using their NUS account using their NETID and password and firebase authentication will check for account legitimacy before logging in. For the project, due to delays in getting approval for the LumiNUS API, we decided to manually create our users. 
 
 The following are available users for this application:
 
@@ -75,9 +73,12 @@ Pw: password
 Id: e0123456
 Pw: password
 
+<p align="center">
+   <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/DocVideos/BookConsult%20Video.gif"  height="300">
+</p>
 
 #### 3.2 Book a consultation
-Students of a module can book a consultation only to their respective TAs from their tutorial group or Professors. Students are allowed to pick the TA from their tutorial slot, selecting the intended booking date and time, indicating the location in the textbox (virtual meeting place like Zoom or physical location) as well as the people involved in the consultation. If the user prefers one-to-one consultation with the Teaching Assistant/Professor, it is not required to fill in the students involved section. With a dynamic search function, it allows the user to add fellow peers who are taking the same module to join in as group consultation. Before the submission of the consultation slot, there is the flexibility for the student to add or remove students participants.  In the agenda textbox, students are encouraged to put in the topic or scope of the problem for discussion which allows Professors or TAs to better prepare beforehand. It is also possible to attach a Google Slides link with screenshots of the questions that the students want to ask in the textbox too.
+Students of a module can book a consultation only to their respective TAs from their tutorial group or Professors. Students are allowed to only book minimally one week in advance, selecting the intended booking date and time, indicating the location in the textbox (virtual meeting place like Zoom or physical location) as well as the people involved in the consultation. If the user prefers one-to-one consultation with the Teaching Assistant/Professor, it is not required to fill in the students involved section. With a dynamic search function, it allows the user to add fellow peers who are taking the same module to join in as group consultation. In the remarks textbox, students are encouraged to put in the topic or scope of the problem for discussion which allows Professors or TAs to better prepare beforehand.
 
 <p align="center">
    <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/DocImages/Book%20Consult.png"  height="300">
@@ -86,7 +87,7 @@ Students of a module can book a consultation only to their respective TAs from t
 <INSERT BOOK CONSULTATION Video>
 
 #### 3.3 Create a consultation
-Professors/Teaching Assistants (TAs) of a module can create a consultation slot to meet students in their respective tutorial group in the event that there is a need for project review and feedback for certain students for instance. Similarly, it is recommended to create the consultation slot minimally one week in advance, selecting the intended booking date and time, indicating the location in the textbox (virtual meeting place like Zoom or physical location) as well as the people involved in the consultation. With a dynamic search function, it allows the user to add students in the same tutorial class to join in as group or individual one-to-one consultation. In the agenda textbox, it is recommended to fill in the purpose of the meeting so that the students will know beforehand.
+Professors/Teaching Assistants (TAs) of a module can create a consultation slot to meet students in their respective tutorial group in the event that there is a need for project review and feedback for certain students for instance. Similarly, it is recommended to create the consultation slot minimally one week in advance, selecting the intended booking date and time, indicating the location in the textbox (virtual meeting place like Zoom or physical location) as well as the people involved in the consultation. With a dynamic search function, it allows the user to add students in the same tutorial class to join in as group or individual one-to-one consultation. In the remarks textbox, it is recommended to fill in the agenda of the meeting so that the students will know the purpose of the meeting.
 
 <p align="center">
    <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/DocImages/Create%20Consult.png"  height="300">
@@ -102,9 +103,8 @@ Manage bookings are made available to all users to allow them to look at their c
 
 By clicking into a consultation, it will bring the user to the next page which shows into detail all the information of the selected consultation including the students involved in the consultation. Depending on the user role in the module, whoever is the creator of the consultation slot, actions allowed to be performed will vary for each individual. 
 
-With book consult function, a student (creator of consultation slot) creates a private consultation slot where fellow friends who are taking the same module can be added into the consultation easily. Upon the creation of the consultation, the consultation slot will be displayed on the Manage Bookings section for the users involved. 
-
-**Do note that the consultation slot will only appear on the TA’s Manage Bookings section after all the other student participants have accepted/rejected the consultation slot.**
+With book consult function, a student (creator of consultation slot) creates a private consultation slot where fellow friends who are taking the same module can be added into the consultation easily. Upon the creation of the consultation, the consultation slot will be shown on the Manage Bookings section for the users involved. 
+Do note that the consultation slot will only appear on the TA’s Manage Bookings section after all the other student participants have accepted/rejected the consultation slot.
 
 Below is an illustration of the various actions/scenarios that can happen when different buttons are clicked inside the consultation slot of Manage Bookings by different groups of users.
 
@@ -118,7 +118,7 @@ Below is an illustration of the various actions/scenarios that can happen when d
 #### 3.5 Public consultation 
 <INSERT PUBLIC CONSULTATION IMG>
 
-With the create consult function, a teaching assistant (creator of consultation slot) has the option to create a public consultation slot depending on his/her availability and indicating the size of the consultation. Upon the creation of the public consultation, the consultation slot will be shown on the public consultation details screen for all students taking the module.
+With the create consult function, a teaching assistant (creator of consultation slot) has the option to create a public consultation slot depending on their availability and indicating the size of the consultation. Upon the creation of the public consultation, the consultation slot will be shown on the public consultation details screen for all students taking the module.
 
 **Do note that the public consultation slot will disappear from the student screen after the student accepted or rejected the consultation. If the student accepted the consultation, the consultation slot will be moved to Manage Bookings automatically. Once the number of students who accepted the public consultation slot matches the size of the consult, the consultation status will automatically be changed to confirmed and reflected on the Manage Booking screen for all the users involved. If the size of the public consult slot is not met, the TA has the right to start the consultation.**
 
