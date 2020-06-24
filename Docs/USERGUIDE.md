@@ -41,9 +41,9 @@
    </p>
    <br>
    <p align="center">
-      <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/tree/master/Docs/DocImages/Student.png"  height="300">
-      <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/tree/master/Docs/DocImages/Teaching Assistant.png"  height="300">
-      <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/tree/master/Docs/DocImages/Professors.png"  height="300">
+      <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/Docs/DocImages/Student.png"  height="300">
+      <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/Docs/DocImages/Teaching Assistant.png"  height="300">
+      <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/Docs/DocImages/Professors.png"  height="300">
    </p>
 
 <h3 id="features" align="center"> 3. Features </h3>
@@ -82,7 +82,7 @@
   </p>
   <br><br>
   <p align="center">
-     <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/tree/master/Docs/DocVideos/Login%20Video.gif"  height="500">
+     <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/Docs/DocVideos/Login%20Video.gif"  height="500">
   </p>
 
 <h4 id="bookConsultFeature"> 3ii. Book a consultation </h4>
@@ -103,7 +103,7 @@
   </p>
   <br><br>
   <p align="center">
-     <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/tree/master/Docs/DocVideos/BookConsult%20Video.gif"  height="500">
+     <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/Docs/DocVideos/BookConsult%20Video.gif"  height="500">
   </p>
 
 <h4 id="createConsultFeature"> 3iii. Create a consultation </h4>
@@ -121,7 +121,7 @@
   </p>
   <br><br>
   <p align="center">
-     <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/tree/master/Docs/DocVideos/CreateConsult%20Video.gif"  height="500">
+     <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/Docs/DocVideos/CreateConsult%20Video.gif"  height="500">
   </p>
 
 <h4 id="manageBookingsFeature"> 3iv. Manage Bookings </h4>
@@ -147,14 +147,14 @@
   </p>
   <br><br>
   <p align="center">
-     <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/tree/master/Docs/DocVideos/ManageBooking%20Video.gif"  height="500">
+     <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/Docs/DocVideos/ManageBooking%20Video.gif"  height="500">
   </p>
   <p>
     Below is an illustration of the various actions/scenarios that can happen when different buttons are clicked inside the consultation slot of Manage
     Bookings by different groups of users.
   </p>
   <p align="center">
-     <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/tree/master/Docs/DocImages/Book%20Consult%20Logic.png"  height="300">
+     <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/Docs/DocImages/Book%20Consult%20Logic.png"  height="300">
   </p>
 
 <h4 id="publicConsultFeature"> 3v. Public Consultation </h4>
@@ -174,7 +174,7 @@
   </p>
   <br><br>
   <p align="center">
-     <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/tree/master/Docs/DocVideos/PublicConsult%20Video.gif"  height="500">
+     <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/Docs/DocVideos/PublicConsult%20Video.gif"  height="500">
   </p>
   <p>
     Alternatively, the teaching assistant can create a private consultation slot where students from the same tutorial group can be added into the
@@ -192,7 +192,7 @@
     and manage bookings.
   <p>
   <p align="center">
-     <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/tree/master/Docs/DocImages/CreateConsult%20Logic.png"  height="300">
+     <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/Docs/DocImages/CreateConsult%20Logic.png"  height="300">
   </p>
 
 <h4 id="priorityFeature"> 3vi. Priority Points System (To be completed) </h4>
