@@ -19,30 +19,30 @@ The application allows all consultation matters to be done solely on the applica
 
 <h2 id="userGuide" align="center"> User Guide </h3>
 <ol>
-   <li><a href=""> Introduction </a></li> 
-   <li><a href=""> User Flow </a></li> 
+   <li><a href="#introduction"> Introduction </a></li> 
+   <li><a href="#userFlow"> User Flow </a></li> 
    <li>  
-      <a href=""> Features </a>
+      <a href="#features"> Features </a>
       <ol>
-         <li><a href=""> Login </a></li>
-         <li><a href=""> Book a consultation </a></li>
-         <li><a href=""> Create a consultation </a></li>
-         <li><a href=""> Manage Bookings </a></li>
-         <li><a href=""> Public Consultation </a></li>
-         <li><a href=""> Priority Points System </a></li>
-         <li><a href=""> Attendance Scanning with QR Code </a></li>
-         <li><a href=""> Notification Reminder </a></li>
+         <li><a href="#loginFeature"> Login </a></li>
+         <li><a href="#bookConsultFeature"> Book a consultation </a></li>
+         <li><a href="createConsultFeature"> Create a consultation </a></li>
+         <li><a href="manageBookingsFeature"> Manage Bookings </a></li>
+         <li><a href="publicConsultFeature"> Public Consultation </a></li>
+         <li><a href="priorityFeature"> Priority Points System </a></li>
+         <li><a href="attendanceFeature"> Attendance Scanning with QR Code </a></li>
+         <li><a href="notificationFeature"> Notification Reminder </a></li>
       </ol>
    </li> 
-   <a href=""> <li>  Installation of AcademicSOS </li> </a>
+   <li><a href="">  Installation of AcademicSOS  </a></li>
 </ol>
 
-### 1. Introduction
+<h3 id="introduction"> 1. Introduction </h3>
 AcademicSOS is a cross-platform mobile application that allows NUS students, professors and teaching assistants to easily book, create and keep track of consultations. 
 
 The application allows all consultation matters to be done solely on the application, without requiring the need to email or message professors and teaching assistants. This will help in reducing email spams to professors’s inboxes and also increase the monitoring rate.
 
-### 2. User Flow
+<h3 id="userFlow"> 2. User Flow </h3>
 Depending on the user access, each user will have different sets of options available to them.
 
 <p align="center">
@@ -51,9 +51,8 @@ Depending on the user access, each user will have different sets of options avai
    <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/DocImages/Professors.png"  height="300">
 </p>
 
-
-### 3. Features
-#### 3.1 Login
+<h3 id="features"> 3. Features </h3>
+<h4 id="loginFeature"> 3i. Login </h4>
 Users just have to login using their NUS account using their NUSNETID and password and firebase authentication will check for account legitimacy before logging in. For the project, due to delays in getting approval for the LumiNUS API, we decided to manually create our users. 
 
 
