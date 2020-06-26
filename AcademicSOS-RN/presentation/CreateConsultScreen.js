@@ -126,6 +126,7 @@ export default function CreateConsultScreen({ route, navigation }) {
   };
 
   const updateConsultation = () => {
+    updateAltStatus();
     CreateConsultFB.getWeekRange().then((weekRange) => {
       CreateConsultFB.updateBooking(
         userID,
@@ -149,6 +150,12 @@ export default function CreateConsultScreen({ route, navigation }) {
 
     alert("Successfully updated booking!");
     navigation.navigate("Home");
+  };
+
+  const updateAltStatus = () => {
+    participants.map((user) => {
+      user["altStatus"] = "Pending";
+    });
   };
 
   useEffect(() => {

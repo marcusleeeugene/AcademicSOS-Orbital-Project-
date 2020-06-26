@@ -97,5 +97,15 @@ const StudentPendingFB = {
         weekRange: consultDetails["weekRange"],
       });
   },
+
+  checkAllAltStatus(participants) {
+    //return true if all altStatus is accepted
+    for (var user in participants) {
+      if (participants[user].altStatus != "Accepted") {
+        return false;
+      }
+    }
+    return true;
+  },
 };
 export default StudentPendingFB;

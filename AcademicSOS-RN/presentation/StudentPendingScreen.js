@@ -81,6 +81,9 @@ export default function StudentPendingScreen({ route, navigation }) {
           user["altStatus"] = "Accepted";
         }
       });
+      if (StudentPendingFB.checkAllAltStatus(consultDetails.participants)) {
+        consultDetails.consultStatus = "Confirmed";
+      }
       StudentPendingFB.acceptBooking(consultDetails, bookingId, consultDetails.participants);
     }
     alert("Successfully updated booking status!");
