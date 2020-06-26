@@ -99,6 +99,7 @@ InputDataFB.addModuleUnderStudent("e0407217", "NM3221", "Mobile Interaction Desi
 InputDataFB.addModuleUnderStudent("e0407217", "MA1101R", "Linear Algebra I", "Student", "T05", "");
 InputDataFB.addModuleUnderStudent("e0407217", "ES1601", "English Communication", "Student", "T03", 100);
 
+InputDataFB.addModuleUnderStudent("e0123456", "CS1231S", "Discrete Structures", "Student", "T12", 100);
 InputDataFB.addModuleUnderStudent("e0123456", "CS2030", "Programming Methodology II", "Student", "T15", 100);
 InputDataFB.addModuleUnderStudent("e0123456", "MA1101R", "Linear Algebra I", "Student", "T03", 100);
 InputDataFB.addModuleUnderStudent("e0123456", "MA1521", "Calculus for Computing", "Student", "T03", 100);

@@ -39,6 +39,7 @@ function getAltStatus(id, modCode, bookingId, obj) {
       return participants[user]["altStatus"];
     }
   }
+  return undefined;
 }
 
 const PublicConsultFB = {
@@ -55,7 +56,7 @@ const PublicConsultFB = {
           var participants = individualBookings["participants"];
           var consultStatus = individualBookings["consultStatus"];
           var size = individualBookings["size"];
-          if (type == "Public" && (participants == " " || participants.length != size || getAltStatus(userId, modCode, bookings, obj) === "Pending")) {
+          if (type == "Public" && (participants == " " || participants.length != size && (getAltStatus(userId, modCode, bookings, obj) === "Pending" || getAltStatus(userId, modCode, bookings, obj) == undefined))) {
             var creator = individualBookings["creator"];
             var bookingId = bookings;
             var ta = individualBookings["ta"];
