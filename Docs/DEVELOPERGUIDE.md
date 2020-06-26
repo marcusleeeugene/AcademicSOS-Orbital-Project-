@@ -62,6 +62,7 @@
       <b> The following are the list of libraries we used in our application: </b>
     </p>
     <ul>
+      <li><a href="https://api.nusmods.com/v2/"> NUSMods: NUSMods Api </a></li>
       <li><a href="https://github.com/marudy/react-native-responsive-screen"> Marudy: react-native-responsive-screen </a></li>
       <li><a href="https://github.com/mmazzarolo/react-native-modal-datetime-picker"> Mmazzarolo: react-native-modal-datetime-picker </a></li>
       <li><a href="https://github.com/saleel/react-native-super-grid/"> Saleel: react-native-super-grid </a></li>

@@ -36,7 +36,7 @@
    </p>
    <br>
    <p align="center">
-     <a href="https://youtu.be/ry4Z9ZYL8DY">
+     <a href="https://youtu.be/Cylr8NCoRLQ">
        <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/Docs/DocImages/AcademicSOS_VideoGuide.jpg"  height="300">
      </a>
    </p>
