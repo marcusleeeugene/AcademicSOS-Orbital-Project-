@@ -81,10 +81,13 @@ export default function StudentPendingScreen({ route, navigation }) {
           user["altStatus"] = "Accepted";
         }
       });
-      if (StudentPendingFB.checkAllAltStatus(consultDetails.participants)) {
-        consultDetails.consultStatus = "Confirmed";
-      }
-      StudentPendingFB.acceptBooking(consultDetails, bookingId, consultDetails.participants);
+      StudentPendingFB.getModRole(consultDetails.creator, consultDetails.module).then((data) => {
+        var creatorModRole = data;
+        if (StudentPendingFB.checkAllAltStatus(consultDetails.participants) && creatorModRole != "Student") {
+          consultDetails.consultStatus = "Confirmed";
+        }
+        StudentPendingFB.acceptBooking(consultDetails, bookingId, consultDetails.participants);
+      });
     }
     alert("Successfully updated booking status!");
     navigation.goBack();
@@ -104,7 +107,17 @@ export default function StudentPendingScreen({ route, navigation }) {
           text: "Reject",
           onPress: () => {
             removeParticipant();
-            StudentPendingFB.rejectBooking(consultDetails, bookingId, consultDetails.participants);
+            if (consultDetails.type == "Public") {
+              StudentPendingFB.rejectPublicBooking(consultDetails, bookingId, consultDetails.participants);
+            } else {
+              StudentPendingFB.getModRole(consultDetails.creator, consultDetails.module).then((data) => {
+                var creatorModRole = data;
+                if (StudentPendingFB.checkAllAltStatus(consultDetails.participants) && creatorModRole != "Student") {
+                  consultDetails.consultStatus = "Confirmed";
+                }
+                StudentPendingFB.rejectPrivateBooking(consultDetails, bookingId, consultDetails.participants);
+              });
+            }
             navigation.goBack();
           },
         },
@@ -128,7 +141,13 @@ export default function StudentPendingScreen({ route, navigation }) {
               if (consultDetails.type == "Public") {
                 StudentPendingFB.rejectPublicBooking(consultDetails, bookingId, consultDetails.participants);
               } else {
-                StudentPendingFB.rejectPrivateBooking(consultDetails, bookingId, consultDetails.participants);
+                StudentPendingFB.getModRole(consultDetails.creator, consultDetails.module).then((data) => {
+                  var creatorModRole = data;
+                  if (StudentPendingFB.checkAllAltStatus(consultDetails.participants) && creatorModRole != "Student") {
+                    consultDetails.consultStatus = "Confirmed";
+                  }
+                  StudentPendingFB.rejectPrivateBooking(consultDetails, bookingId, consultDetails.participants);
+                });
               }
             }
             alert("Cancelled!!!");

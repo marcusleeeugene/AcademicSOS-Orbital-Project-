@@ -101,7 +101,11 @@ export default function ConfirmedScreen({ route, navigation }) {
                           if (consultDetails.type == "Public") {
                             ConfirmedFB.NonCreatorCancelPublicBooking(consultDetails, bookingId, "Pending");
                           } else {
-                            ConfirmedFB.NonCreatorCancelPrivateBooking(consultDetails, bookingId, consultDetails.consultStatus);
+                            if (consultDetails.participants.length == 1) {
+                              ConfirmedFB.cancelBooking(consultDetails, bookingId);
+                            } else {
+                              ConfirmedFB.NonCreatorCancelPrivateBooking(consultDetails, bookingId, consultDetails.consultStatus);
+                            }
                           }
                         }
                         navigation.goBack();
