@@ -122,7 +122,11 @@ export default function StudentPendingScreen({ route, navigation }) {
               StudentPendingFB.cancelBooking(consultDetails, bookingId);
             } else {
               removeParticipant();
-              StudentPendingFB.rejectBooking(consultDetails, bookingId, consultDetails.participants);
+              if (consultDetails.type == "Public") {
+                StudentPendingFB.rejectPublicBooking(consultDetails, bookingId, consultDetails.participants);
+              } else {
+                StudentPendingFB.rejectPrivateBooking(consultDetails, bookingId, consultDetails.participants);
+              }
             }
             alert("Cancelled!!!");
             navigation.goBack();
@@ -185,7 +189,12 @@ export default function StudentPendingScreen({ route, navigation }) {
             <Text style={styles.infoText}> Start Time: {consultDetails["consultStartTime"]}</Text>
             <Text style={styles.infoText}> End Time: {consultDetails["consultEndTime"]}</Text>
             <Text style={styles.secondTitle}> Students: </Text>
-            <FlatList data={consultDetails.participants} renderItem={({ item }) => <Text style={styles.infoText}>{item.name}</Text>} style={styles.flatList} keyExtractor={(item, index) => index.toString()}/>
+            <FlatList
+              data={consultDetails.participants}
+              renderItem={({ item }) => <Text style={styles.infoText}>{item.name}</Text>}
+              style={styles.flatList}
+              keyExtractor={(item, index) => index.toString()}
+            />
             <Text style={styles.secondTitle}> Agenda: </Text>
             <Text style={styles.infoText}>{consultDetails["agenda"]} </Text>
             {consultDetails["creator"] === userID || (consultDetails["consultStatus"] == "Pending" && altStatus == "Accepted") ? creatorJSX : nonCreatorJSX}

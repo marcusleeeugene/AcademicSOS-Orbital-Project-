@@ -24,7 +24,8 @@ const StudentPendingFB = {
   },
   getAltStatus: function (id, modCode, bookingId) {
     return database
-      .ref(`modules/${modCode}/bookings/`).child(bookingId)
+      .ref(`modules/${modCode}/bookings/`)
+      .child(bookingId)
       .once("value")
       .then((snapshot) => snapshot.val())
       .then((obj) => {
@@ -36,7 +37,7 @@ const StudentPendingFB = {
         }
       });
   },
-  acceptBooking: function(consultDetails, bookingId, updatedParticipants) {
+  acceptBooking: function (consultDetails, bookingId, updatedParticipants) {
     database.ref(`modules/${consultDetails["module"]}/bookings`).child(bookingId).update({
       consultStatus: consultDetails["consultStatus"],
       creator: consultDetails["creator"],
@@ -51,13 +52,13 @@ const StudentPendingFB = {
       size: consultDetails["size"],
       bookDate: consultDetails["bookDate"],
       bookTime: consultDetails["bookTime"],
-      weekRange: consultDetails["weekRange"]
+      weekRange: consultDetails["weekRange"],
     });
   },
-  cancelBooking: function(consultDetails, bookingId) {
+  cancelBooking: function (consultDetails, bookingId) {
     database.ref(`modules/${consultDetails["module"]}/bookings`).child(bookingId).remove();
   },
-  rejectBooking: function(consultDetails, bookingId, updatedParticipants) {
+  rejectPublicBooking: function (consultDetails, bookingId, updatedParticipants) {
     database.ref(`modules/${consultDetails["module"]}/bookings`).child(bookingId).update({
       consultStatus: consultDetails["consultStatus"],
       creator: consultDetails["creator"],
@@ -69,11 +70,32 @@ const StudentPendingFB = {
       consultEndTime: consultDetails["consultEndTime"],
       agenda: consultDetails["agenda"],
       participants: updatedParticipants,
-      size: consultDetails["size"] - 1,
+      size: consultDetails["size"],
       bookDate: consultDetails["bookDate"],
       bookTime: consultDetails["bookTime"],
       weekRange: consultDetails["weekRange"],
     });
+  },
+  rejectPrivateBooking: function (consultDetails, bookingId, updatedParticipants) {
+    database
+      .ref(`modules/${consultDetails["module"]}/bookings`)
+      .child(bookingId)
+      .update({
+        consultStatus: consultDetails["consultStatus"],
+        creator: consultDetails["creator"],
+        ta: consultDetails["ta"],
+        type: consultDetails["type"],
+        location: consultDetails["location"],
+        consultDate: consultDetails["consultDate"],
+        consultStartTime: consultDetails["consultStartTime"],
+        consultEndTime: consultDetails["consultEndTime"],
+        agenda: consultDetails["agenda"],
+        participants: updatedParticipants,
+        size: consultDetails["size"] - 1,
+        bookDate: consultDetails["bookDate"],
+        bookTime: consultDetails["bookTime"],
+        weekRange: consultDetails["weekRange"],
+      });
   },
 };
 export default StudentPendingFB;
