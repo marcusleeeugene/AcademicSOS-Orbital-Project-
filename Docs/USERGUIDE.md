@@ -34,6 +34,12 @@
    <p>
       The application allows all consultation matters to be done solely on the application, without requiring the need to email or message professors and teaching assistants. This will help in reducing email spams to professors’s inboxes and also increase the monitoring rate.
    </p>
+   <br>
+   <p align="center">
+     <a href="https://youtu.be/ry4Z9ZYL8DY">
+       <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/Docs/DocImages/AcademicSOS_VideoGuide.jpg"  height="300">
+     </a>
+   </p>
 
 <h3 id="userFlow" align="center"> 2. User Flow </h3>
    <p>
