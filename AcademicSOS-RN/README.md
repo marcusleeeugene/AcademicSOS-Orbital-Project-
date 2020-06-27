@@ -59,16 +59,27 @@
 
   <h3 id="design" align="center"> 2. Design </h3>
   <h4 id="architectureDesign"> Architecture </h4>
-    <table>
+    <p>
+      This is our system architecture. The diagram below shows how our front-end and back-end are linked together by our application.
+    </p>
+    <br>
+    <p align="center">
+       <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/Docs/DocImages/Architecture.png"  height="500">
+    </p>
+    <table align="center" style="width:100%">
       <tr>
-        <th>Firstname</th>
-        <th>Lastname</th>
-        <th>Age</th>
+        <th> Screen </th>
+        <th> Elaboration </th>
       </tr>
       <tr>
-        <td>Jill</td>
-        <td>Smith</td>
-        <td>50</td>
+        <td> Login </td>
+        <td>
+          <ol>
+            <li> User will input his/her NUS login credentials. </li>
+            <li> Firebase database authentication will determine account eligibility. </li>
+            <li> On success, the user will be directed to the Home screen with relevant options available depending on their academic role. </li>
+          </ol>
+        </td>
       </tr>
     </table>
   <h4 id="databaseDesign"> Database </h4>
