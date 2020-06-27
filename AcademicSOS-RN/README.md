@@ -21,9 +21,19 @@
       <b> The following are instructions to run the application locally: </b>
     </p>
     <ol>
-      <li> Open the terminal and install with “npm_install -g expo-cli” </li>
+      <li> Open the terminal and install with: </li>
+      <pre>
+        <code>
+          npm_install -g expo-cli
+        </code>
+      </pre>
       <li> Clone AcademicSOS repo: <a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/"> AcademicSOS </a> </li>
-      <li> Change directory into the AcademicSOS-RN directory, using “cd AcademicSOS-RN”  </li>
+      <li> Change directory into the AcademicSOS-RN directory: </li>
+      <pre>
+        <code>
+          cd AcademicSOS-RN
+        </code>
+      </pre>
       <li> Install the following required library dependencies in the terminal: </li>
       <pre>
         <code>
@@ -45,7 +55,13 @@
           expo install react-native-webview
         </code>
       </pre>
-      <li> Finally, run “expo start” to start the application and choose your preferred simulator. The application will run as shown below </li>
+      <li> Finally, run with: </li>
+      <pre>
+        <code>
+          expo start
+        </code>
+      </pre>
+      <li> Choose your preferred simulator and the application will run as shown below </li>
   <br>
   <p align="center">
      <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/Docs/DocImages/simulator.png"  height="500">
