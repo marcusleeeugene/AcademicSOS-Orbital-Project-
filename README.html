@@ -51,7 +51,7 @@
           expo install react-native-webview
         </code>
       </pre>
-      <li> Finally, run with: <code> expo start </code> Then, choose your preferred simulator and the application will run as shown below </li>
+      <li> Finally, run with: <code> expo start </code>  Then, choose your preferred simulator and the application will run as shown below </li>
   <br>
   <p align="center">
      <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/Docs/DocImages/simulator.png"  height="500">
