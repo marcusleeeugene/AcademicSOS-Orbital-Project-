@@ -86,7 +86,7 @@
     </p>
     <br>
     <p align="center">
-       <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/Docs/DocImages/FBUserOverView.png"  height="400">
+       <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/Docs/DocImages/FBUserOverView.png"  height="500">
     </p>
     <p>
       As shown below, the module branch consists of the modules available in the semester. And each module will have a sub branch “bookings”
