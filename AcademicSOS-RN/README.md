@@ -80,7 +80,67 @@
             <li> On success, the user will be directed to the Home screen with relevant options available depending on their academic role. </li>
           </ol>
         </td>
-      </tr>
+        <tr>
+          <td> Book Consultation </td>
+          <td>
+            <ol>
+              <li> Only students will be allowed to perform book consult function. </li>
+              <li> As a creator, the student will select the Teaching Assistant of the same tutorial class, fill in the necessary consultation details such as date, time, location, participants, agenda of consultation. </li>
+              <li> Upon the booking of the consultation, the consultation details will be pushed into the database under the module branch and the user will be directed to the Manage Booking Screen. </li>
+              <li> Initially, the consultation will be displayed on the students Manage Booking Screen. Students who are non-creator of the consultation will have to acknowledge the booking first before the consultation will be reflected on the Manage Booking screen of the chosen Teaching Assistant/Professors. </li>
+            <ol>
+          </td>
+        </tr>
+        <tr>
+          <td> Create Consultation </td>
+          <td>
+            <ol>
+              <li> Only Teaching Assistants/Professors will be allowed to perform the create consult function. </li>
+              <li> As a creator, the user will fill in the necessary consultation details such as date, time, location, agenda of consultation and type of consultation. </li>
+              <li> Upon the creation of the consultation, the consultation details will be pushed into the database under the module branch and the user will be directed to the Home Screen. </li>
+              <li> Based on the consultation type in the database, public consultation will be displayed on the public consultation screen for all students taking the module. Private consultation bookings will be displayed on the Manage Booking Screen for all participants that will be involved in the consultation. </li>
+            <ol>
+          </td>
+        </tr>
+        <tr>
+          <td> Attendance </td>
+          <td>
+            <ol>
+              <li> User information will be retrieved from the database. </li>
+              <li> On the TA side, upon clicking into the confirmed consultation in the  Manage Booking screen, the next screen will display the students involved, QR code for the consultation session and the attendance count. </li>
+              <li> If a user is a student, the student will scan the QR code from the screen of the TA side as a form of acknowledgement that he/she is present for the consultation. </li>
+              <li> The attendance status of the student will be updated and reflected under the same booking in the firebase database. </li>
+              <li> On the TA side, the attendance count will be updated accordingly. </li>
+            <ol>
+          </td>
+        </tr>
+        <tr>
+          <td> Manage Bookings </td>
+          <td>
+            <ol>
+              <li> The user will be checked through a looping of the modules in the database and retrieve bookings only for which the user is involved in. </li>
+              <li> The bookings retrieved will be displayed on the screen and sorted by date then time. </li>
+              <li> For “Pending” consultation status, if the user is not the creator of the consultation, the user will have the choice to either accept or reject the consultation. Otherwise, cancellation of consultation is the only option available. </li>
+              <li> Depending on the response of the user in (iii), the database will be updated accordingly. In the event the creator cancels the consultation, the whole booking will be removed from the database. </li>
+              <li> For “Confirmed” consultation status, if the user is Teaching Assistant/Professor, the QR code will be generated and the size of the consultation will be displayed. Otherwise, the user will have the options to scan attendance or cancel booking. </li>
+            <ol>
+          </td>
+        </tr>
+        <tr>
+          <td> Public Consultation </td>
+          <td>
+            <ol>
+              <li> Only students will be allowed to use the public consultation screen. </li>
+              <li> The database will check for whichever modules the student takes. </li>
+              <li> The database will perform another retrieval of data of public consultations created by TAs and Professors of the modules that the student takes. </li>
+              <li> The retrieved data will be displayed on the public consultation screen and sorted by date then time. </li>
+              <li> The user will have the options to accept or reject the public consultation. </li>
+              <li> If the user accepts the consultation, the consultation will be shifted to the Manage Booking screen and the corresponding public booking in the database will be updated by adding him/her as a participant. </li>
+              <li> If the size of the public consultation is met, the consultation status will be updated to “Confirmed” within the booking in the database and will disappear from the public consultation screen. </li>
+            <ol>
+          </td>
+        </tr>
+
     </table>
   <h4 id="databaseDesign"> Database </h4>
     <p>
