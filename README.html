@@ -10,7 +10,13 @@
   <h2 id="developerGuide" align="center"> Developer Guide </h2>
   <ol>
      <li><a href="#settingUp"> Setting Up </a></li>
-     <li><a href="#design"> Design </a></li>
+     <li>
+       <a href="#design"> Design </a>
+       <ul>
+         <li> <a href="#architectureDesign"> Architecture </a> </li>
+         <li> <a href="#databaseDesign"> Database </a> </li>
+       </ul>
+     </li>
      <li><a href="#implementation"> Implementation </a></li>
      <li><a href="#userTest"> User Test </a></li>
      <li><a href="#acknowledgement"> Acknowledgement </a></li>
@@ -52,6 +58,58 @@
   </p>
 
   <h3 id="design" align="center"> 2. Design </h3>
+  <h4 id="architectureDesign"> Architecture </h4>
+    <table>
+      <tr>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Age</th>
+      </tr>
+      <tr>
+        <td>Jill</td>
+        <td>Smith</td>
+        <td>50</td>
+      </tr>
+    </table>
+  <h4 id="databaseDesign"> Database </h4>
+    <p>
+      Since Firebase Real-time database is stored as JSON Objects, data added will be stored as nodes under each branch of the tree.
+    </p>
+    <p>
+      As such, we had to design our database in such a way that we do not have to retrieve the entire main branch of the database just
+      to retrieve a single data. We organised our database into multiple sub branches.
+    </p>
+    <p>
+      Throughout the design process, we also kept in mind that the database should allow for fast and efficient retrieval of data, and
+      be able to dynamically handle possible future data additions.
+    </p>
+    <p>
+      Below is the overall structure of our database. The “modules” and “users” have been segregated into separate branches. This will
+      allow the user details to be easily differentiated from their consultation details. This way, authentication can be checked quickly
+      and easily from the “users” branch as there is less nested data within the branch.
+    </p>
+    <br>
+    <p align="center">
+       <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/Docs/DocImages/FBOverView.png"  height="400">
+    </p>
+    <p>
+      As shown below, under the “users” branch, it is further categorised into “professors” and “students” branches while for each individual
+      user branch consists of the modules and its tutorial class that the user is involved in.
+    </p>
+    <br>
+    <p align="center">
+       <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/Docs/DocImages/FBUserOverView.png"  height="500">
+    </p>
+    <p>
+      As shown below, the module branch consists of the modules available in the semester. And each module will have a sub branch “bookings”
+      which stores a unique booking id and its consultation details. In the participants field, the participants are stored as an array since
+      there can be many participants involved in a consultation. The array also allows us for easy retrieval of participant information when
+      looping through the participants JSON object.
+    </p>
+    <br>
+    <p align="center">
+       <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/Docs/DocImages/FBModOverView.png"  height="600">
+    </p>
 
   <h3 id="implementation" align="center"> 3. Implementation </h3>
 
