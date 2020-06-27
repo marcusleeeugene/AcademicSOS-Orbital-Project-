@@ -144,9 +144,11 @@
     </table>
   <h4 id="databaseDesign"> Database </h4>
     <p>
-      Since Firebase Real-time database is stored as JSON Objects, data added will be stored as nodes under each branch of the tree.
+      We decided to use Firebase real-time database as it is easy to set up and it has been so popular recently. It allows for quick
+      exchanging of data to and from the database.
     </p>
     <p>
+      Since Firebase real-time database is stored as JSON Objects, data added will be stored as nodes under each branch of the tree.
       As such, we had to design our database in such a way that we do not have to retrieve the entire main branch of the database just
       to retrieve a single data. We organised our database into multiple sub branches.
     </p>
