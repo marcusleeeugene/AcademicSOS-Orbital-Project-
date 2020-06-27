@@ -59,6 +59,18 @@
 
   <h3 id="design" align="center"> 2. Design </h3>
   <h4 id="architectureDesign"> Architecture </h4>
+    <table>
+      <tr>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Age</th>
+      </tr>
+      <tr>
+        <td>Jill</td>
+        <td>Smith</td>
+        <td>50</td>
+      </tr>
+    </table>
   <h4 id="databaseDesign"> Database </h4>
     <p>
       Since Firebase Real-time database is stored as JSON Objects, data added will be stored as nodes under each branch of the tree.
@@ -94,6 +106,7 @@
       there can be many participants involved in a consultation. The array also allows us for easy retrieval of participant information when
       looping through the participants JSON object.
     </p>
+    <br>
     <p align="center">
        <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/Docs/DocImages/FBModOverView.png"  height="600">
     </p>
