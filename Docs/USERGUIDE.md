@@ -9,7 +9,7 @@
  <br>
    <h2 id="userGuide" align="center"> User Guide </h2>
    <ol>
-      <li><a href="#installation">  Installation of AcademicSOS  </a></li>
+      <li><a href="#installation">  Installation </a></li>
       <li><a href="#introduction"> Introduction </a></li>
       <li><a href="#userFlow"> User Flow </a></li>
       <li>
