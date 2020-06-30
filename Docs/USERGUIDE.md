@@ -27,8 +27,7 @@
       </li>
    </ol>
 
-
-<h3 id="installation" align="center> 1. Installation of AcademicSOS </h4>
+<h3 id="installation" align="center"> 1. Installation of AcademicSOS </h4>
   <p>
     <b> For Android Users: </b>
     <a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS.apk"> Download .apk file</a>
