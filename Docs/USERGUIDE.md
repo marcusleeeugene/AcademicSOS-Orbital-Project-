@@ -9,6 +9,7 @@
  <br>
    <h2 id="userGuide" align="center"> User Guide </h2>
    <ol>
+      <li><a href="#installation">  Installation of AcademicSOS  </a></li>
       <li><a href="#introduction"> Introduction </a></li>
       <li><a href="#userFlow"> User Flow </a></li>
       <li>
@@ -24,10 +25,21 @@
             <li><a href="#notificationFeature"> Notification Reminder </a></li>
          </ol>
       </li>
-      <li><a href="#installation">  Installation of AcademicSOS  </a></li>
    </ol>
 
-<h3 id="introduction" align="center"> 1. Introduction </h3>
+
+<h3 id="installation" align="center> 1. Installation of AcademicSOS </h4>
+  <p>
+    <b> For Android Users: </b>
+    <a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS.apk"> Download .apk file</a>
+  </p>
+  <p>
+    <b> For ios Users: </b>
+    Unfortunately, a paid developer account is required. Install the app by cloning the repo following the steps
+    <a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/Docs/DEVELOPERGUIDE.md/#settingUp"> here </a>.
+  </p>
+  
+<h3 id="introduction" align="center"> 2. Introduction </h3>
    <p>
       AcademicSOS is a cross-platform mobile application that allows NUS students, professors and teaching assistants to easily book, create and keep track of consultations.
    </p>
@@ -41,7 +53,7 @@
      </a>
    </p>
 
-<h3 id="userFlow" align="center"> 2. User Flow </h3>
+<h3 id="userFlow" align="center"> 4. User Flow </h3>
    <p>
       Depending on the user access, each user will have different sets of options available to them.
    </p>
@@ -52,8 +64,8 @@
       <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/Docs/DocImages/Professors.png"  height="300">
    </p>
 
-<h3 id="features" align="center"> 3. Features </h3>
-<h4 id="loginFeature"> 3i. Login </h4>
+<h3 id="features" align="center"> 4. Features </h3>
+<h4 id="loginFeature"> 4i. Login </h4>
   <p>
     Users just have to login using their NUS account using their NUSNETID and password and firebase authentication will check for account legitimacy before logging in. For the project, due to delays in getting approval for the LumiNUS API, we decided to manually create our users.
   </p>
@@ -91,7 +103,7 @@
      <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/Docs/DocVideos/Login%20Video.gif"  height="500">
   </p>
 
-<h4 id="bookConsultFeature"> 3ii. Book a consultation </h4>
+<h4 id="bookConsultFeature"> 4ii. Book a consultation </h4>
   <p>
     Students of a module can book a consultation only to their respective TAs from their tutorial group or Professors.
     Students are allowed to pick the TA from their tutorial slot, selecting the intended booking date and time, indicating the location in
@@ -112,7 +124,7 @@
      <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/Docs/DocVideos/BookConsult%20Video.gif"  height="500">
   </p>
 
-<h4 id="createConsultFeature"> 3iii. Create a consultation </h4>
+<h4 id="createConsultFeature"> 4iii. Create a consultation </h4>
   <p>
     Professors/Teaching Assistants (TAs) of a module can create a consultation slot to meet students in their respective tutorial group in the
     event that there is a need for project review and feedback for certain students for instance.
@@ -130,7 +142,7 @@
      <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/Docs/DocVideos/CreateConsult%20Video.gif"  height="500">
   </p>
 
-<h4 id="manageBookingsFeature"> 3iv. Manage Bookings </h4>
+<h4 id="manageBookingsFeature"> 4iv. Manage Bookings </h4>
   <p>
     Manage bookings are made available to all users to allow them to look at their consultations that are pending or approved. In this screen,
     the user can filter by Status (pending or confirmed), academic week and day. The consultations are all sorted in ascending order by date then by time.
@@ -163,7 +175,7 @@
      <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/Docs/DocImages/Book%20Consult%20Logic.png"  height="300">
   </p>
 
-<h4 id="publicConsultFeature"> 3v. Public Consultation </h4>
+<h4 id="publicConsultFeature"> 4v. Public Consultation </h4>
   <p>
     With the create consult function, a teaching assistant (creator of consultation slot) has the option to create a public consultation slot
     depending on his/her availability and indicating the size of the consultation. Upon the creation of the public consultation, the consultation
@@ -201,14 +213,14 @@
      <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/Docs/DocImages/CreateConsult%20Logic.png"  height="300">
   </p>
 
-<h4 id="priorityFeature"> 3vi. Priority Points System (To be completed) </h4>
+<h4 id="priorityFeature"> 4vi. Priority Points System (To be completed) </h4>
   <p>
   Priority points get deducted if the student does not turn up for an approved consultation on the day itself. This will affect their future
   consultation requests and will rank their request at the bottom when showing up in the pending section of their TA’s Manage Booking screen,
   in the case where another student has booked the consultation on the same date and time.
   </p>
 
-<h4 id="attendanceFeature"> 3vii. Attendance Scanning with QR Code </h4>
+<h4 id="attendanceFeature"> 4vii. Attendance Scanning with QR Code </h4>
   <p>
     If the user is a student, in the Manage Booking screen, when the user clicks into the consultation during the consultation slot
     and select the scan attendance on option, the camera application will be opened to scan for the correct QR code displayed on the Manage
@@ -224,18 +236,7 @@
      <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/Docs/DocVideos/QRCodeStudent%20Video.gif"  height="500">
   </p>
 
-<h4 id="notificationFeature"> 3viii. Notification Reminder (To be completed) </h4>
+<h4 id="notificationFeature"> 4viii. Notification Reminder (To be completed) </h4>
   <p>
     Closer to the day of the consultation, a notification will be sent out to notify users of their upcoming consultations.
-  </p>
-
-<h4 id="installation"> 4. Installation of AcademicSOS </h4>
-  <p>
-    <b> For Android Users: </b>
-    <a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS.apk"> Download .apk file</a>
-  </p>
-  <p>
-    <b> For ios Users: </b>
-    Unfortunately, a paid developer account is required. Install the app by cloning the repo following the steps
-    <a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/Docs/DEVELOPERGUIDE.md/#settingUp"> here </a>.
   </p>
