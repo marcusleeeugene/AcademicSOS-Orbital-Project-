@@ -27,7 +27,7 @@
       </li>
    </ol>
 
-<h3 id="installation" align="center"> 1. Installation of AcademicSOS </h4>
+<h3 id="installation" align="center"> 1. Installation </h4>
   <p>
     <b> For Android Users: </b>
     <a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS.apk"> Download .apk file</a>
@@ -52,7 +52,7 @@
      </a>
    </p>
 
-<h3 id="userFlow" align="center"> 4. User Flow </h3>
+<h3 id="userFlow" align="center"> 3. User Flow </h3>
    <p>
       Depending on the user access, each user will have different sets of options available to them.
    </p>
