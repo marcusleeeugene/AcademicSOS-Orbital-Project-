@@ -35,9 +35,9 @@
   <p>
     <b> For ios Users: </b>
     Unfortunately, a paid developer account is required. Install the app by cloning the repo following the steps
-    <a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/Docs/DEVELOPERGUIDE.md/#settingUp"> here </a>.
+    <a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/tree/master/AcademicSOS-RN#developerGuide/#settingUp"> here </a>.
   </p>
-  
+
 <h3 id="introduction" align="center"> 2. Introduction </h3>
    <p>
       AcademicSOS is a cross-platform mobile application that allows NUS students, professors and teaching assistants to easily book, create and keep track of consultations.
