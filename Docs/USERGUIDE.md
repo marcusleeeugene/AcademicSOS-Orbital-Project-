@@ -35,7 +35,7 @@
   <p>
     <b> For ios Users: </b>
     Unfortunately, a paid developer account is required. Install the app by cloning the repo following the steps
-    <a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/tree/master/AcademicSOS-RN#developerGuide/#settingUp"> here </a>.
+    <a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/tree/master/AcademicSOS-RN/#settingUp"> here </a>.
   </p>
 
 <h3 id="introduction" align="center"> 2. Introduction </h3>
