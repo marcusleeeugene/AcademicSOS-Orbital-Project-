@@ -82,47 +82,58 @@ export default function CreateConsultScreen({ route, navigation }) {
     }
   };
 
+  const checkBlankField = () => {
+    if ((consultType == "Public" && size == "") || (consultType == "Private" && selectedStudents == "") || consultType == "" || date == "" || startTime == "" || endTime == "" || location == "") {
+      return true;
+    }
+    return false;
+  };
+
   const createConsultation = () => {
-    consultType == "Public"
-      ? CreateConsultFB.getWeekRange().then((weekRange) => {
-          CreateConsultFB.addPublicBooking(
-            userID,
-            moduleCode,
-            date,
-            startTime,
-            endTime,
-            location,
-            consultType,
-            { id: userID, name: userName },
-            size,
-            agenda,
-            "Pending",
-            currentDate,
-            currentTime,
-            weekRange
-          );
-        })
-      : CreateConsultFB.getWeekRange().then((weekRange) => {
-          CreateConsultFB.addPrivateBooking(
-            userID,
-            moduleCode,
-            date,
-            startTime,
-            endTime,
-            location,
-            consultType,
-            { id: userID, name: userName },
-            selectedStudents,
-            selectedStudents.length,
-            agenda,
-            "Pending",
-            currentDate,
-            currentTime,
-            weekRange
-          );
-        });
-    alert("Successfully booked! Pls check your booking in Manage Bookings!");
-    navigation.navigate("Home");
+    if (checkBlankField()) {
+      alert("Pls fill in all required fields before proceeding!");
+    } else {
+      consultType == "Public"
+        ? CreateConsultFB.getWeekRange().then((weekRange) => {
+            CreateConsultFB.addPublicBooking(
+              userID,
+              moduleCode,
+              date,
+              startTime,
+              endTime,
+              location,
+              consultType,
+              { id: userID, name: userName },
+              size,
+              agenda,
+              "Pending",
+              currentDate,
+              currentTime,
+              weekRange
+            );
+          })
+        : CreateConsultFB.getWeekRange().then((weekRange) => {
+            CreateConsultFB.addPrivateBooking(
+              userID,
+              moduleCode,
+              date,
+              startTime,
+              endTime,
+              location,
+              consultType,
+              { id: userID, name: userName },
+              selectedStudents,
+              selectedStudents.length,
+              agenda,
+              "Pending",
+              currentDate,
+              currentTime,
+              weekRange
+            );
+          });
+      alert("Successfully booked! Pls check your booking in Manage Bookings!");
+      navigation.navigate("Home");
+    }
   };
 
   const updateConsultation = () => {

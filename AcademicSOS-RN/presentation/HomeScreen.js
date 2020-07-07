@@ -7,7 +7,6 @@ import { FlatGrid } from "react-native-super-grid";
 import BreadCrumb from "../components/BreadCrumb";
 import { YellowBox } from "react-native";
 import HomeFB from "../firebase/HomeFireBase.js";
-import Spinner from "react-native-loading-spinner-overlay";
 import * as firebase from "firebase";
 
 export default function HomeScreen({ route, navigation }) {
@@ -22,12 +21,10 @@ export default function HomeScreen({ route, navigation }) {
 
   const { userID, firstScreen } = route.params;
   const [userType, setUserType] = useState("");
-  const [spinner, setSpinner] = useState(false);
 
   const navHistory = [{ dest: firstScreen, alt_dest: "" }];
 
   useEffect(() => {
-    // const timer = setTimeout(() => setSpinner(!spinner), 3000);
     var tempUserType = "Student";
     HomeFB.checkUserRole(userID).then((data) => {
       if (data.includes("Professor")) {
@@ -37,8 +34,6 @@ export default function HomeScreen({ route, navigation }) {
       }
       setUserType(tempUserType);
     });
-
-    return () => clearTimeout(timer);
   }, []);
 
   const logOut = () => {
@@ -93,7 +88,6 @@ export default function HomeScreen({ route, navigation }) {
   } else {
     return (
       <View>
-        {/* <Spinner visible={spinner} textContent={"Loading..."} textStyle={styles.spinnerTextStyle} /> */}
         <BreadCrumb navHistory={navHistory} />
         <View style={styles.body}>
           <Text style={styles.title}>Welcome {userID} !</Text>

@@ -75,29 +75,40 @@ export default function BookConsultScreen({ route, navigation }) {
     }
   };
 
-  const bookConsultation = () => {
-    var allStudents = selectedStudents.concat(userData); //all students included in consult(including current student who initiate booking)
-    BookConsultFB.getWeekRange().then((weekRange) => {
-      BookConsultFB.addBooking(
-        userID,
-        moduleCode,
-        { id: chosenTutorID, name: chosenTutor },
-        date,
-        startTime,
-        endTime,
-        location,
-        allStudents,
-        allStudents.length,
-        agenda,
-        "Pending",
-        currentDate,
-        currentTime,
-        weekRange
-      );
-    });
+  const checkBlankField = () => {
+    if (chosenTutor == "" || date == "" || startTime == "" || endTime == "" || location == "") {
+      return true;
+    }
+    return false;
+  };
 
-    alert("Successfully booked! Pls check your booking in Manage Bookings!");
-    navigation.navigate("Home");
+  const bookConsultation = () => {
+    if (checkBlankField()) {
+      alert("Pls fill in all required fields before proceeding!");
+    } else {
+      var allStudents = selectedStudents.concat(userData); //all students included in consult(including current student who initiate booking)
+      BookConsultFB.getWeekRange().then((weekRange) => {
+        BookConsultFB.addBooking(
+          userID,
+          moduleCode,
+          { id: chosenTutorID, name: chosenTutor },
+          date,
+          startTime,
+          endTime,
+          location,
+          allStudents,
+          allStudents.length,
+          agenda,
+          "Pending",
+          currentDate,
+          currentTime,
+          weekRange
+        );
+      });
+
+      alert("Successfully booked! Pls check your booking in Manage Bookings!");
+      navigation.navigate("Home");
+    }
   };
   useEffect(() => {
     var loadedTA = [];

@@ -10,8 +10,8 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-nat
 const dateTimeWarning = require("moment");
 dateTimeWarning.suppressDeprecationWarnings = true;
 
-export var currentDate = moment(new Date(), "DD-MMM-YY").format();
-export var currentTime = moment(new Date(), "hh:mm:ss A").format();
+export var currentDate = moment(new Date()).format("DD-MMM-YY");
+export var currentTime = moment(new Date()).format("hh:mm:ss A");
 
 const DateTime = (props) => {
   let [fontsLoaded] = useFonts({
