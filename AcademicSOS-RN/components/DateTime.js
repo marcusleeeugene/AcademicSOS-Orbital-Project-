@@ -6,8 +6,12 @@ import DateTimePicker from "react-native-modal-datetime-picker";
 import moment from "moment";
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen";
 
-export var currentDate = moment(new Date()).format("DD-MMM-YY");
-export var currentTime = moment(new Date()).format("hh:mm:ss A");
+// Suppress the warnings
+const dateTimeWarning = require("moment");
+dateTimeWarning.suppressDeprecationWarnings = true;
+
+export var currentDate = moment(new Date(), "DD-MMM-YY").format();
+export var currentTime = moment(new Date(), "hh:mm:ss A").format();
 
 const DateTime = (props) => {
   let [fontsLoaded] = useFonts({

@@ -5,8 +5,9 @@ import { AppLoading } from "expo";
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen";
 import { FlatGrid } from "react-native-super-grid";
 import BreadCrumb from "../components/BreadCrumb";
-import { YellowBox } from 'react-native'
+import { YellowBox } from "react-native";
 import HomeFB from "../firebase/HomeFireBase.js";
+import Spinner from "react-native-loading-spinner-overlay";
 import * as firebase from "firebase";
 
 export default function HomeScreen({ route, navigation }) {
@@ -14,16 +15,19 @@ export default function HomeScreen({ route, navigation }) {
     "Righteous-Regular": require("../assets/fonts/Righteous-Regular.ttf"),
   });
 
-  YellowBox.ignoreWarnings([ //Ignores flatlist warning on rendering
-    'VirtualizedLists should never be nested', // TODO: Remove when fixed in future updates
-  ])
+  YellowBox.ignoreWarnings([
+    //Ignores flatlist warning on rendering
+    "VirtualizedLists should never be nested", // TODO: Remove when fixed in future updates
+  ]);
 
   const { userID, firstScreen } = route.params;
   const [userType, setUserType] = useState("");
+  const [spinner, setSpinner] = useState(false);
 
   const navHistory = [{ dest: firstScreen, alt_dest: "" }];
 
   useEffect(() => {
+    // const timer = setTimeout(() => setSpinner(!spinner), 3000);
     var tempUserType = "Student";
     HomeFB.checkUserRole(userID).then((data) => {
       if (data.includes("Professor")) {
@@ -33,7 +37,9 @@ export default function HomeScreen({ route, navigation }) {
       }
       setUserType(tempUserType);
     });
-  });
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const logOut = () => {
     firebase
@@ -87,6 +93,7 @@ export default function HomeScreen({ route, navigation }) {
   } else {
     return (
       <View>
+        {/* <Spinner visible={spinner} textContent={"Loading..."} textStyle={styles.spinnerTextStyle} /> */}
         <BreadCrumb navHistory={navHistory} />
         <View style={styles.body}>
           <Text style={styles.title}>Welcome {userID} !</Text>
@@ -127,6 +134,9 @@ export default function HomeScreen({ route, navigation }) {
 }
 
 const styles = StyleSheet.create({
+  spinnerTextStyle: {
+    color: "#FFF",
+  },
   body: {
     height: hp("100%"),
     width: wp("100%"),
