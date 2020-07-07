@@ -102,8 +102,8 @@ export default function PublicConsultScreen({ route, navigation }) {
       <View style={styles.modalView}>
         <Text style={styles.modalTitle}> Week: </Text>
         <ScrollView>
-          {weekList.map((item) => (
-            <TouchableOpacity key={item.key} style={styles.modalBtn} onPress={() => updateModalChoice("Week#" + item.week)}>
+          {weekList.map((item, index) => (
+            <TouchableOpacity key={index} style={styles.modalBtn} onPress={() => updateModalChoice("Week#" + item.week)}>
               <Text style={styles.modalBtnText}> {item.week} </Text>
             </TouchableOpacity>
           ))}
@@ -118,8 +118,8 @@ export default function PublicConsultScreen({ route, navigation }) {
       <View style={styles.modalView}>
         <Text style={styles.modalTitle}> Day: </Text>
         <ScrollView>
-          {days.map((item) => (
-            <TouchableOpacity key={item.key} style={styles.modalBtn} onPress={() => updateModalChoice("Day#" + item.key)}>
+          {days.map((item, index) => (
+            <TouchableOpacity key={index} style={styles.modalBtn} onPress={() => updateModalChoice("Day#" + item.key)}>
               <Text style={styles.modalBtnText}> {item.key} </Text>
             </TouchableOpacity>
           ))}
@@ -137,10 +137,10 @@ export default function PublicConsultScreen({ route, navigation }) {
             <Text style={styles.dateTime_Text}> {item.consultStartTime} </Text>
           </View>
           <TouchableOpacity
-            key = {"consultBtn" + index}
+            key={"consultBtn" + index}
             style={[styles.moduleContainer, { backgroundColor: item.color }]}
             onPress={() => {
-                navigation.navigate("Student Pending", {
+              navigation.navigate("Student Pending", {
                 fourthScreen: "Info",
                 thirdScreen: item.module,
                 secondScreen: secondScreen,
@@ -148,7 +148,7 @@ export default function PublicConsultScreen({ route, navigation }) {
                 userID: userID,
                 consultDetails: item,
                 bookingId: item.bookingId,
-              })
+              });
             }}
           >
             <Text style={styles.consultationInfoMod}>

@@ -5,7 +5,7 @@ import { AppLoading } from "expo";
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen";
 import { FlatGrid } from "react-native-super-grid";
 import BreadCrumb from "../components/BreadCrumb";
-import { YellowBox } from 'react-native'
+import { YellowBox } from "react-native";
 import HomeFB from "../firebase/HomeFireBase.js";
 import * as firebase from "firebase";
 
@@ -14,9 +14,10 @@ export default function HomeScreen({ route, navigation }) {
     "Righteous-Regular": require("../assets/fonts/Righteous-Regular.ttf"),
   });
 
-  YellowBox.ignoreWarnings([ //Ignores flatlist warning on rendering
-    'VirtualizedLists should never be nested', // TODO: Remove when fixed in future updates
-  ])
+  YellowBox.ignoreWarnings([
+    //Ignores flatlist warning on rendering
+    "VirtualizedLists should never be nested", // TODO: Remove when fixed in future updates
+  ]);
 
   const { userID, firstScreen } = route.params;
   const [userType, setUserType] = useState("");
@@ -33,7 +34,7 @@ export default function HomeScreen({ route, navigation }) {
       }
       setUserType(tempUserType);
     });
-  });
+  }, []);
 
   const logOut = () => {
     firebase
@@ -127,6 +128,9 @@ export default function HomeScreen({ route, navigation }) {
 }
 
 const styles = StyleSheet.create({
+  spinnerTextStyle: {
+    color: "#FFF",
+  },
   body: {
     height: hp("100%"),
     width: wp("100%"),

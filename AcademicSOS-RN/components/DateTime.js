@@ -6,6 +6,10 @@ import DateTimePicker from "react-native-modal-datetime-picker";
 import moment from "moment";
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen";
 
+// Suppress the warnings
+const dateTimeWarning = require("moment");
+dateTimeWarning.suppressDeprecationWarnings = true;
+
 export var currentDate = moment(new Date()).format("DD-MMM-YY");
 export var currentTime = moment(new Date()).format("hh:mm:ss A");
 

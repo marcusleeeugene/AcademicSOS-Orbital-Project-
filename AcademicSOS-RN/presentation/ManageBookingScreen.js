@@ -125,8 +125,8 @@ export default function ManageBookingScreen({ route, navigation }) {
       <View style={styles.modalView}>
         <Text style={styles.modalTitle}> Week: </Text>
         <ScrollView>
-          {weekList.map((item) => (
-            <TouchableOpacity key={item.key} style={styles.modalBtn} onPress={() => updateModalChoice("Week#" + item.week)}>
+          {weekList.map((item, index) => (
+            <TouchableOpacity key={index} style={styles.modalBtn} onPress={() => updateModalChoice("Week#" + item.week)}>
               <Text style={styles.modalBtnText}> {item.week} </Text>
             </TouchableOpacity>
           ))}
@@ -141,8 +141,8 @@ export default function ManageBookingScreen({ route, navigation }) {
       <View style={styles.modalView}>
         <Text style={styles.modalTitle}> Day: </Text>
         <ScrollView>
-          {days.map((item) => (
-            <TouchableOpacity key={item.key} style={styles.modalBtn} onPress={() => updateModalChoice("Day#" + item.key)}>
+          {days.map((item, index) => (
+            <TouchableOpacity key={index} style={styles.modalBtn} onPress={() => updateModalChoice("Day#" + item.key)}>
               <Text style={styles.modalBtnText}> {item.key} </Text>
             </TouchableOpacity>
           ))}
