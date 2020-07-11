@@ -8,8 +8,7 @@ import BreadCrumb from "../components/BreadCrumb";
 import { YellowBox } from "react-native";
 import * as firebase from "firebase";
 import HomeFB from "../firebase/HomeFireBase.js";
-//import Notification from "../components/Notification.js";
-
+import PushNotification from "../components/PushNotification.js";
 
 export default function HomeScreen({ route, navigation }) {
   let [fontsLoaded] = useFonts({
@@ -23,6 +22,8 @@ export default function HomeScreen({ route, navigation }) {
 
   const { userID, firstScreen } = route.params;
   const [userType, setUserType] = useState("");
+
+  PushNotification(); //Initialize notifications for expo app
 
   const navHistory = [{ dest: firstScreen, alt_dest: "" }];
 
