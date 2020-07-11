@@ -9,6 +9,7 @@ const InputDataFB = {
       .then(
         database.ref(`users/${role}/${id}`).set({
           name: name,
+          pushToken: " "
         })
       )
       .catch(function (error) {
