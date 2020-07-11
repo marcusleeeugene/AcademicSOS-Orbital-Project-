@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useFonts } from "@use-expo/font";
+import { useFonts } from "@expo-google-fonts/inter";
 import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, ScrollView } from "react-native";
 import { AppLoading } from "expo";
 import { FlatGrid } from "react-native-super-grid";
@@ -47,7 +47,7 @@ export default function SelectModuleScreen({ route, navigation }) {
           <Text style={styles.title}> Select a module </Text>
           <FlatGrid
             itemDimension={130}
-            items={modules}
+            data={modules}
             style={styles.gridView}
             renderItem={({ item }) => (
               <View style={[styles.itemContainer, { backgroundColor: item.code }]}>

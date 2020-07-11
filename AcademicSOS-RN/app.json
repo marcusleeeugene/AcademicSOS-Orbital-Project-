@@ -1,8 +1,7 @@
 {
   "expo": {
-    "name": "AcademicSOS",
+    "name": "AcademicSOS-RN",
     "slug": "AcademicSOS-RN",
-    "platforms": ["ios", "android", "web"],
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/AppIcon.png",
@@ -14,7 +13,9 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.yourcompany.AcademicSOS",
@@ -23,6 +24,9 @@
     "android": {
       "package": "com.yourcompany.AcademicSOS",
       "versionCode": 1
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
     }
   }
 }

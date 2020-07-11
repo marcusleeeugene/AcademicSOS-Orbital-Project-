@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useFonts } from "@use-expo/font";
+import { useFonts } from "@expo-google-fonts/inter";
 import { AppLoading } from "expo";
 import { Text, TextInput, StyleSheet, View, Image, TouchableOpacity } from "react-native";
 import DateTimePicker from "react-native-modal-datetime-picker";

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useFonts } from "@use-expo/font";
+import { useFonts } from "@expo-google-fonts/inter";
 import { StyleSheet, Text, View, Image, Alert, FlatList } from "react-native";
 import { AppLoading } from "expo";
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen";

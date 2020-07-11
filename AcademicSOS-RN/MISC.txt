@@ -12,21 +12,23 @@ https://docs.expo.io/versions/latest/sdk/bar-code-scanner/ (expo barcode scanner
 https://docs.expo.io/versions/latest/sdk/permissions/ (expo permissions)
 https://api.nusmods.com/v2/ (NUS Mods)
 https://docs.expo.io/versions/latest/sdk/notifications/ (expo notifications)
+https://github.com/react-native-community/react-native-svg (svg)
 
-1) npm install react-native-responsive-screen --save
-2) npm i react-native-modal-datetime-picker @react-native-community/datetimepicker
-3) npm install react-native-super-grid
-4) npm i react-native-modal
-5) npm install moment
-6) npm i react-native-keyboard-aware-scroll-view --save
+1) expo install react-native-responsive-screen
+2) expo install react-native-modal-datetime-picker @react-native-community/datetimepicker
+3) expo install react-native-super-grid
+4) expo install react-native-modal
+5) expo install moment
+6) expo install react-native-keyboard-aware-scroll-view
 7) expo install firebase
-8) npm install react-native-app-auth
-9) npm install @react-navigation/native
-10) npm install react-native-reanimated react-native-gesture-handler react-native-screens react-native-safe-area-context @react-native-community/masked-view
-11) npm install @react-navigation/stack
-12) npm install react-native-multiple-select --save
-13) expo install react-native-custom-qr-codes-expo
+8) expo install react-native-app-auth
+9) expo install @react-navigation/native
+10) expo install react-native-reanimated react-native-gesture-handler react-native-screens react-native-safe-area-context @react-native-community/masked-view
+11) expo install @react-navigation/stack
+12) expo install react-native-multiple-select
+13) expo install react-native-custom-qr-codes-expo react-native-svg
 14) expo install expo-barcode-scanner
 15) expo install expo-permissions
 16) expo install react-native-webview
 17) expo install expo-notifications
+18) expo install expo-font @expo-google-fonts/inter

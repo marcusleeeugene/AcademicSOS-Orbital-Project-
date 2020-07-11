@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { useFonts } from "@use-expo/font";
+import { useFonts } from "@expo-google-fonts/inter";
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import { AppLoading } from "expo";
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen";
 import { FlatGrid } from "react-native-super-grid";
 import BreadCrumb from "../components/BreadCrumb";
 import { YellowBox } from "react-native";
-import HomeFB from "../firebase/HomeFireBase.js";
 import * as firebase from "firebase";
+import HomeFB from "../firebase/HomeFireBase.js";
+//import Notification from "../components/Notification.js";
+
 
 export default function HomeScreen({ route, navigation }) {
   let [fontsLoaded] = useFonts({
@@ -93,7 +95,7 @@ export default function HomeScreen({ route, navigation }) {
           <Text style={styles.title}>Welcome {userID} !</Text>
           <FlatGrid
             itemDimension={130}
-            items={userType == "TA" ? optionTA : userType == "Professor" ? optionProf : optionStudent}
+            data={userType == "TA" ? optionTA : userType == "Professor" ? optionProf : optionStudent}
             style={styles.gridView}
             renderItem={({ item }) => (
               <View style={[styles.optionContainer]}>
