@@ -58,9 +58,9 @@
    </p>
    <br>
    <p align="center">
-      <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/Docs/DocImages/Student.png"  height="300">
-      <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/Docs/DocImages/Teaching Assistant.png"  height="300">
-      <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/Docs/DocImages/Professors.png"  height="300">
+      <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/Docs/DocImages/Student.png"  height="300">
+      <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/Docs/DocImages/Teaching%20Assistant.png"  height="300">
+      <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/Docs/DocImages/Professors.png"  height="300">
    </p>
 
 <h3 id="features" align="center"> 4. Features </h3>
@@ -99,7 +99,7 @@
   </p>
   <br><br>
   <p align="center">
-     <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/Docs/DocVideos/Login%20Video.gif"  height="500">
+     <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/Docs/DocVideos/Login%20Video.gif"  height="500">
   </p>
 
 <h4 id="bookConsultFeature"> 4ii. Book a consultation </h4>
@@ -120,7 +120,7 @@
   </p>
   <br><br>
   <p align="center">
-     <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/Docs/DocVideos/BookConsult%20Video.gif"  height="500">
+     <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/Docs/DocVideos/BookConsult%20Video.gif"  height="500">
   </p>
 
 <h4 id="createConsultFeature"> 4iii. Create a consultation </h4>
@@ -138,7 +138,7 @@
   </p>
   <br><br>
   <p align="center">
-     <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/Docs/DocVideos/CreateConsult%20Video.gif"  height="500">
+     <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/Docs/DocVideos/CreateConsult%20Video.gif"  height="500">
   </p>
 
 <h4 id="manageBookingsFeature"> 4iv. Manage Bookings </h4>
@@ -164,14 +164,14 @@
   </p>
   <br><br>
   <p align="center">
-     <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/Docs/DocVideos/ManageBooking%20Video.gif"  height="500">
+     <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/Docs/DocVideos/ManageBooking%20Video.gif"  height="500">
   </p>
   <p>
     Below is an illustration of the various actions/scenarios that can happen when different buttons are clicked inside the consultation slot of Manage
     Bookings by different groups of users.
   </p>
   <p align="center">
-     <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/Docs/DocImages/Book%20Consult%20Logic.png"  height="300">
+     <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/Docs/DocImages/Book%20Consult%20Logic.png"  height="300">
   </p>
 
 <h4 id="publicConsultFeature"> 4v. Public Consultation </h4>
@@ -191,7 +191,7 @@
   </p>
   <br><br>
   <p align="center">
-     <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/Docs/DocVideos/PublicConsult%20Video.gif"  height="500">
+     <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/Docs/DocVideos/PublicConsult%20Video.gif"  height="500">
   </p>
   <p>
     Alternatively, the teaching assistant can create a private consultation slot where students from the same tutorial group can be added into the
@@ -209,7 +209,7 @@
     and manage bookings.
   <p>
   <p align="center">
-     <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/Docs/DocImages/CreateConsult%20Logic.png"  height="300">
+     <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/Docs/DocVideos/CreateConsult%20Video.gif"  height="300">
   </p>
 
 <h4 id="priorityFeature"> 4vi. Priority Points System (To be completed) </h4>
@@ -231,8 +231,8 @@
   </p>
   <br><br>
   <p align="center">
-     <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/Docs/DocVideos/QRCodeTA%20Video.gif"  height="500">
-     <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/Docs/DocVideos/QRCodeStudent%20Video.gif"  height="500">
+     <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/Docs/DocVideos/QRCodeTA%20Video.gif"  height="500">
+     <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/Docs/DocVideos/QRCodeStudent%20Video.gif"  height="500">
   </p>
 
 <h4 id="notificationFeature"> 4viii. Notification Reminder (To be completed) </h4>

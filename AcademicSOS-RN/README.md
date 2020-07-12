@@ -165,7 +165,7 @@
     </p>
     <br>
     <p align="center">
-       <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/Docs/DocImages/FBOverView.png"  height="400">
+       <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/Docs/DocImages/FBOverView.png"  height="400">
     </p>
     <p>
       As shown below, under the “users” branch, it is further categorised into “professors” and “students” branches while for each individual
