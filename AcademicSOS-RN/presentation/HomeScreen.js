@@ -8,6 +8,7 @@ import BreadCrumb from "../components/BreadCrumb";
 import { YellowBox } from "react-native";
 import * as firebase from "firebase";
 import HomeFB from "../firebase/HomeFireBase.js";
+import * as Notifications from 'expo-notifications';
 import PushNotification from "../components/PushNotification.js";
 
 export default function HomeScreen({ route, navigation }) {
@@ -23,7 +24,7 @@ export default function HomeScreen({ route, navigation }) {
   const { userID, firstScreen } = route.params;
   const [userType, setUserType] = useState("");
 
-  PushNotification(); //Initialize notifications for expo app
+  PushNotification(userID); //Initialize notifications for expo app
 
   const navHistory = [{ dest: firstScreen, alt_dest: "" }];
 
@@ -45,7 +46,10 @@ export default function HomeScreen({ route, navigation }) {
       .signOut()
       .then(function () {
         // Sign-out successful.
-        navigation.navigate("Login");
+        navigation.reset({
+          index: 0,
+          routes: [{ name: 'Login' }],
+        });
         alert("Signed out successfully!");
       })
       .catch(function (error) {
