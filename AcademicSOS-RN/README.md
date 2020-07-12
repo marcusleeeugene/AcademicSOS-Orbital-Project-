@@ -24,6 +24,11 @@
 
   <h3 id="settingUp" align="center"> 1. Setting Up </h3>
     <p>
+      Project was running on <a href="https://dev.to/expo/expo-sdk-38-is-now-available-5aa0"> Expo SDK 38: "~38.0.8"</a>. As such, remember to
+      read the changelog for breaking changes and version compatibility for some libraries.
+      <a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/package.json"> View project environment information </a>
+    </p>
+    <p>
       <b> The following are instructions to run the application locally: </b>
     </p>
     <ol>
@@ -53,7 +58,7 @@
           expo install expo-font @expo-google-fonts/inter
         </code>
       </pre>
-      <li> Finally, run with: <code> expo start </code>  Then, choose your preferred simulator and the application will run as shown below </li>
+      <li> Finally, run with: <code>expo start</code> Then, choose your preferred simulator and the application will run as shown below </li>
   <br>
   <p align="center">
      <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/Docs/DocImages/simulator.png"  height="500">
