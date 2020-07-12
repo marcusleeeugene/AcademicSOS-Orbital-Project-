@@ -1,7 +1,7 @@
 <h1 align="center"> AcademicSOS - Developer Guide </h1>
 
   <ul>
-    <li><a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/Docs/USERGUIDE.md#userGuide"> User Guide </a> - Step-by-step guide to learn about app functionality and usage </li>
+    <li><a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/Docs/USERGUIDE.md#userGuide"> User Guide </a> - Step-by-step guide to learn about app functionality and usage </li>
     <li><a"> Developer Guide </a> - Developers guide and application architecture </li>
     <li><a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project#learningOutcomes"> Learning Outcomes </a></li>
     <li><a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project#aboutUs"> About Us </a></li>
@@ -33,28 +33,30 @@
       <li> Install the following required library dependencies in the terminal: </li>
       <pre>
         <code>
-          npm install react-native-responsive-screen --save
-          npm i react-native-modal-datetime-picker @react-native-community/datetimepicker
-          npm install react-native-super-grid
-          npm i react-native-modal
-          npm install moment
-          npm i react-native-keyboard-aware-scroll-view --save
+          expo install react-native-responsive-screen
+          expo install react-native-modal-datetime-picker @react-native-community/datetimepicker
+          expo install react-native-super-grid
+          expo install react-native-modal
+          expo install moment
+          expo install react-native-keyboard-aware-scroll-view
           expo install firebase
-          npm install react-native-app-auth
-          npm install @react-navigation/native
-          npm install react-native-reanimated react-native-gesture-handler react-native-screens react-native-safe-area-context @react-native-community/masked-view
-          npm install @react-navigation/stack
-          npm install react-native-multiple-select --save
-          expo install react-native-custom-qr-codes-expo
+          expo install react-native-app-auth
+          expo install @react-navigation/native
+          expo install react-native-reanimated react-native-gesture-handler react-native-screens react-native-safe-area-context @react-native-community/masked-view
+          expo install @react-navigation/stack
+          expo install react-native-multiple-select
+          expo install react-native-custom-qr-codes-expo react-native-svg
           expo install expo-barcode-scanner
           expo install expo-permissions
           expo install react-native-webview
+          expo install expo-notifications
+          expo install expo-font @expo-google-fonts/inter
         </code>
       </pre>
       <li> Finally, run with: <code> expo start </code>  Then, choose your preferred simulator and the application will run as shown below </li>
   <br>
   <p align="center">
-     <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/Docs/DocImages/simulator.png"  height="500">
+     <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/Docs/DocImages/simulator.png"  height="500">
   </p>
 
   <h3 id="design" align="center"> 2. Design </h3>
@@ -64,7 +66,7 @@
     </p>
     <br>
     <p align="center">
-       <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/Docs/DocImages/Architecture.png"  height="500">
+       <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/Docs/DocImages/Architecture.png"  height="500">
     </p>
     <table align="center" style="width:100%">
       <tr>
@@ -171,7 +173,7 @@
     </p>
     <br>
     <p align="center">
-       <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/Docs/DocImages/FBUserOverView.png"  height="500">
+       <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/Docs/DocImages/FBUserOverView.png"  height="500">
     </p>
     <p>
       As shown below, the module branch consists of the modules available in the semester. And each module will have a sub branch “bookings”
@@ -181,7 +183,7 @@
     </p>
     <br>
     <p align="center">
-       <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/Docs/DocImages/FBModOverView.png"  height="600">
+       <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/Docs/DocImages/FBModOverView.png"  height="600">
     </p>
 
   <h3 id="implementation" align="center"> 3. Implementation </h3>
@@ -205,5 +207,6 @@
       <li><a href="https://github.com/eddyoc/react-native-custom-qr-codes-expo"> Eddyoc: react-native-custom-qr-codes-expo </a></li>
       <li><a href="https://docs.expo.io/versions/latest/sdk/bar-code-scanner/"> Expo: bar-code-scanner </a></li>
       <li><a href="https://docs.expo.io/versions/latest/sdk/permissions/"> Expo: permissions </a></li>
+      <li><a href="https://docs.expo.io/versions/latest/sdk/notifications/"> Expo: notifications </a></li>
       <li><a href="https://firebase.google.com/docs/database"> Google: Firebase Real-time Database </a></li>
     </ul>

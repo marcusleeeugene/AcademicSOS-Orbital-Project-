@@ -12,13 +12,13 @@
    <br>
    <p align="center">
      <a href="https://youtu.be/Cylr8NCoRLQ">
-       <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/Docs/DocImages/AcademicSOS_VideoGuide.jpg"  height="300">
+       <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/Docs/DocImages/AcademicSOS_VideoGuide.jpg" height="300">
      </a>
    </p>
 
 <h1 align="center"> Site Map </h1>
    <ul>
-      <li><a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/Docs/USERGUIDE.md#userGuide"> User Guide </a> - Step-by-step guide to learn about app functionality and usage </li>
+      <li><a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/Docs/USERGUIDE.md#userGuide"> User Guide </a> - Step-by-step guide to learn about app functionality and usage </li>
       <li><a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/tree/master/AcademicSOS-RN#developerGuide"> Developer Guide </a> - Developers guide and application architecture </li>
       <li><a href="#learningOutcomes"> Learning Outcomes </a></li>
       <li><a href="#aboutUs"> About Us </a></li>
