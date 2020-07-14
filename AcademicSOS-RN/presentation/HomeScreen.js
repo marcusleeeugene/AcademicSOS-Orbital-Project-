@@ -24,7 +24,7 @@ export default function HomeScreen({ route, navigation }) {
   const { userID, firstScreen } = route.params;
   const [userType, setUserType] = useState("");
 
-  PushNotification(userID); //Initialize notifications for expo app
+  RegisterForPushNotification(userID); //Initialize notifications for expo app
 
   const navHistory = [{ dest: firstScreen, alt_dest: "" }];
 
