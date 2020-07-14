@@ -9,7 +9,7 @@ import { YellowBox } from "react-native";
 import * as firebase from "firebase";
 import HomeFB from "../firebase/HomeFireBase.js";
 import * as Notifications from 'expo-notifications';
-import PushNotification from "../components/PushNotification.js";
+import RegisterForPushNotification from "../components/PushNotification.js";
 
 export default function HomeScreen({ route, navigation }) {
   let [fontsLoaded] = useFonts({
