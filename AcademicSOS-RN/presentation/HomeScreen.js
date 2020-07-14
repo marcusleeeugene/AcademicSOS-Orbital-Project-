@@ -9,7 +9,6 @@ import { YellowBox } from "react-native";
 import * as firebase from "firebase";
 import HomeFB from "../firebase/HomeFireBase.js";
 import * as Notifications from 'expo-notifications';
-import RegisterForPushNotification from "../components/PushNotification.js";
 
 export default function HomeScreen({ route, navigation }) {
   let [fontsLoaded] = useFonts({
@@ -23,8 +22,6 @@ export default function HomeScreen({ route, navigation }) {
 
   const { userID, firstScreen } = route.params;
   const [userType, setUserType] = useState("");
-
-  RegisterForPushNotification(userID); //Initialize notifications for expo app
 
   const navHistory = [{ dest: firstScreen, alt_dest: "" }];
 
@@ -45,6 +42,7 @@ export default function HomeScreen({ route, navigation }) {
       .auth()
       .signOut()
       .then(function () {
+        Notifications.removeAllNotificationListeners(); //Removes user from receiving notification
         // Sign-out successful.
         navigation.reset({
           index: 0,
@@ -52,9 +50,9 @@ export default function HomeScreen({ route, navigation }) {
         });
         alert("Signed out successfully!");
       })
-      .catch(function (error) {
+      .catch(function (err) {
         // An error happened.
-        alert(error);
+        alert(err);
       });
   };
 

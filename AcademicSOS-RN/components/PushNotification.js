@@ -27,12 +27,8 @@ export default function RegisterForPushNotification(userId) {
 
     // This listener is fired whenever a user taps on or interacts with a notification (works when app is foregrounded, backgrounded, or killed)
     Notifications.addNotificationResponseReceivedListener(response => {
-      console.log(response.notification);
+      console.log(response);
     });
-
-    return () => {
-      Notifications.removeAllNotificationListeners();
-    };
   }, []);
 };
 
