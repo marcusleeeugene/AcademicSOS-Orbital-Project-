@@ -9,6 +9,7 @@ import { YellowBox } from "react-native";
 import * as firebase from "firebase";
 import HomeFB from "../firebase/HomeFireBase.js";
 import * as Notifications from 'expo-notifications';
+import RegisterForPushNotification from "../components/PushNotification.js";
 
 export default function HomeScreen({ route, navigation }) {
   let [fontsLoaded] = useFonts({
@@ -24,6 +25,8 @@ export default function HomeScreen({ route, navigation }) {
   const [userType, setUserType] = useState("");
 
   const navHistory = [{ dest: firstScreen, alt_dest: "" }];
+
+  RegisterForPushNotification(userID); //Initialize notifications for expo app
 
   useEffect(() => {
     var tempUserType = "Student";

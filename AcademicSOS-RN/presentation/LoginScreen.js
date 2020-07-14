@@ -5,7 +5,6 @@ import { AppLoading } from "expo";
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen";
 import * as firebase from "firebase";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import RegisterForPushNotification from "../components/PushNotification.js";
 //import InputDataFB from "../firebase/InputDataFireBase.js";
 
 const window = Dimensions.get("window");
@@ -42,7 +41,6 @@ export default function LoginScreen({ navigation }) {
         .auth()
         .signInWithEmailAndPassword(`${userID}@u.nus.edu`, password)
         .then(() => {
-          RegisterForPushNotification(userID); //Initialize notifications for expo app
           navigation.navigate("Home", {
             userID: userID,
             firstScreen: "Home",
@@ -67,7 +65,7 @@ export default function LoginScreen({ navigation }) {
           }
         });
     } catch (err) {
-      console.log(error.toString());
+      console.log(err.toString());
     }
   };
 
