@@ -27,7 +27,7 @@ export default function CreateConsultScreen({ route, navigation }) {
   const [date, setDate] = useState("");
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
-  const [size, setSize] = useState("");
+  const [size, setSize] = useState(0);
   const [consultType, setConsultType] = useState("");
   const [location, setLocation] = useState("");
   const [agenda, setAgenda] = useState("");
@@ -130,6 +130,15 @@ export default function CreateConsultScreen({ route, navigation }) {
               currentTime,
               weekRange
             );
+            var consultDetails = {
+              creator: userID,
+              ta: { id: userID, name: userName },
+              consultDate: date,
+              consultStartTime: startTime,
+              location: location,
+              participants: selectedStudents
+            }
+            CreateConsultFB.notifyCreateConsultation(moduleCode, "Empty Booking Id", consultDetails);
           });
       alert("Successfully booked! Pls check your booking in Manage Bookings!");
       navigation.navigate("Home");
@@ -281,7 +290,7 @@ export default function CreateConsultScreen({ route, navigation }) {
   const sizeJSX = (
     <View>
       <Text style={styles.itemName}> Size:</Text>
-      <TextInput style={styles.sizeContainer} maxLength={3} keyboardType="numeric" onChangeText={(text) => setSize(text)} value={size} />
+      <TextInput style={styles.sizeContainer} maxLength={3} keyboardType="numeric" onChangeText={(text) => setSize(Number(text))} value={size} />
     </View>
   );
 

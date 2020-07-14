@@ -32,27 +32,6 @@ export default function RegisterForPushNotification(userId) {
   }, []);
 };
 
-// Can use this function below, OR use Expo's Push Notification Tool-> https://expo.io/dashboard/notifications
-export async function sendBookConsultPushNotification(expoPushToken, modCode, bookingId, consultDetails) { //Send Book Consult notifications
-  const message = {
-    to: expoPushToken,
-    sound: 'default',
-    title: `Consultation Request for ${modCode}:`,
-    body: `Request from: ${consultDetails["creator"]}\nTA: ${consultDetails["ta"].name}\nDate: ${consultDetails["consultDate"]} | Time: ${consultDetails["consultStartTime"]}\nLocation: ${consultDetails["location"]}`,
-    data: {bookingId: bookingId},
-  };
-
-  await fetch('https://exp.host/--/api/v2/push/send', {
-    method: 'POST',
-    headers: {
-      Accept: 'application/json',
-      'Accept-encoding': 'gzip, deflate',
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(message),
-  });
-}
-
 async function registerForPushNotificationsAsync(userId) {
   let token;
   if (Constants.isDevice) {
@@ -85,4 +64,45 @@ async function registerForPushNotificationsAsync(userId) {
   }
 
   return token;
+}
+
+// Can use this function below, OR use Expo's Push Notification Tool-> https://expo.io/dashboard/notifications
+export async function sendBookConsultPushNotification(expoPushToken, modCode, bookingId, consultDetails) { //Send Book Consult notifications
+  const message = {
+    to: expoPushToken,
+    sound: 'default',
+    title: `Consultation Request for ${modCode}:`,
+    body: `Request from: ${consultDetails["creator"]}\nTA: ${consultDetails["ta"].name}\nDate: ${consultDetails["consultDate"]} | Time: ${consultDetails["consultStartTime"]}\nLocation: ${consultDetails["location"]}`,
+    data: {bookingId: bookingId},
+  };
+
+  await fetch('https://exp.host/--/api/v2/push/send', {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Accept-encoding': 'gzip, deflate',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(message),
+  });
+}
+
+export async function sendCreateConsultPushNotification(expoPushToken, modCode, bookingId, consultDetails) { //Send Book Consult notifications
+  const message = {
+    to: expoPushToken,
+    sound: 'default',
+    title: `Consultation Suggestion for ${modCode}:`,
+    body: `TA: ${consultDetails["ta"].name}\nDate: ${consultDetails["consultDate"]} | Time: ${consultDetails["consultStartTime"]}\nLocation: ${consultDetails["location"]}`,
+    data: {bookingId: bookingId},
+  };
+
+  await fetch('https://exp.host/--/api/v2/push/send', {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Accept-encoding': 'gzip, deflate',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(message),
+  });
 }

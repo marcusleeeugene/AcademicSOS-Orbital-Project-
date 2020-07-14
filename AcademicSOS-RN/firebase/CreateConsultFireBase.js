@@ -1,5 +1,6 @@
 import * as firebase from "firebase";
 import { database, role } from "./FireBaseConfig.js";
+import { sendCreateConsultPushNotification } from "../components/PushNotification.js";
 
 const CreateConsultFB = {
   getWeekRange: function () {
@@ -54,6 +55,22 @@ const CreateConsultFB = {
       bookTime: bookTime,
       weekRange: weekRange,
     });
+  },
+
+  notifyCreateConsultation: function (modCode, bookingId, consultDetails) { //notify each user of booked consultation
+    var participants = consultDetails["participants"];
+    for (var each in participants) { //Loop through participants
+      var user = participants[each];
+      if (user.altStatus == "Pending") {
+        database
+          .ref(`users/${role(user.id)}/${user.id}`)
+          .once("value")
+          .then((snapshot) => snapshot.val())
+          .then((data) => {
+            sendCreateConsultPushNotification(data.pushToken, modCode, bookingId, consultDetails); //Send notification to students
+          });
+      }
+    }
   },
 
   updateBooking: function (creator, bookingId, modCode, date, startTime, endTime, location, consultType, TA, participants, size, agenda, status, bookDate, bookTime, weekRange) {
