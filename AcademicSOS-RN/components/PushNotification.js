@@ -37,13 +37,13 @@ export default function RegisterForPushNotification(userId) {
 };
 
 // Can use this function below, OR use Expo's Push Notification Tool-> https://expo.io/dashboard/notifications
-export async function sendPushNotification(expoPushToken) {
+export async function sendBookConsultPushNotification(expoPushToken, modCode, bookingId, consultDetails) { //Send Book Consult notifications
   const message = {
     to: expoPushToken,
     sound: 'default',
-    title: 'Original Title',
-    body: 'And here is the body!',
-    data: { data: 'goes here' },
+    title: `Consultation Request for ${modCode}:`,
+    body: `Request from: ${consultDetails["creator"]}\nTA: ${consultDetails["ta"].name}\nDate: ${consultDetails["consultDate"]} | Time: ${consultDetails["consultStartTime"]}\nLocation: ${consultDetails["location"]}`,
+    data: {bookingId: bookingId},
   };
 
   await fetch('https://exp.host/--/api/v2/push/send', {

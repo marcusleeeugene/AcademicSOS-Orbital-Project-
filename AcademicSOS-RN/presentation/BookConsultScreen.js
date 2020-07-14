@@ -9,7 +9,6 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 import Modal from "react-native-modal";
 import BookConsultFB from "../firebase/BookConsultFireBase.js";
 import MultiSelect from "react-native-multiple-select";
-import PushNotification from "../components/PushNotification.js";
 
 export default function BookConsultScreen({ route, navigation }) {
   let [fontsLoaded] = useFonts({
@@ -106,11 +105,20 @@ export default function BookConsultScreen({ route, navigation }) {
           weekRange
         );
       });
-
+      var consultDetails = {
+        creator: userID,
+        ta: { id: chosenTutorID, name: chosenTutor },
+        consultDate: date,
+        consultStartTime: startTime,
+        location: location,
+        participants: allStudents
+      }
+      BookConsultFB.notifyBookConsultation(moduleCode, "Empty Booking Id", consultDetails);
       alert("Successfully booked! Pls check your booking in Manage Bookings!");
       navigation.navigate("Home");
     }
   };
+
   useEffect(() => {
     var loadedTA = [];
     var loadedStudents = [];

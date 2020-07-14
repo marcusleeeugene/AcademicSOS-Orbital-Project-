@@ -1,5 +1,6 @@
 import * as firebase from "firebase";
 import { database, role } from "./FireBaseConfig.js";
+import { sendBookConsultPushNotification } from "../components/PushNotification.js";
 
 const BookConsultFB = {
   checkStudentData: function (id) {
@@ -128,6 +129,29 @@ const BookConsultFB = {
         return students;
       });
   },
+  notifyBookConsultation: function (modCode, bookingId, consultDetails) { //notify each user of booked consultation
+    var participants = consultDetails["participants"];
+    for (var each in participants) { //Loop through participants
+      var user = participants[each];
+      if (user.altStatus == "Pending") {
+        database
+          .ref(`users/${role(user.id)}/${user.id}`)
+          .once("value")
+          .then((snapshot) => snapshot.val())
+          .then((data) => {
+            sendBookConsultPushNotification(data.pushToken, modCode, bookingId, consultDetails); //Send notification to students
+          });
+      }
+    }
+    var ta = consultDetails["ta"];
+    database
+      .ref(`users/${role(ta.id)}/${ta.id}`)
+      .once("value")
+      .then((snapshot) => snapshot.val())
+      .then((data) => {
+        sendBookConsultPushNotification(data.pushToken, modCode, bookingId, consultDetails); //Send notification to TA
+      });
+  }
 };
 
 export default BookConsultFB;
