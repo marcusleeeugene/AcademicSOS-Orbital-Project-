@@ -10,10 +10,7 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-nat
 const dateTimeWarning = require("moment");
 dateTimeWarning.suppressDeprecationWarnings = true;
 
-export var currentDate = moment(new Date()).format("DD-MMM-YY");
-export var currentTime = moment(new Date()).format("hh:mm:ss A");
-
-const DateTime = (props) => {
+export const DateTime = (props) => {
   let [fontsLoaded] = useFonts({
     "Righteous-Regular": require("../assets/fonts/Righteous-Regular.ttf"),
   });

@@ -5,11 +5,12 @@ import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, ScrollView 
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen";
 import BreadCrumb from "../components/BreadCrumb";
 import RadioButton from "../components/RadioButton.js";
-import DateTime, { currentTime, currentDate } from "../components/DateTime.js";
+import DateTime from "../components/DateTime.js";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import CreateConsultFB from "../firebase/CreateConsultFireBase.js";
 import Modal from "react-native-modal";
 import MultiSelect from "react-native-multiple-select";
+import moment from "moment";
 
 export default function CreateConsultScreen({ route, navigation }) {
   let [fontsLoaded] = useFonts({
@@ -107,8 +108,8 @@ export default function CreateConsultScreen({ route, navigation }) {
               size,
               agenda,
               "Pending",
-              currentDate,
-              currentTime,
+              moment(new Date()).format("DD-MMM-YY"),
+              moment(new Date()).format("hh:mm:ss A"),
               weekRange
             );
           })
@@ -136,8 +137,8 @@ export default function CreateConsultScreen({ route, navigation }) {
               consultDate: date,
               consultStartTime: startTime,
               location: location,
-              participants: selectedStudents
-            }
+              participants: selectedStudents,
+            };
             CreateConsultFB.notifyCreateConsultation(moduleCode, "Empty Booking Id", consultDetails);
           });
       alert("Successfully booked! Pls check your booking in Manage Bookings!");
@@ -162,8 +163,8 @@ export default function CreateConsultScreen({ route, navigation }) {
         size,
         agenda,
         "Pending",
-        currentDate,
-        currentTime,
+        moment(new Date()).format("DD-MMM-YY"),
+        moment(new Date()).format("hh:mm:ss A"),
         weekRange
       );
     });

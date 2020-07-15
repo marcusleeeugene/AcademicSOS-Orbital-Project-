@@ -9,6 +9,7 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 import Modal from "react-native-modal";
 import BookConsultFB from "../firebase/BookConsultFireBase.js";
 import MultiSelect from "react-native-multiple-select";
+import moment from "moment";
 
 export default function BookConsultScreen({ route, navigation }) {
   let [fontsLoaded] = useFonts({
@@ -100,8 +101,8 @@ export default function BookConsultScreen({ route, navigation }) {
           allStudents.length,
           agenda,
           "Pending",
-          currentDate,
-          currentTime,
+          moment(new Date()).format("DD-MMM-YY"),
+          moment(new Date()).format("hh:mm:ss A"),
           weekRange
         );
       });
@@ -111,8 +112,8 @@ export default function BookConsultScreen({ route, navigation }) {
         consultDate: date,
         consultStartTime: startTime,
         location: location,
-        participants: allStudents
-      }
+        participants: allStudents,
+      };
       BookConsultFB.notifyBookConsultation(moduleCode, "Empty Booking Id", consultDetails);
       alert("Successfully booked! Pls check your booking in Manage Bookings!");
       navigation.navigate("Home");
