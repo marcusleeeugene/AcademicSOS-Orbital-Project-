@@ -4,7 +4,7 @@ import { AppLoading } from "expo";
 import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, ScrollView } from "react-native";
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen";
 import BreadCrumb from "../components/BreadCrumb";
-import DateTime, { currentTime, currentDate } from "../components/DateTime.js";
+import DateTime from "../components/DateTime.js";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import Modal from "react-native-modal";
 import BookConsultFB from "../firebase/BookConsultFireBase.js";
