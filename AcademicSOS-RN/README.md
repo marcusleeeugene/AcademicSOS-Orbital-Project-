@@ -230,15 +230,18 @@
            <li> Firebase authentication checks for users' account authencity before logging the user into the Home screen. </li>
            <li> Validation is available for both the NUSNET ID and password fields. </li>
          </ul>
+         <br>
          <p>
            View source code: <a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/presentation/LoginScreen.js"> LoginScreen.js </a>
          </p>
+         <br>
       <h5 id="homeScreen"> HomeScreen.js </h5>
          <ul>
            <li> The Home screen shows different options available depending on the user access (Student, Professor, Teaching Assistant). </li>
            <li> Condition rendering is used to render different options onto the screen. </li>
            <li> Users will be asked to be registered for push notifications after render is completed. </li>
          </ul>
+         <br>
          <p>
            View source code: <a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/presentation/HomeScreen.js"> HomeScreen.js </a>
          </p>
