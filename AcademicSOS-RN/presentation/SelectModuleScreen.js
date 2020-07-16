@@ -41,7 +41,7 @@ export default function SelectModuleScreen({ route, navigation }) {
 
   const nextAction = (modCode) => {
     SelectModuleFB.checkBanDateRelease(userID, modCode).then((banDate) => {
-      if (banDate == "" || secondScreen == "Priority Points" || role(userID) == "professors") {
+      if (banDate == ""|| secondScreen == "Priority Points" || role(userID) == "professors") {
         navigation.navigate(secondScreen, {
           thirdScreen: modCode,
           secondScreen: secondScreen,
@@ -49,6 +49,16 @@ export default function SelectModuleScreen({ route, navigation }) {
           userID: userID,
           moduleCode: modCode,
         });
+      } else if (banDate == "permanent") {
+        Alert.alert(
+          `You are permanently banned from ${modCode} consultation bookings`,
+          "Check Priority Points for more information.",
+          [
+            {
+              text: "Ok",
+            },
+          ]
+        );
       } else {
         Alert.alert(
           `You are banned from ${modCode} consultation bookings until ${banDate}`,

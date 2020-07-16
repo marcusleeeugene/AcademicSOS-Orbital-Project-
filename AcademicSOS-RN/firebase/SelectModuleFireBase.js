@@ -23,7 +23,6 @@ const SelectModuleFB = {
         return modules;
       });
   },
-
   checkBanDateRelease: function (id, modCode) {
     //returns a promise that contains ban date
     return database
