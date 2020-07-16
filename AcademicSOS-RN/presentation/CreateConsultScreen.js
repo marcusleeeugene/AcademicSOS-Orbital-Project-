@@ -127,8 +127,8 @@ export default function CreateConsultScreen({ route, navigation }) {
               selectedStudents.length,
               agenda,
               "Pending",
-              currentDate,
-              currentTime,
+              moment(new Date()).format("DD-MMM-YY"),
+              moment(new Date()).format("hh:mm:ss A"),
               weekRange
             );
             var consultDetails = {
