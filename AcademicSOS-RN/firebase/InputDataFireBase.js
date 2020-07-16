@@ -29,12 +29,13 @@ const InputDataFB = {
       acadYear: yearRange,
     });
   },
-  addModuleUnderStudent: function (id, modCode, modName, role, tutorialClass, priorityPoint) {
+  addModuleUnderStudent: function (id, modCode, modName, role, tutorialClass, priorityPoint, banDate) {
     database.ref(`users/students/${id}/modules/${modCode}`).update({
       name: modName,
       role: role,
       tutorialClass: tutorialClass,
       priorityPoint: priorityPoint,
+      banDate: banDate
     });
   },
   addModuleUnderProfessor: function (id, modCode, modName, role, tutorialClass, priorityPoint) {
@@ -86,26 +87,26 @@ InputDataFB.addModule("GER1000", "Quantitative Reasoning: Asking Questions");
 InputDataFB.addAcadYear("2019-2020");
 
 //Add modules under Student
-InputDataFB.addModuleUnderStudent("e0415870", "CS1231S", "Discrete Structures", "Student", "T12", 100);
-InputDataFB.addModuleUnderStudent("e0415870", "CS1101S", "Programming Methodology", "Student", "T16", 100);
-InputDataFB.addModuleUnderStudent("e0415870", "NM3221", "Mobile Interaction Design", "Student", "T19", 100);
-InputDataFB.addModuleUnderStudent("e0415870", "MA1101R", "Linear Algebra I", "TA", "T03", "");
-InputDataFB.addModuleUnderStudent("e0415870", "ES1601", "English Communication", "Student", "T13", 100);
-InputDataFB.addModuleUnderStudent("e0415870", "GEQ1917", "GE: Environment and Sustainability", "Student", "T11", 100);
-InputDataFB.addModuleUnderStudent("e0415870", "MA1521", "Calculus for Computing", "TA", "T03", "");
+InputDataFB.addModuleUnderStudent("e0415870", "CS1231S", "Discrete Structures", "Student", "T12", 50, "");
+InputDataFB.addModuleUnderStudent("e0415870", "CS1101S", "Programming Methodology", "Student", "T16", 50, "");
+InputDataFB.addModuleUnderStudent("e0415870", "NM3221", "Mobile Interaction Design", "Student", "T19", 50, "");
+InputDataFB.addModuleUnderStudent("e0415870", "MA1101R", "Linear Algebra I", "TA", "T03", "", "");
+InputDataFB.addModuleUnderStudent("e0415870", "ES1601", "English Communication", "Student", "T13", 50, "");
+InputDataFB.addModuleUnderStudent("e0415870", "GEQ1917", "GE: Environment and Sustainability", "Student", "T11", 50, "");
+InputDataFB.addModuleUnderStudent("e0415870", "MA1521", "Calculus for Computing", "TA", "T03", "", "");
 
-InputDataFB.addModuleUnderStudent("e0407217", "CS1231S", "Discrete Structures", "TA", "T12", "");
-InputDataFB.addModuleUnderStudent("e0407217", "CS1101S", "Programming Methodology", "Student", "T16", 100);
-InputDataFB.addModuleUnderStudent("e0407217", "NM3221", "Mobile Interaction Design", "Student", "T12", 100);
-InputDataFB.addModuleUnderStudent("e0407217", "MA1101R", "Linear Algebra I", "Student", "T05", "");
-InputDataFB.addModuleUnderStudent("e0407217", "ES1601", "English Communication", "Student", "T03", 100);
+InputDataFB.addModuleUnderStudent("e0407217", "CS1231S", "Discrete Structures", "TA", "T12", "", "");
+InputDataFB.addModuleUnderStudent("e0407217", "CS1101S", "Programming Methodology", "Student", "T16", 50, "");
+InputDataFB.addModuleUnderStudent("e0407217", "NM3221", "Mobile Interaction Design", "Student", "T12", 50, "");
+InputDataFB.addModuleUnderStudent("e0407217", "MA1101R", "Linear Algebra I", "Student", "T05", "", "");
+InputDataFB.addModuleUnderStudent("e0407217", "ES1601", "English Communication", "Student", "T03", 50, "");
 
-InputDataFB.addModuleUnderStudent("e0123456", "CS1231S", "Discrete Structures", "Student", "T12", 100);
-InputDataFB.addModuleUnderStudent("e0123456", "CS2030", "Programming Methodology II", "Student", "T15", 100);
-InputDataFB.addModuleUnderStudent("e0123456", "MA1101R", "Linear Algebra I", "Student", "T03", 100);
-InputDataFB.addModuleUnderStudent("e0123456", "MA1521", "Calculus for Computing", "Student", "T03", 100);
-InputDataFB.addModuleUnderStudent("e0123456", "ES1601", "English Communication", "Student", "T04", 100);
-InputDataFB.addModuleUnderStudent("e0123456", "GER1000", "Quantitative Reasoning: Asking Questions", "Student", "T03", 100);
+InputDataFB.addModuleUnderStudent("e0123456", "CS1231S", "Discrete Structures", "Student", "T12", 50, "");
+InputDataFB.addModuleUnderStudent("e0123456", "CS2030", "Programming Methodology II", "Student", "T15", 50, "");
+InputDataFB.addModuleUnderStudent("e0123456", "MA1101R", "Linear Algebra I", "Student", "T03", 50, "");
+InputDataFB.addModuleUnderStudent("e0123456", "MA1521", "Calculus for Computing", "Student", "T03", 50, "");
+InputDataFB.addModuleUnderStudent("e0123456", "ES1601", "English Communication", "Student", "T04", 50, "");
+InputDataFB.addModuleUnderStudent("e0123456", "GER1000", "Quantitative Reasoning: Asking Questions", "Student", "T03", 50, "");
 
 //Add modules under Professor
 InputDataFB.addModuleUnderProfessor("p0123456", "CS1101S", "Programming Methodology", "Professor", "T16", "");
