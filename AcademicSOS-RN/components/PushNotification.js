@@ -146,7 +146,7 @@ export async function sendConfirmedConsultPushNotification(expoPushToken, modCod
     to: expoPushToken,
     sound: "default",
     title: `Confirmed Consultation for ${modCode}:`,
-    body: `Request from: ${consultDetails["creator"]}\nTA: ${consultDetails["ta"].name}\nDate: ${consultDetails["consultDate"]} | Time: ${consultDetails["consultStartTime"]}\nLocation: ${consultDetails["location"]}`,
+    body: `TA: ${consultDetails["ta"].name}\nDate: ${consultDetails["consultDate"]} | Time: ${consultDetails["consultStartTime"]}\nLocation: ${consultDetails["location"]}`,
     data: {},
   };
 
