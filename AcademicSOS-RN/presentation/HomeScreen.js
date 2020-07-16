@@ -26,7 +26,7 @@ export default function HomeScreen({ route, navigation }) {
 
   const navHistory = [{ dest: firstScreen, alt_dest: "" }];
 
-  RegisterForPushNotification(userID); //Initialize notifications for expo app
+  RegisterForPushNotification(userID, navigation); //Initialize notifications for expo app
 
   useEffect(() => {
     var tempUserType = "Student";

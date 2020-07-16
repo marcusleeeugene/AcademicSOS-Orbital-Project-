@@ -3,6 +3,7 @@ import * as Notifications from "expo-notifications";
 import * as Permissions from "expo-permissions";
 import React, { useState, useEffect } from "react";
 import { Platform } from "react-native";
+import BreadCrumb from "../components/BreadCrumb";
 import { database, role } from "../firebase/FireBaseConfig.js";
 
 Notifications.setNotificationHandler({
@@ -13,7 +14,7 @@ Notifications.setNotificationHandler({
   }),
 });
 
-export default function RegisterForPushNotification(userId) {
+export default function RegisterForPushNotification(userId, navigation) {
   const [expoPushToken, setExpoPushToken] = useState("");
   const [notification, setNotification] = useState(false);
 
@@ -27,7 +28,12 @@ export default function RegisterForPushNotification(userId) {
 
     // This listener is fired whenever a user taps on or interacts with a notification (works when app is foregrounded, backgrounded, or killed)
     Notifications.addNotificationResponseReceivedListener((response) => {
-      console.log(response);
+      //console.log(response);
+      navigation.navigate("Manage Bookings", {
+        secondScreen: "Manage Bookings",
+        firstScreen: "Home",
+        userID: userId,
+      })
     });
   }, []);
 }
@@ -71,14 +77,14 @@ async function registerForPushNotificationsAsync(userId) {
 }
 
 // Can use this function below, OR use Expo's Push Notification Tool-> https://expo.io/dashboard/notifications
-export async function sendBookConsultPushNotification(expoPushToken, modCode, bookingId, consultDetails) {
+export async function sendBookConsultPushNotification(expoPushToken, modCode, consultDetails) {
   //Send Book Consult notifications
   const message = {
     to: expoPushToken,
     sound: "default",
     title: `Consultation Request for ${modCode}:`,
     body: `Request from: ${consultDetails["creator"]}\nTA: ${consultDetails["ta"].name}\nDate: ${consultDetails["consultDate"]} | Time: ${consultDetails["consultStartTime"]}\nLocation: ${consultDetails["location"]}`,
-    data: { bookingId: bookingId },
+    data: {},
   };
 
   await fetch("https://exp.host/--/api/v2/push/send", {
@@ -113,14 +119,14 @@ export async function sendCreateConsultPushNotification(expoPushToken, modCode, 
   });
 }
 
-export async function sendUpdatedConsultPushNotification(expoPushToken, modCode, bookingId, consultDetails) {
+export async function sendUpdatedConsultPushNotification(expoPushToken, modCode, consultDetails) {
   //Send Updated Consult notifications
   const message = {
     to: expoPushToken,
     sound: "default",
     title: `Updated Consultation Suggestion for ${modCode}:`,
     body: `TA: ${consultDetails["ta"].name}\nDate: ${consultDetails["consultDate"]} | Time: ${consultDetails["consultStartTime"]}\nLocation: ${consultDetails["location"]}`,
-    data: { bookingId: bookingId },
+    data: {},
   };
 
   await fetch("https://exp.host/--/api/v2/push/send", {
@@ -134,14 +140,14 @@ export async function sendUpdatedConsultPushNotification(expoPushToken, modCode,
   });
 }
 
-export async function sendConfirmedConsultPushNotification(expoPushToken, modCode, bookingId, consultDetails) {
+export async function sendConfirmedConsultPushNotification(expoPushToken, modCode, consultDetails) {
   //Send Consult Confirmation notifications
   const message = {
     to: expoPushToken,
     sound: "default",
     title: `Confirmed Consultation for ${modCode}:`,
     body: `Request from: ${consultDetails["creator"]}\nTA: ${consultDetails["ta"].name}\nDate: ${consultDetails["consultDate"]} | Time: ${consultDetails["consultStartTime"]}\nLocation: ${consultDetails["location"]}`,
-    data: { bookingId: bookingId },
+    data: {},
   };
 
   await fetch("https://exp.host/--/api/v2/push/send", {
@@ -155,14 +161,14 @@ export async function sendConfirmedConsultPushNotification(expoPushToken, modCod
   });
 }
 
-export async function sendRejectedConsultPushNotification(expoPushToken, modCode, bookingId, consultDetails) {
+export async function sendRejectedConsultPushNotification(expoPushToken, modCode, consultDetails) {
   //Send Rejected Consult notifications
   const message = {
     to: expoPushToken,
     sound: "default",
     title: `Rejected Consultation for ${modCode}:`,
     body: `Request from: ${consultDetails["creator"]}\nTA: ${consultDetails["ta"].name}\nDate: ${consultDetails["consultDate"]} | Time: ${consultDetails["consultStartTime"]}\nLocation: ${consultDetails["location"]}`,
-    data: { bookingId: bookingId },
+    data: {},
   };
 
   await fetch("https://exp.host/--/api/v2/push/send", {
