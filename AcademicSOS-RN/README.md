@@ -224,56 +224,50 @@
   <h3 id="implementation" align="center"> 3. Implementation </h3>
     <h4 id="screenImplementation"> Screens </h4>
       <h5 id="loginScreen"> LoginScreen.js </h5>
-         <p>
-           View source code: <a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/presentation/LoginScreen.js"> LoginScreen.js </a>
-         </p>
          <ul>
            <li> The Login screen ensures that only NUS students and professors can log in. </li>
            <li> Due to delays in getting access to LumiNUS Api, hardcoded values of user details and modules are pumped into the database. </li>
            <li> Firebase authentication checks for users' account authencity before logging the user into the Home screen. </li>
            <li> Validation is available for both the NUSNET ID and password fields. </li>
          </ul>
+         <p>
+           View source code: <a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/presentation/LoginScreen.js"> LoginScreen.js </a>
+         </p>
       <h5 id="homeScreen"> HomeScreen.js </h5>
+         <ul>
+           <li> The Home screen shows different options available depending on the user access (Student, Professor, Teaching Assistant). </li>
+           <li> Condition rendering is used to render different options onto the screen. </li>
+           <li> Users will be asked to be registered for push notifications after render is completed. </li>
+         </ul>
          <p>
            View source code: <a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/presentation/HomeScreen.js"> HomeScreen.js </a>
          </p>
          <p>
            View Database code: <a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/firebase/HomeFireBase.js"> HomeFireBase.js </a>
          </p>
-         <ul>
-           <li> The Home screen shows different options available depending on the user access (Student, Professor, Teaching Assistant). </li>
-           <li> Condition rendering is used to render different options onto the screen. </li>
-           <li> Users will be asked to be registered for push notifications after render is completed. </li>
-         </ul>
       <h5 id="selectModuleScreen"> SelectModuleScreen.js </h5>
+        <ul>
+          <li> The Select Module screen shows all the modules that a user is involved in. </li>
+          <li> Students will be prevented access to selecting a module if they are currently serving a consultation ban for the selected module. </li>
+        </ul>
         <p>
           View source code: <a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/presentation/SelectModuleScreen.js"> SelectModuleScreen.js </a>
         </p>
         <p>
           View Database code: <a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/firebase/SelectModuleFirebase.js"> SelectModuleFirebase.js </a>
         </p>
-        <ul>
-          <li> The Select Module screen shows all the modules that a user is involved in. </li>
-          <li> Students will be prevented access to selecting a module if they are currently serving a consultation ban for the selected module. </li>
-        </ul>
       <h5 id="bookConsultScreen"> BookConsultScreen.js </h5>
+        <ul>
+          <li> The Book Consult screen is available to students only, allowing them to book consultations with their Teaching Assistants who are in their tutorial group. </li>
+          <li> Special Features: DateTimePicker, Modal pop up for selection of TA, Modal pop up for selection of students involved. </li>
+        </ul>
         <p>
           View source code: <a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/presentation/BookConsultScreen.js"> BookConsultScreen.js </a>
         </p>
         <p>
           View Database code: <a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/firebase/BookConsultFireBase.js"> BookConsultFireBase.js </a>
         </p>
-        <ul>
-          <li> The Book Consult screen is available to students only, allowing them to book consultations with their Teaching Assistants who are in their tutorial group. </li>
-          <li> Special Features: DateTimePicker, Modal pop up for selection of TA, Modal pop up for selection of students involved. </li>
-        </ul>
       <h5 id="createConsultScreen"> CreateConsultScreen.js </h5>
-        <p>
-          View source code: <a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/presentation/CreateConsultScreen.js"> CreateConsultScreen.js </a>
-        </p>
-        <p>
-          View Database code: <a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/firebase/CreateConsultFireBase.js"> CreateConsultFireBase.js </a>
-        </p>
         <ul>
           <li> The Create Consult screen is available to teaching assistants and professors only. </li>
           <li> The special features of this screen is similar to the Book Consult screen. </li>
@@ -281,144 +275,151 @@
           <li> If "Public" is selected, the user can choose the class size, and upon creation, the consultation will show up in Public Consult screen for students to join. </li>
           <li> If "Private" is selected, the user can choose to invite students from his/her tutorial group. Students will accept the consultation in the Manage Bookin Screen. </li>
         </ul>
+        <p>
+          View source code: <a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/presentation/CreateConsultScreen.js"> CreateConsultScreen.js </a>
+        </p>
+        <p>
+          View Database code: <a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/firebase/CreateConsultFireBase.js"> CreateConsultFireBase.js </a>
+        </p>
       <h5 id="manageBookingScreen"> ManageBookingScreen.js </h5>
-        <p>
-          View source code: <a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/presentation/ManageBookingScreen.js"> ManageBookingScreen.js </a>
-        </p>
-        <p>
-          View Database code: <a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/firebase/ManageBookingFireBase.js"> ManageBookingFireBase.js </a>
-        </p>
         <ul>
           <li> The Manage Booking screen is available for all users to keep track of their consultation matters. </li>
           <li> There are 3 filter options (Status, Academic week, days) for users to narrow down their consultation searches. </li>
           <li> The Academic week filter performs a check with NUSMods Api to generate the number of weeks into a modal pop up. </li>
           <li> Clicking into a consultation will bring the user into the Pending / Confirmed / Scan screen where specific details of the consultation will be shown. </li>
         </ul>
+        <p>
+          View source code: <a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/presentation/ManageBookingScreen.js"> ManageBookingScreen.js </a>
+        </p>
+        <p>
+          View Database code: <a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/firebase/ManageBookingFireBase.js"> ManageBookingFireBase.js </a>
+        </p>
       <h5 id="priorityPointScreen"> PriorityPointScreen.js </h5>
+        <ul>
+          <li> The Priority Point screen is available for students to keep track of their demerit points from "no-show" consultations. </li>
+          <li> Priority Points is deducted if there is a "no-show" for confirmed consultations. </li>
+          <li> Deduction is done in an extension "ScheduledTasks", hosted live on Heroku. </li>
+        </ul>
         <p>
           View source code: <a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/presentation/PriorityPointScreen.js"> PriorityPointScreen.js </a>
         </p>
         <p>
           View Database code: <a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/firebase/PriorityPointFireBase.js"> PriorityPointFireBase.js </a>
         </p>
-        <ul>
-          <li> The Priority Point screen is available for students to keep track of their demerit points from "no-show" consultations. </li>
-          <li> Priority Points is deducted if there is a "no-show" for confirmed consultations. </li>
-          <li> Deduction is done in an extension "ScheduledTasks", hosted live on Heroku. </li>
-        </ul>
       <h5 id="publicConsultScreen"> PublicConsultScreen.js </h5>
+        <ul>
+          <li> The Public Consult screen is available for students to join in tutorials that TAs/Professors created, regardless of tutorial classes. </li>
+          <li> This screen has the same features as Manage Bookings screen. </li>
+        </ul>
         <p>
           View source code: <a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/presentation/PublicConsultScreen.js"> PublicConsultScreen.js </a>
         </p>
         <p>
           View Database code: <a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/firebase/PublicConsultFireBase.js"> PublicConsultFireBase.js </a>
         </p>
-        <ul>
-          <li> The Public Consult screen is available for students to join in tutorials that TAs/Professors created, regardless of tutorial classes. </li>
-          <li> This screen has the same features as Manage Bookings screen. </li>
-        </ul>
       <h5 id="studentPendingScreen"> StudentPendingScreen.js </h5>
+        <ul>
+          <li> The Student Pending screen, is shown to students when they receive a consultation invitation. </li>
+          <li> By clicking "Accept", they will be accepted into the consultation. </li>
+          <li> By clicking "Reject", they will be removed from the consultation invitation. </li>
+        </ul>
         <p>
           View source code: <a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/presentation/StudentPendingScreen.js"> StudentPendingScreen.js </a>
         </p>
         <p>
           View Database code: <a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/firebase/StudentPendingFireBase.js"> StudentPendingFireBase.js </a>
         </p>
-        <ul>
-          <li> The Student Pending screen, is shown to students when they receive a consultation invitation. </li>
-          <li> By clicking "Accept", they will be accepted into the consultation. </li>
-          <li> By clicking "Reject", they will be removed from the consultation invitation. </li>
-        </ul>
       <h5 id="taPendingScreen"> TAPendingScreen.js </h5>
-        <p>
-          View source code: <a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/presentation/TAPendingScreen.js"> TAPendingScreen.js </a>
-        </p>
-        <p>
-          View Database code: <a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/firebase/TAPendingFireBase.js"> TAPendingFireBase.js </a>
-        </p>
         <ul>
           <li> The TA Pending screen, is shown to TA and Professors when they receive a consultation booking from students. </li>
           <li> By clicking "Accept", they will accept the students' invitation and the consultationStatus will be changed to "Confirmed". </li>
           <li> By clicking "Reject", the consultation request will be deleted. </li>
           <li> Upon confirmation, a notification will be sent out to all participants. </li>
         </ul>
+        <p>
+          View source code: <a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/presentation/TAPendingScreen.js"> TAPendingScreen.js </a>
+        </p>
+        <p>
+          View Database code: <a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/firebase/TAPendingFireBase.js"> TAPendingFireBase.js </a>
+        </p>
       <h5 id="confirmedScreen"> ConfirmedScreen.js </h5>
+        <ul>
+          <li> The Confirmed screen, is shown to all users if their consultation is confirmed. They can then choose to cancel their booking without facing any penalties before the consultation date. </li>
+        </ul>
         <p>
           View source code: <a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/presentation/ConfirmedScreen.js"> ConfirmedScreen.js </a>
         </p>
         <p>
           View Database code: <a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/firebase/ConfirmedFireBase.js"> ConfirmedFireBase.js </a>
         </p>
-        <ul>
-          <li> The Confirmed screen, is shown to all users if their consultation is confirmed. They can then choose to cancel their booking without facing any penalties before the consultation date. </li>
-        </ul>
       <h5 id="scanScreen"> ScanScreen.js </h5>
+        <ul>
+          <li> The Scan screen is shown to all users on the actual day of the consultation. </li>
+          <li> On the students' side, the native camera application will be automatically opened to scan for the QR attendance code. </li>
+          <li> On the TAs' side, a QR code will be generated using the react-native-custom-qr-codes-expo Api. Attendance that have been scanned will be incrementally updated and shown on the same screen. </li>
+        </ul>
         <p>
           View source code: <a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/presentation/ScanScreen.js"> ScanScreen.js </a>
         </p>
         <p>
           View Database code: <a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/firebase/ScanFireBase.js"> ScanFireBase.js </a>
         </p>
-        <ul>
-          <li> The Scan screen is shown to all users on the actual day of the consultation. </li>
-          <li> On the students' side, the native camera application will be automatically opened to scan for the QR attendance code. </li>
-          <li> On the TAs' side, a QR code will be generated using the react-native-custom-qr-codes-expo Api. Attendance that have been scanned will be incrementally updated and shown on the same screen. </li>
-        </ul>
-    <h4 id="componentImplementation"> Components </h4>
-      <h5 id="breadCrumb"> BreadCrumb.js </h5>
-        <p>
-          View source code: <a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/components/BreadCrumb.js"> BreadCrumb.js </a>
-        </p>
-        <ul>
-          <li> The BreadCrumb is a navigation trail system that will be shown on every screen to allow for easy navigation between screens. </li>
-          <li> It is developed from scratch as we were unable to find suitable libraries for breadcrumb navigation support. </li>
-        </ul>
-      <h5 id="dateTime"> DateTime.js </h5>
-        <p>
-          View source code: <a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/components/DateTime.js"> DateTime.js </a>
-        </p>
-        <ul>
-          <li> DateTime consists of DateTimePicker which is shown on the Create Consult and Book Consult screens for booking the date, start time and end time. </li>
-          <li> react-native-modal-datetime-picker Api is used for this component. </li>
-        </ul>
-      <h5 id="navigation"> Navigation.js </h5>
-        <p>
-          View source code: <a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/components/Navigation.js"> Navigation.js </a>
-        </p>
-        <ul>
-          <li> This file is the main skeleton that handles all navigation routes between screens. </li>
-          <li> react-navigation Api is used for this component. </li>
-        </ul>
-      <h5 id="pushNotification"> PushNotification.js </h5>
-        <p>
-          View source code: <a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/components/PushNotification.js"> PushNotification.js </a>
-        </p>
-        <ul>
-          <li> PushNotification handles the permissions to register the user for notifications. It also handles sending notifications to different users of the application. </li>
-          <li> Expo's permissions and notifications Api were used for this component. </li>
-          <li> Upon tapping on a notification alert, the user will be brought immediately to the Manage Booking screen. </li>
-          <li> Consultation notification will be sent to users upon creating a consultation, booking a consultation, rejecting a consultation, accepting a consultation and when it is 24 hours before a confirmed consultation. </li>
-        </ul>
-      <h5 id="radioButton"> radioButton.js </h5>
-        <p>
-          View source code: <a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/components/RadioButton.js"> RadioButton.js </a>
-        </p>
-        <ul>
-          <li> The RadioButton is a selective option feature that is shown in the Create Consult screen, for when the user chooses "Public" or "Private" consultation types. </li>
-          <li> It is developed from scratched as there is no support for radio buttons in react-native library. </li>
-        </ul>
-
-    <h4 id="scheduledTaskImplementation"> Scheduled Tasks </h4>
-      <p>
-        View Extension Project: <a href="https://github.com/marcusleeeugene/AcademicSOS-ScheduledTasks"> Scheduled Tasks </a>
-      </p>
+  <br>
+  <h4 id="componentImplementation"> Components </h4>
+    <h5 id="breadCrumb"> BreadCrumb.js </h5>
       <ul>
-        <li> Scheduled tasks is an extension to AcademicSOS and is running live on Heroku periodically. </li>
-        <li> It is developed from scratched as there is no support for radio buttons in react-native library. </li>
-        <li> Task 1: Perform a check every minute to see if consultation has ended then, deduct the priority points for those who failed to show up and delete consultation from database. <li>
-        <li> Task 2: Perform a check every minute and send push notifications to users 24 hours before their consultation. </li>
-        <li> Task 3: Perform a check every minute to release users from consultation booking bans. </li>
+        <li> The BreadCrumb is a navigation trail system that will be shown on every screen to allow for easy navigation between screens. </li>
+        <li> It is developed from scratch as we were unable to find suitable libraries for breadcrumb navigation support. </li>
       </ul>
+      <p>
+        View source code: <a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/components/BreadCrumb.js"> BreadCrumb.js </a>
+      </p>
+    <h5 id="dateTime"> DateTime.js </h5>
+      <ul>
+        <li> DateTime consists of DateTimePicker which is shown on the Create Consult and Book Consult screens for booking the date, start time and end time. </li>
+        <li> react-native-modal-datetime-picker Api is used for this component. </li>
+      </ul>
+      <p>
+        View source code: <a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/components/DateTime.js"> DateTime.js </a>
+      </p>
+    <h5 id="navigation"> Navigation.js </h5>
+      <ul>
+        <li> This file is the main skeleton that handles all navigation routes between screens. </li>
+        <li> react-navigation Api is used for this component. </li>
+      </ul>
+      <p>
+        View source code: <a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/components/Navigation.js"> Navigation.js </a>
+      </p>
+    <h5 id="pushNotification"> PushNotification.js </h5>
+      <ul>
+        <li> PushNotification handles the permissions to register the user for notifications. It also handles sending notifications to different users of the application. </li>
+        <li> Expo's permissions and notifications Api were used for this component. </li>
+        <li> Upon tapping on a notification alert, the user will be brought immediately to the Manage Booking screen. </li>
+        <li> Consultation notification will be sent to users upon creating a consultation, booking a consultation, rejecting a consultation, accepting a consultation and when it is 24 hours before a confirmed consultation. </li>
+      </ul>
+      <p>
+        View source code: <a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/components/PushNotification.js"> PushNotification.js </a>
+      </p>
+    <h5 id="radioButton"> RadioButton.js </h5>
+      <ul>
+        <li> The RadioButton is a selective option feature that is shown in the Create Consult screen, for when the user chooses "Public" or "Private" consultation types. </li>
+        <li> It is developed from scratched as there is no support for radio buttons in react-native library. </li>
+      </ul>
+      <p>
+        View source code: <a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/components/RadioButton.js"> RadioButton.js </a>
+      </p>
+
+  <h4 id="scheduledTaskImplementation"> Scheduled Tasks </h4>
+    <ul>
+      <li> Scheduled tasks is an extension to AcademicSOS and is running live on Heroku periodically. </li>
+      <li> It is developed from scratched as there is no support for radio buttons in react-native library. </li>
+      <li> Task 1: Perform a check every minute to see if consultation has ended then, deduct the priority points for those who failed to show up and delete consultation from database. <li>
+      <li> Task 2: Perform a check every minute and send push notifications to users 24 hours before their consultation. </li>
+      <li> Task 3: Perform a check every minute to release users from consultation booking bans. </li>
+    </ul>
+    <p>
+      View Scheduled Tasks extension: <a href="https://github.com/marcusleeeugene/AcademicSOS-ScheduledTasks"> Scheduled Tasks </a>
+    </p>
 
   <h3 id="userTest" align="center"> 4. User Test </h3>
 
