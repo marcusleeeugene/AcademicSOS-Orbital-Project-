@@ -3,11 +3,12 @@
       AcademicSOS is a cross-platform mobile application that allows NUS students, professors and teaching assistants to easily book, create and keep track of consultations.
    </p>
    <p>
-      The application allows all consultation matters to be done solely on the application, without requiring the need to email or message professors and teaching assistants. This will help in reducing email spams to professors’s inboxes and also increase the monitoring rate.
+      The application allows all consultation matters to be done solely on the application, without requiring the need to email or message professors and teaching assistants.
+      This will help in reducing email spams to professors’s inboxes and also increase the consultation monitoring rates.
    </p>
    <br>
    <p align="center">
-      <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/Poster/AcademicSOS-V2.0.png"  height="650">
+      <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/Poster/AcademicSOS-V3.0.png"  height="650">
    </p>
    <br>
    <p align="center">
@@ -34,6 +35,7 @@
       <li> Structuring of database model </li>
       <li> Importance of planning out logic of program for various user roles </li>
       <li> Integrating external APIs into the project </li>
+      <li> Scheduling tasks to run periodically: <a href="https://github.com/marcusleeeugene/AcademicSOS-ScheduledTasks"> AcademicSOS-ScheduledTasks </a> </li>
    </ul>
 
    <h2 id="aboutUs" align="center"> About Us </h2>
