@@ -355,7 +355,6 @@
   <h4 id="scheduledTaskImplementation"> Scheduled Tasks </h4>
     <ul>
       <li> Scheduled tasks is an extension to AcademicSOS and is running live on Heroku periodically. </li>
-      <li> It is developed from scratched as there is no support for radio buttons in react-native library. </li>
       <li> Task 1: Perform a check every minute to see if consultation has ended then, deduct the priority points for those who failed to show up and delete consultation from database. </li>
       <li> Task 2: Perform a check every minute and send push notifications to users 24 hours before their consultation. </li>
       <li> Task 3: Perform a check every minute to release users from consultation booking bans. </li>
