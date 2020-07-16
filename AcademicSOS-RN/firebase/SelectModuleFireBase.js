@@ -23,6 +23,17 @@ const SelectModuleFB = {
         return modules;
       });
   },
+
+  checkBanDateRelease: function (id, modCode) {
+    //returns a promise that contains ban date
+    return database
+      .ref(`users/${role(id)}/${id}/modules/${modCode}`)
+      .once("value")
+      .then((snapshot) => snapshot.val())
+      .then((obj) => {
+        return obj["banDateRelease"];
+      });
+  },
 };
 
 export default SelectModuleFB;

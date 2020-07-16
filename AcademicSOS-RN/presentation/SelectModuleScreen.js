@@ -5,7 +5,7 @@ import { AppLoading } from "expo";
 import { FlatGrid } from "react-native-super-grid";
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen";
 import BreadCrumb from "../components/BreadCrumb";
-import { YellowBox } from 'react-native'
+import { YellowBox } from "react-native";
 import SelectModuleFB from "../firebase/SelectModuleFireBase.js";
 
 export default function SelectModuleScreen({ route, navigation }) {
@@ -14,9 +14,10 @@ export default function SelectModuleScreen({ route, navigation }) {
     "Righteous-Regular": require("../assets/fonts/Righteous-Regular.ttf"),
   });
 
-  YellowBox.ignoreWarnings([ //Ignores flatlist warning on rendering
-    'VirtualizedLists should never be nested', // TODO: Remove when fixed in future updates
-  ])
+  YellowBox.ignoreWarnings([
+    //Ignores flatlist warning on rendering
+    "VirtualizedLists should never be nested", // TODO: Remove when fixed in future updates
+  ]);
 
   const { firstScreen, secondScreen, userID } = route.params;
   const [modules, setModules] = useState([]);
@@ -37,6 +38,22 @@ export default function SelectModuleScreen({ route, navigation }) {
     });
   }, []);
 
+  const nextAction = (modCode) => {
+    SelectModuleFB.checkBanDateRelease(userID, modCode).then((banDate) => {
+      if (banDate == "") {
+        navigation.navigate(secondScreen, {
+          thirdScreen: modCode,
+          secondScreen: secondScreen,
+          firstScreen: firstScreen,
+          userID: userID,
+          moduleCode: modCode,
+        });
+      } else {
+        alert(`You cannot book until ${banDate}!!!`);
+      }
+    });
+  };
+
   if (!fontsLoaded) {
     return <AppLoading />;
   } else {
@@ -51,17 +68,7 @@ export default function SelectModuleScreen({ route, navigation }) {
             style={styles.gridView}
             renderItem={({ item }) => (
               <View style={[styles.itemContainer, { backgroundColor: item.code }]}>
-                <TouchableOpacity
-                  onPress={() =>
-                    navigation.navigate(secondScreen, {
-                      thirdScreen: item.name,
-                      secondScreen: secondScreen,
-                      firstScreen: firstScreen,
-                      userID: userID,
-                      moduleCode: item.name,
-                    })
-                  }
-                >
+                <TouchableOpacity onPress={() => nextAction(item.name)}>
                   <Text style={styles.itemName}> {item.name} </Text>
                 </TouchableOpacity>
               </View>
