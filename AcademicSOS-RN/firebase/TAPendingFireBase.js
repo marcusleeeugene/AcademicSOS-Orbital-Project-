@@ -1,6 +1,8 @@
 import * as firebase from "firebase";
 import { database, role } from "./FireBaseConfig.js";
 
+import { sendConfirmedConsultPushNotification, sendRejectedConsultPushNotification } from "../components/PushNotification.js";
+
 const TAPendingFB = {
   checkUserName: function (id) {
     //returns a promise that consists of user name
@@ -42,6 +44,38 @@ const TAPendingFB = {
   },
   removeBooking: function (consultDetails, bookingId) {
     database.ref(`modules/${consultDetails["module"]}/bookings`).child(bookingId).remove();
+  },
+
+  notifyConfirmedConsultation: function (bookingId, consultDetails) {
+    //notify each student of Confirmed consultation
+    var participants = consultDetails["participants"];
+    for (var each in participants) {
+      //Loop through participants
+      var user = participants[each];
+      database
+        .ref(`users/${role(user.id)}/${user.id}`)
+        .once("value")
+        .then((snapshot) => snapshot.val())
+        .then((data) => {
+          sendConfirmedConsultPushNotification(data.pushToken, consultDetails["module"], bookingId, consultDetails); //Send notification to students
+        });
+    }
+  },
+
+  notifyRejectedConsultation: function (bookingId, consultDetails) {
+    //notify each student of Rejected consultation
+    var participants = consultDetails["participants"];
+    for (var each in participants) {
+      //Loop through participants
+      var user = participants[each];
+      database
+        .ref(`users/${role(user.id)}/${user.id}`)
+        .once("value")
+        .then((snapshot) => snapshot.val())
+        .then((data) => {
+          sendRejectedConsultPushNotification(data.pushToken, consultDetails["module"], bookingId, consultDetails); //Send notification to students
+        });
+    }
   },
 };
 export default TAPendingFB;

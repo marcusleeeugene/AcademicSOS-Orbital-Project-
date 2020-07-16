@@ -167,6 +167,8 @@ export default function CreateConsultScreen({ route, navigation }) {
         moment(new Date()).format("hh:mm:ss A"),
         weekRange
       );
+
+      CreateConsultFB.notifyUpdatedConsultation(moduleCode, bookingId, consultDetails);
     });
 
     alert("Successfully updated booking!");
@@ -317,7 +319,7 @@ export default function CreateConsultScreen({ route, navigation }) {
                 numberofLines={5}
                 style={styles.agendaBox}
                 underlineColorAndroid="transparent"
-                onFocus={() => setScrollHeight(200)}
+                onFocus={() => setScrollHeight(100)}
                 onChangeText={(text) => setAgenda(text)}
                 value={agenda}
               />

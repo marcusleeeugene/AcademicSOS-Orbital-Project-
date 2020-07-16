@@ -1,6 +1,6 @@
 import * as firebase from "firebase";
 import { database, role } from "./FireBaseConfig.js";
-import { sendCreateConsultPushNotification } from "../components/PushNotification.js";
+import { sendCreateConsultPushNotification, sendUpdatedConsultPushNotification } from "../components/PushNotification.js";
 
 const CreateConsultFB = {
   getWeekRange: function () {
@@ -57,9 +57,11 @@ const CreateConsultFB = {
     });
   },
 
-  notifyCreateConsultation: function (modCode, bookingId, consultDetails) { //notify each user of booked consultation
+  notifyCreateConsultation: function (modCode, bookingId, consultDetails) {
+    //notify each user of created consultation
     var participants = consultDetails["participants"];
-    for (var each in participants) { //Loop through participants
+    for (var each in participants) {
+      //Loop through participants
       var user = participants[each];
       if (user.altStatus == "Pending") {
         database
@@ -70,6 +72,23 @@ const CreateConsultFB = {
             sendCreateConsultPushNotification(data.pushToken, modCode, bookingId, consultDetails); //Send notification to students
           });
       }
+    }
+  },
+
+  notifyUpdatedConsultation: function (modCode, bookingId, consultDetails) {
+    //notify each user of updated consultation
+    var participants = consultDetails["participants"];
+    for (var each in participants) {
+      //Loop through participants
+      var user = participants[each];
+
+      database
+        .ref(`users/${role(user.id)}/${user.id}`)
+        .once("value")
+        .then((snapshot) => snapshot.val())
+        .then((data) => {
+          sendUpdatedConsultPushNotification(data.pushToken, modCode, bookingId, consultDetails); //Send notification to students
+        });
     }
   },
 
@@ -101,7 +120,7 @@ const CreateConsultFB = {
       .then((obj) => {
         var user = [];
         var name = obj["name"];
-        user.push({ id: id, name: name, altStatus: "Pending", attending: false});
+        user.push({ id: id, name: name, altStatus: "Pending", attending: false });
         return user;
       });
   },

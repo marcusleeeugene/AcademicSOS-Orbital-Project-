@@ -53,11 +53,13 @@ export default function TAPendingScreen({ route, navigation }) {
 
   const confirmConsult = () => {
     TAPendingFB.updateBooking(consultDetails, bookingId, "Confirmed");
+    TAPendingFB.notifyConfirmedConsultation(bookingId, consultDetails);
     alert("Successfully updated booking status!");
     navigation.goBack();
   };
 
   const removeConsult = () => {
+    TAPendingFB.notifyRejectedConsultation(bookingId, consultDetails);
     TAPendingFB.removeBooking(consultDetails, bookingId);
     navigation.goBack();
   };
@@ -173,7 +175,12 @@ export default function TAPendingScreen({ route, navigation }) {
             <Text style={styles.infoText}> Start Time: {consultDetails["consultStartTime"]}</Text>
             <Text style={styles.infoText}> End Time: {consultDetails["consultEndTime"]}</Text>
             <Text style={styles.secondTitle}> Students: </Text>
-            <FlatList data={consultDetails.participants} renderItem={({ item }) => <Text style={styles.infoText}>{item.name}</Text>} style={styles.flatList} keyExtractor={(item, index) => index.toString()}/>
+            <FlatList
+              data={consultDetails.participants}
+              renderItem={({ item }) => <Text style={styles.infoText}>{item.name}</Text>}
+              style={styles.flatList}
+              keyExtractor={(item, index) => index.toString()}
+            />
             <Text style={styles.secondTitle}> Agenda: </Text>
             <Text style={styles.infoText}>{consultDetails["agenda"]} </Text>
             {consultDetails["creator"] === userID ? creatorJSX : nonCreatorJSX}

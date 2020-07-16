@@ -1,8 +1,8 @@
-import Constants from 'expo-constants';
-import * as Notifications from 'expo-notifications';
-import * as Permissions from 'expo-permissions';
-import React, { useState, useEffect } from 'react';
-import { Platform } from 'react-native';
+import Constants from "expo-constants";
+import * as Notifications from "expo-notifications";
+import * as Permissions from "expo-permissions";
+import React, { useState, useEffect } from "react";
+import { Platform } from "react-native";
 import { database, role } from "../firebase/FireBaseConfig.js";
 
 Notifications.setNotificationHandler({
@@ -14,52 +14,56 @@ Notifications.setNotificationHandler({
 });
 
 export default function RegisterForPushNotification(userId) {
-  const [expoPushToken, setExpoPushToken] = useState('');
+  const [expoPushToken, setExpoPushToken] = useState("");
   const [notification, setNotification] = useState(false);
 
   useEffect(() => {
-    registerForPushNotificationsAsync(userId).then(token => setExpoPushToken(token));
+    registerForPushNotificationsAsync(userId).then((token) => setExpoPushToken(token));
 
     // This listener is fired whenever a notification is received while the app is foregrounded
-    Notifications.addNotificationReceivedListener(notification => {
+    Notifications.addNotificationReceivedListener((notification) => {
       setNotification(notification);
     });
 
     // This listener is fired whenever a user taps on or interacts with a notification (works when app is foregrounded, backgrounded, or killed)
-    Notifications.addNotificationResponseReceivedListener(response => {
+    Notifications.addNotificationResponseReceivedListener((response) => {
       console.log(response);
     });
   }, []);
-};
+}
 
 async function registerForPushNotificationsAsync(userId) {
   let token;
   if (Constants.isDevice) {
     const { status: existingStatus } = await Permissions.getAsync(Permissions.NOTIFICATIONS);
     let finalStatus = existingStatus;
-    if (existingStatus !== 'granted') {
+    if (existingStatus !== "granted") {
       const { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS);
       finalStatus = status;
     }
-    if (finalStatus !== 'granted') {
-      alert('Failed to get push token for push notification!');
+    if (finalStatus !== "granted") {
+      alert("Failed to get push token for push notification!");
       return;
     }
     token = (await Notifications.getExpoPushTokenAsync()).data;
     console.log(token);
-    database.ref(`users/${role(userId)}`).child(userId).update({ //Update user push token
-      pushToken: token
-    });
+    database
+      .ref(`users/${role(userId)}`)
+      .child(userId)
+      .update({
+        //Update user push token
+        pushToken: token,
+      });
   } else {
-    alert('Must use physical device for Push Notifications');
+    alert("Must use physical device for Push Notifications");
   }
 
-  if (Platform.OS === 'android') {
-    Notifications.setNotificationChannelAsync('default', {
-      name: 'default',
+  if (Platform.OS === "android") {
+    Notifications.setNotificationChannelAsync("default", {
+      name: "default",
       importance: Notifications.AndroidImportance.MAX,
       vibrationPattern: [0, 250, 250, 250],
-      lightColor: '#FF231F7C',
+      lightColor: "#FF231F7C",
     });
   }
 
@@ -67,41 +71,106 @@ async function registerForPushNotificationsAsync(userId) {
 }
 
 // Can use this function below, OR use Expo's Push Notification Tool-> https://expo.io/dashboard/notifications
-export async function sendBookConsultPushNotification(expoPushToken, modCode, bookingId, consultDetails) { //Send Book Consult notifications
+export async function sendBookConsultPushNotification(expoPushToken, modCode, bookingId, consultDetails) {
+  //Send Book Consult notifications
   const message = {
     to: expoPushToken,
-    sound: 'default',
+    sound: "default",
     title: `Consultation Request for ${modCode}:`,
     body: `Request from: ${consultDetails["creator"]}\nTA: ${consultDetails["ta"].name}\nDate: ${consultDetails["consultDate"]} | Time: ${consultDetails["consultStartTime"]}\nLocation: ${consultDetails["location"]}`,
-    data: {bookingId: bookingId},
+    data: { bookingId: bookingId },
   };
 
-  await fetch('https://exp.host/--/api/v2/push/send', {
-    method: 'POST',
+  await fetch("https://exp.host/--/api/v2/push/send", {
+    method: "POST",
     headers: {
-      Accept: 'application/json',
-      'Accept-encoding': 'gzip, deflate',
-      'Content-Type': 'application/json',
+      Accept: "application/json",
+      "Accept-encoding": "gzip, deflate",
+      "Content-Type": "application/json",
     },
     body: JSON.stringify(message),
   });
 }
 
-export async function sendCreateConsultPushNotification(expoPushToken, modCode, bookingId, consultDetails) { //Send Book Consult notifications
+export async function sendCreateConsultPushNotification(expoPushToken, modCode, bookingId, consultDetails) {
+  //Send Create Consult notifications
   const message = {
     to: expoPushToken,
-    sound: 'default',
+    sound: "default",
     title: `Consultation Suggestion for ${modCode}:`,
     body: `TA: ${consultDetails["ta"].name}\nDate: ${consultDetails["consultDate"]} | Time: ${consultDetails["consultStartTime"]}\nLocation: ${consultDetails["location"]}`,
-    data: {bookingId: bookingId},
+    data: { bookingId: bookingId },
   };
 
-  await fetch('https://exp.host/--/api/v2/push/send', {
-    method: 'POST',
+  await fetch("https://exp.host/--/api/v2/push/send", {
+    method: "POST",
     headers: {
-      Accept: 'application/json',
-      'Accept-encoding': 'gzip, deflate',
-      'Content-Type': 'application/json',
+      Accept: "application/json",
+      "Accept-encoding": "gzip, deflate",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(message),
+  });
+}
+
+export async function sendUpdatedConsultPushNotification(expoPushToken, modCode, bookingId, consultDetails) {
+  //Send Updated Consult notifications
+  const message = {
+    to: expoPushToken,
+    sound: "default",
+    title: `Updated Consultation Suggestion for ${modCode}:`,
+    body: `TA: ${consultDetails["ta"].name}\nDate: ${consultDetails["consultDate"]} | Time: ${consultDetails["consultStartTime"]}\nLocation: ${consultDetails["location"]}`,
+    data: { bookingId: bookingId },
+  };
+
+  await fetch("https://exp.host/--/api/v2/push/send", {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Accept-encoding": "gzip, deflate",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(message),
+  });
+}
+
+export async function sendConfirmedConsultPushNotification(expoPushToken, modCode, bookingId, consultDetails) {
+  //Send Consult Confirmation notifications
+  const message = {
+    to: expoPushToken,
+    sound: "default",
+    title: `Confirmed Consultation for ${modCode}:`,
+    body: `Request from: ${consultDetails["creator"]}\nTA: ${consultDetails["ta"].name}\nDate: ${consultDetails["consultDate"]} | Time: ${consultDetails["consultStartTime"]}\nLocation: ${consultDetails["location"]}`,
+    data: { bookingId: bookingId },
+  };
+
+  await fetch("https://exp.host/--/api/v2/push/send", {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Accept-encoding": "gzip, deflate",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(message),
+  });
+}
+
+export async function sendRejectedConsultPushNotification(expoPushToken, modCode, bookingId, consultDetails) {
+  //Send Rejected Consult notifications
+  const message = {
+    to: expoPushToken,
+    sound: "default",
+    title: `Rejected Consultation for ${modCode}:`,
+    body: `Request from: ${consultDetails["creator"]}\nTA: ${consultDetails["ta"].name}\nDate: ${consultDetails["consultDate"]} | Time: ${consultDetails["consultStartTime"]}\nLocation: ${consultDetails["location"]}`,
+    data: { bookingId: bookingId },
+  };
+
+  await fetch("https://exp.host/--/api/v2/push/send", {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Accept-encoding": "gzip, deflate",
+      "Content-Type": "application/json",
     },
     body: JSON.stringify(message),
   });
