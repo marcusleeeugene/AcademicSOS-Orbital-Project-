@@ -7,7 +7,7 @@
    </p>
    <br>
    <p align="center">
-      <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/Poster/AcademicSOS-V2.0.png"  height="650">
+      <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/Poster/AcademicSOS-V3.0.png"  height="650">
    </p>
    <br>
    <p align="center">
