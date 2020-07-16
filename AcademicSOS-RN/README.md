@@ -35,8 +35,17 @@
                   <li><a href="#scanScreen"> ScanScreen.js </a></li>
                 </ul>
          </li>
-         <li> <a href="#componentImplementation"> Components </a> </li>
-         <li> <a href="#scheduledTaskImplementation"> Components </a> </li>
+         <li> <a href="#componentImplementation"> Components </a>
+           <ul>
+             <li><a href="#breadCrumb"> BreadCrumb.js </a></li>
+             <li><a href="#dateTime"> DateTime.js </a></li>
+             <li><a href="#navigation"> Navigation.js </a></li>
+             <li><a href="#pushNotification"> PushNotification.js </a></li>
+             <li><a href="#radioButton"> RadioButton.js </a></li>
+           </ul>
+         </li>
+
+         <li> <a href="#scheduledTaskImplementation"> Scheduled Tasks </a> </li>
        </ul>
      </li>
      <li><a href="#userTest"> User Test </a></li>
@@ -356,7 +365,60 @@
           <li> On the TAs' side, a QR code will be generated using the react-native-custom-qr-codes-expo Api. Attendance that have been scanned will be incrementally updated and shown on the same screen. </li>
         </ul>
     <h4 id="componentImplementation"> Components </h4>
+      <h5 id="breadCrumb"> BreadCrumb.js </h5>
+        <p>
+          View source code: <a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/components/BreadCrumb.js"> BreadCrumb.js </a>
+        </p>
+        <ul>
+          <li> The BreadCrumb is a navigation trail system that will be shown on every screen to allow for easy navigation between screens. </li>
+          <li> It is developed from scratch as we were unable to find suitable libraries for breadcrumb navigation support. </li>
+        </ul>
+      <h5 id="dateTime"> DateTime.js </h5>
+        <p>
+          View source code: <a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/components/DateTime.js"> DateTime.js </a>
+        </p>
+        <ul>
+          <li> DateTime consists of DateTimePicker which is shown on the Create Consult and Book Consult screens for booking the date, start time and end time. </li>
+          <li> react-native-modal-datetime-picker Api is used for this component. </li>
+        </ul>
+      <h5 id="navigation"> Navigation.js </h5>
+        <p>
+          View source code: <a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/components/Navigation.js"> Navigation.js </a>
+        </p>
+        <ul>
+          <li> This file is the main skeleton that handles all navigation routes between screens. </li>
+          <li> react-navigation Api is used for this component. </li>
+        </ul>
+      <h5 id="pushNotification"> PushNotification.js </h5>
+        <p>
+          View source code: <a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/components/PushNotification.js"> PushNotification.js </a>
+        </p>
+        <ul>
+          <li> PushNotification handles the permissions to register the user for notifications. It also handles sending notifications to different users of the application. </li>
+          <li> Expo's permissions and notifications Api were used for this component. </li>
+          <li> Upon tapping on a notification alert, the user will be brought immediately to the Manage Booking screen. </li>
+          <li> Consultation notification will be sent to users upon creating a consultation, booking a consultation, rejecting a consultation, accepting a consultation and when it is 24 hours before a confirmed consultation. </li>
+        </ul>
+      <h5 id="radioButton"> radioButton.js </h5>
+        <p>
+          View source code: <a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/components/RadioButton.js"> RadioButton.js </a>
+        </p>
+        <ul>
+          <li> The RadioButton is a selective option feature that is shown in the Create Consult screen, for when the user chooses "Public" or "Private" consultation types. </li>
+          <li> It is developed from scratched as there is no support for radio buttons in react-native library. </li>
+        </ul>
+
     <h4 id="scheduledTaskImplementation"> Scheduled Tasks </h4>
+      <p>
+        View Extension Project: <a href="https://github.com/marcusleeeugene/AcademicSOS-ScheduledTasks"> Scheduled Tasks </a>
+      </p>
+      <ul>
+        <li> Scheduled tasks is an extension to AcademicSOS and is running live on Heroku periodically. </li>
+        <li> It is developed from scratched as there is no support for radio buttons in react-native library. </li>
+        <li> Task 1: Perform a check every minute to see if consultation has ended then, deduct the priority points for those who failed to show up and delete consultation from database. <li>
+        <li> Task 2: Perform a check every minute and send push notifications to users 24 hours before their consultation. </li>
+        <li> Task 3: Perform a check every minute to release users from consultation booking bans. </li>
+      </ul>
 
   <h3 id="userTest" align="center"> 4. User Test </h3>
 
