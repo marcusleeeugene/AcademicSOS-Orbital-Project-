@@ -95,7 +95,7 @@ export default function StudentPendingScreen({ route, navigation }) {
 
   const rejectStudentOption = () => {
     Alert.alert(
-      "Reject Options",
+      "Reject Booking",
       "Do you want to reject this suggested consultation?",
       [
         {
@@ -128,7 +128,7 @@ export default function StudentPendingScreen({ route, navigation }) {
 
   const cancelCreatorOption = () => {
     Alert.alert(
-      "Cancel Options",
+      "Cancel Booking",
       "Do you want to cancel this consultation?",
       [
         {

@@ -129,7 +129,7 @@ const BookConsultFB = {
         return students;
       });
   },
-  notifyBookConsultation: function (modCode, bookingId, consultDetails) { //notify each user of booked consultation
+  notifyBookConsultation: function (modCode, consultDetails) { //notify each user of booked consultation
     var participants = consultDetails["participants"];
     for (var each in participants) { //Loop through participants
       var user = participants[each];
@@ -139,7 +139,7 @@ const BookConsultFB = {
           .once("value")
           .then((snapshot) => snapshot.val())
           .then((data) => {
-            sendBookConsultPushNotification(data.pushToken, modCode, bookingId, consultDetails); //Send notification to students
+            sendBookConsultPushNotification(data.pushToken, modCode, consultDetails); //Send notification to students
           });
       }
     }
@@ -149,7 +149,7 @@ const BookConsultFB = {
       .once("value")
       .then((snapshot) => snapshot.val())
       .then((data) => {
-        sendBookConsultPushNotification(data.pushToken, modCode, bookingId, consultDetails); //Send notification to TA
+        sendBookConsultPushNotification(data.pushToken, modCode, consultDetails); //Send notification to TA
       });
   }
 };

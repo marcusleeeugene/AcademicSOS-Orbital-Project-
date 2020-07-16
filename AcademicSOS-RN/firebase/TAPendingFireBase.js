@@ -57,7 +57,7 @@ const TAPendingFB = {
         .once("value")
         .then((snapshot) => snapshot.val())
         .then((data) => {
-          sendConfirmedConsultPushNotification(data.pushToken, consultDetails["module"], bookingId, consultDetails); //Send notification to students
+          sendConfirmedConsultPushNotification(data.pushToken, consultDetails["module"], consultDetails); //Send notification to students
         });
     }
   },
@@ -73,7 +73,7 @@ const TAPendingFB = {
         .once("value")
         .then((snapshot) => snapshot.val())
         .then((data) => {
-          sendRejectedConsultPushNotification(data.pushToken, consultDetails["module"], bookingId, consultDetails); //Send notification to students
+          sendRejectedConsultPushNotification(data.pushToken, consultDetails["module"], consultDetails); //Send notification to students
         });
     }
   },

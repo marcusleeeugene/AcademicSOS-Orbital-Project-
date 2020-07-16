@@ -28,7 +28,7 @@ export default function CreateConsultScreen({ route, navigation }) {
   const [date, setDate] = useState("");
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
-  const [size, setSize] = useState(0);
+  const [size, setSize] = useState("");
   const [consultType, setConsultType] = useState("");
   const [location, setLocation] = useState("");
   const [agenda, setAgenda] = useState("");

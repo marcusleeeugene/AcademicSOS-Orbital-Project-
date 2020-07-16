@@ -114,7 +114,7 @@ export default function BookConsultScreen({ route, navigation }) {
         location: location,
         participants: allStudents,
       };
-      BookConsultFB.notifyBookConsultation(moduleCode, "Empty Booking Id", consultDetails);
+      BookConsultFB.notifyBookConsultation(moduleCode, consultDetails);
       alert("Successfully booked! Pls check your booking in Manage Bookings!");
       navigation.navigate("Home");
     }

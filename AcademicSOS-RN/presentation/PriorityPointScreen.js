@@ -38,11 +38,13 @@ export default function PriorityPointsPresentation({ route, navigation }) {
           <Text style={styles.title}> {moduleCode}</Text>
           <View style={styles.SquareShapeView}>
             <Text style={styles.priorityTitle}> Points: </Text>
-            <Text style={styles.marks}> {priorityPoint} / 100 </Text>
+            <Text style={styles.marks}> {priorityPoint} / 50 </Text>
           </View>
-          <Text style={styles.noteTitle}> Note: </Text>
+          <Text style={styles.noteTitle}> Rules: </Text>
           <Text style={styles.note}>
-            Priority points will be deducted if you fail to turn up on your consultation slot. This will affect your priority for consultation request in the future.
+            10 Priority Points will be deducted each time you fail to turn up on your consultation slot.{"\n \n"}You will receive a one week ban from booking
+            consultations if you fail to show up when your Priority Points is 30 or less.{"\n \n"}When Priority hits 0, you will be unable to book any
+            consultation for the entire semester.
           </Text>
         </View>
       </View>

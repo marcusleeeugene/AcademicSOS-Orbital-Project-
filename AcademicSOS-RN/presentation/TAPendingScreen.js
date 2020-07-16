@@ -66,7 +66,7 @@ export default function TAPendingScreen({ route, navigation }) {
 
   const rejectOption = () => {
     Alert.alert(
-      "Reject Options",
+      "Reject Booking",
       "Do you want to suggest another consult slot to student?",
       [
         {
@@ -97,7 +97,7 @@ export default function TAPendingScreen({ route, navigation }) {
 
   const cancelCreatorOption = () => {
     Alert.alert(
-      "Cancel Options",
+      "Cancel Booking",
       "Do you want to cancel this consultation?",
       [
         {

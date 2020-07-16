@@ -82,7 +82,7 @@ export default function ConfirmedScreen({ route, navigation }) {
             item.name === "Scan\n Attendance"
               ? scanAttendance()
               : Alert.alert(
-                  "Cancel Options",
+                  "Cancel Booking",
                   "Do you really want to cancel your booking?",
                   [
                     {

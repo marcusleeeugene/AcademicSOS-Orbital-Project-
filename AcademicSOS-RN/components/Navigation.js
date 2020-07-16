@@ -10,11 +10,8 @@ import ManageBookingScreen from "../presentation/ManageBookingScreen.js";
 import CreateConsultScreen from "../presentation/CreateConsultScreen.js";
 import SelectModuleScreen from "../presentation/SelectModuleScreen.js";
 import ConfirmedScreen from "../presentation/ConfirmedScreen.js";
-
 import StudentPendingScreen from "../presentation/StudentPendingScreen.js";
-
 import TAPendingScreen from "../presentation/TAPendingScreen.js";
-
 import ScanScreen from "../presentation/ScanScreen.js";
 
 const Stack = createStackNavigator();

@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useFonts } from "@expo-google-fonts/inter";
-import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, ScrollView } from "react-native";
+import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, ScrollView, Alert } from "react-native";
 import { AppLoading } from "expo";
 import { FlatGrid } from "react-native-super-grid";
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen";
 import BreadCrumb from "../components/BreadCrumb";
 import { YellowBox } from "react-native";
 import SelectModuleFB from "../firebase/SelectModuleFireBase.js";
+import { role } from "../firebase/FireBaseConfig.js";
 
 export default function SelectModuleScreen({ route, navigation }) {
   let [fontsLoaded] = useFonts({
@@ -40,7 +41,7 @@ export default function SelectModuleScreen({ route, navigation }) {
 
   const nextAction = (modCode) => {
     SelectModuleFB.checkBanDateRelease(userID, modCode).then((banDate) => {
-      if (banDate == "") {
+      if (banDate == "" || secondScreen == "Priority Points" || role(userID) == "professors") {
         navigation.navigate(secondScreen, {
           thirdScreen: modCode,
           secondScreen: secondScreen,
@@ -49,7 +50,15 @@ export default function SelectModuleScreen({ route, navigation }) {
           moduleCode: modCode,
         });
       } else {
-        alert(`You cannot book until ${banDate}!!!`);
+        Alert.alert(
+          `You are banned from ${modCode} consultation bookings until ${banDate}`,
+          "Check Priority Points for more information.",
+          [
+            {
+              text: "Ok",
+            },
+          ]
+        );
       }
     });
   };
