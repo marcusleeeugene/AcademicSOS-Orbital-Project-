@@ -234,7 +234,6 @@
          <p>
            View source code: <a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/presentation/LoginScreen.js"> LoginScreen.js </a>
          </p>
-         <br>
       <h5 id="homeScreen"> HomeScreen.js </h5>
          <ul>
            <li> The Home screen shows different options available depending on the user access (Student, Professor, Teaching Assistant). </li>
@@ -248,7 +247,6 @@
          <p>
            View Database code: <a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/firebase/HomeFireBase.js"> HomeFireBase.js </a>
          </p>
-         <br>
       <h5 id="selectModuleScreen"> SelectModuleScreen.js </h5>
         <ul>
           <li> The Select Module screen shows all the modules that a user is involved in. </li>
@@ -261,7 +259,6 @@
         <p>
           View Database code: <a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/firebase/SelectModuleFirebase.js"> SelectModuleFirebase.js </a>
         </p>
-        <br>
       <h5 id="bookConsultScreen"> BookConsultScreen.js </h5>
         <ul>
           <li> The Book Consult screen is available to students only, allowing them to book consultations with their Teaching Assistants who are in their tutorial group. </li>
@@ -274,7 +271,6 @@
         <p>
           View Database code: <a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/firebase/BookConsultFireBase.js"> BookConsultFireBase.js </a>
         </p>
-        <br>
       <h5 id="createConsultScreen"> CreateConsultScreen.js </h5>
         <ul>
           <li> The Create Consult screen is available to teaching assistants and professors only. </li>
@@ -290,7 +286,6 @@
         <p>
           View Database code: <a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/firebase/CreateConsultFireBase.js"> CreateConsultFireBase.js </a>
         </p>
-        <br>
       <h5 id="manageBookingScreen"> ManageBookingScreen.js </h5>
         <ul>
           <li> The Manage Booking screen is available for all users to keep track of their consultation matters. </li>
@@ -305,7 +300,6 @@
         <p>
           View Database code: <a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/firebase/ManageBookingFireBase.js"> ManageBookingFireBase.js </a>
         </p>
-        <br>
       <h5 id="priorityPointScreen"> PriorityPointScreen.js </h5>
         <ul>
           <li> The Priority Point screen is available for students to keep track of their demerit points from "no-show" consultations. </li>
@@ -319,7 +313,6 @@
         <p>
           View Database code: <a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/firebase/PriorityPointFireBase.js"> PriorityPointFireBase.js </a>
         </p>
-        <br>
       <h5 id="publicConsultScreen"> PublicConsultScreen.js </h5>
         <ul>
           <li> The Public Consult screen is available for students to join in tutorials that TAs/Professors created, regardless of tutorial classes. </li>
@@ -332,7 +325,6 @@
         <p>
           View Database code: <a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/firebase/PublicConsultFireBase.js"> PublicConsultFireBase.js </a>
         </p>
-        <br>
       <h5 id="studentPendingScreen"> StudentPendingScreen.js </h5>
         <ul>
           <li> The Student Pending screen, is shown to students when they receive a consultation invitation. </li>
@@ -346,7 +338,6 @@
         <p>
           View Database code: <a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/firebase/StudentPendingFireBase.js"> StudentPendingFireBase.js </a>
         </p>
-        <br>
       <h5 id="taPendingScreen"> TAPendingScreen.js </h5>
         <ul>
           <li> The TA Pending screen, is shown to TA and Professors when they receive a consultation booking from students. </li>
@@ -361,7 +352,6 @@
         <p>
           View Database code: <a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/firebase/TAPendingFireBase.js"> TAPendingFireBase.js </a>
         </p>
-        <br>
       <h5 id="confirmedScreen"> ConfirmedScreen.js </h5>
         <ul>
           <li> The Confirmed screen, is shown to all users if their consultation is confirmed. They can then choose to cancel their booking without facing any penalties before the consultation date. </li>
@@ -373,7 +363,6 @@
         <p>
           View Database code: <a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/firebase/ConfirmedFireBase.js"> ConfirmedFireBase.js </a>
         </p>
-        <br>
       <h5 id="scanScreen"> ScanScreen.js </h5>
         <ul>
           <li> The Scan screen is shown to all users on the actual day of the consultation. </li>
@@ -398,7 +387,6 @@
       <p>
         View source code: <a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/components/BreadCrumb.js"> BreadCrumb.js </a>
       </p>
-      <br>
     <h5 id="dateTime"> DateTime.js </h5>
       <ul>
         <li> DateTime consists of DateTimePicker which is shown on the Create Consult and Book Consult screens for booking the date, start time and end time. </li>
@@ -408,7 +396,6 @@
       <p>
         View source code: <a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/components/DateTime.js"> DateTime.js </a>
       </p>
-      <br>
     <h5 id="navigation"> Navigation.js </h5>
       <ul>
         <li> This file is the main skeleton that handles all navigation routes between screens. </li>
@@ -418,7 +405,6 @@
       <p>
         View source code: <a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/components/Navigation.js"> Navigation.js </a>
       </p>
-      <br>
     <h5 id="pushNotification"> PushNotification.js </h5>
       <ul>
         <li> PushNotification handles the permissions to register the user for notifications. It also handles sending notifications to different users of the application. </li>
@@ -430,7 +416,6 @@
       <p>
         View source code: <a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/components/PushNotification.js"> PushNotification.js </a>
       </p>
-      <br>
     <h5 id="radioButton"> RadioButton.js </h5>
       <ul>
         <li> The RadioButton is a selective option feature that is shown in the Create Consult screen, for when the user chooses "Public" or "Private" consultation types. </li>
@@ -445,7 +430,7 @@
     <ul>
       <li> Scheduled tasks is an extension to AcademicSOS and is running live on Heroku periodically. </li>
       <li> It is developed from scratched as there is no support for radio buttons in react-native library. </li>
-      <li> Task 1: Perform a check every minute to see if consultation has ended then, deduct the priority points for those who failed to show up and delete consultation from database. <li>
+      <li> Task 1: Perform a check every minute to see if consultation has ended then, deduct the priority points for those who failed to show up and delete consultation from database. </li>
       <li> Task 2: Perform a check every minute and send push notifications to users 24 hours before their consultation. </li>
       <li> Task 3: Perform a check every minute to release users from consultation booking bans. </li>
     </ul>
