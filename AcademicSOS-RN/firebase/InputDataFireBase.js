@@ -9,7 +9,7 @@ const InputDataFB = {
       .then(
         database.ref(`users/${role}/${id}`).set({
           name: name,
-          pushToken: " "
+          pushToken: " ",
         })
       )
       .catch(function (error) {
@@ -35,7 +35,7 @@ const InputDataFB = {
       role: role,
       tutorialClass: tutorialClass,
       priorityPoint: priorityPoint,
-      banDateRelease: banDateRelease
+      banDateRelease: banDateRelease,
     });
   },
   addModuleUnderProfessor: function (id, modCode, modName, role, tutorialClass, priorityPoint) {
@@ -98,7 +98,7 @@ InputDataFB.addModuleUnderStudent("e0415870", "MA1521", "Calculus for Computing"
 InputDataFB.addModuleUnderStudent("e0407217", "CS1231S", "Discrete Structures", "TA", "T12", "", "");
 InputDataFB.addModuleUnderStudent("e0407217", "CS1101S", "Programming Methodology", "Student", "T16", 50, "");
 InputDataFB.addModuleUnderStudent("e0407217", "NM3221", "Mobile Interaction Design", "Student", "T12", 50, "");
-InputDataFB.addModuleUnderStudent("e0407217", "MA1101R", "Linear Algebra I", "Student", "T05", "", "");
+InputDataFB.addModuleUnderStudent("e0407217", "MA1101R", "Linear Algebra I", "Student", "T05", 50, "");
 InputDataFB.addModuleUnderStudent("e0407217", "ES1601", "English Communication", "Student", "T03", 50, "");
 
 InputDataFB.addModuleUnderStudent("e0123456", "CS1231S", "Discrete Structures", "Student", "T12", 50, "");
