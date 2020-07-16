@@ -29,13 +29,13 @@ const InputDataFB = {
       acadYear: yearRange,
     });
   },
-  addModuleUnderStudent: function (id, modCode, modName, role, tutorialClass, priorityPoint, banDate) {
+  addModuleUnderStudent: function (id, modCode, modName, role, tutorialClass, priorityPoint, banDateRelease) {
     database.ref(`users/students/${id}/modules/${modCode}`).update({
       name: modName,
       role: role,
       tutorialClass: tutorialClass,
       priorityPoint: priorityPoint,
-      banDate: banDate
+      banDateRelease: banDateRelease
     });
   },
   addModuleUnderProfessor: function (id, modCode, modName, role, tutorialClass, priorityPoint) {
