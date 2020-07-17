@@ -374,7 +374,7 @@
       <br>
       <p align="center">
         <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/Docs/DocImages/Academic%20Pre-Questionnaire%20Results(1).png"  height="400">
-        <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/Docs/DocImages/Academic%20Pre-Questionnaire%20Results(2).png"  height="400">
+        <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/Docs/DocImages/Academic%20Pre-Questionnaire%20Results(2).png"  height="450">
         <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/Docs/DocImages/Academic%20Pre-Questionnaire%20Results(3).png"  height="400">
       </p>
 
