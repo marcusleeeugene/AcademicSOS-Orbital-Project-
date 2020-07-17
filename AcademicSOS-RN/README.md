@@ -61,7 +61,7 @@
       <b> The following are instructions to run the application locally: </b>
     </p>
     <ol>
-      <li> Open the terminal and install with: <code> npm_install -g expo-cli </code> </li>
+      <li> Open the terminal and install with: <code> npm install -g expo-cli </code> </li>
       <li> Clone AcademicSOS repo: <a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/"> AcademicSOS </a> </li>
       <li> Change directory into the AcademicSOS-RN directory: <code> cd AcademicSOS-RN </code> </li>
       <li> Install the following required library dependencies in the terminal: </li>
@@ -371,7 +371,87 @@
     <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/Docs/DocImages/Academic%20Pre-Questionnaire%20Results(2).png"  height="600" width="600">
     <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/Docs/DocImages/Academic%20Pre-Questionnaire%20Results(3).png"  height="390">
   </p>
+  
+   <h4 id="userTaskList" align="center"> User Testing Task List</h4>
+  
+  <p>
+  <b>Role: Student</b>
+  </p>
+  <br>
+<b>Account to use: </b>
+Student ID: e0123456 / e0407217 / e0415870
+<br>
+Password: password
+  </p>
+  
+<br>
+ <p>
+  <b>Scenario 1:</b>
+  <ol>
+      <li> As student Marcus Lee Eugene (e0415870), book a consultation for CS1101S on 28 July 2020 with another classmate, Tay Kai Xiang in the consultation       slot</li>
+    <li>Choose the teaching assistant, Martin Henz</li>
+    <li>Fill in consultation details and submit consultation request</li>
+    <li>Login to Tay Kai Xiang (e0407217), the classmate's account to accept consultation as a form of acknowledgement before the consultation will be shown up on the professor's side</li>
+    </ol>
+  </p>
+
+  <p>
+  <b> Scenario 2:</b>
+  <ol>
+      <li> As student Marcus Lee Eugene (e0415870), book a consultation for CS1101S on 28 July 2020 with another classmate, Tay Kai Xiang in the consultation       slot</li>
+    <li>Choose the teaching assistant, Martin Henz</li>
+    <li>Fill in consultation details and submit consultation request</li>
+    <li>Login to Tay Kai Xiang (e0407217), the classmate's account to reject consultation</li>
+    </ol>
+  </p>
+
+
+ <p>
+    <b> Scenario 3:</b>
+  Enrol a student into a public consultation
+ </p>
  
+ <p>
+    <b> Scenario 4:</b>
+  Cancel a booking
+ </p>
+
+<br>
+
+ <p>
+  <b>Role: Professor</b>
+  </p>
+  <br>
+<b>Account to use: </b>
+Professor ID: p0123456
+<br>
+Password: password
+  </p>
+
+
+<br>
+
+<p>
+    <b> Scenario 1:</b>
+Accept a consultation request 
+ </p>
+ 
+ <p>
+    <b> Scenario 2:</b>
+  Reject a consultation request and suggest another consultation to the same user
+ </p>
+ 
+  <p>
+    <b> Scenario 3:</b>
+  Reject a consultation request 
+ </p>
+ 
+  <p>
+    <b> Scenario 4:</b>
+ Create a public consultation for everyone
+ </p>
+
+
   <h3 id="acknowledgement" align="center"> 5. Acknowledgement </h3>
     <p>
       <b> The following are the list of libraries we used in our application: </b>
