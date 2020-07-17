@@ -205,13 +205,6 @@
       accepted/rejected the consultation slot.
     </b>
   </p>
-  <p>
-    Below is an illustration of the various actions/scenarios that can happen when different buttons are clicked inside public consultation
-    and manage bookings.
-  <p>
-  <p align="center">
-     <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/Docs/DocVideos/CreateConsult%20Video.gif"  height="300">
-  </p>
 
 <h4 id="priorityFeature"> 4vi. Priority Points System</h4>
   <p>
