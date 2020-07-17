@@ -216,7 +216,7 @@
 <h4 id="priorityFeature"> 4vi. Priority Points System</h4>
   <p>
   At the start of the semester, students will received 50 priority points for each module.
-  Priority points will get deducted(10 points at a time) if the student does not turn up for an approved consultation on the day itself. Once the priority points reached 30, the student will be banned from booking private consultation for a week. If the priority points reached 0, student will not be allowed to make any consultation requests for the module.
+  Priority points will get deducted(10 points at a time) if the student does not turn up for an approved consultation on the day itself. Once the priority points reached 30, students will be banned from booking private consultation for a week. If the priority points reached 0, students will not be allowed to make any consultation requests for the module.
   </p>
 
 <h4 id="attendanceFeature"> 4vii. Attendance Scanning with QR Code </h4>
