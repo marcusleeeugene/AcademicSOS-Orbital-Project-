@@ -136,6 +136,17 @@
     With a dynamic search function, it allows the user to add students in the same tutorial class to join in as group or individual one-to-one consultation.
     In the agenda textbox, it is recommended to fill in the purpose of the meeting so that the students will know beforehand.
   </p>
+  <p>
+    Alternatively, the teaching assistant can create a private consultation slot where students from the same tutorial group can be added into the
+    consultation easily. Upon the creation of the private consultation, the consultation slot will be shown on the Manage Bookings section for the
+    users involved.
+  </p>
+  <p>
+    <b>
+      Do note that the consultation slot will only appear on the TA’s Manage Bookings section after all the other student participants have
+      accepted/rejected the consultation slot.
+    </b>
+  </p>
   <br><br>
   <p align="center">
      <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/Docs/DocVideos/CreateConsult%20Video.gif"  height="500">
@@ -193,17 +204,6 @@
   <br><br>
   <p align="center">
      <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/Docs/DocVideos/PublicConsult%20Video.gif"  height="500">
-  </p>
-  <p>
-    Alternatively, the teaching assistant can create a private consultation slot where students from the same tutorial group can be added into the
-    consultation easily. Upon the creation of the private consultation, the consultation slot will be shown on the Manage Bookings section for the
-    users involved.
-  </p>
-  <p>
-    <b>
-      Do note that the consultation slot will only appear on the TA’s Manage Bookings section after all the other student participants have
-      accepted/rejected the consultation slot.
-    </b>
   </p>
 
 <h4 id="priorityFeature"> 4vi. Priority Points System</h4>
