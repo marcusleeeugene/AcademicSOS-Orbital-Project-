@@ -478,8 +478,7 @@ Password: password
   <p>
  <ol>
    <li>
-  <b>User Tester 1</b>
-     <br>
+     <p><b>User Tester 1</b></p>     
      
    <b> Pros: </b>
      <ul>
@@ -489,15 +488,14 @@ Password: password
      </ul>
        <br>
       <b> Cons:</b>
-<ul>
-  <li>It is possible to book/create consultation with empty fields which is not desired as there will be no date and time displayed on Manage Booking screen.
-  </li>
-     </ul>
-   </li>
+  <ul>
+    <li>It is possible to book/create consultation with empty fields which is not desired as there will be no date and time displayed on Manage Booking screen</li>
+  </ul>
+ </li>
    
    <li>
-    <b>User Tester 2</b>
-  <br>
+  <p><b>User Tester 2</b></p>
+  
    <b> Pros: </b>
      <ul>
        <li>QR code attendance taking is so cool</li>
@@ -510,10 +508,8 @@ Password: password
   <li> Words are out of position in smaller phone screens </li>
   </ul>
   </li>
-  
    <li>
-    <b>User Tester 3</b>
-  <br>
+  <p><b>User Tester 3</b></p>
    <b> Pros: </b>
      <ul>
        <li>Interface is very visually appealing, follows the NUS theme colours</li>
