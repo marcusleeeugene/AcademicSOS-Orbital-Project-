@@ -504,7 +504,7 @@ Password: password
        <br>
       <b> Cons:</b>
 <ul>
-  <li>No notification to inform student participants/teaching assistants when private consultation is created.</li>
+  <li>No notification to inform student participants/teaching assistants when private consultation is created</li>
   <li> Words are out of position in smaller phone screens </li>
   </ul>
   </li>
@@ -518,7 +518,7 @@ Password: password
        <br>
       <b> Cons:</b>
 <ul>
-  <li>Still able to see consultation in Manage Booking screen even when the consultation has ended.</li>
+  <li>Still able to see consultation in Manage Booking screen even when the consultation has ended</li>
   <li> Users can still create consultation for a module that they have been banned from </li>
   </ul>
   </li>
