@@ -378,7 +378,7 @@
         <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/Docs/DocImages/Academic%20Pre-Questionnaire%20Results(3).png"  height="400">
       </p>
 
-   <h4 id="userTaskList"> Task List </h4>
+   <h4 id="userTaskList" align="center"> Task List </h4>
       <p>
         <b>Role: Student </b>
         <br>
@@ -459,7 +459,7 @@
   </p>
   <br>
 
-  <h4 id="userEvaluation"> User Evaluation </h4>
+  <h4 id="userEvaluation" align="center"> User Evaluation </h4>
     <p><b>User Tester 1</b></p>
     <b> Pros: </b>
     <ul>
@@ -472,7 +472,7 @@
     <ul>
       <li>It is possible to book/create consultation with empty fields which is not desired as there will be no date and time displayed on Manage Booking screen</li>
     </ul>
-
+    <br>
   <p><b>User Tester 2</b></p>
   <b> Pros: </b>
   <ul>
@@ -485,7 +485,7 @@
     <li>No notification to inform student participants/teaching assistants when private consultation is created</li>
     <li> Words are out of position in smaller phone screens </li>
   </ul>
-
+  <br>
   <p><b>User Tester 3</b></p>
   <b> Pros: </b>
   <ul>
@@ -499,7 +499,6 @@
     <li> Users can still create consultation for a module that they have been banned from </li>
   </ul>
   <br>
-
   <p>
     <b>Changes made from Feedbacks:</b>
     <br>
@@ -511,7 +510,7 @@
       <li>Alert banned users and prevent access to Create Consultation screen</li>
     </ul>
   </p>
-
+  <br>
   <h3 id="acknowledgement" align="center"> 5. Acknowledgement </h3>
     <p>
       <b> The following are the list of libraries we used in our application: </b>
