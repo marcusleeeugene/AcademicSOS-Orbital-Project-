@@ -366,12 +366,12 @@
       <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/Docs/DocImages/AcademicSOS%20Pre-Questionnaire.png"  height="650">
   </p>
     <br>
-     <p>
-     <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/Docs/DocImages/Academic%20Pre-Questionnaire%20Results(1).png"  height="300">
-    <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/Docs/DocImages/Academic%20Pre-Questionnaire%20Results(2).png"  height="300">
+     <p align="center">
+     <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/Docs/DocImages/Academic%20Pre-Questionnaire%20Results(1).png"  height="500">
+    <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/Docs/DocImages/Academic%20Pre-Questionnaire%20Results(2).png"  height="500">
     <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/Docs/DocImages/Academic%20Pre-Questionnaire%20Results(3).png"  height="300">
-   </p>
-
+  </p>
+ 
   <h3 id="acknowledgement" align="center"> 5. Acknowledgement </h3>
     <p>
       <b> The following are the list of libraries we used in our application: </b>
