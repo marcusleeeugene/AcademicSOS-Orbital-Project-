@@ -379,6 +379,7 @@
   </p>
   <br>
 <b>Account to use: </b>
+<br>
 Student ID: e0123456 / e0407217 / e0415870
 <br>
 Password: password
@@ -423,6 +424,7 @@ Password: password
   </p>
   <br>
 <b>Account to use: </b>
+<br>
 Professor ID: p0123456
 <br>
 Password: password
