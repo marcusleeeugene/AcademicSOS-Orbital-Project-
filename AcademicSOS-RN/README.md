@@ -367,9 +367,9 @@
   </p>
     <br>
      <p align="center">
-     <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/Docs/DocImages/Academic%20Pre-Questionnaire%20Results(1).png"  height="500">
-    <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/Docs/DocImages/Academic%20Pre-Questionnaire%20Results(2).png"  height="500">
-    <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/Docs/DocImages/Academic%20Pre-Questionnaire%20Results(3).png"  height="300">
+     <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/Docs/DocImages/Academic%20Pre-Questionnaire%20Results(1).png"  height="600" width="600">
+    <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/Docs/DocImages/Academic%20Pre-Questionnaire%20Results(2).png"  height="600" width="600">
+    <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/Docs/DocImages/Academic%20Pre-Questionnaire%20Results(3).png"  height="390">
   </p>
  
   <h3 id="acknowledgement" align="center"> 5. Acknowledgement </h3>
