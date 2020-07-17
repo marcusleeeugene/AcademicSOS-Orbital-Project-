@@ -33,7 +33,7 @@
     <a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS.apk"> Download .apk file</a>
   </p>
   <p>
-    <b> For ios Users: </b>
+    <b> For IOS Users: </b>
     Unfortunately, a paid developer account is required. Install the app by cloning the repo following the steps
     <a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/tree/master/AcademicSOS-RN/#settingUp"> here </a>.
   </p>
@@ -66,7 +66,7 @@
 <h3 id="features" align="center"> 4. Features </h3>
 <h4 id="loginFeature"> 4i. Login </h4>
   <p>
-    Users just have to login using their NUS account using their NUSNETID and password and firebase authentication will check for account legitimacy before logging in. For the project, due to delays in getting approval for the LumiNUS API, we decided to manually create our users.
+    Users only have to login to their NUS account with their NUSNETID and password while the firebase authentication will check for account legitimacy before logging in. For the project, due to delays in getting approval for the LumiNUS API, we have decided to create our users manually.
   </p>
   <p><b> The following are available users for this application: </b></p>
   <p>
