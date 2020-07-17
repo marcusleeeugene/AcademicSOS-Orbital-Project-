@@ -212,7 +212,7 @@
      <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/Docs/DocVideos/CreateConsult%20Video.gif"  height="300">
   </p>
 
-<h4 id="priorityFeature"> 4vi. Priority Points System (To be completed) </h4>
+<h4 id="priorityFeature"> 4vi. Priority Points System</h4>
   <p>
   Priority points get deducted if the student does not turn up for an approved consultation on the day itself. This will affect their future
   consultation requests and will rank their request at the bottom when showing up in the pending section of their TA’s Manage Booking screen,
@@ -235,7 +235,7 @@
      <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/Docs/DocVideos/QRCodeStudent%20Video.gif"  height="500">
   </p>
 
-<h4 id="notificationFeature"> 4viii. Notification Reminder (To be completed) </h4>
+<h4 id="notificationFeature"> 4viii. Notification Reminder </h4>
   <p>
     Closer to the day of the consultation, a notification will be sent out to notify users of their upcoming consultations.
   </p>
