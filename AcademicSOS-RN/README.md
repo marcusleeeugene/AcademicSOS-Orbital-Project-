@@ -47,7 +47,12 @@
          <li><a href="#scheduledTaskImplementation"> Scheduled Tasks </a></li>
        </ul>
      </li>
-     <li><a href="#userTest"> User Test </a></li>
+     <li><a href="#userTesting"> User Testing </a>
+        <ul>
+          <li><a href="userTaskList"> Task List </a></li>
+          <li><a href="userEvaluation"> User Evaluation </a></li>
+        </ul>
+     </li>
      <li><a href="#acknowledgement"> Acknowledgement </a></li>
   </ol>
 
@@ -361,186 +366,153 @@
       <li> View Scheduled Tasks extension: <a href="https://github.com/marcusleeeugene/AcademicSOS-ScheduledTasks"> Scheduled Tasks </a> </li>
     </ul>
     <br>
-  <h3 id="userTest" align="center"> 4. User Test </h3>
+
+  <h3 id="userTesting" align="center"> 4. User Testing </h3>
       <p align="center">
-      <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/Docs/DocImages/AcademicSOS%20Pre-Questionnaire.png"  height="650">
-  </p>
-    <br>
-     <p align="center">
-     <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/Docs/DocImages/Academic%20Pre-Questionnaire%20Results(1).png"  height="600" width="600">
-    <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/Docs/DocImages/Academic%20Pre-Questionnaire%20Results(2).png"  height="600" width="600">
-    <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/Docs/DocImages/Academic%20Pre-Questionnaire%20Results(3).png"  height="390">
-  </p>
-  
-   <h4 id="userTaskList" align="center"> User Testing Task List</h4>
-  
-  <p>
-  <b>Role: Student</b>
-  </p>
-  <br>
-<b>Account to use: </b>
-<br>
-Student ID: e0123456 / e0407217 / e0415870
-<br>
-Password: password
-  </p>
-  
-<br>
- <p>
-  <b>Scenario 1:</b>
-  <ol>
-      <li> As student Marcus Lee Eugene (e0415870), book a consultation for CS1101S on 28 July 2020 with another classmate, Tay Kai Xiang in the consultation       slot</li>
-    <li>Choose the teaching assistant, Martin Henz</li>
-    <li>Fill in consultation details and submit consultation request</li>
-    <li>Login to Tay Kai Xiang (e0407217), the classmate's account to accept consultation as a form of acknowledgement before the consultation will be shown up on the professor's side</li>
-    </ol>
-  </p>
+          <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/Docs/DocImages/AcademicSOS%20Pre-Questionnaire.png"  height="650">
+      </p>
+      <br>
+      <p align="center">
+        <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/Docs/DocImages/Academic%20Pre-Questionnaire%20Results(1).png"  height="600" width="600">
+        <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/Docs/DocImages/Academic%20Pre-Questionnaire%20Results(2).png"  height="600" width="600">
+        <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/Docs/DocImages/Academic%20Pre-Questionnaire%20Results(3).png"  height="390">
+      </p>
 
-  <p>
-  <b> Scenario 2:</b>
-  <ol>
-      <li> As student Marcus Lee Eugene (e0415870), book a consultation for CS1101S on 28 July 2020 with another classmate, Tay Kai Xiang in the consultation       slot</li>
-    <li>Choose the teaching assistant, Martin Henz</li>
-    <li>Fill in consultation details and submit consultation request</li>
-    <li>Login to Tay Kai Xiang (e0407217), the classmate's account to reject consultation</li>
-    </ol>
-  </p>
+      <h4 id="userTaskList"> Task List </h4>
+        <p>
+          <b>Role: Student </b>
+          <br>
+          <b> Account to use: </b>
+          <br>
+          Student ID: e0123456 / e0407217 / e0415870
+          <br>
+          Password: password
+        </p>
+        <br>
+        <p>
+          <b>Scenario 1:</b>
+          <ol>
+            <li> As student Marcus Lee Eugene (e0415870), book a consultation for CS1101S on 28 July 2020 with another classmate, Tay Kai Xiang in the consultation       slot</li>
+            <li>Choose the teaching assistant, Martin Henz</li>
+            <li>Fill in consultation details and submit consultation request</li>
+            <li>Login to Tay Kai Xiang (e0407217), the classmate's account to accept consultation as a form of acknowledgement before the consultation will be shown up on the professor's side</li>
+          </ol>
+        </p>
+        <p>
+          <b> Scenario 2: </b>
+          <ol>
+            <li> As student Marcus Lee Eugene (e0415870), book a consultation for CS1101S on 28 July 2020 with another classmate, Tay Kai Xiang in the consultation       slot</li>
+            <li>Choose the teaching assistant, Martin Henz</li>
+            <li>Fill in consultation details and submit consultation request</li>
+            <li>Login to Tay Kai Xiang (e0407217), the classmate's account to reject consultation</li>
+          </ol>
+        </p>
+        <p>
+          <b> Scenario 3: </b>
+          Enrol a student into a public consultation
+        </p>
+        <p>
+          <b> Scenario 4:</b>
+          Cancel a booking
+        </p>
+        <br>
+        <p>
+          <b> Role: Professor </b>
+          <br>
+          <b> Account to use: </b>
+          <br>
+          Professor ID: p0123456
+          <br>
+          Password: password
+        </p>
+        <br>
+        <p>
+          <b> Scenario 1: </b>
+          Accept a consultation request
+        </p>
+        <p>
+          <b> Scenario 2: </b>
+          Reject a consultation request and suggest another consultation to the same user
+        </p>
+        <p>
+          <b> Scenario 3: </b>
+          Reject a consultation request
+        </p>
+        <p>
+          <b> Scenario 4: </b>
+          Create a public consultation for everyone
+        </p>
+        <br>
 
+        <p>
+          <b>Role: Teaching Assistant </b>
+          <br>
+          <b>Account to use: </b>
+          <br>
+          Teaching Assistant ID: e0415870
+          <br>
+          Password: password
+        </p>
+        <br>
+        <p>
+          <b> Scenario 1:</b>
+          Create a consultation and add in students from the tutorial group
+        </p>
+        <br>
 
- <p>
-    <b> Scenario 3:</b>
-  Enrol a student into a public consultation
- </p>
- 
- <p>
-    <b> Scenario 4:</b>
-  Cancel a booking
- </p>
-
-<br>
-
- <p>
-  <b>Role: Professor</b>
-  </p>
-  <br>
-<b>Account to use: </b>
-<br>
-Professor ID: p0123456
-<br>
-Password: password
-  </p>
-
-
-<br>
-
-<p>
-    <b> Scenario 1:</b>
-Accept a consultation request 
- </p>
- 
- <p>
-    <b> Scenario 2:</b>
-  Reject a consultation request and suggest another consultation to the same user
- </p>
- 
-  <p>
-    <b> Scenario 3:</b>
-  Reject a consultation request 
- </p>
- 
-  <p>
-    <b> Scenario 4:</b>
- Create a public consultation for everyone
- </p>
-
-<br>
-
- <p>
-  <b>Role: Teaching Assistant</b>
-  </p>
-  <br>
-<b>Account to use: </b>
-<br>
-Teaching Assistant ID: e0415870
-<br>
-Password: password
-  </p>
-
-<br>
-
-<p>
-    <b> Scenario 1:</b>
-  Create a consultation and add in students from the tutorial group
- </p>
-
-<br> 
-  <h4 id="userEvaluation" align="center"> User Evaluation</h4>
-  <p>
- <ol>
-   <li>
-     <p><b>User Tester 1</b></p>     
-     
-   <b> Pros: </b>
-     <ul>
-       <li>Easy to use and navigate around screens</li>
-  <li> Dynamic search function has been useful to search for students taking the same module in Book Consultation screen and searching for students in the tutorial group in Create Consultation screen</li>
-       <li> Able to filter consultations easily based on status, academic week</li>
-     </ul>
-       <br>
-      <b> Cons:</b>
-  <ul>
-    <li>It is possible to book/create consultation with empty fields which is not desired as there will be no date and time displayed on Manage Booking screen</li>
-  </ul>
- </li>
-   
-   <li>
-  <p><b>User Tester 2</b></p>
-  
-   <b> Pros: </b>
-     <ul>
-       <li>QR code attendance taking is so cool</li>
-  <li> Able to add or remove participants easily when booking consultation</li>
-     </ul>
-       <br>
-      <b> Cons:</b>
-<ul>
-  <li>No notification to inform student participants/teaching assistants when private consultation is created</li>
-  <li> Words are out of position in smaller phone screens </li>
-  </ul>
-  </li>
-   <li>
-  <p><b>User Tester 3</b></p>
-   <b> Pros: </b>
-     <ul>
-       <li>Interface is very visually appealing, follows the NUS theme colours</li>
-  <li> Priority points feature really helps in ensuring students to be accountable for the consultations</li>
-     </ul>
-       <br>
-      <b> Cons:</b>
-<ul>
-  <li>Still able to see consultation in Manage Booking screen even when the consultation has ended</li>
-  <li> Users can still create consultation for a module that they have been banned from </li>
-  </ul>
-  </li>
-  
-  </ol>
-</p>
-
-<br>
-
-<p>
-  <b>Changes made from Feedbacks:</b>
-  <br>
-  <ul>
-    <li>Added in validation to check for empty fields and alert users before submitting </li>
-    <li>Notification reminder for all users when a private consultation is created</li>
-     <li>Re-worked on responsive design to make sure words are aligned properly in smaller devices</li>
-     <li>Added in a scheduled task that periodically deletes consultations that have ended from the database</li>
-    <li>Alert banned users and prevent access to Create Consultation screen</li>
+  <h4 id="userEvaluation"> User Evaluation </h4>
+    <p><b>User Tester 1</b></p>
+    <b> Pros: </b>
+    <ul>
+      <li>Easy to use and navigate around screens</li>
+      <li> Dynamic search function has been useful to search for students taking the same module in Book Consultation screen and searching for students in the tutorial group in Create Consultation screen</li>
+      <li> Able to filter consultations easily based on status, academic week</li>
     </ul>
-  </p>
+    <br>
+    <b> Cons:</b>
+    <ul>
+      <li>It is possible to book/create consultation with empty fields which is not desired as there will be no date and time displayed on Manage Booking screen</li>
+    </ul>
 
-  
+    <p><b>User Tester 2</b></p>
+    <b> Pros: </b>
+    <ul>
+      <li>QR code attendance taking is so cool</li>
+      <li> Able to add or remove participants easily when booking consultation</li>
+    </ul>
+    <br>
+    <b> Cons:</b>
+    <ul>
+      <li>No notification to inform student participants/teaching assistants when private consultation is created</li>
+      <li> Words are out of position in smaller phone screens </li>
+    </ul>
+
+    <p><b>User Tester 3</b></p>
+    <b> Pros: </b>
+    <ul>
+      <li>Interface is very visually appealing, follows the NUS theme colours</li>
+      <li> Priority points feature really helps in ensuring students to be accountable for the consultations</li>
+    </ul>
+    <br>
+    <b> Cons:</b>
+    <ul>
+      <li>Still able to see consultation in Manage Booking screen even when the consultation has ended</li>
+      <li> Users can still create consultation for a module that they have been banned from </li>
+    </ul>
+    <br>
+
+    <p>
+      <b>Changes made from Feedbacks:</b>
+      <br>
+      <ul>
+        <li>Added in validation to check for empty fields and alert users before submitting </li>
+        <li>Notification reminder for all users when a private consultation is created</li>
+        <li>Re-worked on responsive design to make sure words are aligned properly in smaller devices</li>
+        <li>Added in a scheduled task that periodically deletes consultations that have ended from the database</li>
+        <li>Alert banned users and prevent access to Create Consultation screen</li>
+      </ul>
+    </p>
+
   <h3 id="acknowledgement" align="center"> 5. Acknowledgement </h3>
     <p>
       <b> The following are the list of libraries we used in our application: </b>
