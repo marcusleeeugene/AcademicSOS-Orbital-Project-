@@ -478,7 +478,8 @@ Password: password
   <p>
  <ol>
    <li>
-  <p><b>User Tester 1</b></p>
+  <b>User Tester 1</b>
+     <br>
      
    <b> Pros: </b>
      <ul>
@@ -495,7 +496,8 @@ Password: password
    </li>
    
    <li>
-    <p><b>User Tester 2</b></p>
+    <b>User Tester 2</b>
+  <br>
    <b> Pros: </b>
      <ul>
        <li>QR code attendance taking is so cool</li>
@@ -510,7 +512,8 @@ Password: password
   </li>
   
    <li>
-    <p><b>User Tester 3</b></p>
+    <b>User Tester 3</b>
+  <br>
    <b> Pros: </b>
      <ul>
        <li>Interface is very visually appealing, follows the NUS theme colours</li>
@@ -526,6 +529,21 @@ Password: password
   
   </ol>
 </p>
+
+<br>
+
+<p>
+  <b>Changes made from Feedbacks:</b>
+  <br>
+  <ul>
+    <li>Added in validation to check for empty fields and alert users before submitting </li>
+    <li>Notification reminder for all users when a private consultation is created</li>
+     <li>Re-worked on responsive design to make sure words are aligned properly in smaller devices</li>
+     <li>Added in a scheduled task that periodically deletes consultations that have ended from the database</li>
+    <li>Alert banned users and prevent access to Create Consultation screen</li>
+    </ul>
+  </p>
+
   
   <h3 id="acknowledgement" align="center"> 5. Acknowledgement </h3>
     <p>
