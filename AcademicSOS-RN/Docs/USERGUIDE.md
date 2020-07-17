@@ -168,7 +168,7 @@
   </p>
   <p>
     Below is an illustration of the various actions/scenarios that can happen when different buttons are clicked inside the consultation slot of Manage
-    Bookings by different groups of users depending on how the consultation is made from Book Consultation by students or Create Consultation by teaching assistants/professors.
+    Bookings by different groups of users depending on how the consultation is created, either from Book Consultation by students or Create Consultation by teaching assistants/professors.
   </p>
   <p align="center">
      <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/Docs/DocImages/Book%20Consult%20Logic.png"  height="300">
@@ -215,9 +215,8 @@
 
 <h4 id="priorityFeature"> 4vi. Priority Points System</h4>
   <p>
-  Priority points get deducted if the student does not turn up for an approved consultation on the day itself. This will affect their future
-  consultation requests and will rank their request at the bottom when showing up in the pending section of their TA’s Manage Booking screen,
-  in the case where another student has booked the consultation on the same date and time.
+  At the start of the semester, students will received 50 priority points for each module.
+  Priority points will get deducted(10 points at a time) if the student does not turn up for an approved consultation on the day itself. Once the priority points reached 30, the student will be banned from booking private consultation for a week. If the priority points reached 0, student will not be allowed to make any consultation requests for the module.
   </p>
 
 <h4 id="attendanceFeature"> 4vii. Attendance Scanning with QR Code </h4>
@@ -238,5 +237,6 @@
 
 <h4 id="notificationFeature"> 4viii. Notification Reminder </h4>
   <p>
-    Closer to the day of the consultation, a notification will be sent out to notify users of their upcoming consultations.
+   24 hours before the actual day of the consultation, a notification will be sent out to notify users of their upcoming consultations.
+  Any changes to the consultation made by the teaching assistants/professors will be notified to the students in the event the consultation has been confirmed or rejected by the teaching assistants/professors.
   </p>
