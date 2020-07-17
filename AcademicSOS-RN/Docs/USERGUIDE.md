@@ -168,10 +168,11 @@
   </p>
   <p>
     Below is an illustration of the various actions/scenarios that can happen when different buttons are clicked inside the consultation slot of Manage
-    Bookings by different groups of users.
+    Bookings by different groups of users depending on how the consultation is made from Book Consultation by students or Create Consultation by teaching assistants/professors.
   </p>
   <p align="center">
      <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/Docs/DocImages/Book%20Consult%20Logic.png"  height="300">
+      <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/Docs/DocImages/CreateConsult%20Logic.png"  height="300">
   </p>
 
 <h4 id="publicConsultFeature"> 4v. Public Consultation </h4>
