@@ -216,7 +216,7 @@
 <h4 id="priorityFeature"> 4vi. Priority Points System</h4>
   <p>
   At the start of the semester, students will received 50 priority points for each module.
-  Priority points will get deducted(10 points at a time) if the student does not turn up for an approved consultation on the day itself. Once the priority points reached 30, students will be banned from booking private consultation for a week. If the priority points reached 0, students will not be allowed to make any consultation requests for the module.
+  Priority points will get deducted (10 points each time) if the student does not turn up for an approved consultation on the day itself. Once priority points reaches 30 or less, students will be banned from booking private consultation for a week. When the priority points reaches 0, students will not be allowed to make any consultation requests for the module for the entire semester.
   </p>
 
 <h4 id="attendanceFeature"> 4vii. Attendance Scanning with QR Code </h4>
@@ -238,5 +238,6 @@
 <h4 id="notificationFeature"> 4viii. Notification Reminder </h4>
   <p>
    24 hours before the actual day of the consultation, a notification will be sent out to notify users of their upcoming consultations.
-  Any changes to the consultation made by the teaching assistants/professors will be notified to the students in the event the consultation has been confirmed or rejected by the teaching assistants/professors.
+   All users involved in a consultation will be notified if there is a consultation created, consultation booked, or if consultation request is
+   "Confirmed" or "Rejected".
   </p>
