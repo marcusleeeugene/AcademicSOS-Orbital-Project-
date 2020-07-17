@@ -118,6 +118,12 @@
     better prepare beforehand. It is also possible to attach a Google Slides link with screenshots of the questions that the students want to ask in
     the textbox too.
   </p>
+  <p>
+    <b>
+      Do note that the consultation slot will only appear on the TA’s Manage Bookings section after all the other student participants have
+      accepted/rejected the consultation slot.
+    </b>
+  </p>
   <br><br>
   <p align="center">
      <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/Docs/DocVideos/BookConsult%20Video.gif"  height="500">
@@ -140,12 +146,6 @@
     Alternatively, the teaching assistant can create a private consultation slot where students from the same tutorial group can be added into the
     consultation easily. Upon the creation of the private consultation, the consultation slot will be shown on the Manage Bookings section for the
     users involved.
-  </p>
-  <p>
-    <b>
-      Do note that the consultation slot will only appear on the TA’s Manage Bookings section after all the other student participants have
-      accepted/rejected the consultation slot.
-    </b>
   </p>
   <br><br>
   <p align="center">
