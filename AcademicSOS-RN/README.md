@@ -241,7 +241,7 @@
       <h5 id="selectModuleScreen"> SelectModuleScreen.js </h5>
         <ul>
           <li> The Select Module screen shows all the modules that a user is involved in. </li>
-          <li> Students will be prevented access to selecting a module if they are currently serving a consultation ban for the selected module. </li>
+          <li> Students will be denied access to book consult for the selected module if they are currently serving a consultation ban for the selected module. </li>
           <li> View source code: <a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/presentation/SelectModuleScreen.js"> SelectModuleScreen.js </a> </li>
           <li> View Database code: <a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/firebase/SelectModuleFirebase.js"> SelectModuleFirebase.js </a> </li>
         </ul>
@@ -258,7 +258,7 @@
           <li> The special features of this screen is similar to the Book Consult screen. </li>
           <li> There is conditional rendering for when the user chooses "Public" or "Private" type. </li>
           <li> If "Public" is selected, the user can choose the class size, and upon creation, the consultation will show up in Public Consult screen for students to join. </li>
-          <li> If "Private" is selected, the user can choose to invite students from his/her tutorial group. Students will accept the consultation in the Manage Bookin Screen. </li>
+          <li> If "Private" is selected, the user can choose to invite students from his/her tutorial group. Students will accept the consultation in the Manage Booking Screen. </li>
           <li> View source code: <a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/presentation/CreateConsultScreen.js"> CreateConsultScreen.js </a> </li>
           <li> View Database code: <a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/firebase/CreateConsultFireBase.js"> CreateConsultFireBase.js </a> </li>
         </ul>
