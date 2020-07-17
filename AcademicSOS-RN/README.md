@@ -226,7 +226,7 @@
     </p>
 
   <h3 id="implementation" align="center"> 3. Implementation </h3>
-    <h4 id="screenImplementation"> Screens </h4>
+    <h4 id="screenImplementation" align="center"> Screens </h4>
       <h5 id="loginScreen"> LoginScreen.js </h5>
          <ul>
            <li> The Login screen ensures that only NUS students and professors can log in. </li>
@@ -323,7 +323,7 @@
           <li> View Database code: <a href="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/firebase/ScanFireBase.js"> ScanFireBase.js </a> </li>
         </ul>
   <br>
-  <h4 id="componentImplementation"> Components </h4>
+  <h4 id="componentImplementation" align="center"> Components </h4>
     <h5 id="breadCrumb"> BreadCrumb.js </h5>
       <ul>
         <li> The BreadCrumb is a navigation trail system that will be shown on every screen to allow for easy navigation between screens. </li>
