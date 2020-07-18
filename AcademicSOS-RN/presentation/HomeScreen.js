@@ -8,7 +8,8 @@ import BreadCrumb from "../components/BreadCrumb";
 import { YellowBox } from "react-native";
 import * as firebase from "firebase";
 import HomeFB from "../firebase/HomeFireBase.js";
-import * as Notifications from 'expo-notifications';
+import Loading from "../components/Loading.js";
+import * as Notifications from "expo-notifications";
 import RegisterForPushNotification from "../components/PushNotification.js";
 
 export default function HomeScreen({ route, navigation }) {
@@ -49,7 +50,7 @@ export default function HomeScreen({ route, navigation }) {
         // Sign-out successful.
         navigation.reset({
           index: 0,
-          routes: [{ name: 'Login' }],
+          routes: [{ name: "Login" }],
         });
         alert("Signed out successfully!");
       })
@@ -96,6 +97,7 @@ export default function HomeScreen({ route, navigation }) {
   } else {
     return (
       <View>
+        <Loading />
         <BreadCrumb navHistory={navHistory} />
         <View style={styles.body}>
           <Text style={styles.title}>Welcome {userID} !</Text>

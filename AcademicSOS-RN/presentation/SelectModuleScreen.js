@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useFonts } from "@expo-google-fonts/inter";
-import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, ScrollView, Alert } from "react-native";
+import { StyleSheet, Text, View, ActivityIndicator, TouchableOpacity, ScrollView, Alert } from "react-native";
 import { AppLoading } from "expo";
 import { FlatGrid } from "react-native-super-grid";
+import Modal from "react-native-modal";
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen";
 import BreadCrumb from "../components/BreadCrumb";
 import { YellowBox } from "react-native";
@@ -22,6 +23,7 @@ export default function SelectModuleScreen({ route, navigation }) {
 
   const { firstScreen, secondScreen, userID } = route.params;
   const [modules, setModules] = useState([]);
+  const [isLoading, setLoading] = useState(true);
 
   const navHistory = [
     { dest: firstScreen, alt_dest: "" },
@@ -36,12 +38,13 @@ export default function SelectModuleScreen({ route, navigation }) {
         tempModules.push({ name: data[i], code: colourCodes[i] });
       }
       setModules(tempModules);
+      setLoading(false);
     });
   }, []);
 
   const nextAction = (modCode) => {
     SelectModuleFB.checkBanDateRelease(userID, modCode).then((banDate) => {
-      if (banDate == ""|| secondScreen == "Priority Points" || role(userID) == "professors") {
+      if (banDate == "" || secondScreen == "Priority Points" || role(userID) == "professors") {
         navigation.navigate(secondScreen, {
           thirdScreen: modCode,
           secondScreen: secondScreen,
@@ -50,34 +53,35 @@ export default function SelectModuleScreen({ route, navigation }) {
           moduleCode: modCode,
         });
       } else if (banDate == "permanent") {
-        Alert.alert(
-          `You are permanently banned from ${modCode} consultation bookings`,
-          "Check Priority Points for more information.",
-          [
-            {
-              text: "Ok",
-            },
-          ]
-        );
+        Alert.alert(`You are permanently banned from ${modCode} consultation bookings`, "Check Priority Points for more information.", [
+          {
+            text: "Ok",
+          },
+        ]);
       } else {
-        Alert.alert(
-          `You are banned from ${modCode} consultation bookings until ${banDate}`,
-          "Check Priority Points for more information.",
-          [
-            {
-              text: "Ok",
-            },
-          ]
-        );
+        Alert.alert(`You are banned from ${modCode} consultation bookings until ${banDate}`, "Check Priority Points for more information.", [
+          {
+            text: "Ok",
+          },
+        ]);
       }
     });
   };
+
+  const loadingJSX = (
+    <View style={styles.container}>
+      <Modal animationType="slide" transparent={true} visible={isLoading}>
+        <ActivityIndicator animating={isLoading} color="#FFFFFF" size="large" style={styles.activityIndicator} />
+      </Modal>
+    </View>
+  );
 
   if (!fontsLoaded) {
     return <AppLoading />;
   } else {
     return (
       <ScrollView>
+        {loadingJSX}
         <BreadCrumb navHistory={navHistory} />
         <View style={styles.body}>
           <Text style={styles.title}> Select a module </Text>

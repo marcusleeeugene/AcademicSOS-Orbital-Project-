@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useFonts } from "@expo-google-fonts/inter";
-import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, ScrollView, Platform } from "react-native";
+import { StyleSheet, Text, View, Image, ActivityIndicator, TouchableOpacity, ScrollView } from "react-native";
 import { AppLoading } from "expo";
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen";
 import BreadCrumb from "../components/BreadCrumb";
@@ -23,6 +23,7 @@ export default function PublicConsultScreen({ route, navigation }) {
 
   const [isWeekModalVisible, setWeekModalVisible] = useState(false);
   const [isDayModalVisible, setDayModalVisible] = useState(false);
+  const [isLoading, setLoading] = useState(true);
 
   const [week, setWeek] = useState("All Weeks");
   const [day, setDay] = useState("All Days");
@@ -76,6 +77,7 @@ export default function PublicConsultScreen({ route, navigation }) {
           color: colourCodes[i],
         });
       }
+      setLoading(false);
       setConsultations(tempConsultations);
     });
     //Generate list of academic weeks
@@ -169,11 +171,20 @@ export default function PublicConsultScreen({ route, navigation }) {
     </View>
   );
 
+  const loadingJSX = (
+    <View style={styles.container}>
+      <Modal animationType="slide" transparent={true} visible={isLoading}>
+        <ActivityIndicator animating={isLoading} color="#FFFFFF" size="large" style={styles.activityIndicator} />
+      </Modal>
+    </View>
+  );
+
   if (!fontsLoaded) {
     return <AppLoading />;
   } else {
     return (
       <View>
+        {loadingJSX}
         <BreadCrumb navHistory={navHistory} />
         <View style={styles.body}>
           <Text style={styles.title}> Public Consultation </Text>
@@ -201,6 +212,17 @@ export default function PublicConsultScreen({ route, navigation }) {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  activityIndicator: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    height: 80,
+  },
   body: {
     height: hp("100%"),
     width: wp("100%"),
