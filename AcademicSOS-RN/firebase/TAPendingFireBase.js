@@ -52,13 +52,15 @@ const TAPendingFB = {
     for (var each in participants) {
       //Loop through participants
       var user = participants[each];
-      database
-        .ref(`users/${role(user.id)}/${user.id}`)
-        .once("value")
-        .then((snapshot) => snapshot.val())
-        .then((data) => {
-          sendConfirmedConsultPushNotification(data.pushToken, consultDetails["module"], consultDetails); //Send notification to students
-        });
+      if (user.id != undefined) {
+        database
+          .ref(`users/${role(user.id)}/${user.id}`)
+          .once("value")
+          .then((snapshot) => snapshot.val())
+          .then((data) => {
+            sendConfirmedConsultPushNotification(data.pushToken, consultDetails["module"], consultDetails); //Send notification to students
+          });
+      }
     }
   },
 
@@ -68,13 +70,15 @@ const TAPendingFB = {
     for (var each in participants) {
       //Loop through participants
       var user = participants[each];
-      database
-        .ref(`users/${role(user.id)}/${user.id}`)
-        .once("value")
-        .then((snapshot) => snapshot.val())
-        .then((data) => {
-          sendRejectedConsultPushNotification(data.pushToken, consultDetails["module"], consultDetails); //Send notification to students
-        });
+      if (user.id != undefined) {
+        database
+          .ref(`users/${role(user.id)}/${user.id}`)
+          .once("value")
+          .then((snapshot) => snapshot.val())
+          .then((data) => {
+            sendRejectedConsultPushNotification(data.pushToken, consultDetails["module"], consultDetails); //Send notification to students
+          });
+      }
     }
   },
 };
