@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
     color: "#000000",
   },
   noteTitle: {
-    marginTop: hp("15%"),
+    marginTop: hp("5%"),
     fontSize: hp("2.5%"),
     textAlign: "center",
     fontFamily: "Righteous-Regular",
