@@ -70,7 +70,7 @@ export default function SelectModuleScreen({ route, navigation }) {
 
   const loadingJSX = (
     <View style={styles.container}>
-      <Modal animationType="slide" transparent={true} visible={isLoading}>
+      <Modal animationType="fade" transparent={true} visible={isLoading}>
         <ActivityIndicator animating={isLoading} color="#FFFFFF" size="large" style={styles.activityIndicator} />
       </Modal>
     </View>
@@ -104,7 +104,6 @@ export default function SelectModuleScreen({ route, navigation }) {
 }
 
 const styles = StyleSheet.create({
-  breadCrumb: {},
   body: {
     height: hp("100%"),
     width: wp("100%"),

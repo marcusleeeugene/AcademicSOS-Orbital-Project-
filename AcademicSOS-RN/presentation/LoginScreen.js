@@ -19,7 +19,6 @@ export default function LoginScreen({ navigation }) {
   const [userID, setUserID] = useState("");
   const [password, setPassword] = useState("");
   const [extraScrollHeight, setScrollHeight] = useState(0);
-
   const [dimensions, setDimensions] = useState({ window, screen });
 
   // *** Check screen sizes(Do not delete!!!)`${dimensions.screen.height}, ${dimensions.screen.width}`

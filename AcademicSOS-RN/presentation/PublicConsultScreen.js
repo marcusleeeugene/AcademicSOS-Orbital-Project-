@@ -173,7 +173,7 @@ export default function PublicConsultScreen({ route, navigation }) {
 
   const loadingJSX = (
     <View style={styles.container}>
-      <Modal animationType="slide" transparent={true} visible={isLoading}>
+      <Modal animationType="fade" transparent={true} visible={isLoading}>
         <ActivityIndicator animating={isLoading} color="#FFFFFF" size="large" style={styles.activityIndicator} />
       </Modal>
     </View>

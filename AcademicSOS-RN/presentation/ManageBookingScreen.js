@@ -81,8 +81,8 @@ export default function ManageBookingScreen({ route, navigation }) {
           color: colourCodes[i],
         });
       }
-      setLoading(false);
       setConsultations(tempConsultations);
+      setLoading(false);
     });
     //Generate list of academic weeks
     var tempWeeks = [];
@@ -229,7 +229,7 @@ export default function ManageBookingScreen({ route, navigation }) {
 
   const loadingJSX = (
     <View style={styles.container}>
-      <Modal animationType="slide" transparent={true} visible={isLoading}>
+      <Modal animationType="fade" transparent={true} visible={isLoading}>
         <ActivityIndicator animating={isLoading} color="#FFFFFF" size="large" style={styles.activityIndicator} />
       </Modal>
     </View>

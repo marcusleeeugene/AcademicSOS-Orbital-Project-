@@ -8,7 +8,6 @@ import BreadCrumb from "../components/BreadCrumb";
 import { YellowBox } from "react-native";
 import * as firebase from "firebase";
 import HomeFB from "../firebase/HomeFireBase.js";
-import Loading from "../components/Loading.js";
 import * as Notifications from "expo-notifications";
 import RegisterForPushNotification from "../components/PushNotification.js";
 
@@ -24,7 +23,7 @@ export default function HomeScreen({ route, navigation }) {
 
   const { userID, firstScreen } = route.params;
   const [userType, setUserType] = useState("");
-
+  
   const navHistory = [{ dest: firstScreen, alt_dest: "" }];
 
   RegisterForPushNotification(userID, navigation); //Initialize notifications for expo app
@@ -97,7 +96,6 @@ export default function HomeScreen({ route, navigation }) {
   } else {
     return (
       <View>
-        <Loading />
         <BreadCrumb navHistory={navHistory} />
         <View style={styles.body}>
           <Text style={styles.title}>Welcome {userID} !</Text>
