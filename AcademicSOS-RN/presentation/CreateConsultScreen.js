@@ -95,7 +95,7 @@ export default function CreateConsultScreen({ route, navigation }) {
       alert("Pls fill in all required fields before proceeding!");
     } else {
       consultType == "Public"
-        ? CreateConsultFB.getWeekRange().then((weekRange) => {
+        ? CreateConsultFB.WeekRange().then((weekRange) => {
             CreateConsultFB.addPublicBooking(
               userID,
               moduleCode,
@@ -113,7 +113,7 @@ export default function CreateConsultScreen({ route, navigation }) {
               weekRange
             );
           })
-        : CreateConsultFB.getWeekRange().then((weekRange) => {
+        : CreateConsultFB.WeekRange().then((weekRange) => {
             CreateConsultFB.addPrivateBooking(
               userID,
               moduleCode,
@@ -148,7 +148,7 @@ export default function CreateConsultScreen({ route, navigation }) {
 
   const updateConsultation = () => {
     updateAltStatus();
-    CreateConsultFB.getWeekRange().then((weekRange) => {
+    CreateConsultFB.WeekRange().then((weekRange) => {
       CreateConsultFB.updateBooking(
         userID,
         bookingId,

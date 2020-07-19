@@ -3,20 +3,27 @@ import { database, role } from "./FireBaseConfig.js";
 import { sendCreateConsultPushNotification, sendUpdatedConsultPushNotification } from "../components/PushNotification.js";
 
 const CreateConsultFB = {
-  getWeekRange: function () {
-    return fetch("https://api.nusmods.com/v2/2019-2020/modules/CS2040.json") //This part, to be made dynamic in future
-      .then((result) => result.json())
-      .then((data) => {
-        var semData = data["semesterData"];
-        var weekRange;
-        for (var sem in semData) {
-          if ("start" in semData[sem]["timetable"][0]["weeks"]) {
-            weekRange = semData[sem]["timetable"][0]["weeks"];
-            break;
+  WeekRange: function () {
+  return database
+    .ref(`modules`)
+    .once("value")
+    .then((snapshot) => snapshot.val())
+    .then((data) => {
+      var acadYear = data.acadYear;
+      return fetch(`https://api.nusmods.com/v2/${acadYear}/modules/CS2040.json`) //This part, to be made dynamic in future
+        .then((result) => result.json())
+        .then((data) => {
+          var semData = data["semesterData"];
+          var weekRange;
+          for (var sem in semData) {
+            if ("start" in semData[sem]["timetable"][0]["weeks"]) {
+              weekRange = semData[sem]["timetable"][0]["weeks"];
+              break;
+            }
           }
-        }
-        return weekRange;
-      });
+          return weekRange;
+        });
+    });
   },
 
   addPublicBooking: function (creator, modCode, date, startTime, endTime, location, consultType, TA, size, agenda, status, bookDate, bookTime, weekRange) {

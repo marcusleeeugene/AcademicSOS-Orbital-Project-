@@ -17,18 +17,25 @@ function compareDateTime(a, b) {
 
 function WeekRange() {
   //get a promise for week range within acad year based on real time later on.
-  return fetch("https://api.nusmods.com/v2/2019-2020/modules/CS2040.json") //This part, to be made dynamic in future
-    .then((result) => result.json())
+  return database
+    .ref(`modules`)
+    .once("value")
+    .then((snapshot) => snapshot.val())
     .then((data) => {
-      var semData = data["semesterData"];
-      var weekRange;
-      for (var sem in semData) {
-        if ("start" in semData[sem]["timetable"][0]["weeks"]) {
-          weekRange = semData[sem]["timetable"][0]["weeks"];
-          break;
-        }
-      }
-      return weekRange;
+      var acadYear = data.acadYear;
+      return fetch(`https://api.nusmods.com/v2/${acadYear}/modules/CS2040.json`) //This part, to be made dynamic in future
+        .then((result) => result.json())
+        .then((data) => {
+          var semData = data["semesterData"];
+          var weekRange;
+          for (var sem in semData) {
+            if ("start" in semData[sem]["timetable"][0]["weeks"]) {
+              weekRange = semData[sem]["timetable"][0]["weeks"];
+              break;
+            }
+          }
+          return weekRange;
+        });
     });
 }
 
