@@ -12,7 +12,7 @@
    </p>
    <br>
    <p align="center">
-     <a href="https://youtu.be/Cylr8NCoRLQ">
+     <a href="https://youtu.be/r3gM15rJ4vc">
        <img src="https://github.com/marcusleeeugene/AcademicSOS-Orbital-Project/blob/master/AcademicSOS-RN/Docs/DocImages/AcademicSOS_VideoGuide.jpg" height="300">
      </a>
    </p>
