@@ -130,7 +130,7 @@ export default function ConfirmedScreen({ route, navigation }) {
   const taJSX = (
     <View>
       <View style={styles.container}>
-        <QRCode content={qrCode} size={dimensions.screen.height > 700 ? 250 : 200} />
+        <QRCode content={qrCode} size={dimensions.screen.height > 700 ? 220 : 200} />
       </View>
       <View>
         <Text style={styles.size}> Class Size: </Text>
@@ -170,8 +170,6 @@ export default function ConfirmedScreen({ route, navigation }) {
     );
   }
 }
-
-// line 106: need to dynamically update number of students who scanned the consult QR code
 
 const styles = StyleSheet.create({
   body: {

@@ -319,7 +319,7 @@ export default function CreateConsultScreen({ route, navigation }) {
                 numberofLines={5}
                 style={styles.agendaBox}
                 underlineColorAndroid="transparent"
-                onFocus={() => setScrollHeight(100)}
+                onFocus={() => setScrollHeight(20)}
                 onChangeText={(text) => setAgenda(text)}
                 value={agenda}
               />
