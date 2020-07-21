@@ -236,7 +236,7 @@
   <p>
    24 hours before the actual day of the consultation, a notification will be sent out to notify users of their upcoming consultations.
    All users involved in a consultation will be notified if there is a consultation created, consultation booked, or if consultation request is
-   "Confirmed" or "Rejected".
+   "Accepted" or "Rejected".
   </p>
   <br><br>
   <p align="center">
