@@ -13,9 +13,7 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.yourcompany.AcademicSOS",
@@ -23,6 +21,7 @@
     },
     "android": {
       "package": "com.yourcompany.AcademicSOS",
+      "googleServicesFile": "./google-services.json",
       "versionCode": 1
     },
     "web": {

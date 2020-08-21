@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "715896437350",
+    "firebase_url": "https://academicsos-db.firebaseio.com",
+    "project_id": "academicsos-db",
+    "storage_bucket": "academicsos-db.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:715896437350:android:240446876d7a8699b78ba7",
+        "android_client_info": {
+          "package_name": "com.yourcompany.AcademicSOS"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "715896437350-urfvttl7fjbk30a2hjfkub7opcq0jp8i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCI65cB5ObZiapFg-n7IaxAzPwtc_30iy8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "715896437350-urfvttl7fjbk30a2hjfkub7opcq0jp8i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
